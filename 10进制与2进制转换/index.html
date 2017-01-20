@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="记录未知的，牢记已知的"><title>X进制与Y进制转换 | soujava</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.1.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">X进制与Y进制转换</h1><a id="logo" href="/.">soujava</a><p class="description">记录未知的，牢记已知的</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">X进制与Y进制转换</h1><div class="post-meta">Jan 20, 2017<span> | </span><span class="category"><a href="/categories/java/">java</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="10进制与2进制转换/" href="/10进制与2进制转换/#comments" class="ds-thread-count"></a><div class="post-content"><p>在上一篇文章中描述了二进制、八进制、十进制、十六进制的概念和表述方法，但是在计算机的世界中，只有0和1，所以除了二进制之外的其它X进制，计算机都是不能识别的；所以需要把他们转换为二进制之后才能在计算机上面运行</p>
+<p><strong>一、十进制转换二进制</strong></p>
+<p><em>注:如果是10进制转换2进制的话，那么只需要拿着10进制除以2,直到商为1或者0，然后拿着商和余数组成的一串0和1数字串就是该十进制数的二进制值</em></p>
+<ol>
+<li><p>把5转换为2进制</p>
+<ul>
+<li>5/2 ——2——-1</li>
+<li>2/2 ——1——-0</li>
+<li>5除以2，除到最后商1，然后余数为0；所以5的二进制为:101;然后前面补0:00000101</li>
+</ul>
+</li>
+<li><p>把16转换为2进制</p>
+<ul>
+<li>16/2 ——8——-0</li>
+<li>8/2  ——4——-0</li>
+<li>4/2  ——2——-0</li>
+<li>2/2  ——1——-0</li>
+<li>16除以2，除到最后商为1，然后余数为0；所以16的二进制为:10000;然后前面补0:00010000</li>
+</ul>
+</li>
+<li><p>把99转换为2进制</p>
+<ul>
+<li>99/2 ——49 ——-1</li>
+<li>49/2 ——24 ——-1</li>
+<li>24/2 ——12 ——-0</li>
+<li>12/2 ——6  ——-0</li>
+<li>6/2  ——3  ——-0</li>
+<li>3/2  ——1  ——-1</li>
+<li>99除以2，除到最后商为1，然后余数为1；所以99的二进制为:1100011;然后前面补0:01100011</li>
+</ul>
+</li>
+</ol>
+<p><strong>二、二进制表示十进制</strong></p>
+<p><em>注:如果是2制转换10进制的话，那么只需要把二进制串的每一位的值乘以2^索引值 [其所在串中的索引值(0开始从右向左)] 的和</em></p>
+<ol>
+<li><p>把<strong>00000101</strong>转换为10进制</p>
+<ul>
+<li>从右向左开始—–第0位—–1—–2^0 X 1——-1</li>
+<li>从右向左开始—–第1位—–0—–2^1 X 0——-0</li>
+<li>从右向左开始—–第2位—–1—–2^2 X 1——-4</li>
+<li>从右向左开始—–第3位—–0—–2^3 X 0——-0</li>
+<li>从右向左开始—–第4位—–0—–2^4 X 0——-0</li>
+<li>从右向左开始—–第5位—–0—–2^5 X 0——-0</li>
+<li>从右向左开始—–第6位—–0—–2^6 X 0——-0</li>
+<li>从右向左开始—–第7位—–0—–2^7 X 0——-0</li>
+<li>最终<strong>00000101</strong>二进制串对应的值为 1+0+4+0+0+0+0+0 = 5</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>把<strong>00010000</strong>转换为2进制</p>
+<ul>
+<li>从右向左开始—–第0位—–0—–2^0 X 0——-0</li>
+<li>从右向左开始—–第1位—–0—–2^1 X 0——-0</li>
+<li>从右向左开始—–第2位—–0—–2^2 X 0——-0</li>
+<li>从右向左开始—–第3位—–0—–2^3 X 0——-0</li>
+<li>从右向左开始—–第4位—–1—–2^4 X 1——-16</li>
+<li>从右向左开始—–第5位—–0—–2^5 X 0——-0</li>
+<li>从右向左开始—–第6位—–0—–2^6 X 0——-0</li>
+<li>从右向左开始—–第7位—–0—–2^7 X 0——-0</li>
+<li>最终<strong>00010000</strong>二进制串对应的值为 0+0+0+0+16+0+0+0 = 16</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>把<strong>01100011</strong>转换为2进制</p>
+<ul>
+<li>从右向左开始—–第0位—–1—–2^0 X 1——-1</li>
+<li>从右向左开始—–第1位—–1—–2^1 X 1——-2</li>
+<li>从右向左开始—–第2位—–0—–2^2 X 0——-0</li>
+<li>从右向左开始—–第3位—–0—–2^3 X 0——-0</li>
+<li>从右向左开始—–第4位—–0—–2^4 X 1——-0</li>
+<li>从右向左开始—–第5位—–1—–2^5 X 0——-32</li>
+<li>从右向左开始—–第6位—–1—–2^6 X 0——-64</li>
+<li>从右向左开始—–第7位—–0—–2^7 X 0——-0</li>
+<li>最终<strong>00010000</strong>二进制串对应的值为 1+2+0+0+0+32+64+0 = 99</li>
+</ul>
+</li>
+</ol>
+</div><div class="tags"><a href="/tags/进制运算/">进制运算</a></div><div class="post-nav"><a href="/thymeleaf教程3-with定义变量使用/" class="next">thymeleaf教程3--with定义变量使用</a></div><div data-thread-key="10进制与2进制转换/" data-title="X进制与Y进制转换" data-url="http://www.soujava.com/10进制与2进制转换/" class="ds-share flat"><div class="ds-share-inline"><ul class="ds-share-icons-16"><li data-toggle="ds-share-icons-more"><a href="javascript:void(0);" class="ds-more">分享到：</a></li><li><a href="javascript:void(0);" data-service="weibo" class="ds-weibo">微博</a></li><li><a href="javascript:void(0);" data-service="qzone" class="ds-qzone">QQ空间</a></li><li><a href="javascript:void(0);" data-service="qqt" class="ds-qqt">腾讯微博</a></li><li><a href="javascript:void(0);" data-service="wechat" class="ds-wechat">微信</a></li></ul><div class="ds-share-icons-more"></div></div></div><div data-thread-key="10进制与2进制转换/" data-title="X进制与Y进制转换" data-url="http://www.soujava.com/10进制与2进制转换/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RocketMQ/">RocketMQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/oracle/">oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/thymeleaf/">thymeleaf</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vSphere/">vSphere</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/vSphere添加物理网卡/" style="font-size: 15px;">vSphere添加物理网卡</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/eclipse/" style="font-size: 15px;">eclipse</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/添加enter事件/" style="font-size: 15px;">添加enter事件</a> <a href="/tags/界面框架/" style="font-size: 15px;">界面框架</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/网卡/" style="font-size: 15px;">网卡</a> <a href="/tags/服务开机启动/" style="font-size: 15px;">服务开机启动</a> <a href="/tags/Maven插件/" style="font-size: 15px;">Maven插件</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/动态传入tableName/" style="font-size: 15px;">动态传入tableName</a> <a href="/tags/Redis安装/" style="font-size: 15px;">Redis安装</a> <a href="/tags/RocketMQ启动错误/" style="font-size: 15px;">RocketMQ启动错误</a> <a href="/tags/Tomcat日志/" style="font-size: 15px;">Tomcat日志</a> <a href="/tags/进制运算/" style="font-size: 15px;">进制运算</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/java8-Stream/" style="font-size: 15px;">java8 Stream</a> <a href="/tags/jxl/" style="font-size: 15px;">jxl</a> <a href="/tags/java定时任务/" style="font-size: 15px;">java定时任务</a> <a href="/tags/java接收clob字段/" style="font-size: 15px;">java接收clob字段</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/oracle导出空表/" style="font-size: 15px;">oracle导出空表</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/springBoot/" style="font-size: 15px;">springBoot</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/gitlab/" style="font-size: 15px;">gitlab</a> <a href="/tags/表单元素获取/" style="font-size: 15px;">表单元素获取</a> <a href="/tags/poi/" style="font-size: 15px;">poi</a> <a href="/tags/跨域/" style="font-size: 15px;">跨域</a></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">soujava.</a><a rel="nofollow" target="_blank" href="http://www.soujava.com"> 马平升.</a><a rel="nofollow" target="_blank" href="https://github.com/mapingsheng"> Github</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var duoshuoQuery = {short_name:'soujava'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
