@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>soujava</title>
+  <subtitle>记录未知的，牢记已知的</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.soujava.com/"/>
+  <updated>2017-01-11T02:06:24.915Z</updated>
+  <id>http://www.soujava.com/</id>
+  
+  <author>
+    <name>马平升</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>thymeleaf教程3--with定义变量使用</title>
+    <link href="http://www.soujava.com/thymeleaf%E6%95%99%E7%A8%8B3-with%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.soujava.com/thymeleaf教程3-with定义变量使用/</id>
+    <published>2016-09-28T08:11:44.000Z</published>
+    <updated>2017-01-11T02:06:24.915Z</updated>
+    
+    <content type="html">&lt;p&gt;在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。&lt;/p&gt;
+&lt;h3 id=&quot;th-with用法&quot;&gt;&lt;a href=&quot;#th-with用法&quot; class=&quot;headerlink&quot; title=&quot;th:with用法&quot;&gt;&lt;/a&gt;th:with用法&lt;/h3&gt;&lt;p&gt;1、用来定义局部变量，用法如下：&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;div th:with=&quot;name=zhangsan&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   	&amp;lt;p&amp;gt;hello &amp;lt;span th:text=&quot;$&amp;#123;name&amp;#125;&quot;&amp;gt;&amp;lt;/span&amp;gt;.&amp;lt;/p&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/div&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上面的例子定义了一个变量name，值为zhangsan，然后我们在p标签中输出定义的变量。&lt;/p&gt;
+&lt;p&gt;通过上面的例子可以看出来用法规则为–th:with=”key=value”这种格式定义局部变量&lt;/p&gt;
+&lt;p&gt;2、用来定义多个局部变量，用法如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;div th:with=&quot;name=zhangsan,age=25&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   	&amp;lt;p&amp;gt;hello &amp;lt;span th:text=&quot;$&amp;#123;name&amp;#125;&quot;&amp;gt;&amp;lt;/span&amp;gt;.&amp;lt;/p&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/div&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面的例子定义了第一个变量name，值为zhangsan;第二个变量age，值为25。&lt;/p&gt;
+&lt;h3 id=&quot;th-with范围&quot;&gt;&lt;a href=&quot;#th-with范围&quot; class=&quot;headerlink&quot; title=&quot;th:with范围&quot;&gt;&lt;/a&gt;th:with范围&lt;/h3&gt;&lt;p&gt;1、我们在定义变量的时候其实是存在范围限制的，我们定义的变量，只能在我们所定义的标签内部使用&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;div th:with=&quot;name=zhangsan&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   	&amp;lt;p id=&quot;inner&quot;&amp;gt;hello &amp;lt;span th:text=&quot;$&amp;#123;name&amp;#125;&quot;&amp;gt;&amp;lt;/span&amp;gt;.&amp;lt;/p&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/div&amp;gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;p id=&quot;outer&quot;&amp;gt;hello &amp;lt;span th:text=&quot;$&amp;#123;name&amp;#125;&quot;&amp;gt;&amp;lt;/span&amp;gt;.&amp;lt;/p&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上面的例子中我们在div标签中定义了一个name变量，然后分别在div标签内部和外部的p标签上面进行使用，其实在id为outer的p标签上面是不能取到变量&lt;/p&gt;
+&lt;p&gt;name的值的。因为我们定义的变量name是在div标签上面的，所以只能在div标签内部进行使用。这就是范围&lt;/p&gt;
+&lt;h3 id=&quot;th-with定义对象&quot;&gt;&lt;a href=&quot;#th-with定义对象&quot; class=&quot;headerlink&quot; title=&quot;th:with定义对象&quot;&gt;&lt;/a&gt;th:with定义对象&lt;/h3&gt;&lt;p&gt;我们前面仅仅使用th:with定义简单的变量，其实也可以用来定义对象，比如我们通过后台返回的数据封装VO对象，我们就可以在这里定义，&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;div th:with=&quot;user=$&amp;#123;userList[0]&amp;#125;&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   	&amp;lt;p&amp;gt;The name of the first person is &amp;lt;span th:text=&quot;$&amp;#123;user.userName&amp;#125;&quot;&amp;gt;Julius Caesar&amp;lt;/span&amp;gt;.&amp;lt;/p&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/div&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我们定义变量user为list中的一个索引对象，然后我们就可以使用变量中的属性了。&lt;/p&gt;
+&lt;h3 id=&quot;th-with定义的变量在js中如何使用&quot;&gt;&lt;a href=&quot;#th-with定义的变量在js中如何使用&quot; class=&quot;headerlink&quot; title=&quot;th:with定义的变量在js中如何使用&quot;&gt;&lt;/a&gt;th:with定义的变量在js中如何使用&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;head th:with=&quot;name=zhangsan&quot;&amp;gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;lt;script type=&quot;text/javascript&quot; th:inline=&quot;javascript&quot;&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		var name = [[$&amp;#123;columnListJson&amp;#125;]];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;lt;/script&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/head&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面的例子中有三个地方需要注意：&lt;/p&gt;
+&lt;p&gt;1、如果在js中需要使用变量，那么就要考虑前面提到的使用范围问题&lt;/p&gt;
+&lt;p&gt;2、如果在js中使用那么需要在&lt;script&gt;标签中添加 th:inline=”javascript”&lt;/p&gt;
+&lt;p&gt;3、在js标签中获取变量时，需要采用[[$变量名称]]的方式获取使用&lt;/p&gt;
+&lt;/script&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。&lt;/p&gt;
+&lt;h3 id=&quot;th-with用法&quot;&gt;&lt;a h
+    
+    </summary>
+    
+      <category term="thymeleaf" scheme="http://www.soujava.com/categories/thymeleaf/"/>
+    
+    
+      <category term="thymeleaf" scheme="http://www.soujava.com/tags/thymeleaf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Maven忽略其他依赖jar包插件-maven-enforcer-plugin</title>
+    <link href="http://www.soujava.com/Maven%E5%BF%BD%E7%95%A5%E5%85%B6%E4%BB%96%E4%BE%9D%E8%B5%96jar%E5%8C%85%E6%8F%92%E4%BB%B6/"/>
+    <id>http://www.soujava.com/Maven忽略其他依赖jar包插件/</id>
+    <published>2016-09-20T02:54:31.000Z</published>
+    <updated>2017-01-11T02:06:24.905Z</updated>
+    
+    <content type="html">&lt;p&gt;我们在开发产品时，可能不同人开发不同的功能模块，比如：&lt;/p&gt;
+&lt;p&gt;•现在A开发a模块，B开发b模块&lt;/p&gt;
+&lt;p&gt;•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的jar包版本应该都用modelman-1.0.2-RELEASE.jar这个版本&lt;/p&gt;
+&lt;p&gt;•那么我们就可以把modelman-1.0.0-SNAPSHOT.jar这个jar包添加配置到下面中&lt;br&gt;    &lt;exclude&gt;com.maps:modelman:1.0.0-SNAPSHOT&lt;/exclude&gt;&lt;/p&gt;
+&lt;p&gt;•添加完成后当编译产品时则会自动检测是否还有用到modelman:1.0.0-SNAPSHOT的模块，如检测出有，那么则中断编译并提示&lt;/p&gt;
+&lt;p&gt;其实我们只需在xml配置文件中添加插件maven-enforcer-plugin配置就行了&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;plugin&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;lt;artifactId&amp;gt;maven-enforcer-plugin&amp;lt;/artifactId&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;lt;version&amp;gt;1.2&amp;lt;/version&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;lt;executions&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&amp;lt;execution&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				&amp;lt;id&amp;gt;enforce-banned-dependencies&amp;lt;/id&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				&amp;lt;goals&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;					&amp;lt;goal&amp;gt;enforce&amp;lt;/goal&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				&amp;lt;/goals&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				&amp;lt;configuration&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;					&amp;lt;rules&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;						&amp;lt;bannedDependencies&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;							&amp;lt;searchTransitive&amp;gt;true&amp;lt;/searchTransitive&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;							&amp;lt;excludes&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;								&amp;lt;!--在下面添加忽略的相关jar包 --&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;								&amp;lt;exclude&amp;gt;com.maps:modelman:1.0.0-SNAPSHOT&amp;lt;/exclude&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;								&amp;lt;exclude&amp;gt;com.maps:dictionary:1.0.0-SNAPSHOT&amp;lt;/exclude&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;								&amp;lt;exclude&amp;gt;com.maps:flow&amp;lt;/exclude&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;							&amp;lt;/excludes&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;						&amp;lt;/bannedDependencies&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;					&amp;lt;/rules&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;					&amp;lt;fail&amp;gt;true&amp;lt;/fail&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				&amp;lt;/configuration&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&amp;lt;/execution&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;lt;/executions&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/plugin&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们在开发产品时，可能不同人开发不同的功能模块，比如：&lt;/p&gt;
+&lt;p&gt;•现在A开发a模块，B开发b模块&lt;/p&gt;
+&lt;p&gt;•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的ja
+    
+    </summary>
+    
+      <category term="Maven" scheme="http://www.soujava.com/categories/Maven/"/>
+    
+    
+      <category term="Maven插件" scheme="http://www.soujava.com/tags/Maven%E6%8F%92%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql数据库编码更改</title>
+    <link href="http://www.soujava.com/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A0%81%E6%9B%B4%E6%94%B9/"/>
+    <id>http://www.soujava.com/Mysql数据库编码更改/</id>
+    <published>2016-09-20T02:46:29.000Z</published>
+    <updated>2017-01-11T02:06:24.908Z</updated>
+    
+    <content type="html">&lt;p&gt;在平时的开发过程中，mysql的编码是拉丁字符，所以当向里面存储数据时，显示出来就是乱码，那么我们需要执行如下操作：&lt;/p&gt;
+&lt;h3 id=&quot;1-通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息&quot;&gt;&lt;a href=&quot;#1-通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息&quot; class=&quot;headerlink&quot; title=&quot;1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息&quot;&gt;&lt;/a&gt;1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/mysqlCode1.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2-然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表&quot;&gt;&lt;a href=&quot;#2-然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表&quot; class=&quot;headerlink&quot; title=&quot;2.然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表&quot;&gt;&lt;/a&gt;2.然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;select &lt;span class=&quot;title&quot;&gt;concat&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;string&quot;&gt;&#39;alter table &#39;&lt;/span&gt;, table_name,&lt;span class=&quot;string&quot;&gt;&#39; character set utf8 collate utf8_bin;&#39;&lt;/span&gt;)&lt;/span&gt; from information_schema.tables as t, information_schema.COLLATION_CHARACTER_SET_APPLICABILITY as c &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;where c.collation_name = t.table_collation and t.table_schema=&lt;span class=&quot;string&quot;&gt;&#39;confluence&#39;&lt;/span&gt; and (c.character_set_name!=&lt;span class=&quot;string&quot;&gt;&#39;utf8&#39;&lt;/span&gt; or c.collation_name!=&lt;span class=&quot;string&quot;&gt;&#39;utf8_bin&#39;&lt;/span&gt;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;3-然后把第2步查询出的alter语句复制到对应的命令窗口中执行修改具体的表结构编码操作&quot;&gt;&lt;a href=&quot;#3-然后把第2步查询出的alter语句复制到对应的命令窗口中执行修改具体的表结构编码操作&quot; class=&quot;headerlink&quot; title=&quot;3.然后把第2步查询出的alter语句复制到对应的命令窗口中执行修改具体的表结构编码操作&quot;&gt;&lt;/a&gt;3.然后把第2步查询出的alter语句复制到对应的命令窗口中执行修改具体的表结构编码操作&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/mysqlCode2.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在平时的开发过程中，mysql的编码是拉丁字符，所以当向里面存储数据时，显示出来就是乱码，那么我们需要执行如下操作：&lt;/p&gt;
+&lt;h3 id=&quot;1-通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://www.soujava.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://www.soujava.com/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RocketMQ启动报错解决</title>
+    <link href="http://www.soujava.com/RocketMQ%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/"/>
+    <id>http://www.soujava.com/RocketMQ启动报错解决/</id>
+    <published>2016-09-20T02:21:53.000Z</published>
+    <updated>2017-01-11T02:06:24.908Z</updated>
+    
+    <content type="html">&lt;p&gt;最近需要用到消息服务器，就用到淘宝开源的RocketMQ消息服务器了，重新安装的一台新的linux服务器（CentOS6.4），然后安装的RocketMQ二进制包。安装成功后，在最后启动的时候，报了一个错误！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/rocketMQ1.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;注：根据上面的错误提示信息可以看到是因为刚刚安装的Centos操作系统的主机名称没有配置导致启动MQ服务时住不到主机&lt;/p&gt;
+&lt;h3 id=&quot;解决方法&quot;&gt;&lt;a href=&quot;#解决方法&quot; class=&quot;headerlink&quot; title=&quot;解决方法&quot;&gt;&lt;/a&gt;解决方法&lt;/h3&gt;&lt;p&gt;1、vim /etc/hosts   &lt;/p&gt;
+&lt;p&gt;添加如下主机名配置信息&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/rocketMQ2.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;2、service network stop  &lt;/p&gt;
+&lt;p&gt;关闭网卡&lt;/p&gt;
+&lt;p&gt;3、service network start  &lt;/p&gt;
+&lt;p&gt;启动网卡&lt;/p&gt;
+&lt;p&gt;4、再重新执行MQ的启动服务命令后，可以看到下面的提示信息代表服务已经启动成功&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/rocketMQ3.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近需要用到消息服务器，就用到淘宝开源的RocketMQ消息服务器了，重新安装的一台新的linux服务器（CentOS6.4），然后安装的RocketMQ二进制包。安装成功后，在最后启动的时候，报了一个错误！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;ht
+    
+    </summary>
+    
+      <category term="RocketMQ" scheme="http://www.soujava.com/categories/RocketMQ/"/>
+    
+    
+      <category term="RocketMQ启动错误" scheme="http://www.soujava.com/tags/RocketMQ%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java定时任务Timer小试一下</title>
+    <link href="http://www.soujava.com/java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1Timer%E5%B0%8F%E8%AF%95%E4%B8%80%E4%B8%8B/"/>
+    <id>http://www.soujava.com/java定时任务Timer小试一下/</id>
+    <published>2016-09-14T07:16:26.000Z</published>
+    <updated>2017-01-11T02:06:24.911Z</updated>
+    
+    <content type="html">&lt;p&gt;java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。&lt;/p&gt;
+&lt;h3 id=&quot;一、我们定义一个需要定时执行的任务的类&quot;&gt;&lt;a href=&quot;#一、我们定义一个需要定时执行的任务的类&quot; class=&quot;headerlink&quot; title=&quot;一、我们定义一个需要定时执行的任务的类&quot;&gt;&lt;/a&gt;一、我们定义一个需要定时执行的任务的类&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; test; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.Timer; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;TimeTaskTest&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt;&lt;/span&gt;&amp;#123; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		Timer timer = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Timer(); &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		timer.schedule(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Task(), &lt;span class=&quot;number&quot;&gt;60&lt;/span&gt; * &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;); &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注：我们的定时任务，就在这个类的main函数里执行&lt;/p&gt;
+&lt;p&gt;1、上面的代码实现了这样一个功能，当TimeTask程序启动以后，过一分钟后执行某项任务&lt;/p&gt;
+&lt;p&gt;2、很简单吧：先new一个Timer对象，然后调用它的schedule方法，这个方法有四个重载的方法，这里我们用其中一个，&lt;br&gt;public void schedule(TimerTask task,long delay) &lt;/p&gt;
+&lt;p&gt;首先，第一个参数第一个参数就是我们要执行的任务。这是一个TimerTask对象，确切点说是一个实现TimerTask的类的对象，因为TimerTask是个抽象类。上面的代码里 面，Task就是我们自己定义的实现了TimerTask的类，因为是在同一个包里面，所以没有显性的import进来。Task类的代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; test; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.TimerTask; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;TimerTask&lt;/span&gt; &lt;/span&gt;&amp;#123; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;定时任务执行&quot;&lt;/span&gt;); &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我们的Task必须实现TimerTask的方法run，要执行的任务就在这个run方法里面，这里，我们只让它往控制台打一行字。&lt;/p&gt;
+&lt;p&gt;第二个参数第二个参数是一个long型的值。这是延迟的时间，就是从程序开始以后，再过多少时间来执行定时任务。这个long型的值是毫秒数，&lt;br&gt;所以前面我们的程序里面，过一分钟后执行用的参数值就是 60 * 1000。&lt;/p&gt;
+&lt;h3 id=&quot;二、循环执行任务&quot;&gt;&lt;a href=&quot;#二、循环执行任务&quot; class=&quot;headerlink&quot; title=&quot;二、循环执行任务&quot;&gt;&lt;/a&gt;二、循环执行任务&lt;/h3&gt;&lt;p&gt;循环执行设置定时任务的时候，往往我们需要重复的执行这样任务，每隔一段时间执行一次，而上面的方法是只执行一次的，&lt;br&gt;这样就用到了schedule方法的是另一个重载函数&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(TimerTask task,&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; delay,&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; period)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;前两个参数就不用说什么了，最后一个参数就是间隔的时间，又是个long型的毫秒数（看来java里涉及到时间的，跟这个long是脱不了干系了），&lt;br&gt;比如我们希望上面的任务从第一次执行后，每个一分钟执行一次，第三个参数值赋60 * 1000就ok了。&lt;/p&gt;
+&lt;h3 id=&quot;三、定时&quot;&gt;&lt;a href=&quot;#三、定时&quot; class=&quot;headerlink&quot; title=&quot;三、定时&quot;&gt;&lt;/a&gt;三、定时&lt;/h3&gt;&lt;p&gt;指定执行时间既然号称是定时任务，我们肯定希望由我们来指定任务指定的时间，显然上面的方法就不中用了，因为我们不知道程序什么时间开始运行，&lt;br&gt;就没办法确定需要延时多少。没关系，schedule四个重载的方法还没用完呢。用下面这个就OK了：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(TimerTask task,Date time)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;比如，我们希望定时任务2006年7月2日0时0分执行，只要给第二个参数传一个时间设置为2006年7月2日0时0分的Date对象就可以了。&lt;br&gt;有一种情况是，可能我们的程序启动的时候，已经是2006年7月3日了，这样的话，程序一启动，定时任务就开始执行了。&lt;/p&gt;
+&lt;p&gt;schedule最后一个重载的方法是&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(TimerTask task,Date firstTime,&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; period)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;四、扩展&quot;&gt;&lt;a href=&quot;#四、扩展&quot; class=&quot;headerlink&quot; title=&quot;四、扩展&quot;&gt;&lt;/a&gt;四、扩展&lt;/h3&gt;&lt;p&gt;j2ee中的定时任务在实际的项目中，往往定时任务需要对web工程中的资源进行操作，这样一来，用上面的单个程序的方式可能就有点力不从心了，因为很多web工程的资源它操作不到。解决的办法是，使用Servlet，把执行定时任务的那些代码放到Servlet的init()函数里就可以了，这个easy，就没有必要再写示例代码了吧&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。&lt;/p&gt;
+&lt;h3 id=&quot;一、我们定义一个需要定时执行的任务的类&quot;&gt;&lt;a href=&quot;#一、我们定义一个需
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.soujava.com/categories/java/"/>
+    
+    
+      <category term="java定时任务" scheme="http://www.soujava.com/tags/java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>处理百万级以上的数据提高查询速度的方法--数据库优化篇</title>
+    <link href="http://www.soujava.com/%E5%A4%84%E7%90%86%E7%99%BE%E4%B8%87%E7%BA%A7%E4%BB%A5%E4%B8%8A%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8F%90%E9%AB%98%E6%9F%A5%E8%AF%A2%E9%80%9F%E5%BA%A6%E7%9A%84%E6%96%B9%E6%B3%95-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96%E7%AF%87/"/>
+    <id>http://www.soujava.com/处理百万级以上的数据提高查询速度的方法-数据库优化篇/</id>
+    <published>2016-09-12T06:17:55.000Z</published>
+    <updated>2017-01-11T02:06:24.916Z</updated>
+    
+    <content type="html">&lt;p&gt; &lt;strong&gt;1&lt;/strong&gt;.应尽量避免在 where 子句中使用!=或&amp;lt;&amp;gt;操作符，否则将引擎放弃使用索引而进行全表扫描。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;2&lt;/strong&gt;.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;3&lt;/strong&gt;.应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select id from t where num is null
+可以在num上设置默认值0，确保表中num列没有null值，然后这样查询：
+select id from t where num=0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt;4&lt;/strong&gt;.应尽量避免在 where 子句中使用 or 来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select id from t where num=10 or num=20
+可以这样查询：
+select id from t where num=10
+union all
+select id from t where num=20
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt;5&lt;/strong&gt;.下面的查询也将导致全表扫描：(不能前置百分号)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; select id from t where name like ‘%abc%’
+若要提高效率，可以考虑全文检索。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt;6&lt;/strong&gt;.in 和 not in 也要慎用，否则会导致全表扫描，如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select id from t where num in(1,2,3)
+对于连续的数值，能用 between 就不要用 in 了：
+select id from t where num between 1 and 3
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt;7&lt;/strong&gt;.如果在 where 子句中使用参数，也会导致全表扫描。因为SQL只有在运行时才会解析局部变量，但优化程序不能将访问计划的选择推迟到运行时；它必须在编译时进行选择。然 而，如果在编译时建立访问计划，变量的值还是未知的，因而无法作为索引选择的输入项。如下面语句将进行全表扫描：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select id from t where num=@num
+可以改为强制查询使用索引：
+select id from t with(index(索引名)) where num=@num
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt;8&lt;/strong&gt;.应尽量避免在 where 子句中对字段进行表达式操作，这将导致引擎放弃使用索引而进行全表扫描。如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select id from t where num/2=100
+应改为:
+select id from t where num=100*2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt;9&lt;/strong&gt;.应尽量避免在where子句中对字段进行函数操作，这将导致引擎放弃使用索引而进行全表扫描。如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select id from t where substring(name,1,3)=’abc’–name以abc开头的id
+select id from t where datediff(day,createdate,’2005-11-30′)=0–’2005-11-30′生成的id
+应改为:
+select id from t where name like ‘abc%’
+select id from t where createdate&amp;gt;=’2005-11-30′ and createdate&amp;lt;’2005-12-1′
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt;10&lt;/strong&gt;.不要在 where 子句中的“=”左边进行函数、算术运算或其他表达式运算，否则系统将可能无法正确使用索引。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;11&lt;/strong&gt;.在使用索引字段作为条件时，如果该索引是复合索引，那么必须使用到该索引中的第一个字段作为条件时才能保证系统使用该索引，否则该索引将不会被使 用，并且应尽可能的让字段顺序与索引顺序相一致。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;12&lt;/strong&gt;.不要写一些没有意义的查询，如需要生成一个空表结构：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select col1,col2 into #t from t where 1=0
+这类代码不会返回任何结果集，但是会消耗系统资源的，应改成这样：
+create table #t(…)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt;13&lt;/strong&gt;.很多时候用 exists 代替 in 是一个好的选择：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select num from a where num in(select num from b)
+用下面的语句替换：
+select num from a where exists(select 1 from b where num=a.num)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt;14&lt;/strong&gt;.并不是所有索引对查询都有效，SQL是根据表中数据来进行查询优化的，当索引列有大量数据重复时，SQL查询可能不会去利用索引，如一表中有字段 sex，male、female几乎各一半，那么即使在sex上建了索引也对查询效率起不了作用。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;15&lt;/strong&gt;.索引并不是越多越好，索引固然可以提高相应的 select 的效率，但同时也降低了 insert 及 update 的效率，因为 insert 或 update 时有可能会重建索引，所以怎样建索引需要慎重考虑，视具体情况而定。一个表的索引数最好不要超过6个，若太多则应考虑一些不常使用到的列上建的索引是否有 必要。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;16&lt;/strong&gt;.应尽可能的避免更新 clustered 索引数据列，因为 clustered 索引数据列的顺序就是表记录的物理存储顺序，一旦该列值改变将导致整个表记录的顺序的调整，会耗费相当大的资源。若应用系统需要频繁更新 clustered 索引数据列，那么需要考虑是否应将该索引建为 clustered 索引。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;17&lt;/strong&gt;.尽量使用数字型字段，若只含数值信息的字段尽量不要设计为字符型，这会降低查询和连接的性能，并会增加存储开销。这是因为引擎在处理查询和连接时会 逐个比较字符串中每一个字符，而对于数字型而言只需要比较一次就够了。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;18&lt;/strong&gt;.尽可能的使用 varchar/nvarchar 代替 char/nchar ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;19&lt;/strong&gt;.任何地方都不要使用 select &lt;em&gt; from t ，用具体的字段列表代替“&lt;/em&gt;”，不要返回用不到的任何字段。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;20&lt;/strong&gt;.尽量使用表变量来代替临时表。如果表变量包含大量数据，请注意索引非常有限（只有主键索引）。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;21&lt;/strong&gt;.避免频繁创建和删除临时表，以减少系统表资源的消耗。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;22&lt;/strong&gt;.临时表并不是不可使用，适当地使用它们可以使某些例程更有效，例如，当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件，最好使 用导出表。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;23&lt;/strong&gt;.在新建临时表时，如果一次性插入数据量很大，那么可以使用 select into 代替 create table，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先create table，然后insert。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;24&lt;/strong&gt;.如果使用到了临时表，在存储过程的最后务必将所有的临时表显式删除，先 truncate table ，然后 drop table ，这样可以避免系统表的较长时间锁定。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;25&lt;/strong&gt;.尽量避免使用游标，因为游标的效率较差，如果游标操作的数据超过1万行，那么就应该考虑改写。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;26&lt;/strong&gt;.使用基于游标的方法或临时表方法之前，应先寻找基于集的解决方案来解决问题，基于集的方法通常更有效。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;27&lt;/strong&gt;.与临时表一样，游标并不是不可使用。对小型数据集使用 FAST_FORWARD 游标通常要优于其他逐行处理方法，尤其是在必须引用几个表才能获得所需的数据时。在结果集中包括“合计”的例程通常要比使用游标执行的速度快。如果开发时 间允许，基于游标的方法和基于集的方法都可以尝试一下，看哪一种方法的效果更好。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;28&lt;/strong&gt;.在所有的存储过程和触发器的开始处设置 SET NOCOUNT ON ，在结束时设置 SET NOCOUNT OFF 。无需在执行存储过程和触发器的每个语句后向客户端发送 DONE_IN_PROC 消息。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;29&lt;/strong&gt;.尽量避免向客户端返回大数据量，若数据量过大，应该考虑相应需求是否合理。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;30&lt;/strong&gt;.尽量避免大事务操作，提高系统并发能力。&lt;/p&gt;
+&lt;p&gt;####　一、查询速度慢的原因：&lt;/p&gt;
+&lt;p&gt;1、没有索引或者没有用到索引(这是查询慢最常见的问题，是程序设计的缺陷) &lt;/p&gt;
+&lt;p&gt;2、I/O吞吐量小，形成了瓶颈效应。  &lt;/p&gt;
+&lt;p&gt;3、没有创建计算列导致查询不优化。 &lt;/p&gt;
+&lt;p&gt;4、内存不足  &lt;/p&gt;
+&lt;p&gt;5、网络速度慢  &lt;/p&gt;
+&lt;p&gt;6、查询出的数据量过大（可以采用多次查询，其他的方法降低数据量）  &lt;/p&gt;
+&lt;p&gt;7、锁或者死锁(这也是查询慢最常见的问题，是程序设计的缺陷)  &lt;/p&gt;
+&lt;p&gt;8、sp_lock,sp_who,活动的用户查看,原因是读写竞争资源。&lt;/p&gt;
+&lt;p&gt;9、返回了不必要的行和列  &lt;/p&gt;
+&lt;p&gt;10、查询语句不好，没有优化  &lt;/p&gt;
+&lt;p&gt;####　可以通过如下方法来优化查询  &lt;/p&gt;
+&lt;p&gt;1、把数据、日志、索引放到不同的I/O设备上，增加读取速度，以前可以将Tempdb应放在RAID0上，SQL2000不在支持。数据量（尺寸）越大，提高I/O越重要.  &lt;/p&gt;
+&lt;p&gt;2、纵向、横向分割表，减少表的尺寸(sp_spaceuse)  &lt;/p&gt;
+&lt;p&gt;3、升级硬件  &lt;/p&gt;
+&lt;p&gt;4、根据查询条件,建立索引,优化索引、优化访问方式，限制结果集的数据量。注意填充因子要适当（最好是使用默认值0）。索引应该尽量小，使用字节数小的列建索引好（参照索引的创建）,不要对有限的几个值的字段建单一索引如性别字段  &lt;/p&gt;
+&lt;p&gt;5、提高网速;  &lt;/p&gt;
+&lt;p&gt;6、扩大服务器的内存,Windows   2000和SQL   server   2000能支持4-8G的内存。配置虚拟内存：虚拟内存大小应基于计算机上并发运行的服务进行配置。运行   Microsoft   SQL   Server?   2000   时，可考虑将虚拟内存大小设置为计算机中安装的物理内存的   1.5   倍。如果另外安装了全文检索功能，并打算运行   Microsoft   搜索服务以便执行全文索引和查询，可考虑：将虚拟内存大小配置为至少是计算机中安装的物理内存的   3   倍。将   SQL   Server   max   server   memory   服务器配置选项配置为物理内存的   1.5   倍（虚拟内存大小设置的一半）。  &lt;/p&gt;
+&lt;p&gt;8、如果是使用like进行查询的话，简单的使用index是不行的，但是全文索引，耗空间。   like   ‘a%’   使用索引   like   ‘%a’   不使用索引用   like   ‘%a%’   查询时，查询耗时和字段值总长度成正比,所以不能用CHAR类型，而是VARCHAR。对于字段的值很长的建全文索引。  &lt;/p&gt;
+&lt;p&gt;9、DB   Server   和APPLication   Server   分离；OLTP和OLAP分离  &lt;/p&gt;
+&lt;p&gt;11、重建索引   DBCC   REINDEX   ,DBCC   INDEXDEFRAG,收缩数据和日志   DBCC   SHRINKDB,DBCC   SHRINKFILE.   设置自动收缩日志.对于大的数据库不要设置数据库自动增长，它会降低服务器的性能。   在T-sql的写法上有很大的讲究，下面列出常见的要点：首先，DBMS处理查询计划的过程是这样的：&lt;br&gt;    1、   查询语句的词法、语法检查&lt;br&gt;    2、   将语句提交给DBMS的查询优化器&lt;br&gt;    3、   优化器做代数优化和存取路径的优化&lt;br&gt;    4、   由预编译模块生成查询规划&lt;br&gt;    5、   然后在合适的时间提交给系统处理执行&lt;br&gt;    6、   最后将执行结果返回给用户其次，看一下SQL   SERVER的数据存放的结构：一个页面的大小为8K(8060)字节，8个页面为一个盘区，按照B树存放。  &lt;/p&gt;
+&lt;p&gt;13、在查询Select语句中用Where字句限制返回的行数,避免表扫描,如果返回不必要的数据，浪费了服务器的I/O资源，加重了网络的负担降低性能。如果表很大，在表扫描的期间将表锁住，禁止其他的联接访问表,后果严重。  &lt;/p&gt;
+&lt;p&gt;16、用Profiler来跟踪查询，得到查询所需的时间，找出SQL的问题所在;用索引优化器优化索引  &lt;/p&gt;
+&lt;p&gt;17、注意UNion和UNion   all   的区别。UNION   all好  &lt;/p&gt;
+&lt;p&gt;18、注意使用DISTINCT，在没有必要时不要用，它同UNION一样会使查询变慢。重复的记录在查询里是没有问题的  &lt;/p&gt;
+&lt;p&gt;19、查询时不要返回不需要的行、列  &lt;/p&gt;
+&lt;p&gt;20、用sp_configure   ‘query   governor   cost   limit’或者SET   QUERY_GOVERNOR_COST_LIMIT来限制查询消耗的资源。当评估查询消耗的资源超出限制时，服务器自动取消查询,在查询之前就扼杀掉。 SET   LOCKTIME设置锁的时间  &lt;/p&gt;
+&lt;p&gt;21、用select   top   100   /   10   Percent   来限制用户返回的行数或者SET   ROWCOUNT来限制操作的行  &lt;/p&gt;
+&lt;p&gt;22、在SQL2000以前，一般不要用如下的字句 “IS   NULL”,   “ &amp;lt;&amp;gt; “,   “!=”,   “!&amp;gt; “,   “! &amp;lt;”,   “NOT”,   “NOT   EXISTS”,   “NOT   IN”,   “NOT   LIKE”,   and   “LIKE   ‘%500’”，因为他们不走索引全是表扫描。&lt;br&gt;也不要在WHere字句中的列名加函数，如Convert，substring等,如果必须用函数的时候，创建计算列再创建索引来替代.还可以变通写法：WHERE   SUBSTRING(firstname,1,1)   =   ‘m’改为WHERE   firstname   like   ‘m%’（索引扫描），一定要将函数和列名分开。并且索引不能建得太多和太大。&lt;br&gt;NOT   IN会多次扫描表，使用EXISTS、NOT   EXISTS   ，IN   ,   LEFT   OUTER   JOIN   来替代，特别是左连接,而Exists比IN更快，最慢的是NOT操作.如果列的值含有空，以前它的索引不起作用，现在2000的优化器能够处理了。相同的是IS   NULL，“NOT”,   “NOT   EXISTS”,   “NOT   IN”能优化她，而” &amp;lt;&amp;gt; ”等还是不能优化，用不到索引。  &lt;/p&gt;
+&lt;p&gt;24、如果使用了IN或者OR等时发现查询没有走索引，使用显示申明指定索引：   SELECT   *   FROM   PersonMember   (INDEX   =   IX_Title)   WHERE   processid   IN   (‘男’，‘女’)  &lt;/p&gt;
+&lt;p&gt;25、将需要查询的结果预先计算好放在表中，查询的时候再SELECT。这在SQL7.0以前是最重要的手段。例如医院的住院费计算。  &lt;/p&gt;
+&lt;p&gt;26、MIN()   和   MAX()能使用到合适的索引  &lt;/p&gt;
+&lt;p&gt;28、如果要插入大的二进制值到Image列，使用存储过程，千万不要用内嵌INsert来插入(不知JAVA是否)。因为这样应用程序首先将二进制值转换成字符串（尺寸是它的两倍），服务器受到字符后又将他转换成二进制值.存储过程就没有这些动作:   方法：Create   procedure   p_insert   as   insert   into   table(Fimage)   values   (@image),   在前台调用这个存储过程传入二进制参数，这样处理速度明显改善。  &lt;/p&gt;
+&lt;p&gt;29、Between在某些时候比IN速度更快,Between能够更快地根据索引找到范围。用查询优化器可见到差别。   select   &lt;em&gt;   from   chineseresume   where   title   in   (‘男’,’女’)   Select   &lt;/em&gt;   from   chineseresume   where   between   ‘男’   and   ‘女’   是一样的。由于in会在比较多次，所以有时会慢些。  &lt;/p&gt;
+&lt;p&gt;32、用OR的字句可以分解成多个查询，并且通过UNION   连接多个查询。他们的速度只同是否使用索引有关,如果查询需要用到联合索引，用UNION   all执行的效率更高.多个OR的字句没有用到索引，改写成UNION的形式再试图与索引匹配。一个关键的问题是否用到索引。  &lt;/p&gt;
+&lt;p&gt;34、没有必要时不要用DISTINCT和ORDER   BY，这些动作可以改在客户端执行。它们增加了额外的开销。这同UNION   和UNION   ALL一样的道理。   SELECT   top   20   ad.companyname,comid,position,ad.referenceid,worklocation,   convert(varchar(10),ad.postDate,120)   as   postDate1,workyear,degreedescription   FROM   jobcn_query.dbo.COMPANYAD_query   ad   where   referenceID   in(‘JCNAD00329667’,’JCNAD132168’,’JCNAD00337748’,’JCNAD00338345’,’JCNAD00333138’,’JCNAD00303570’,   ‘JCNAD00303569’,’JCNAD00303568’,’JCNAD00306698’,’JCNAD00231935’,’JCNAD00231933’,’JCNAD00254567’,   ‘JCNAD00254585’,’JCNAD00254608’,’JCNAD00254607’,’JCNAD00258524’,’JCNAD00332133’,’JCNAD00268618’,   ‘JCNAD00279196’,’JCNAD00268613’)   order   by   postdate   desc  &lt;/p&gt;
+&lt;p&gt;35、在IN后面值的列表中，将出现最频繁的值放在最前面，出现得最少的放在最后面，减少判断的次数  &lt;/p&gt;
+&lt;p&gt;36、当用SELECT   INTO时，它会锁住系统表(sysobjects，sysindexes等等)，阻塞其他的连接的存取。创建临时表时用显示申明语句，而不是 select   INTO.   drop   table   t_lxh   begin   tran   select   &lt;em&gt;   into   t_lxh   from   chineseresume   where   name   =   ‘XYZ’   –commit   在另一个连接中SELECT   &lt;/em&gt;   from   sysobjects可以看到   SELECT   INTO   会锁住系统表，Create   table   也会锁系统表(不管是临时表还是系统表)。所以千万不要在事物内使用它！！！这样的话如果是经常要用的临时表请使用实表，或者临时表变量。  &lt;/p&gt;
+&lt;p&gt;37、一般在GROUP   BY   个HAVING字句之前就能剔除多余的行，所以尽量不要用它们来做剔除行的工作。他们的执行顺序应该如下最优：select   的Where字句选择所有合适的行，Group   By用来分组个统计行，Having字句用来剔除多余的分组。这样Group   By   个Having的开销小，查询快.对于大的数据行进行分组和Having十分消耗资源。如果Group   BY的目的不包括计算，只是分组，那么用Distinct更快  &lt;/p&gt;
+&lt;p&gt;38、一次更新多条记录比分多次更新每次一条快,就是说批处理好  &lt;/p&gt;
+&lt;p&gt;39、少用临时表，尽量用结果集和Table类性的变量来代替它,Table   类型的变量比临时表好  &lt;/p&gt;
+&lt;p&gt;40、在SQL2000下，计算字段是可以索引的，需要满足的条件如下：  &lt;/p&gt;
+&lt;p&gt;  a、计算字段的表达是确定的&lt;br&gt;  b、不能用在TEXT,Ntext，Image数据类型&lt;br&gt;  c、必须配制如下选项   ANSI_NULLS   =   ON,   ANSI_PADDINGS   =   ON,   …….  &lt;/p&gt;
+&lt;p&gt;42、不要在一句话里再三的使用相同的函数，浪费资源,将结果放在变量里再调用更快  &lt;/p&gt;
+&lt;p&gt;43、SELECT   COUNT(*)的效率教低，尽量变通他的写法，而EXISTS快.同时请注意区别：   select   count(Field   of   null)   from   Table   和   select   count(Field   of   NOT   null)   from   Table   的返回值是不同的。  &lt;/p&gt;
+&lt;p&gt;47、分析select   emp_name   form   employee   where   salary   &amp;gt;   3000   在此语句中若salary是Float类型的，则优化器对其进行优化为Convert(float,3000)，因为3000是个整数，我们应在编程时使用3000.0而不要等运行时让DBMS进行转化。同样字符和整型数据的转换。&lt;/p&gt;
+&lt;p&gt;注：此篇文章为之前本地收藏转载，具体源ｕｒｌ地址找不到了！特此说明！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; &lt;strong&gt;1&lt;/strong&gt;.应尽量避免在 where 子句中使用!=或&amp;lt;&amp;gt;操作符，否则将引擎放弃使用索引而进行全表扫描。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;2&lt;/strong&gt;.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 orde
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://www.soujava.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://www.soujava.com/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用POI3.9写一个基于office系列文档的转换系统(设计篇)</title>
+    <link href="http://www.soujava.com/%E7%94%A8POI3-9%E5%86%99%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8Eoffice%E7%B3%BB%E5%88%97%E6%96%87%E6%A1%A3%E7%9A%84%E8%BD%AC%E6%8D%A2%E7%B3%BB%E7%BB%9F-%E8%AE%BE%E8%AE%A1%E7%AF%87/"/>
+    <id>http://www.soujava.com/用POI3-9写一个基于office系列文档的转换系统-设计篇/</id>
+    <published>2016-09-12T06:11:22.000Z</published>
+    <updated>2017-01-11T02:06:24.917Z</updated>
+    
+    <content type="html">&lt;p&gt;想用Apache的POI3.9版本编写一套基于office系列文档的一个转换系统，比如对office文档的读写操作、其中的关键字检索操作、把文档转换为html或者支持在线预览的操作等功能。&lt;/p&gt;
+&lt;h3 id=&quot;一、需求&quot;&gt;&lt;a href=&quot;#一、需求&quot; class=&quot;headerlink&quot; title=&quot;一、需求&quot;&gt;&lt;/a&gt;一、需求&lt;/h3&gt;&lt;p&gt;由于前段时间已经写了一个文档在线预览功能，就是对office文档、txt、图片、pdf等文档，可以在线预览操作，也是通过搜索引擎搜索、查看一些技术文章等调研方式写出的，基本原理也就是通过几个工具转换实现的，相关原理如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/poi1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;二、问题&quot;&gt;&lt;a href=&quot;#二、问题&quot; class=&quot;headerlink&quot; title=&quot;二、问题&quot;&gt;&lt;/a&gt;二、问题&lt;/h3&gt;&lt;p&gt;通过上面的流程是可以实现文件转换、在线预览等功能的，但是我感觉上面的方法存在至少以下几个缺点：&lt;br&gt;1、安装过程过于繁琐，并且过于庞大，完成上面的操作需要安装将近200多兆的软件工具，不管从部署或者使用方面都不太好。&lt;/p&gt;
+&lt;p&gt;2、转换过程中对资源的浪费(占用)严重，比如内存、硬盘等资源，内存资源：转换过程中，对内存的占用过于严重，遇到大文件时可以把cpu的使用率占满，对服务器有严重的影响；硬盘资源：一个文档实现转换或预览功能，需要在硬盘上生成pdf、png(缩略图)、swf三个文件，对资源占用严重。&lt;/p&gt;
+&lt;p&gt;3、转换效率不高，对大文件转换速度比较慢，还经常出现卡死的现象；转换过程中对文档中的一些公式或者特殊字体没有很好的支持，会出现乱码或者其他不可读的字符情况。&lt;/p&gt;
+&lt;h3 id=&quot;三、改进&quot;&gt;&lt;a href=&quot;#三、改进&quot; class=&quot;headerlink&quot; title=&quot;三、改进&quot;&gt;&lt;/a&gt;三、改进&lt;/h3&gt;&lt;p&gt;想通过其他方式实现上述的功能，通过POI、通过jcob两种方式。&lt;/p&gt;
+&lt;p&gt;注：因为jcob不能在linux中使用，故目前选择POI方案。&lt;/p&gt;
+&lt;h3 id=&quot;三、疑惑&quot;&gt;&lt;a href=&quot;#三、疑惑&quot; class=&quot;headerlink&quot; title=&quot;三、疑惑&quot;&gt;&lt;/a&gt;三、疑惑&lt;/h3&gt;&lt;p&gt;1、我通过简单的例子实现了word文档的操作(目前只对word文档先做测试)，我的思路是把word中的内容写入到html中，然后通过访问html实现浏览操作，但是word中的一些格式在html中无法很好的展现(我还没有研究出来)&lt;/p&gt;
+&lt;p&gt;2、我的目的是把word中的内容实现在线预览操作，目前正在尝试POI操作，不知还有没有其他解决方案(最好不依赖于操作系统)。请做过或了解类似功能或者对POI熟悉的朋友们给个指引，一起探讨分享，感激不尽。&lt;/p&gt;
+&lt;p&gt;结语：本篇博文的目的是：分享我之前所做的有关文件转换和预览功能原理，然后请教大家有关这个实现有没有更好的解决方案。请大家看到后给出评论，写上你们的所思所想，一方面给我一个方向，另一方面大家共同探讨。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;想用Apache的POI3.9版本编写一套基于office系列文档的一个转换系统，比如对office文档的读写操作、其中的关键字检索操作、把文档转换为html或者支持在线预览的操作等功能。&lt;/p&gt;
+&lt;h3 id=&quot;一、需求&quot;&gt;&lt;a href=&quot;#一、需求&quot; class=&quot;h
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.soujava.com/categories/java/"/>
+    
+    
+      <category term="poi" scheme="http://www.soujava.com/tags/poi/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring3.1.1入门讲解二(注解篇)</title>
+    <link href="http://www.soujava.com/spring3-1-1%E5%85%A5%E9%97%A8%E8%AE%B2%E8%A7%A3%E4%BA%8C-%E6%B3%A8%E8%A7%A3%E7%AF%87/"/>
+    <id>http://www.soujava.com/spring3-1-1入门讲解二-注解篇/</id>
+    <published>2016-09-12T06:00:34.000Z</published>
+    <updated>2017-01-11T02:06:24.913Z</updated>
+    
+    <content type="html">&lt;p&gt;在第一篇博客中主要讲解了如何搭建spring框架和运行示例项目，在搭建框架环境的时候，我们需要配置很文件信息；在本篇文章中主要讲解如何采用注解的方式简化开发！&lt;/p&gt;
+&lt;h3 id=&quot;一、准备篇-jar包的准备&quot;&gt;&lt;a href=&quot;#一、准备篇-jar包的准备&quot; class=&quot;headerlink&quot; title=&quot;一、准备篇-jar包的准备&quot;&gt;&lt;/a&gt;一、准备篇-jar包的准备&lt;/h3&gt;&lt;p&gt;这里就不详细说明了详见上一篇博客–spring3.1.1入门讲解一（非注解篇）中的准备篇讲解&lt;/p&gt;
+&lt;h3 id=&quot;二、环境搭建篇&quot;&gt;&lt;a href=&quot;#二、环境搭建篇&quot; class=&quot;headerlink&quot; title=&quot;二、环境搭建篇&quot;&gt;&lt;/a&gt;二、环境搭建篇&lt;/h3&gt;&lt;p&gt;1、在web.xml文件中添加的配置跟上一篇的配置代码一样，直接复制过去就行了。 &lt;/p&gt;
+&lt;p&gt;2、配置spring-mvc.xml，重点就在这里，重点配置如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1）如果像我们采用非注解的方式去创建和访问controller控制器时，我们都需要在spring-mvc.xml文件中添加如下配置
+&amp;lt;bean name=&amp;quot;/hello&amp;quot; class=&amp;quot;com.spring.mvc.HelloWorldController&amp;quot;/&amp;gt;
+
+2）、那么我们如果采用注解的方式创建和访问controller控制器时，我们就不需要在spring-mvc.xml中配置bean啦；但是需要在spring-mvc.xml添加如下配置：
+&amp;lt;!-- 在com.spring.mvc包下寻找控制器组件 --&amp;gt;      
+&amp;lt;context:component-scan base-package=&amp;quot;com.spring.mvc&amp;quot;&amp;gt;&amp;lt;/context:component-scan&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面配置的作用就是让spring自动去扫描com.spring.mvc包下面的controller类（当然我们当创建controller后还需要添加@Controller注解来标示）。&lt;/p&gt;
+&lt;p&gt;3、在src下面创建com.spring.mvc包，然后添加controller类：HelloWorldAnnocationController.java&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; com.spring.mvc;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; javax.servlet.http.HttpServletRequest;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.stereotype.Controller;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.web.bind.annotation.RequestMapping;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.web.servlet.ModelAndView;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/** &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * 页面控制器 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt; *  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@version&lt;/span&gt; 1.0 2015-02-11 下午05:39:25 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt; */  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//使用注解@Controller声明该类是一个控制器       &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Controller&lt;/span&gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@RequestMapping&lt;/span&gt;(value=&lt;span class=&quot;string&quot;&gt;&quot;helloWorldAnnocationController&quot;&lt;/span&gt;)  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;HelloWorldAnnocationController&lt;/span&gt;&lt;/span&gt;&amp;#123;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &lt;span class=&quot;comment&quot;&gt;//使用注解@RequestMapping声明这个控制器处理index.html的请求       &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;span class=&quot;meta&quot;&gt;@RequestMapping&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;/hello&quot;&lt;/span&gt;)  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; ModelAndView &lt;span class=&quot;title&quot;&gt;helloAnotherWorld&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;( &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; HttpServletRequest request)&lt;/span&gt;&lt;/span&gt;&amp;#123;     &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;          ModelAndView mv = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ModelAndView();  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;// 添加模型数据，可以是任意的POJO对象  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            mv.addObject(&lt;span class=&quot;string&quot;&gt;&quot;message&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;);  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;// 设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面，然后就自动从WebContent/view/下面查找hello.jsp视图页面  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            mv.setViewName(&lt;span class=&quot;string&quot;&gt;&quot;hello&quot;&lt;/span&gt;);  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;//将model的数据交给文件名为helloSpringMVC，后缀名为vm（在applicationContext.xml里面设置）的文件显示       &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; mv;      &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &amp;#125;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;4、在view/目录下面添加hello.jsp页面&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=utf-8&quot;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   pageEncoding=&quot;utf-8&quot;%&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;%@ taglib uri=&quot;http://java.sun.com/jsp/jstl/core&quot; prefix=&quot;c&quot;%&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;html&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;head&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;lt;title&amp;gt;Insert title here&amp;lt;/title&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;/head&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;body&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        $&amp;#123;message&amp;#125;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;/body&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;5、访问注解版的controller控制器&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在第一篇博客中主要讲解了如何搭建spring框架和运行示例项目，在搭建框架环境的时候，我们需要配置很文件信息；在本篇文章中主要讲解如何采用注解的方式简化开发！&lt;/p&gt;
+&lt;h3 id=&quot;一、准备篇-jar包的准备&quot;&gt;&lt;a href=&quot;#一、准备篇-jar包的准备&quot; class
+    
+    </summary>
+    
+      <category term="spring" scheme="http://www.soujava.com/categories/spring/"/>
+    
+    
+      <category term="spring" scheme="http://www.soujava.com/tags/spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring3.1.1入门讲解一(非注解篇)</title>
+    <link href="http://www.soujava.com/spring3-1-1%E5%85%A5%E9%97%A8%E8%AE%B2%E8%A7%A3%E4%B8%80-%E9%9D%9E%E6%B3%A8%E8%A7%A3%E7%AF%87/"/>
+    <id>http://www.soujava.com/spring3-1-1入门讲解一-非注解篇/</id>
+    <published>2016-09-12T05:43:45.000Z</published>
+    <updated>2017-01-11T02:06:24.913Z</updated>
+    
+    <content type="html">&lt;p&gt;在qq群里面有很多童鞋经常提出一些问题，我搭建的spring框架示例怎么启动不起来？spring入门示例谁有？等等问题。所以就写了这篇文章，绝对手把手讲解啊！&lt;/p&gt;
+&lt;h3 id=&quot;一、准备&quot;&gt;&lt;a href=&quot;#一、准备&quot; class=&quot;headerlink&quot; title=&quot;一、准备&quot;&gt;&lt;/a&gt;一、准备&lt;/h3&gt;&lt;p&gt;1、spring版本：spring-framework-3.1.1.RELEASE&lt;/p&gt;
+&lt;p&gt;2、jar包：spring包下面的dist文件夹下的所有jar包&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/spring1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;3、第三方jar包：&lt;br&gt;    jsp标签包：jstl-api-1.2.jar、standard.jar&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;日志包：commons-logging-1.0.4.jar
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;二、环境搭建&quot;&gt;&lt;a href=&quot;#二、环境搭建&quot; class=&quot;headerlink&quot; title=&quot;二、环境搭建&quot;&gt;&lt;/a&gt;二、环境搭建&lt;/h3&gt;&lt;p&gt;1、新建Dynamic Web Project项目：spring&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/spring2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2、在web.xml文件中添加如下配置&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;servlet&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;servlet-name&amp;gt;spring&amp;lt;/servlet-name&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;servlet-class&amp;gt;org.springframework.web.servlet.DispatcherServlet&amp;lt;/servlet-class&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;init-param&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 	&amp;lt;description&amp;gt;加载/WEB-INF/spring-mvc/目录下的所有XML作为Spring MVC的配置文件&amp;lt;/description&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 	&amp;lt;param-name&amp;gt;contextConfigLocation&amp;lt;/param-name&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 	&amp;lt;param-value&amp;gt;/WEB-INF/spring-mvc*.xml&amp;lt;/param-value&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt; &amp;lt;/init-param&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    	&amp;lt;!-- load-on-startup：表示启动容器时初始化该Servlet --&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    	&amp;lt;load-on-startup&amp;gt;1&amp;lt;/load-on-startup&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;lt;/servlet&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;lt;servlet-mapping&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;servlet-name&amp;gt;spring&amp;lt;/servlet-name&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;!-- url-pattern：表示哪些请求交给Spring Web MVC处理， &quot;/&quot;是用来定义默认servlet映射的。也可以如&quot;*.action&quot;表示拦截所有以action为扩展名的请求。 --&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;url-pattern&amp;gt;*.action&amp;lt;/url-pattern&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;lt;/servlet-mapping&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;3、在WEB-INF目录下面创建spring-mvc.xml文件：（这里的文件需要在web.xml文件中进行配置的，详见第2步）&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;	&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    xsi:schemaLocation=&quot;http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    	&amp;lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot; /&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    &amp;lt;!-- 表示所有实现了org.springframework.web.servlet.mvc.Controller接口的Bean可以作为Spring Web MVC中的处理器。如果需要其他类型的处理器可以通过实现HadlerAdapter来解决。--&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    &amp;lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot; /&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	      &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	     &amp;lt;!-- InternalResourceViewResolver：用于支持Servlet、JSP视图解析；  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	         viewClass：JstlView表示JSP模板页面需要使用JSTL标签库，classpath中必须包含jstl的相关jar包；  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	         prefix和suffix：查找视图页面的前缀和后缀（前缀[逻辑视图名]后缀），比如传进来的逻辑视图名为hello，则该jsp视图页面应该存放在“view/hello.jsp”； --&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		 &amp;lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	        &amp;lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.JstlView&quot; /&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	        &amp;lt;property name=&quot;prefix&quot; value=&quot;/view/&quot; /&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	        &amp;lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot; /&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    &amp;lt;/bean&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;lt;bean name=&quot;/hello&quot; class=&quot;com.spring.mvc.HelloWorldController&quot;/&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;lt;!--注意这里的类路径不要错了，如果不用注解的话，那么每当新建一个controller类就需要在这里配置一下 --&amp;gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/beans&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;4、在src下面添加controller类：HelloWorldController.java&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; com.spring.mvc;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; javax.servlet.http.HttpServletRequest;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; javax.servlet.http.HttpServletResponse;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.web.context.request.RequestContextHolder;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.web.context.request.ServletRequestAttributes;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.web.servlet.ModelAndView;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.web.servlet.mvc.Controller;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;HelloWorldController&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Controller&lt;/span&gt; &lt;/span&gt;&amp;#123;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; ModelAndView &lt;span class=&quot;title&quot;&gt;handleRequest&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HttpServletRequest arg0, HttpServletResponse arg1)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &lt;/span&gt;&amp;#123;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;          &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ModelAndView mv = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ModelAndView();  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// 添加模型数据，可以是任意的POJO对象  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        mv.addObject(&lt;span class=&quot;string&quot;&gt;&quot;message&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;);  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// 设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面,即WebContent/view/hello.jsp  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        mv.setViewName(&lt;span class=&quot;string&quot;&gt;&quot;hello&quot;&lt;/span&gt;);  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; mv;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; &amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;4、在WebContent/view/目录下面添加hello.jsp页面&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=utf-8&quot;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   pageEncoding=&quot;utf-8&quot;%&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;%@ taglib uri=&quot;http://java.sun.com/jsp/jstl/core&quot; prefix=&quot;c&quot;%&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;html&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;head&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;lt;title&amp;gt;Insert title here&amp;lt;/title&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;/head&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;body&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        $&amp;#123;message&amp;#125;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;lt;/body&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;5、启动tomcat服务器，访问一下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/spring3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;注：我们的访问url中包括了/hello.action；当以.action为后缀的访问路径都将被DispatcherServlet拦截过滤（web.xml文件中已经配置），然后/hello前缀将被映射到HelloWorldController控制器处理（spring-mvc.xml文件中已经配置）&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在qq群里面有很多童鞋经常提出一些问题，我搭建的spring框架示例怎么启动不起来？spring入门示例谁有？等等问题。所以就写了这篇文章，绝对手把手讲解啊！&lt;/p&gt;
+&lt;h3 id=&quot;一、准备&quot;&gt;&lt;a href=&quot;#一、准备&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+      <category term="spring" scheme="http://www.soujava.com/categories/spring/"/>
+    
+    
+      <category term="spring" scheme="http://www.soujava.com/tags/spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>带附件的enctype表单中普通属性的获取</title>
+    <link href="http://www.soujava.com/%E5%B8%A6%E9%99%84%E4%BB%B6%E7%9A%84enctype%E8%A1%A8%E5%8D%95%E4%B8%AD%E6%99%AE%E9%80%9A%E5%B1%9E%E6%80%A7%E7%9A%84%E8%8E%B7%E5%8F%96/"/>
+    <id>http://www.soujava.com/带附件的enctype表单中普通属性的获取/</id>
+    <published>2016-09-07T01:33:04.000Z</published>
+    <updated>2017-01-11T02:06:24.916Z</updated>
+    
+    <content type="html">&lt;p&gt;我们在平时开发过程中，经常会遇到一些表单，比如用户信息修改、数据资源添加等等，并且这些表单都会带有附件：图片、其他文件；所以我们平时开发过程中经常需要处理两种表单，一种是带附件的表单，一种是不带附件的表单；因为两种表单向后台提交数据的格式不同，后者是以流的方式将表单数据提交到后台的。所以我们下面分两块描述两种获取不同表单的方式&lt;/p&gt;
+&lt;h3 id=&quot;一、普通表单-不带文件域-，基于普通表单封装成了一个通用的方法&quot;&gt;&lt;a href=&quot;#一、普通表单-不带文件域-，基于普通表单封装成了一个通用的方法&quot; class=&quot;headerlink&quot; title=&quot;一、普通表单(不带文件域)，基于普通表单封装成了一个通用的方法&quot;&gt;&lt;/a&gt;一、普通表单(不带文件域)，基于普通表单封装成了一个通用的方法&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    * 将request对象解析处理成map&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    * &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; request&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    * &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; Map&amp;lt;String,String&amp;gt; &lt;span class=&quot;title&quot;&gt;transToMAP&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HttpServletRequest request)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           Map returnMap = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HashMap();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           Iterator entries = request.getParameterMap().entrySet().iterator();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           Map.Entry entry;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (entries.hasNext()) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               String name = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               String value = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               entry = (Map.Entry) entries.next();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               name = (String) entry.getKey();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               Object valueObj = entry.getValue();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt; == valueObj)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   value = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               &amp;#125;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(valueObj &lt;span class=&quot;keyword&quot;&gt;instanceof&lt;/span&gt; String[])&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   String[] values = (String[])valueObj;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i&amp;lt;values.length;i++)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                       value = values[i] + &lt;span class=&quot;string&quot;&gt;&quot;,&quot;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   value = value.substring(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, value.length()-&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               &amp;#125;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   value = valueObj.toString();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               returnMap.put(name, value);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;  returnMap;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;一、普通表单-带文件域-，基于附件表单封装成了一个通用的方法&quot;&gt;&lt;a href=&quot;#一、普通表单-带文件域-，基于附件表单封装成了一个通用的方法&quot; class=&quot;headerlink&quot; title=&quot;一、普通表单(带文件域)，基于附件表单封装成了一个通用的方法&quot;&gt;&lt;/a&gt;一、普通表单(带文件域)，基于附件表单封装成了一个通用的方法&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;43&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;44&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;46&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;47&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;48&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;49&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;50&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;51&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;52&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;53&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;54&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;55&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;56&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;57&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    * 将request对象解析处理成map&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    * &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; request&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    * &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; Map&amp;lt;String,String&amp;gt; &lt;span class=&quot;title&quot;&gt;transToMAP&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HttpServletRequest request,String url)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       Map returnMap = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HashMap();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &lt;span class=&quot;keyword&quot;&gt;boolean&lt;/span&gt; isMultipart = ServletFileUpload.isMultipartContent(request);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//如果multipart/form-data类型的表单（带附件）&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (isMultipart)&amp;#123;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               FileItemFactory factory = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; DiskFileItemFactory();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               ServletFileUpload upload = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ServletFileUpload( factory );&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   List&amp;lt;FileItem&amp;gt; uploadItemList = upload.parseRequest(request);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;( FileItem uploadItem : uploadItemList )&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;					&lt;span class=&quot;comment&quot;&gt;//文件表单中的普通form表单域，比如username、phone等属性&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                       &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;( uploadItem.isFormField() )&amp;#123; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           String fieldName = uploadItem.getFieldName();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           String value = uploadItem.getString();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           returnMap.put(fieldName,value);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                       &amp;#125;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&amp;#123;  &lt;span class=&quot;comment&quot;&gt;//form表单中的file文件域&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                       	 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           	&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           	 * 1、从type=&quot;file&quot;文件域中获取文件流、字节数组等等信息&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           	 */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           	 String fieldname = uploadItem.getFieldName();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                                String filename = FilenameUtils.getName(uploadItem.getName());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                                InputStream filecontent = uploadItem.getInputStream();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                                &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                                &lt;span class=&quot;keyword&quot;&gt;byte&lt;/span&gt;[] bytes = uploadItem.get();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                                	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                                &lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                            	 * 2、把对应的文件上传到文件服务器中，或者把文件写入磁盘上面&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                            	 * &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                            	 * ........&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                            	 */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                                &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                                returnMap.put(fieldname,filename);&lt;span class=&quot;comment&quot;&gt;//此处这是例子，具体根据你自己的业务封装&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           &amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (IOException e) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                               e.printStackTrace();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           &amp;#125; &lt;span class=&quot;keyword&quot;&gt;finally&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                           &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                       &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               &amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (FileUploadException e) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   e.printStackTrace();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               &amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (Exception e)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                   e.printStackTrace();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;  returnMap;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注：将reques对象封装成map集合工具类，主要解决如下问题：&lt;/p&gt;
+&lt;p&gt;  1、当仅仅处理简单的form表单时，可以通过该工具类之间获取request对象中的属性集合，并且针对一些特殊情况(为“空”的属性、编码转换)可以达到集中处理并统一返回&lt;/p&gt;
+&lt;p&gt;  2、当仅仅处理带file的form表单时，提交到后台是已流的方式传输；解决通过request.getParameter不能获取属性的问题，并且可以集中统一处理&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们在平时开发过程中，经常会遇到一些表单，比如用户信息修改、数据资源添加等等，并且这些表单都会带有附件：图片、其他文件；所以我们平时开发过程中经常需要处理两种表单，一种是带附件的表单，一种是不带附件的表单；因为两种表单向后台提交数据的格式不同，后者是以流的方式将表单数据提交
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.soujava.com/categories/java/"/>
+    
+    
+      <category term="表单元素获取" scheme="http://www.soujava.com/tags/%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E8%8E%B7%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具</title>
+    <link href="http://www.soujava.com/%E5%9F%BA%E4%BA%8Egitlab%E5%BC%80%E5%8F%91%E7%9A%84%E9%92%88%E5%AF%B9git%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E5%BA%93%E8%BF%9B%E8%A1%8C%E6%89%93%E5%8C%85%E3%80%81%E8%A1%A5%E4%B8%81%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/"/>
+    <id>http://www.soujava.com/基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具/</id>
+    <published>2016-09-02T03:20:33.000Z</published>
+    <updated>2017-01-11T02:06:24.915Z</updated>
+    
+    <content type="html">&lt;p&gt;基于gitlab二次开发的针对git仓库中的项目代码库进行打包、补丁包管理工具，解决产品升级时发布编译的补丁包(.class、jar)繁琐问题。&lt;/p&gt;
+&lt;h4 id=&quot;平时我们开发时经常出现以下问题：&quot;&gt;&lt;a href=&quot;#平时我们开发时经常出现以下问题：&quot; class=&quot;headerlink&quot; title=&quot;平时我们开发时经常出现以下问题：&quot;&gt;&lt;/a&gt;平时我们开发时经常出现以下问题：&lt;/h4&gt;&lt;p&gt;1、同一个产品由N多人开发，那么比如涉及产品版本升级时，我们是基于编译过的文件(.class、jar包)进行升级操作的，&lt;br&gt;   所以针对这种交叉式的开发对于补丁包发布来讲是非常头疼的事情。&lt;/p&gt;
+&lt;h4 id=&quot;功能介绍：&quot;&gt;&lt;a href=&quot;#功能介绍：&quot; class=&quot;headerlink&quot; title=&quot;功能介绍：&quot;&gt;&lt;/a&gt;功能介绍：&lt;/h4&gt;&lt;p&gt;1、登陆功能– 根据登陆的用户信息，将获取gitlab代码服务器中的该用户具有的所有访问权限的代码仓库列表&lt;/p&gt;
+&lt;p&gt;2、打包功能– 针对某一个代码仓库，输入开始提交id(commit的ID)代号、最后提交id代号，&lt;br&gt;    那么将针对两个提交区间id中的代码进行编译(调用maven命令)、打包(调用maven命令)、压缩操作(程序执行)&lt;/p&gt;
+&lt;p&gt;3、补丁包管理– 针对每一个人每一次的打包操作都进行记录和补丁包维护操作，比如后期涉及大版本升级(多个补丁包覆盖)可以有效追溯&lt;/p&gt;
+&lt;h4 id=&quot;项目源码地址：&quot;&gt;&lt;a href=&quot;#项目源码地址：&quot; class=&quot;headerlink&quot; title=&quot;项目源码地址：&quot;&gt;&lt;/a&gt;项目源码地址：&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/mapingsheng/gitlabPatchManage&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/mapingsheng/gitlabPatchManage&lt;/a&gt; &lt;/p&gt;
+&lt;h4 id=&quot;二次开发说明：&quot;&gt;&lt;a href=&quot;#二次开发说明：&quot; class=&quot;headerlink&quot; title=&quot;二次开发说明：&quot;&gt;&lt;/a&gt;二次开发说明：&lt;/h4&gt;&lt;p&gt;1、编译gitlab项目的源码包成最新的jar包()&lt;/p&gt;
+&lt;p&gt;2、将编译的gitlab源码包添加到项目中、当然还有其他依赖的jar包，可以查看pom.xml文件的依赖配置&lt;/p&gt;
+&lt;p&gt;3、将本项目导入你的IDE中，然后编译成war包，部署到web服务器中运行即可看到系统界面&lt;/p&gt;
+&lt;h4 id=&quot;配置说明：&quot;&gt;&lt;a href=&quot;#配置说明：&quot; class=&quot;headerlink&quot; title=&quot;配置说明：&quot;&gt;&lt;/a&gt;配置说明：&lt;/h4&gt;&lt;p&gt;1、src\main\resources是所有的资源、配置文件目录&lt;/p&gt;
+&lt;p&gt;2、gitInfo.xml配置本地仓库的地址和打包后的补丁包的存放地址&lt;/p&gt;
+&lt;p&gt;3、sql\文件夹下面存放数据库的相关信息表结构和初始化的数据&lt;/p&gt;
+&lt;p&gt;4、context\文件夹下面存放oracle数据库连接的配置信息&lt;/p&gt;
+&lt;h4 id=&quot;声明：&quot;&gt;&lt;a href=&quot;#声明：&quot; class=&quot;headerlink&quot; title=&quot;声明：&quot;&gt;&lt;/a&gt;声明：&lt;/h4&gt;&lt;p&gt;本项目是完全根据自己随性的一个想法自由发挥开发出来的一个工具类项目，完全从什么都不了解、一头雾水到慢慢的搜集资料慢慢的琢磨出来的，&lt;/p&gt;
+&lt;p&gt;所以开发过程中系统没有经过架构和层级的设计，完全是堆代码的方式开发的，所以代码写的比较龊，后期会慢慢的重构，忘理解！&lt;/p&gt;
+&lt;h4 id=&quot;系统界面：&quot;&gt;&lt;a href=&quot;#系统界面：&quot; class=&quot;headerlink&quot; title=&quot;系统界面：&quot;&gt;&lt;/a&gt;系统界面：&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/git1.jpg&quot; alt=&quot;Alt text&quot; title=&quot;登陆&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/git2.jpg&quot; alt=&quot;Alt text&quot; title=&quot;打补丁&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/git3.jpg&quot; alt=&quot;Alt text&quot; title=&quot;补丁记录&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/git4.jpg&quot; alt=&quot;Alt text&quot; title=&quot;补丁记录&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;基于gitlab二次开发的针对git仓库中的项目代码库进行打包、补丁包管理工具，解决产品升级时发布编译的补丁包(.class、jar)繁琐问题。&lt;/p&gt;
+&lt;h4 id=&quot;平时我们开发时经常出现以下问题：&quot;&gt;&lt;a href=&quot;#平时我们开发时经常出现以下问题：&quot; class=
+    
+    </summary>
+    
+      <category term="git" scheme="http://www.soujava.com/categories/git/"/>
+    
+    
+      <category term="gitlab" scheme="http://www.soujava.com/tags/gitlab/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springBoot编写不同风格的restAPI接口</title>
+    <link href="http://www.soujava.com/springBoot%E7%BC%96%E5%86%99%E4%B8%8D%E5%90%8C%E9%A3%8E%E6%A0%BC%E7%9A%84restAPI%E6%8E%A5%E5%8F%A3/"/>
+    <id>http://www.soujava.com/springBoot编写不同风格的restAPI接口/</id>
+    <published>2016-08-31T11:38:46.000Z</published>
+    <updated>2017-01-11T02:06:24.913Z</updated>
+    
+    <content type="html">&lt;p&gt;平时使用springboot开发后台功能模块，并且开发对外提供的restfulApi接口时也同样使用springBoot开发，目前主要用到两种方式的的restfulApi;下面分两点说明&lt;/p&gt;
+&lt;h3 id=&quot;一、静态url-动态参数-param-形式的api&quot;&gt;&lt;a href=&quot;#一、静态url-动态参数-param-形式的api&quot; class=&quot;headerlink&quot; title=&quot;一、静态url+动态参数(param)形式的api&quot;&gt;&lt;/a&gt;一、静态url+动态参数(param)形式的api&lt;/h3&gt;&lt;p&gt;接口形式：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;http:&lt;span class=&quot;comment&quot;&gt;//localhost:8080/api/user/info?id=123&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;api代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@RestController&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@RequestMapping&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;/api&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;userApiController&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Autowired&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; UserService userService;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	  * 根据用户id获取用户信息的api&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	  * &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; id 用户id&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	  */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@RequestMapping&lt;/span&gt;(value = &lt;span class=&quot;string&quot;&gt;&quot;user/info&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(@RequestParam(value = &lt;span class=&quot;string&quot;&gt;&quot;id&quot;&lt;/span&gt;)&lt;/span&gt; String id）&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			方法体&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面的例子中使用了如下个注解：&lt;br&gt;1、@RestController  用来标记这是一个支持REST的控制器，其实其是@Controller扩展来的&lt;br&gt;2、@RequestMapping  其提供路由信息，它告诉Spring任何来自”/“路径的HTTP请求都应该被映射到该Controller入口中&lt;br&gt;3、@Autowired  对类成员变量、方法及构造函数进行注解，完成自动装配的工作。 用来消除set ，get方法&lt;br&gt;3、@RequestParam 将请求参数区数据映射到功能处理方法的参数上，比如我们的@RequestParam(value=”id”) String userId这样，我们对外公开的参数名称为id，而我们业务方法体用的参数名称为userId，该注解就是将两个参数绑定在一起&lt;/p&gt;
+&lt;h3 id=&quot;二、动态url-动态参数-param-形式的api&quot;&gt;&lt;a href=&quot;#二、动态url-动态参数-param-形式的api&quot; class=&quot;headerlink&quot; title=&quot;二、动态url+动态参数(param)形式的api&quot;&gt;&lt;/a&gt;二、动态url+动态参数(param)形式的api&lt;/h3&gt;&lt;p&gt;接口形式：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;http:&lt;span class=&quot;comment&quot;&gt;//localhost:8080/api/user/&amp;#123;id&amp;#125;/info?status=1&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;api代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@RestController&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@RequestMapping&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;user/&amp;#123;id&amp;#125;/info&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;userApiController&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Autowired&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; UserService userService;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	  * 根据用户id获取用户信息的api&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	  * &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; id 用户id&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	  */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@RequestMapping&lt;/span&gt;(value = &lt;span class=&quot;string&quot;&gt;&quot;user/info&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(@PathVariable(value = &lt;span class=&quot;string&quot;&gt;&quot;id&quot;&lt;/span&gt;)&lt;/span&gt; String id,&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;					 @&lt;span class=&quot;title&quot;&gt;RequestParam&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(value = &lt;span class=&quot;string&quot;&gt;&quot;status&quot;&lt;/span&gt;)&lt;/span&gt; String status）&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			方法体&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面的例子中使用了如下个注解：&lt;br&gt;1、@PathVariable 将方法中的参数绑定到请求url中(path)中的动态变量，比如上面例子中将path中的{id}绑定到user方法中的String id参数上面&lt;/p&gt;
+&lt;h3 id=&quot;三、总结&quot;&gt;&lt;a href=&quot;#三、总结&quot; class=&quot;headerlink&quot; title=&quot;三、总结&quot;&gt;&lt;/a&gt;三、总结&lt;/h3&gt;&lt;p&gt;1、如果参数不在path路径中动态传递(所有参数在?后面以键值对传递)，那么方法体中使用@RequestParam进行参数绑定(如果传递的参数名称跟方法中传递的参数名称一致的话可以不用改注解)&lt;/p&gt;
+&lt;p&gt;2、如果参数在path路径中动态传递(在?前面的path路径中使用{id}这种方式传递参数，那么方法体中必须使用@PathVariable进行参数绑定)&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;平时使用springboot开发后台功能模块，并且开发对外提供的restfulApi接口时也同样使用springBoot开发，目前主要用到两种方式的的restfulApi;下面分两点说明&lt;/p&gt;
+&lt;h3 id=&quot;一、静态url-动态参数-param-形式的api&quot;&gt;&lt;a h
+    
+    </summary>
+    
+      <category term="spring" scheme="http://www.soujava.com/categories/spring/"/>
+    
+    
+      <category term="springBoot" scheme="http://www.soujava.com/tags/springBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java8中使用stream流和for循环分别对数据集合遍历的差异</title>
+    <link href="http://www.soujava.com/java8%E4%B8%AD%E4%BD%BF%E7%94%A8stream%E6%B5%81%E5%92%8Cfor%E5%BE%AA%E7%8E%AF%E5%88%86%E5%88%AB%E5%AF%B9%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88%E9%81%8D%E5%8E%86%E7%9A%84%E5%B7%AE%E5%BC%82/"/>
+    <id>http://www.soujava.com/java8中使用stream流和for循环分别对数据集合遍历的差异/</id>
+    <published>2016-08-31T01:44:41.000Z</published>
+    <updated>2017-01-11T02:06:24.910Z</updated>
+    
+    <content type="html">&lt;p&gt;最近在平时开发中越来越多的会用到java8新增的流处理功能Stream；用一次就上瘾的感觉啊！在处理一个稍微大一些的数据集合时（长度为10W的List&lt;map&lt;string,object&gt;&amp;gt;）,刚好对比一下用java8的stream遍历集合和用java的for循环遍历集合的效率差异！&lt;/map&lt;string,object&gt;&lt;/p&gt;
+&lt;h3 id=&quot;一、分别比较用两种方式遍历集合并输出集合中元素的效率-不在循环中加工组装集合数据&quot;&gt;&lt;a href=&quot;#一、分别比较用两种方式遍历集合并输出集合中元素的效率-不在循环中加工组装集合数据&quot; class=&quot;headerlink&quot; title=&quot;一、分别比较用两种方式遍历集合并输出集合中元素的效率(不在循环中加工组装集合数据)&quot;&gt;&lt;/a&gt;一、分别比较用两种方式遍历集合并输出集合中元素的效率(不在循环中加工组装集合数据)&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;1、声明个长度为10W的集合&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;List&amp;lt;Map&amp;lt;String,Object&amp;gt;&amp;gt; listMap = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ArrayList&amp;lt;Map&amp;lt;String,Object&amp;gt;&amp;gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i&amp;lt;&lt;span class=&quot;number&quot;&gt;100000&lt;/span&gt;;i++)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   	Map&amp;lt;String,Object&amp;gt; map = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HashMap&amp;lt;String,Object&amp;gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    map.put(&lt;span class=&quot;string&quot;&gt;&quot;id&quot;&lt;/span&gt;, i);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    map.put(&lt;span class=&quot;string&quot;&gt;&quot;title&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;title&quot;&lt;/span&gt;+i);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    map.put(&lt;span class=&quot;string&quot;&gt;&quot;view&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;view&quot;&lt;/span&gt;+i);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    listMap.add(map);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2、使用java8的stream的forEach遍历集合并输出&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;listMap.stream().forEach(p -&amp;gt; System.out.println(p.get(&lt;span class=&quot;string&quot;&gt;&quot;id&quot;&lt;/span&gt;)+&lt;span class=&quot;string&quot;&gt;&quot; &quot;&lt;/span&gt;+p.get(&lt;span class=&quot;string&quot;&gt;&quot;title&quot;&lt;/span&gt;)));&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;控制台打印内容如下：花费1582毫秒&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;..... ..........&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;99996&lt;/span&gt; title99996&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;99997&lt;/span&gt; title99997&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;99998&lt;/span&gt; title99998&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;99999&lt;/span&gt; title99999&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;花费时间：&lt;span class=&quot;number&quot;&gt;1582&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3、使用for循环遍历集合并输出&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(Map map:listMap)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   System.out.println(map.get(&lt;span class=&quot;string&quot;&gt;&quot;id&quot;&lt;/span&gt;)+&lt;span class=&quot;string&quot;&gt;&quot; &quot;&lt;/span&gt;+map.get(&lt;span class=&quot;string&quot;&gt;&quot;title&quot;&lt;/span&gt;));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;控制台打印内容如下：花费1548毫秒&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;99995&lt;/span&gt; title99995&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;99996&lt;/span&gt; title99996&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;99997&lt;/span&gt; title99997&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;99998&lt;/span&gt; title99998&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;99999&lt;/span&gt; title99999&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;花费时间：&lt;span class=&quot;number&quot;&gt;1548&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4、小结&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; 长度为1W时：  for循环【170毫秒】    stram循环 【240毫秒】&lt;/p&gt;
+&lt;p&gt; 长度为10W时： for循环【1548毫秒】    stram循环【1582毫秒】&lt;/p&gt;
+&lt;p&gt; 长度为100W时：for循环【21099毫秒】   stram循环【20291毫秒】&lt;/p&gt;
+&lt;p&gt; 所以个人经过上面的测试发现其实两种方式去遍历集合的效率是差不多的！&lt;/p&gt;
+&lt;h3 id=&quot;二、分别比较用两种方式遍历集合并输出集合中元素的效率-在循环中加工组装集合数据&quot;&gt;&lt;a href=&quot;#二、分别比较用两种方式遍历集合并输出集合中元素的效率-在循环中加工组装集合数据&quot; class=&quot;headerlink&quot; title=&quot;二、分别比较用两种方式遍历集合并输出集合中元素的效率(在循环中加工组装集合数据)&quot;&gt;&lt;/a&gt;二、分别比较用两种方式遍历集合并输出集合中元素的效率(在循环中加工组装集合数据)&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;1、声明个长度为10W的集合&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;List&amp;lt;Map&amp;lt;String,Object&amp;gt;&amp;gt; listMap = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ArrayList&amp;lt;Map&amp;lt;String,Object&amp;gt;&amp;gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i&amp;lt;&lt;span class=&quot;number&quot;&gt;100000&lt;/span&gt;;i++)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   	Map&amp;lt;String,Object&amp;gt; map = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HashMap&amp;lt;String,Object&amp;gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    map.put(&lt;span class=&quot;string&quot;&gt;&quot;id&quot;&lt;/span&gt;, i);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    map.put(&lt;span class=&quot;string&quot;&gt;&quot;title&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;title&quot;&lt;/span&gt;+i);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    map.put(&lt;span class=&quot;string&quot;&gt;&quot;view&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;view&quot;&lt;/span&gt;+i);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    listMap.add(map);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2、声明个长度为2的集合&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//该集合中的key键就是上面长度为10W集合中的id的值&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Map&amp;lt;String,Object&amp;gt; mapTop = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HashMap&amp;lt;String,Object&amp;gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   mapTop.put(&lt;span class=&quot;string&quot;&gt;&quot;10&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;1&quot;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   mapTop.put(&lt;span class=&quot;string&quot;&gt;&quot;90&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;0&quot;&lt;/span&gt;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;接下来我们分别用for循环和stream流循环遍历集合并且在遍历过程中向集合中追加一个新的键值对数据top:XX;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3、用java8的stream流遍历&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;listMap.stream().map((s)-&amp;gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; s.put(&lt;span class=&quot;string&quot;&gt;&quot;top&quot;&lt;/span&gt;,mapTop.get(String.valueOf(s.get(&lt;span class=&quot;string&quot;&gt;&quot;id&quot;&lt;/span&gt;))));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;#125;).collect(Collectors.toList());&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上面的代码中我们通过stream流中的map进行数据追加：&lt;br&gt;追加前的集合数据结构：[{view=view0,id=0, title=title0},{view=view0,id=10, title=title0},…]&lt;br&gt;追加后的集合数据结构：[{view=view0, top=null, id=0, title=title0},{view=view10, top=1, id=10, title=title10},…]&lt;/p&gt;
+&lt;p&gt;花费时间：4641毫秒&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4、用for循环遍历&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(Map map:listMap)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   	map.put(&lt;span class=&quot;string&quot;&gt;&quot;top&quot;&lt;/span&gt;, mapTop.get(String.valueOf(map.get(&lt;span class=&quot;string&quot;&gt;&quot;id&quot;&lt;/span&gt;))));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;花费时间：5513毫秒&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5、小结&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当分别使用两种方式对同一集合进行遍历并且数据追加时，效率也是不相上下的，使用stream流循环稍微快那么一丁点！&lt;/p&gt;
+&lt;p&gt;后来通过“科学上网”的方式，搜集到了一篇老外写的关于stream循环和for循环的文章，说的是意思是不应该用stream循环替换你的for循环！个人感觉这也因场景而定，不能一概而论，首先比如在循环过程中如果涉及复杂的数据装载和加工，那么个人感觉使用for循环比较好理解；反之则使用stream流的方式比较好；并且我们不能仅仅因为循环这一动作就下结论不太科学，比如stream的分组、过滤等等其他功能是for循环所不能及的！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/javaStream2.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在平时开发中越来越多的会用到java8新增的流处理功能Stream；用一次就上瘾的感觉啊！在处理一个稍微大一些的数据集合时（长度为10W的List&lt;map&lt;string,object&gt;&amp;gt;）,刚好对比一下用java8的stream遍历集合和用java的for循环遍历
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.soujava.com/categories/java/"/>
+    
+    
+      <category term="java8 Stream" scheme="http://www.soujava.com/tags/java8-Stream/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>thymeleaf教程2-后台数据封装与页面渲染</title>
+    <link href="http://www.soujava.com/thymeleaf%E6%95%99%E7%A8%8B2-%E5%90%8E%E5%8F%B0%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85%E4%B8%8E%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/"/>
+    <id>http://www.soujava.com/thymeleaf教程2-后台数据封装与页面渲染/</id>
+    <published>2016-08-23T08:32:50.000Z</published>
+    <updated>2017-01-11T02:06:24.914Z</updated>
+    
+    <content type="html">&lt;p&gt;我们使用模板引擎的过程中，页面上面的数据肯定需要从后台传递过来，然后把数据装载到页面对应区域中，所以我们来看看如果把后台的数据在前端页面渲染。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一、添加一个表单页面–登陆操作&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/thy6.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二、新建业务控制器(doLogin)–获取登陆表单中提交的数据&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;String username = request.getParameter(&lt;span class=&quot;string&quot;&gt;&quot;username&quot;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  	String password = request.getParameter(&lt;span class=&quot;string&quot;&gt;&quot;password&quot;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  	&lt;span class=&quot;comment&quot;&gt;//实例化一个thymeleaf文本上下文&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      WebContext ctx = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; WebContext(request, response, servletContext, request.getLocale());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//将前端登陆表单页面提交过来的数据封装到thymeleaf上下文中&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      ctx.setVariable(&lt;span class=&quot;string&quot;&gt;&quot;username&quot;&lt;/span&gt;, username);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      ctx.setVariable(&lt;span class=&quot;string&quot;&gt;&quot;password&quot;&lt;/span&gt;, password);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;//调用模板引擎转向到对应的模板页面--desc模板页面&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      templateEngine.process(&lt;span class=&quot;string&quot;&gt;&quot;desc&quot;&lt;/span&gt;, ctx, response.getWriter());&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;三、新建模板页面(desc)–显示doLogin控制器中封装的数据&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/thy7.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注：读取数据使用${XX}这种形式，是不是感觉很熟悉，EL表达式；而向页面html元素中渲染数据使用thymeleaf提供的标签th:text=”${XX}”这种形式。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四、编译工程项目–启动web服务器测试&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、在登陆表单中输入对应的用户名和密码，点击提交按钮&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/thy1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;1、可以看到提交表单后进入到doLogin控制器中，控制器获取数据并封装数据，然后转向到模板页面中渲染数据。&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/thy2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;五、在控制器doLogin中封装一些稍微复杂的数据集-数组&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、我们声明一个类型数组，然后把数组封装到thymeleaf上下文中&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;String[] types = &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;足球&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;篮球&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;羽毛球&quot;&lt;/span&gt;&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   ctx.setVariable(&lt;span class=&quot;string&quot;&gt;&quot;types&quot;&lt;/span&gt;, types);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;2、在desc模板页面中遍历显示封装好的集合数据&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;p th:each=&quot;type : $&amp;#123;types&amp;#125;&quot;&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   	&amp;lt;span th:text=&quot;$&amp;#123;type&amp;#125;&quot;&amp;gt;&amp;lt;/span&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &amp;lt;/p&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;em&gt;注：上面渲染集合数据到模板页面的代码中我们采用了th:each的方法遍历数据，这是thymeleaf提供的，其实thymeleaf提供了非常多并且非常强大的方法，后续再一一说明。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;3、针对刚刚封装好的集合数据到页面测试一下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/thy3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/thy4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;六、在控制器doLogin中封装一些稍微复杂的数据集-实体Bean&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、我们新建一个User的Bean实体&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;User&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 	&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; String firstName = &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; String lastName = &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; String nationality = &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; Integer age = &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;；&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; String firstName, &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; String lastName, &lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; String nationality, &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; Integer age) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.firstName = firstName;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.lastName = lastName;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.nationality = nationality;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.age = age;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;2、在我们的doLogin业务控制器中实例化该User实体bean，并且把bean数据实体封装到thymeleaf上下文中&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;User user = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; User(&lt;span class=&quot;string&quot;&gt;&quot;zhang&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;san&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;china&quot;&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;25&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      ctx.setVariable(&lt;span class=&quot;string&quot;&gt;&quot;user&quot;&lt;/span&gt;, user);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;3、在desc模板页面中显示封装好的User实体bean数据&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;p th:text=&quot;$&amp;#123;user.firstName+&#39;:&#39;+user.lastName+&#39;:&#39;+user.nationality+&#39;:&#39;+user.age&amp;#125;&quot;&amp;gt;&amp;lt;/p&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;注：我们在获取bean中的属性数据时，仍然采用EL表达式${user.firstName}的方式；然后将获取的数据显示到html元素中用th:text方法；只不过我们使用th:text时在中间使用了字符串拼接将多个属性拼接显示。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;六、总结&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、我们在执行业务操作的时候，需要把后台的数据集封装到thymeleaf上下文中，我们可以封装组合各种我们需要的数据，如：字符串、集合、实体bean等等&lt;br&gt;2、通过thymeleaf模板引擎转向到对应的模板页面&lt;br&gt;3、用thymeleaf提供的方法渲染后台封装的数据到页面中&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们使用模板引擎的过程中，页面上面的数据肯定需要从后台传递过来，然后把数据装载到页面对应区域中，所以我们来看看如果把后台的数据在前端页面渲染。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一、添加一个表单页面–登陆操作&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://souja
+    
+    </summary>
+    
+      <category term="thymeleaf" scheme="http://www.soujava.com/categories/thymeleaf/"/>
+    
+    
+      <category term="thymeleaf" scheme="http://www.soujava.com/tags/thymeleaf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jquery获取单选按钮值的诡异之处</title>
+    <link href="http://www.soujava.com/jquery%E8%8E%B7%E5%8F%96%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE%E5%80%BC%E7%9A%84%E8%AF%A1%E5%BC%82%E4%B9%8B%E5%A4%84/"/>
+    <id>http://www.soujava.com/jquery获取单选按钮值的诡异之处/</id>
+    <published>2016-08-21T04:17:10.000Z</published>
+    <updated>2017-01-11T02:06:24.912Z</updated>
+    
+    <content type="html">&lt;p&gt;最近在使用jquery获取表单中选中的单选按钮的值时，发现了一个诡异的问题，那就是当你使用[checked]这个方式获取选中的单选按钮值时，能不能获取选中的值跟你前面用的选择器方式有关系，当你使用:radio[name=’types’]这种方式获取选中的值时是没有问题的，但是当你使用[type=’radio’][name=’language’]这种方式获取选中的值时是有问题的（如果单选按钮组中有默认选中的按钮，那么这种方式一直获取的都是默认选中的按钮；如果单选按钮组中没有默认选中的按钮，那么这种方式获取不到选中的单选按钮的值）。举例如下：&lt;/p&gt;
+&lt;p&gt;表单元素如下：&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;input type=&lt;span class=&quot;string&quot;&gt;&quot;radio&quot;&lt;/span&gt; name=&lt;span class=&quot;string&quot;&gt;&quot;language&quot;&lt;/span&gt;  value=&lt;span class=&quot;string&quot;&gt;&quot;php&quot;&lt;/span&gt;/&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;input type=&lt;span class=&quot;string&quot;&gt;&quot;radio&quot;&lt;/span&gt; name=&lt;span class=&quot;string&quot;&gt;&quot;language&quot;&lt;/span&gt;  value=&lt;span class=&quot;string&quot;&gt;&quot;mysql&quot;&lt;/span&gt;/&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;input type=&lt;span class=&quot;string&quot;&gt;&quot;radio&quot;&lt;/span&gt; name=&lt;span class=&quot;string&quot;&gt;&quot;language&quot;&lt;/span&gt;  value=&lt;span class=&quot;string&quot;&gt;&quot;java&quot;&lt;/span&gt;/&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一、方式一 [checked] (正确)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通过使用&lt;code&gt;[checked]&lt;/code&gt;获取选中的单选按钮的值，类型选择器使用的&lt;code&gt;:radio&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$(&amp;apos;input:radio[name=&amp;quot;language&amp;quot;][checked]&amp;apos;).val()；
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/jqueryRadio2.png&quot; alt=&quot;Alt text&quot; title=&quot;可以获取单选值&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注：这种方式&lt;code&gt;可以&lt;/code&gt;获取选中的单选按钮的值，如果没有选择任何单选按钮，则获取的值为undefined。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二、方式二 [checked] (错误)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通过使用&lt;code&gt;[checked]&lt;/code&gt;获取选中的单选按钮的值，，类型选择器使用的&lt;code&gt;[type=&amp;quot;radio&amp;quot;]&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$(&amp;apos;input[type=&amp;quot;radio&amp;quot;][name=&amp;quot;language&amp;quot;][checked]&amp;apos;).val()；
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/jqueryRadio1.png&quot; alt=&quot;Alt text&quot; title=&quot;不可以获取单选值&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注：这种方式&lt;code&gt;不可以&lt;/code&gt;获取选中的单选按钮的值，获取的值始终为undefined。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;三、小结 &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;上面两种获取单选按钮选择中的方式中唯一差别的地方就是类型选择器的方式一种是标准的类型选择器(type=”radio”)、一种是伪类选择器(:radio);然后到jquery官方网站查看官网文档可以看到：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/jqueryRadio3.png&quot; alt=&quot;Alt text&quot; title=&quot;官方文档&quot;&gt;&lt;/p&gt;
+&lt;p&gt;官网文档中关于选择器的描述大致这样说：$(“:radio”)和$(“[type=radio]”)是等价的,在效率方面还更倾向使用标准的类型选择器&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四、方式三 :checked (没有任何问题)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;[type=&amp;quot;radio&amp;quot;]&lt;/code&gt;类型选择器：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$(&amp;apos;input[type=&amp;quot;radio&amp;quot;][name=&amp;quot;language&amp;quot;]:checked&amp;apos;).val()；
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用&lt;code&gt;:radio&lt;/code&gt;伪类选择器：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$(&amp;apos;input[type=&amp;quot;radio&amp;quot;][name=&amp;quot;language&amp;quot;]:checked&amp;apos;).val()；
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/jqueryRadio4.png&quot; alt=&quot;Alt text&quot; title=&quot;获取值&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注：方式三种中在使用:checked方式的前提下，不管使用类型选择器还是使用伪类选择器都是可以获取选中的单选按钮的值的！&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;五、总结&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;获取单选按钮元素选中的值时，统一采用&lt;code&gt;:checked&lt;/code&gt;这种方式获取，不要再使用&lt;code&gt;[checked]&lt;/code&gt;或者&lt;code&gt;[checked=&amp;quot;checked&amp;quot;]&lt;/code&gt;这种方式。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在使用jquery获取表单中选中的单选按钮的值时，发现了一个诡异的问题，那就是当你使用[checked]这个方式获取选中的单选按钮值时，能不能获取选中的值跟你前面用的选择器方式有关系，当你使用:radio[name=’types’]这种方式获取选中的值时是没有问题的，但
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://www.soujava.com/categories/javascript/"/>
+    
+    
+      <category term="jquery" scheme="http://www.soujava.com/tags/jquery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>整型字面值与进制运算之间的关系</title>
+    <link href="http://www.soujava.com/%E6%95%B4%E5%9E%8B%E5%AD%97%E9%9D%A2%E5%80%BC%E4%B8%8E%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/"/>
+    <id>http://www.soujava.com/整型字面值与进制运算之间的关系/</id>
+    <published>2016-08-20T09:19:18.000Z</published>
+    <updated>2017-01-11T02:06:24.917Z</updated>
+    
+    <content type="html">&lt;p&gt;何为字面值？说白了就是一眼看上去的内容值，比如下面的分别用几个不同进制(二进制、八进制、十进制、十六进制)表示法表示的自面值信息&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;二进制表示：int i = 0b111010110;其实0b111010110就是字面值&lt;/li&gt;
+&lt;li&gt;八进制表示：long l3 = 0123;其实0123就是字面值&lt;/li&gt;
+&lt;li&gt;十进制表示：long l2 = 225;其实225就是字面值&lt;/li&gt;
+&lt;li&gt;十六进制表示：long l5 = 0x12af;其实0x12af就是二进制值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;好了上面已经描述了自面值的概念，那么整型自面值就是整数类型的字面值喽(哈哈没有开玩笑)。下面说明整型字面值与不同进制之间的关系。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一、十进制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;地球上被人类采用的通用的数值表示方式，比如再正常不过的0、2、5、32、100等等；我们眼睛看到的数值就是表示其真实的值，不像其它进制表示方式，我们眼睛看到的值并不一定是其真实的值，所以我们人类一般采用十进制表示方式(10进制比较诚实，人类比较懒呗)。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二、二进制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;计算机唯一能识别的只有0和1，而这里的0和1就是二进制，绝对不是指数字的0和1，这也是比较容易引起混淆的地方；&lt;/p&gt;
+&lt;p&gt;举个常见的例子：我们生活中常用的算账用的计算器，我们输入100+30然后按完“=”号后，计算器屏幕上面会显示两个数相加后的结果130，    这个过程我输入的数字(100、30)或者按的按钮(+、=)和最后输出的130这几个动作，都是我们人类自己能很好识别的；我们输入十进制数字。然后计算器接收后是不识别的，实际上这个过程经历了非常复杂的转换过程：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1)、十进制数会被转换成二进制，也就是把100转化成只有0和1组成的一串数字（1100100）；
+    30转换成二进制数字(11110)
+2)、然后计算器把转换后的两个二进制数进行相加，最终得到二进制结果：10000010(130)；
+    实际上二进制之间加法很简单，只需要把两个二进制数右对齐，然后上下两个数(0或者1)相加，相加的和逢2进1就行了。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;二、八进制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;除了人类使用的10进制、计算机使用的二进制外，其实还有八进制（以0开头，以8为基数运算）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;8进制数字的范围是0~7,也就是说用8进制形式标示数值时，需要用0开头，
+并且标示数值串中只能包含0~7之间的数字，例如：
+int i = 0123;
+int m = 01354;
+int n =0238;（不合格）
+
+8进制表示的数值怎么计算成人类识别的10进制呢，其实非常简单，只需要按照规则来计算就行了，
+我们就拿int i = 013;这个变量定义来讲，一共三个数字(0、1、3)；那么我们从最右侧3用索引数数就是(0[2]、1[1]、3[0]),方括号中为从右侧开始计数的索引。
+
+比如013=3*8的0次方+1*8的1次方=3+8=11；
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;三、十六进制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;16进制的数字范围是0~15，而阿拉伯数字只有0~9，所以分别用A~F（a~f）替代数字10~15；也就是说用16进制表示的数值串中只能包括0~9和a|A~f|F；十六进制表示方式就是以0X开头，以16为基数进行运算&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;可以参照上面的八进制计算规则，long l5 = 0x12af;定义的变量用十进制表示方法就是：
+0x12af表示的十进制数为：15*16的0次方+10*16的1次方+2*16的2次方+1*16的3次方=4783
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;四、二进制表示十进制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;从jdk7开始，我们可以直接定义变量的时候可以用二进制表示十进制字面值，不过必须使用0b或0B作为数值的前缀。&lt;/p&gt;
+&lt;p&gt;比如：int x = 0b1010;&lt;br&gt;&lt;em&gt;其实x的真实值是二进制1010运算十进制后的值10.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;int u = 0B111010110;&lt;br&gt;&lt;em&gt;其实u的真实值是二进制111010110运算十进制后的值470.&lt;/em&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;何为字面值？说白了就是一眼看上去的内容值，比如下面的分别用几个不同进制(二进制、八进制、十进制、十六进制)表示法表示的自面值信息&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;二进制表示：int i = 0b111010110;其实0b111010110就是字面值&lt;/li&gt;
+&lt;li&gt;八进制表示
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.soujava.com/categories/java/"/>
+    
+    
+      <category term="进制运算" scheme="http://www.soujava.com/tags/%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis--安装</title>
+    <link href="http://www.soujava.com/Redis-%E5%AE%89%E8%A3%85/"/>
+    <id>http://www.soujava.com/Redis-安装/</id>
+    <published>2016-08-19T09:21:43.000Z</published>
+    <updated>2017-01-11T02:06:24.908Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;一、下载安装包&lt;/strong&gt;&lt;br&gt;  下载redis安装包，下载方式很多比如如下方式都可以：&lt;br&gt;    1)、到官网下载&lt;a href=&quot;http://redis.io需要的版本&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://redis.io需要的版本&lt;/a&gt;&lt;br&gt;    2)、在linux系统中用命令下载 $ wget &lt;a href=&quot;http://download.redis.io/releases/redis-2.8.17.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://download.redis.io/releases/redis-2.8.17.tar.gz&lt;/a&gt;&lt;br&gt;    下载成功后得到redis-2.8.17.tar.gz安装包&lt;br&gt;&lt;strong&gt;二、安装&lt;/strong&gt;&lt;br&gt;    1)、用命令解压缩安装包&lt;br&gt;       $ tar xzf redis-2.8.17.tar.gz&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;2)、进入解压后的文件中
+     $ cd redis-2.8.17
+
+3)、编译安装
+      $ make
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  注：make完后 redis-2.8.17目录下会出现编译后的redis服务程序redis-server,还有用于测试的客户端程序redis-cli&lt;br&gt;&lt;strong&gt;三、启动服务&lt;/strong&gt;&lt;br&gt;     1)、进入到redis安装目录src下面&lt;br&gt;          $ cd /usr/local/redis-2.8.17/src&lt;br&gt;     2)、启动服务操作，启动服务主要有两种方式：&lt;br&gt;           A：采用默认配置方式启动(不推荐)&lt;br&gt;                $ ./redis-server&lt;br&gt;           B：采用制定配置文件启动(推荐)&lt;br&gt;                 $ ./redis-server ../redis.conf&lt;br&gt;     注：redis.conf是一个默认的配置文件。我们可以根据需要使用自己的配置文件,修改redis.conf  配置文件修改 daemonize yes ；该配置为使redis启动后可以后台运行&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四、测试&lt;/strong&gt;&lt;br&gt;   1)、进入安装目录，运行redis-cli&lt;br&gt;         $ ./redis-cli&lt;br&gt;         redis&amp;gt; set username maps&lt;br&gt;         redis&amp;gt;get username&lt;br&gt;         “maps” &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;一、下载安装包&lt;/strong&gt;&lt;br&gt;  下载redis安装包，下载方式很多比如如下方式都可以：&lt;br&gt;    1)、到官网下载&lt;a href=&quot;http://redis.io需要的版本&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ht
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://www.soujava.com/categories/Redis/"/>
+    
+    
+      <category term="Redis安装" scheme="http://www.soujava.com/tags/Redis%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql--Lock wait timeout exceeded try restarting transaction</title>
+    <link href="http://www.soujava.com/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/"/>
+    <id>http://www.soujava.com/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/</id>
+    <published>2016-08-19T08:46:36.000Z</published>
+    <updated>2017-01-11T02:06:24.907Z</updated>
+    
+    <content type="html">&lt;p&gt;一个业务正在操作mysql过程中，突然报提示错误信息：Lock wait timeout exceeded; try restarting transaction。&lt;br&gt;查询发现问题原因是，在执行操作的表被另外一个操作锁定，当前操作等待另外一个操作完成时提示超时。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一、临时解决办法&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;执行以下脚本登录mysql：mysql -h 192.168.0.166 -u user -ppassword&lt;/li&gt;
+&lt;li&gt;执行select * from information_schema.innodb_trx\G;查询当前处于锁等待的进程。查询结果只需要关注trx_mysql_thread_id所对应的值。&lt;/li&gt;
+&lt;li&gt;执行show processlist;查询当前的所有进程，找到对应的ID，执行kill命令，kill id。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;二、Mysql数据库设置&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;设置innodb_lock_wait_timeout参数。通过show variables like ‘innodb_lock_wait_timeout’;查看当前设置的值。&lt;/li&gt;
+&lt;li&gt;执行set global innodb_lock_wait_timeout=120;设置超时时间。&lt;/li&gt;
+&lt;li&gt;设置是否自动提交事务。通过select @@autocommit;查询是否自动提交事务（1代表自动提交，0代表不自动提交）。执行set global autocommit=1;设置自动提交。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;注：这里设置自动提交事务操作针对高并发业务是会出问题的，所以视情况而定！&lt;/em&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一个业务正在操作mysql过程中，突然报提示错误信息：Lock wait timeout exceeded; try restarting transaction。&lt;br&gt;查询发现问题原因是，在执行操作的表被另外一个操作锁定，当前操作等待另外一个操作完成时提示超时。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://www.soujava.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://www.soujava.com/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySql安装后添加的用户不能远程连接登陆</title>
+    <link href="http://www.soujava.com/MySql%E5%AE%89%E8%A3%85%E5%90%8E%E6%B7%BB%E5%8A%A0%E7%9A%84%E7%94%A8%E6%88%B7%E4%B8%8D%E8%83%BD%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E7%99%BB%E9%99%86/"/>
+    <id>http://www.soujava.com/MySql安装后添加的用户不能远程连接登陆/</id>
+    <published>2016-08-19T08:23:54.000Z</published>
+    <updated>2017-01-11T02:06:24.906Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;一、添加一个用户fileserver并授权操作&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql1.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注：添加一个可以访问所有数据库、用户名为fileserver、可以在本地和远程进行访问的、密码是fileserver的用户 &lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二、查询刚才添加的用户是否存在&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql2.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注：可以看到刚才的fileserver用户已经创建完毕 &lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;三、用刚才添加成功的用户登陆操作报异常&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql3.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注：当用户刚才创建的用户登录并输入密码后时提示如下信息，这是因为当前的登录操作是在mysql本地客户端进行的，而上面的user表中没有对应localhost的fileserve的用户&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四、在添加一个fileserver用户并分配可以本地localhost登录&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql4.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;五、再查下刚才创建的用户是否已经存在&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql5.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;六、再次用刚刚创建的fileserver登录操作，可以正常登录&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql6.png&quot; alt=&quot;Alt text&quot;&gt;&lt;br&gt;&lt;em&gt;注：使用mysql -u 命令登录操作时默认使用localhost的域用户登录操作 &lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;七、在另外一台IP地址的电脑上面安装Navicate工具，并且连接之前安装的mysql服务&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql7.png&quot; alt=&quot;Alt text&quot;&gt;&lt;br&gt;&lt;em&gt;注：连接时提示连接错误，因为mysql服务没有对当前IP的电脑开放远程访问的权限&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;八、在mysql配置文件中配置该IP的访问操作&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql8.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;九、配置完成后重启mysql服务&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql9.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;十、再次在不同IP(192.168.0.203)地址电脑上面通过Navicate连接mysql服务操作，连接成功&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql10.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;一、添加一个用户fileserver并授权操作&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql1.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注：添加一个可以访问所有数据库、用户
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://www.soujava.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://www.soujava.com/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS-6.4内核升级操作</title>
+    <link href="http://www.soujava.com/CentOS-6-4%E5%86%85%E6%A0%B8%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C/"/>
+    <id>http://www.soujava.com/CentOS-6-4内核升级操作/</id>
+    <published>2016-08-19T08:00:13.000Z</published>
+    <updated>2017-01-11T02:06:24.903Z</updated>
+    
+    <content type="html">&lt;p&gt;Linux下涉及到系统内核的一些软件，需要对内核升级才能使用，例如Docker的最低要求是2.6.32-431等等。&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;注意：&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    如果在make menuconfig步骤报错，可尝试以下方法：&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;、修改scripts/kconfig/Makefile 文件&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;、找到HOSTLOADLIBES_mconf 在行末加入  -ltinfo&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一、先查看当前centos的系统内核&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/linuxKenel1.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二、下载内核包，如：linux-3.4.56.tar.xz&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;https:&lt;span class=&quot;comment&quot;&gt;//www.kernel.org/pub/linux/kernel/v3.x/linux-3.4.56.tar.xz&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;三、安装内核&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;# tar -Jxvf linux-3.4.56.tar.xz&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# mv linux-3.4.56 /usr/src/linux-3.4.56&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# cd linux-3.4.56&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# make mrproper #清除环境变量&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# make menuconfig &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# make clean&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# make bzImage&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# make modules&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# make modules_install&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# make install&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四、编辑/etc/grub.conf文件，将default=1改成default=0&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;五、重启系统并检查内核&lt;/strong&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Linux下涉及到系统内核的一些软件，需要对内核升级才能使用，例如Docker的最低要求是2.6.32-431等等。&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div clas
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.soujava.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://www.soujava.com/tags/Linux/"/>
+    
+  </entry>
+  
+</feed>
