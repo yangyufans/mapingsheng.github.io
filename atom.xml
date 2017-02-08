@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.soujava.com/"/>
-  <updated>2017-01-20T08:18:57.397Z</updated>
+  <updated>2017-02-08T06:08:07.923Z</updated>
   <id>http://www.soujava.com/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jquery中prop和attr使用时的问题</title>
+    <link href="http://www.soujava.com/Jquery%E4%B8%ADprop%E5%92%8Cattr%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://www.soujava.com/Jquery中prop和attr使用时的问题/</id>
+    <published>2017-02-08T05:25:25.000Z</published>
+    <updated>2017-02-08T06:08:07.923Z</updated>
+    
+    <content type="html">&lt;p&gt;在使用jquery的attr属性处理单选按钮选中时，出现偶尔不能选中的问题，后来才知道jquery官方推荐使用prop，而再推荐使用attr。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$(“input[type=’radio’][name=’workerType’][value=’IT’]”).attr(‘checked’,true);&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;使用attr方法操作单选按钮为选中状态时，会出现不能选中的情况（偶现）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$(“input[type=’radio’][name=’workerType’][value=’IT’]”).prop(‘checked’,true);&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;使用prop方法操作单选按钮为选中状态时，可以正常选中&lt;/p&gt;
+&lt;p&gt;当在页面中用jquery来控制DOM元素中的属性时要用 .prop()；不要再用 .attr()，不然会出问题，官方文档也推荐这样&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在使用jquery的attr属性处理单选按钮选中时，出现偶尔不能选中的问题，后来才知道jquery官方推荐使用prop，而再推荐使用attr。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$(“input[type=’radio’][name=’workerType’][val
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://www.soujava.com/categories/javascript/"/>
+    
+    
+      <category term="jquery" scheme="http://www.soujava.com/tags/jquery/"/>
+    
+  </entry>
   
   <entry>
     <title>X进制与Y进制转换</title>
@@ -900,42 +934,6 @@ int n =0238;（不合格）
     <summary type="html">
     
       &lt;p&gt;一个业务正在操作mysql过程中，突然报提示错误信息：Lock wait timeout exceeded; try restarting transaction。&lt;br&gt;查询发现问题原因是，在执行操作的表被另外一个操作锁定，当前操作等待另外一个操作完成时提示超时。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Mysql" scheme="http://www.soujava.com/categories/Mysql/"/>
-    
-    
-      <category term="Mysql" scheme="http://www.soujava.com/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySql安装后添加的用户不能远程连接登陆</title>
-    <link href="http://www.soujava.com/MySql%E5%AE%89%E8%A3%85%E5%90%8E%E6%B7%BB%E5%8A%A0%E7%9A%84%E7%94%A8%E6%88%B7%E4%B8%8D%E8%83%BD%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E7%99%BB%E9%99%86/"/>
-    <id>http://www.soujava.com/MySql安装后添加的用户不能远程连接登陆/</id>
-    <published>2016-08-19T08:23:54.000Z</published>
-    <updated>2017-01-11T02:06:24.906Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;一、添加一个用户fileserver并授权操作&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql1.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;注：添加一个可以访问所有数据库、用户名为fileserver、可以在本地和远程进行访问的、密码是fileserver的用户 &lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;二、查询刚才添加的用户是否存在&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql2.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;注：可以看到刚才的fileserver用户已经创建完毕 &lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;三、用刚才添加成功的用户登陆操作报异常&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql3.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;注：当用户刚才创建的用户登录并输入密码后时提示如下信息，这是因为当前的登录操作是在mysql本地客户端进行的，而上面的user表中没有对应localhost的fileserve的用户&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;四、在添加一个fileserver用户并分配可以本地localhost登录&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql4.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;五、再查下刚才创建的用户是否已经存在&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql5.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;六、再次用刚刚创建的fileserver登录操作，可以正常登录&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql6.png&quot; alt=&quot;Alt text&quot;&gt;&lt;br&gt;&lt;em&gt;注：使用mysql -u 命令登录操作时默认使用localhost的域用户登录操作 &lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;七、在另外一台IP地址的电脑上面安装Navicate工具，并且连接之前安装的mysql服务&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql7.png&quot; alt=&quot;Alt text&quot;&gt;&lt;br&gt;&lt;em&gt;注：连接时提示连接错误，因为mysql服务没有对当前IP的电脑开放远程访问的权限&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;八、在mysql配置文件中配置该IP的访问操作&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql8.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;九、配置完成后重启mysql服务&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql9.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;十、再次在不同IP(192.168.0.203)地址电脑上面通过Navicate连接mysql服务操作，连接成功&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql10.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;一、添加一个用户fileserver并授权操作&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://soujava.com/images/mysql1.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;注：添加一个可以访问所有数据库、用户
     
     </summary>
     
