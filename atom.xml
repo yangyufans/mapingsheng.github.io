@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.soujava.com/"/>
-  <updated>2017-02-09T06:47:18.061Z</updated>
+  <updated>2017-02-09T06:50:09.385Z</updated>
   <id>http://www.soujava.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.soujava.com/CentOS%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85nodeJs/"/>
     <id>http://www.soujava.com/CentOS系统安装nodeJs/</id>
     <published>2017-02-09T05:11:02.000Z</published>
-    <updated>2017-02-09T06:47:18.061Z</updated>
+    <updated>2017-02-09T06:50:09.385Z</updated>
     
     <content type="html">&lt;p&gt;主要介绍在Linux(CentOS)系统中，nodeJs的安装与环境配置，首先我们需要到nodeJs官网下载对应的tar安装包，然后使用命令进行安装和配置操作(两种安装方式都是可以的)&lt;/p&gt;
 &lt;h2 id=&quot;一、二进制包安装&quot;&gt;&lt;a href=&quot;#一、二进制包安装&quot; class=&quot;headerlink&quot; title=&quot;一、二进制包安装&quot;&gt;&lt;/a&gt;一、二进制包安装&lt;/h2&gt;&lt;ol&gt;
@@ -33,7 +33,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;vim /etc/profile&lt;/p&gt;
 &lt;/blockquote&gt;
- &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;		&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		export NODE_HOME=/usr/local/develop/soft/node-v6.9.4-linux-x64&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		export PATH=$NODE_HOME/bin:$PATH&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		export NODE_PATH=$NODE_HOME/lib/node_modules:$PATH&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	```	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;. 验证是否安装成功&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;gt;node -v&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	```java&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		v6.9.4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+ &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;		&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		export NODE_HOME=/usr/local/develop/soft/node-v6.9.4-linux-x64&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		export PATH=$NODE_HOME/bin:$PATH&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		export NODE_PATH=$NODE_HOME/lib/node_modules:$PATH&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	```	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;gt;source /etc/profile	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;. 验证是否安装成功&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;gt;node -v&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	```java&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		v6.9.4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&quot;二、源代码编译安装&quot;&gt;&lt;a href=&quot;#二、源代码编译安装&quot; class=&quot;headerlink&quot; title=&quot;二、源代码编译安装&quot;&gt;&lt;/a&gt;二、源代码编译安装&lt;/h2&gt;&lt;ol&gt;
