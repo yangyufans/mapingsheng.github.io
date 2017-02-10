@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.soujava.com/"/>
-  <updated>2017-02-10T07:26:45.545Z</updated>
+  <updated>2017-02-10T08:05:32.092Z</updated>
   <id>http://www.soujava.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.soujava.com/CentOS%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85nodeJs/"/>
     <id>http://www.soujava.com/CentOS系统安装nodeJs/</id>
     <published>2017-02-09T05:11:02.000Z</published>
-    <updated>2017-02-10T07:26:45.545Z</updated>
+    <updated>2017-02-10T08:05:32.092Z</updated>
     
     <content type="html">&lt;p&gt;主要介绍在Linux(CentOS)系统中，nodeJs的安装与环境配置，首先我们需要到nodeJs官网下载对应的tar安装包，然后使用命令进行安装和配置操作(一共有源代码编译安装和二进制包安装，两种安装方式都是可以的)&lt;/p&gt;
 &lt;h2 id=&quot;一、二进制包安装&quot;&gt;&lt;a href=&quot;#一、二进制包安装&quot; class=&quot;headerlink&quot; title=&quot;一、二进制包安装&quot;&gt;&lt;/a&gt;一、二进制包安装&lt;/h2&gt;&lt;p&gt;1 下载二进制包&lt;/p&gt;
