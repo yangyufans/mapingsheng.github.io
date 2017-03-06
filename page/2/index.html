@@ -1,10 +1,3334 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="记录未知的，牢记已知的"><title>soujava | 记录未知的，牢记已知的</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.1.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">soujava</h1><a id="logo" href="/.">soujava</a><p class="description">记录未知的，牢记已知的</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h2 class="post-title"><a href="/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/">Mysql--Lock wait timeout exceeded try restarting transaction</a></h2><div class="post-meta">2016-08-19</div><a data-thread-key="Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/" href="/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/#comments" class="ds-thread-count"></a><div class="post-content"><p>一个业务正在操作mysql过程中，突然报提示错误信息：Lock wait timeout exceeded; try restarting transaction。<br>查询发现问题原因是，在执行操作的表被另外一个操作锁定，当前操作等待另外一个操作完成时提示超时。</p></div><p class="readmore"><a href="/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/MySql安装后添加的用户不能远程连接登陆/">MySql安装后添加的用户不能远程连接登陆</a></h2><div class="post-meta">2016-08-19</div><a data-thread-key="MySql安装后添加的用户不能远程连接登陆/" href="/MySql安装后添加的用户不能远程连接登陆/#comments" class="ds-thread-count"></a><div class="post-content"><p><strong>一、添加一个用户fileserver并授权操作</strong><br><img src="http://soujava.com/images/mysql1.png" alt="Alt text"></p></div><p class="readmore"><a href="/MySql安装后添加的用户不能远程连接登陆/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/CentOS-6-4内核升级操作/">CentOS-6.4内核升级操作</a></h2><div class="post-meta">2016-08-19</div><a data-thread-key="CentOS-6-4内核升级操作/" href="/CentOS-6-4内核升级操作/#comments" class="ds-thread-count"></a><div class="post-content"><p>Linux下涉及到系统内核的一些软件，需要对内核升级才能使用，例如Docker的最低要求是2.6.32-431等等。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">注意：</div><div class="line">    如果在make menuconfig步骤报错，可尝试以下方法：</div><div class="line">    <span class="number">1</span>、修改scripts/kconfig/Makefile 文件</div><div class="line">    <span class="number">2</span>、找到HOSTLOADLIBES_mconf 在行末加入  -ltinfo</div></pre></td></tr></table></figure></p></div><p class="readmore"><a href="/CentOS-6-4内核升级操作/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/git搞着玩-新建本地仓库/">git搞着玩-新建本地仓库与分支合并</a></h2><div class="post-meta">2016-08-19</div><a data-thread-key="git搞着玩-新建本地仓库/" href="/git搞着玩-新建本地仓库/#comments" class="ds-thread-count"></a><div class="post-content"><p>用了git有一段时间了，在项目团队刚切入git时还是遇到了不少的阻力，各种质疑，为什么svn用的好好的突然转到git上面？为什么git操作这么复杂？等等等等；当然我作为逗比的我还是很愿意为他们一一诉说我对git的真爱的。当然并不是说svn不好，我可以说svn非常好，尤其某些场景更是强大至极，至少对于小团队或者单产品线研发模式来讲用svn是非常好的选择。我们之所以从svn平台切换到git上面主要是因为我们的研发路线是一个主产品线+N个项目定制线；并且主产品线会和其中的项目定制线进行彼此合并操作；</p></div><p class="readmore"><a href="/git搞着玩-新建本地仓库/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/java使用jxl读取excel数据时特殊符号处理/">java使用jxl读取excel数据时特殊符号处理</a></h2><div class="post-meta">2016-08-17</div><a data-thread-key="java使用jxl读取excel数据时特殊符号处理/" href="/java使用jxl读取excel数据时特殊符号处理/#comments" class="ds-thread-count"></a><div class="post-content"><p>使用JXL读取Excel中数据时，如果Excel中的单元格中有M1.5×6这样的值时，读取数据时，不能识别×，或者为乱码（？）。<br> 未处理之前代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">   Workbook modelBook = Workbook.getWorkbook(input);</div><div class="line">Sheet sheet = modelBook.getSheet(<span class="number">0</span>);</div></pre></td></tr></table></figure></p></div><p class="readmore"><a href="/java使用jxl读取excel数据时特殊符号处理/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/Linux查看端口占用/">Linux查看端口占用</a></h2><div class="post-meta">2016-08-17</div><a data-thread-key="Linux查看端口占用/" href="/Linux查看端口占用/#comments" class="ds-thread-count"></a><div class="post-content"><p>在操作linux服务器的时候经常会碰到端口被占用的情况，那么如果更好的找到某个端口被什么占用呢。</p></div><p class="readmore"><a href="/Linux查看端口占用/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/Tomcat实时查看日志信息/">Tomcat实时查看日志信息</a></h2><div class="post-meta">2016-08-17</div><a data-thread-key="Tomcat实时查看日志信息/" href="/Tomcat实时查看日志信息/#comments" class="ds-thread-count"></a><div class="post-content"><ol></div><p class="readmore"><a href="/Tomcat实时查看日志信息/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/Linux双网卡配置-内外网同时访问/">Linux双网卡配置(内外网同时访问)</a></h2><div class="post-meta">2016-08-17</div><a data-thread-key="Linux双网卡配置-内外网同时访问/" href="/Linux双网卡配置-内外网同时访问/#comments" class="ds-thread-count"></a><div class="post-content"><p>事情的经过是这样的。。。。。；我有一台linux服务器操作系统，只能内网访问，现在需要提供给公司其他地域的同事通过VPN可以访问操作，那么就需要为这个linux操作系统配置一个新配置一个网卡，你修改网卡配置文件之前需要确保你的linux操作系统已经有两块物理网卡了，也就是说当你进入linux操作系统后，运行ifconfig命令可以看到eth0和eth1两个网卡信息，这才代表你的物理环境没有问题。</p></div><p class="readmore"><a href="/Linux双网卡配置-内外网同时访问/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/">VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置</a></h2><div class="post-meta">2016-08-17</div><a data-thread-key="VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/" href="/VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/#comments" class="ds-thread-count"></a><div class="post-content"><p>一、有一台机架服务器，使用VMwarevSphere进行虚拟化，然后在其上安装N台虚拟机以供不同业务需要，之前该VMwarevSphere只有一个内网的物理网卡，也就是只能内网访问和使用；现在有个需求需要把该VMwarevSphere开放外网功能，并满足其他地域的用户通过公司VPN可以正常使用上面的虚拟机(其中的某一台)。所以现在需要三步操作：</p></div><p class="readmore"><a href="/VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/thymeleaf教程1-环境搭建/">thymeleaf教程1-环境搭建</a></h2><div class="post-meta">2016-08-08</div><a data-thread-key="thymeleaf教程1-环境搭建/" href="/thymeleaf教程1-环境搭建/#comments" class="ds-thread-count"></a><div class="post-content"><p>一、由于springboot这一强大的框架的发布，更由于其采用thymeleaf作为其官方的推荐模板引擎，所以决定学习一下thymeleaf这个模板引擎，当然是通过springboot才了解到的thymeleaf；所以试用也是基于springboot来进行；而springboot采用gradle工具依赖管理，所以要想使用thymeleaf，必须进行如下操作：</p></div><p class="readmore"><a href="/thymeleaf教程1-环境搭建/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/如何查看当前的linux系统是哪个发行商/">如何查看当前的linux系统是哪个发行商</a></h2><div class="post-meta">2016-08-03</div><a data-thread-key="如何查看当前的linux系统是哪个发行商/" href="/如何查看当前的linux系统是哪个发行商/#comments" class="ds-thread-count"></a><div class="post-content"><p>我们刚开始进入一个linux操作系统，可能只知道它是一个操作系统，但是不太清楚到底是那个发行商，比如ubuntu、Centos、Debian等等；那么当然老鸟通过查看某些目录的配置文件一眼就可以看到是什么发行商；对于新鸟来说有以下几个技巧可以查看：</p></div><p class="readmore"><a href="/如何查看当前的linux系统是哪个发行商/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/Mybatis动态传入tableName-非预编译-STATEMENT/">Mybatis动态传入tableName--非预编译(STATEMENT)</a></h2><div class="post-meta">2016-07-28</div><a data-thread-key="Mybatis动态传入tableName-非预编译-STATEMENT/" href="/Mybatis动态传入tableName-非预编译-STATEMENT/#comments" class="ds-thread-count"></a><div class="post-content"><p>在使用Mybatis过程中，你可以体会到它的强大与灵活之处，由衷的为Mybatis之父点上999个赞！在使用过程中经常会遇到这样一种情况，我查询数据的时候，表名称是动态的从程序中传入的，比如我们通过mybatis的xml文件写sql查询时都是下面的样子：<br><strong>1、正常的查询</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;select id="activityEnrollModelTableName" parameterType="java.util.HashMap" resultType="java.util.HashMap"&gt;</div><div class="line">    SELECT * FROM user WHERE userid = #&#123;userid&#125;</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure></p></div><p class="readmore"><a href="/Mybatis动态传入tableName-非预编译-STATEMENT/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/Linux系统添加配置随开机启动的服务/">Linux系统添加配置随开机启动的服务-rc.local配置</a></h2><div class="post-meta">2016-07-25</div><a data-thread-key="Linux系统添加配置随开机启动的服务/" href="/Linux系统添加配置随开机启动的服务/#comments" class="ds-thread-count"></a><div class="post-content"><p>在linux服务器操作系统中，经常会安装一些服务器端的软件如：tomcat、redis、MQ、Nginx等等常用的服务器组件；那么有时候服务器重启后需要用一个一个的启动命令把不同的软件启动起来；主要有以下几种场景：</p></div><p class="readmore"><a href="/Linux系统添加配置随开机启动的服务/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/Linux开机启动后经常需要配置网卡/">Linux开机启动后经常需要配置网卡</a></h2><div class="post-meta">2016-07-25</div><a data-thread-key="Linux开机启动后经常需要配置网卡/" href="/Linux开机启动后经常需要配置网卡/#comments" class="ds-thread-count"></a><div class="post-content"><p>在虚拟机中安装的CentOS6操作系统，每次开机启动后，网卡默认都是关闭的；所以系统对外网络是处于中断的状态的，所以也就不能通过Xshell工具远程连接操作。</p></div><p class="readmore"><a href="/Linux开机启动后经常需要配置网卡/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/通过反向代理解决跨域问题/">通过Nginx反向代理解决跨域问题</a></h2><div class="post-meta">2016-07-19</div><a data-thread-key="通过反向代理解决跨域问题/" href="/通过反向代理解决跨域问题/#comments" class="ds-thread-count"></a><div class="post-content"><p> 有以下需求：</p></div><p class="readmore"><a href="/通过反向代理解决跨域问题/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/java通过Stream对list集合分组/">java通过Stream对list集合分组</a></h2><div class="post-meta">2016-07-15</div><a data-thread-key="java通过Stream对list集合分组/" href="/java通过Stream对list集合分组/#comments" class="ds-thread-count"></a><div class="post-content"><p>现在有一个List集合，想对该集合中的数据分组处理，想到java8中的stream，就搞来试试，非常给力！例子如下</p></div><p class="readmore"><a href="/java通过Stream对list集合分组/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/java接收oracle中clob类型字段值/">java接收oracle中clob类型字段值</a></h2><div class="post-meta">2016-07-06</div><a data-thread-key="java接收oracle中clob类型字段值/" href="/java接收oracle中clob类型字段值/#comments" class="ds-thread-count"></a><div class="post-content"><p>oracle数据库中有一种大文本字段类型：clob;那么当我们的java程序从数据库中查询出来的数据列表用java程序如何接收处理呢？</p></div><p class="readmore"><a href="/java接收oracle中clob类型字段值/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/oracle11G导出数据时空表无法导出/">oracle11G导出数据时空表无法导出</a></h2><div class="post-meta">2016-07-06</div><a data-thread-key="oracle11G导出数据时空表无法导出/" href="/oracle11G导出数据时空表无法导出/#comments" class="ds-thread-count"></a><div class="post-content"><p>  使用oracle数据库导出命令exp导出数据库的时候，数据库中的空表无法导出，因为oracle11g 建表时，默认不分配segment,以节省磁盘空间，当表插入第一条数据时，再分配segment。当然至于想不想在oracle创建表的时候就自动分配segment,是跟oracle的一个配置参数有关的，也就是<br>  “deferred_segment_creation”；默认该参数为true，说明不自动分配sgement，如果设置该参数为false时，则会从此刻以后每次创建表就自动分配segment。</p></div><p class="readmore"><a href="/oracle11G导出数据时空表无法导出/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016-06-30-界面框架/">界面框架</a></h2><div class="post-meta">2016-06-30</div><a data-thread-key="2016-06-30-界面框架/" href="/2016-06-30-界面框架/#comments" class="ds-thread-count"></a><div class="post-content"><p><strong>1、布局框架</strong></p></div><p class="readmore"><a href="/2016-06-30-界面框架/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016-06-30-页面中添加-ENTER-键点击事件/">页面中添加'ENTER'键点击事件</a></h2><div class="post-meta">2016-06-30</div><a data-thread-key="2016-06-30-页面中添加-ENTER-键点击事件/" href="/2016-06-30-页面中添加-ENTER-键点击事件/#comments" class="ds-thread-count"></a><div class="post-content"><p>通常有以下场景：<br>当输入表单完成后直接按“Enter”键进行快捷提交；当操作一个共时，弹出的提示询问框，然后直接按“Enter”键确认。<br>那么我们只需要通过获取当前点击的键码是否是enter键的码值即可！</p></div><p class="readmore"><a href="/2016-06-30-页面中添加-ENTER-键点击事件/">阅读更多</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a></nav></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RocketMQ/">RocketMQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJs/">nodeJs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/oracle/">oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/thymeleaf/">thymeleaf</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vSphere/">vSphere</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/RocketMQ启动错误/" style="font-size: 15px;">RocketMQ启动错误</a> <a href="/tags/进制运算/" style="font-size: 15px;">进制运算</a> <a href="/tags/eclipse/" style="font-size: 15px;">eclipse</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/界面框架/" style="font-size: 15px;">界面框架</a> <a href="/tags/添加enter事件/" style="font-size: 15px;">添加enter事件</a> <a href="/tags/nodeJs/" style="font-size: 15px;">nodeJs</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/网卡/" style="font-size: 15px;">网卡</a> <a href="/tags/服务开机启动/" style="font-size: 15px;">服务开机启动</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Maven插件/" style="font-size: 15px;">Maven插件</a> <a href="/tags/动态传入tableName/" style="font-size: 15px;">动态传入tableName</a> <a href="/tags/Redis安装/" style="font-size: 15px;">Redis安装</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/Tomcat日志/" style="font-size: 15px;">Tomcat日志</a> <a href="/tags/vSphere添加物理网卡/" style="font-size: 15px;">vSphere添加物理网卡</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/java8-Stream/" style="font-size: 15px;">java8 Stream</a> <a href="/tags/jxl/" style="font-size: 15px;">jxl</a> <a href="/tags/java定时任务/" style="font-size: 15px;">java定时任务</a> <a href="/tags/java接收clob字段/" style="font-size: 15px;">java接收clob字段</a> <a href="/tags/oracle导出空表/" style="font-size: 15px;">oracle导出空表</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/springBoot/" style="font-size: 15px;">springBoot</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/gitlab/" style="font-size: 15px;">gitlab</a> <a href="/tags/表单元素获取/" style="font-size: 15px;">表单元素获取</a> <a href="/tags/跨域/" style="font-size: 15px;">跨域</a> <a href="/tags/poi/" style="font-size: 15px;">poi</a></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">soujava.</a><a rel="nofollow" target="_blank" href="http://www.soujava.com"> 马平升.</a><a rel="nofollow" target="_blank" href="https://github.com/mapingsheng"> Github</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var duoshuoQuery = {short_name:'soujava'};
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="soujava, java" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soujava" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="记录未知的，牢记已知的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="soujava">
+<meta property="og:url" content="http://www.soujava.com/page/2/index.html">
+<meta property="og:site_name" content="soujava">
+<meta property="og:description" content="记录未知的，牢记已知的">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="soujava">
+<meta name="twitter:description" content="记录未知的，牢记已知的">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.soujava.com/page/2/"/>
+
+  <title> soujava </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">soujava</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录未知的，牢记已知的</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/" itemprop="url">
+                  Mysql--Lock wait timeout exceeded try restarting transaction
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-19T16:46:36+08:00" content="2016-08-19">
+              2016-08-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一个业务正在操作mysql过程中，突然报提示错误信息：Lock wait timeout exceeded; try restarting transaction。<br>查询发现问题原因是，在执行操作的表被另外一个操作锁定，当前操作等待另外一个操作完成时提示超时。</p>
+<p><strong>一、临时解决办法</strong></p>
+<ol>
+<li>执行以下脚本登录mysql：mysql -h 192.168.0.166 -u user -ppassword</li>
+<li>执行select * from information_schema.innodb_trx\G;查询当前处于锁等待的进程。查询结果只需要关注trx_mysql_thread_id所对应的值。</li>
+<li>执行show processlist;查询当前的所有进程，找到对应的ID，执行kill命令，kill id。</li>
+</ol>
+<p><strong>二、Mysql数据库设置</strong></p>
+<ol>
+<li>设置innodb_lock_wait_timeout参数。通过show variables like ‘innodb_lock_wait_timeout’;查看当前设置的值。</li>
+<li>执行set global innodb_lock_wait_timeout=120;设置超时时间。</li>
+<li>设置是否自动提交事务。通过select @@autocommit;查询是否自动提交事务（1代表自动提交，0代表不自动提交）。执行set global autocommit=1;设置自动提交。</li>
+</ol>
+<p><em>注：这里设置自动提交事务操作针对高并发业务是会出问题的，所以视情况而定！</em></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/MySql安装后添加的用户不能远程连接登陆/" itemprop="url">
+                  MySql安装后添加的用户不能远程连接登陆
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-19T16:23:54+08:00" content="2016-08-19">
+              2016-08-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/MySql安装后添加的用户不能远程连接登陆/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="MySql安装后添加的用户不能远程连接登陆/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>一、添加一个用户fileserver并授权操作</strong><br><img src="http://soujava.com/images/mysql1.png" alt="Alt text"></p>
+<p><em>注：添加一个可以访问所有数据库、用户名为fileserver、可以在本地和远程进行访问的、密码是fileserver的用户 </em></p>
+<p><strong>二、查询刚才添加的用户是否存在</strong><br><img src="http://soujava.com/images/mysql2.png" alt="Alt text"></p>
+<p><em>注：可以看到刚才的fileserver用户已经创建完毕 </em></p>
+<p><strong>三、用刚才添加成功的用户登陆操作报异常</strong><br><img src="http://soujava.com/images/mysql3.png" alt="Alt text"></p>
+<p><em>注：当用户刚才创建的用户登录并输入密码后时提示如下信息，这是因为当前的登录操作是在mysql本地客户端进行的，而上面的user表中没有对应localhost的fileserve的用户</em></p>
+<p><strong>四、在添加一个fileserver用户并分配可以本地localhost登录</strong><br><img src="http://soujava.com/images/mysql4.png" alt="Alt text"></p>
+<p><strong>五、再查下刚才创建的用户是否已经存在</strong><br><img src="http://soujava.com/images/mysql5.png" alt="Alt text"></p>
+<p><strong>六、再次用刚刚创建的fileserver登录操作，可以正常登录</strong><br><img src="http://soujava.com/images/mysql6.png" alt="Alt text"><br><em>注：使用mysql -u 命令登录操作时默认使用localhost的域用户登录操作 </em></p>
+<p><strong>七、在另外一台IP地址的电脑上面安装Navicate工具，并且连接之前安装的mysql服务</strong><br><img src="http://soujava.com/images/mysql7.png" alt="Alt text"><br><em>注：连接时提示连接错误，因为mysql服务没有对当前IP的电脑开放远程访问的权限</em></p>
+<p><strong>八、在mysql配置文件中配置该IP的访问操作</strong><br><img src="http://soujava.com/images/mysql8.png" alt="Alt text"></p>
+<p><strong>九、配置完成后重启mysql服务</strong><br><img src="http://soujava.com/images/mysql9.png" alt="Alt text"></p>
+<p><strong>十、再次在不同IP(192.168.0.203)地址电脑上面通过Navicate连接mysql服务操作，连接成功</strong><br><img src="http://soujava.com/images/mysql10.png" alt="Alt text"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/CentOS-6-4内核升级操作/" itemprop="url">
+                  CentOS-6.4内核升级操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-19T16:00:13+08:00" content="2016-08-19">
+              2016-08-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/CentOS-6-4内核升级操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="CentOS-6-4内核升级操作/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Linux下涉及到系统内核的一些软件，需要对内核升级才能使用，例如Docker的最低要求是2.6.32-431等等。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">注意：</div><div class="line">    如果在make menuconfig步骤报错，可尝试以下方法：</div><div class="line">    <span class="number">1</span>、修改scripts/kconfig/Makefile 文件</div><div class="line">    <span class="number">2</span>、找到HOSTLOADLIBES_mconf 在行末加入  -ltinfo</div></pre></td></tr></table></figure></p>
+<p><strong>一、先查看当前centos的系统内核</strong></p>
+<p><img src="http://soujava.com/images/linuxKenel1.png" alt="Alt text"></p>
+<p><strong>二、下载内核包，如：linux-3.4.56.tar.xz</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https:<span class="comment">//www.kernel.org/pub/linux/kernel/v3.x/linux-3.4.56.tar.xz</span></div></pre></td></tr></table></figure>
+<p><strong>三、安装内核</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># tar -Jxvf linux-3.4.56.tar.xz</div><div class="line"># mv linux-3.4.56 /usr/src/linux-3.4.56</div><div class="line"># cd linux-3.4.56</div><div class="line"># make mrproper #清除环境变量</div><div class="line"># make menuconfig </div><div class="line"># make clean</div><div class="line"># make bzImage</div><div class="line"># make modules</div><div class="line"># make modules_install</div><div class="line"># make install</div></pre></td></tr></table></figure></p>
+<p><strong>四、编辑/etc/grub.conf文件，将default=1改成default=0</strong></p>
+<p><strong>五、重启系统并检查内核</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/git搞着玩-新建本地仓库/" itemprop="url">
+                  git搞着玩-新建本地仓库与分支合并
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-19T11:01:47+08:00" content="2016-08-19">
+              2016-08-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/git搞着玩-新建本地仓库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="git搞着玩-新建本地仓库/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>用了git有一段时间了，在项目团队刚切入git时还是遇到了不少的阻力，各种质疑，为什么svn用的好好的突然转到git上面？为什么git操作这么复杂？等等等等；当然我作为逗比的我还是很愿意为他们一一诉说我对git的真爱的。当然并不是说svn不好，我可以说svn非常好，尤其某些场景更是强大至极，至少对于小团队或者单产品线研发模式来讲用svn是非常好的选择。我们之所以从svn平台切换到git上面主要是因为我们的研发路线是一个主产品线+N个项目定制线；并且主产品线会和其中的项目定制线进行彼此合并操作；</p>
+<p>再举个切实的例子，张三丰正在开发太极拳产品，并且已经发布了1.0版本，投入市场后非常受欢迎，当然也收集了一些用户的反馈，经过研发部讨论可以把一些建议并入主产品开发，另外基于主产品线再开出一个branch做另一个小众市场的试错项目，这项目由张无忌开发；那么问题来了，以后类似这样的项目会越来越多，程序员一人多用的现象已经中国这片土地上面成为常态，所以程序员们也必然会通过自身努力练就三头六臂的本领；所以张无忌现在会同时(犹如电脑CPU进程切换一样)负责3个项目；那么比如张无忌正在开发A项目，然后B项目突然反馈一个致命bug，必须立刻马上解决；后来这个bug发现C项目也有；那么张无忌是不是先把正在开发的A项目的代码提交(不能提交到远程代码仓库，因为开发的A项目代码还是半成品)，然后去修改B项目的致命bug；这时如果用的svn的话，具体咋搞？这里我就不具体说了，反正我觉得张无忌会哭！那么用git就非常爽啦，针对项目A分支进行add、commit就行了；然后checkout B，切换到B项目分支上改bug就行了，改完后合并到C项目上就行啦！你说爽不爽，这就是中央仓库和“分布式”仓库的巨大差别！看到其它同事茫然的点点头，我心中窃喜！</p>
+<p>扯的有点远了，回到正题上来！git不就是个版本管理工具嘛，有什么了不起的，先自己随便搞搞；用一段话描述项目的需求如下：在本地新建一个git代码仓库，然后添加一个分支develop，在分支develop中添加一个文件，然后再添加一个分支master，将develop分支中的文件合并到master分支中，然后同时修改develop分支中的文件和master分支中的文件并合并，遇到冲突后解决冲突，就这么多。</p>
+<p><strong>一、新建本地仓库（git init）</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">Initialized empty Git repository in D:/workspace/gitDemo/.git/</div></pre></td></tr></table></figure></p>
+<p>提示初始化一个空的git仓库在XXXX目录中</p>
+<p><strong>二、新建develop分支（git branch develop）</strong><br><em>- 先检查刚才新建的本地空仓库中是否有分支（git branch）;明显没有嘛，这还用想？不试试怎么知道，好吧就试试吧！</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch</div></pre></td></tr></table></figure></p>
+<p>输入命令后什么都没有输出，表名该仓库还没有任何分支；当然git branch命令会列出本地仓库的所有分支，并会标示出当前所在的分支。</p>
+<p><em>- 新建develop分支操作（git branch develop）</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git branch develop</div><div class="line">fatal: Not a valid object name: <span class="string">'master'</span>.</div></pre></td></tr></table></figure></p>
+<p>我去，直接给我亮出了红牌的致命警告，真是道路曲折啊，没法儿玩儿了；出现上面的提示是因为根据git约定要求，在空仓库中新建分支之前，需要commit一一下，好吧！那照做呗….</p>
+<p><em>- 提交一下（git commit）</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git commit -m <span class="string">"按照git要求，执行一次空的提交操作"</span></div><div class="line">On branch master</div><div class="line"></div><div class="line">Initial commit</div><div class="line"></div><div class="line">nothing to commit</div></pre></td></tr></table></figure></p>
+<p>哎呀我去，我只是提交了一下啊，它怎么做了这么多事情(三行英文的意思就是 当前分支在master上面、初始化提交、提交的内容为空)；后两句我可以理解，那么当前分支为master这句话我有点理解不了。</p>
+<p>出现上面的提示(On branch master)是因为git仓库默认初始分支是master；而你直接在空的仓库中提交时，会坚持当前仓库是否有master分支，如果没有，则新建master分支，好吧，我只能说它太“人性化了”。那么其实到这里我们已经通过commit操作创建了git默认的master分支了。</p>
+<p><em>- 看看刚才git自动为我新建的master分支真的创建完了吗</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch</div></pre></td></tr></table></figure></p>
+<p>哎呀，我去，怎么还显示空啊，难道创建失败了？好吧，在告诉你一个秘密：其实master分支已经自动创建完成了，只是不显示而已，你需要添加（add）一个物理文件进去，然后提交(commit)就可以看到master分支了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ echo <span class="string">"hello maps"</span> &gt;index.txt</div><div class="line"></div><div class="line">$ git commit -m <span class="string">"commit index.txt file"</span></div><div class="line">[master (root-commit) be4ae99] commit index.txt file</div><div class="line">	<span class="number">1</span> file changed, <span class="number">1</span> insertion(+)</div><div class="line">	create mode <span class="number">100644</span> index.txt</div><div class="line"></div><div class="line">$ git branch</div><div class="line">* master</div></pre></td></tr></table></figure></p>
+<p>通过上面三步(添加一个物理文件、add到git的index库中、commit到git的本地仓库中)之后，我们可以看到master分支已经显示出来了！针对不易啊！<br><em>注：其实上上步骤(上一步的上一步)中我们描述的执行一次空的提交(commit)是多余的；完全用上面三步走战略就行啦！</em></p>
+<p>通过第二大步的操作后，我们本来新建develop分支的，结构却不由自主的“被创建一个master分支”。现状的状况就是我们在空的仓库中新建了一个master分支，然后在master分支中新建了一个index.txt文件。下面只能操作第三步，再次新建我们的develop分支喽。</p>
+<p><strong>三、再次新建develop分支（git branch develop）</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch develop</div></pre></td></tr></table></figure></p>
+<p>执行完新建develop命令后，我们查看develop命令是否新建完成了（怎么现在对git branch这个命令越来越怀疑了，不会它又自动为我新建一个其它的分支吧，哈哈。眼见为实，操作看看吧）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git branch</div><div class="line"> 	develop</div><div class="line">* master</div></pre></td></tr></table></figure></p>
+<p>看到了吧，我们新建的develop分支已经出来了，但是奇怪的是我们上一步新建的master分支前面为什么一个”<em>“呢，其实这个”</em>“代表当前所在的分支；上面的意思就目前仓库中有两个分支(develop、master)；而你当前所在的分支是master中。<em>那么到目前为止，现在的状况就是在本地代码仓库中，有一个master分支和一个develop分支，而master分支中有一个index.txt文件，而develop中没有任何文件。</em></p>
+<p><strong>四、把master分支中的文件合并到develop中</strong></p>
+<ul>
+<li>如标题一样，我们的目的是把master分支中的文件合并到develop中去，但是我们还不能直接用合并命令，还需要按照步骤执行如下操作：</li>
+</ul>
+<p>1、切换到develop分支中(为啥这么做呢，git的合并规则是这样，比如我要把master分支合并到develop分支中，那么我就需要先切换到develop分支中，然后执行合并命令)</p>
+<p>   先切换到develop分支中<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout develop</div><div class="line">Switched to branch <span class="string">'develop'</span></div></pre></td></tr></table></figure></p>
+<p>   切换完成后，看看我们当前所处的分支是否是develop分支（看到没，develop前面一个“*”，代表当前所在分支是develop）<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git branch</div><div class="line"> * develop</div><div class="line"> 	master</div></pre></td></tr></table></figure></p>
+<p>2、执行合并分支的命令(<em>所以git合并命令git merge master的真正意思就是把master分支合并到我所在的当前分支develop中</em>)</p>
+<p>   然后执行合并master分支到develop分支中的操作(执行完成后，我们就可以到develop分支下面看到合并过来的index.txt文件了)<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git merge master</div><div class="line">Already up-to-date.</div></pre></td></tr></table></figure></p>
+<p><strong>五、修改合并到develop分支中的文件内容为hello develop，并提交</strong></p>
+<p>我们因为执行了上一步的合并master分支到develop分支的操作，所以我们当前所在分支是develop；那么我们修改该分支下面的index.txt文件内容为：hello develop<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">原内容：hello maps</div><div class="line">新内容：hello develop</div></pre></td></tr></table></figure></p>
+<p>然后执行添加(add)和提交(commit)操作.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add index.txt</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git commit -m <span class="string">"修改index文件为hello develop"</span>	</div><div class="line">[develop bf5d39d] 修改index文件为hello develop</div><div class="line">	<span class="number">1</span> file changed, <span class="number">1</span> insertion(+), <span class="number">1</span> deletion(-)</div></pre></td></tr></table></figure>
+<p><strong>六、切换到master分支,并修改文件内容为hello master</strong></p>
+<p>   切换到master分支<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout master</div><div class="line">Switched to branch <span class="string">'master'</span></div></pre></td></tr></table></figure></p>
+<p>   修改文件内容(因为上一步修改的是develop分支中的index文件，那么我们切换到master分支后，其中的index.txt文件是不会发生改变的，所以内容依然是hello maps)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">原内容：hello maps</div><div class="line">新内容：hello master</div></pre></td></tr></table></figure></p>
+<p><strong>七、小述一下</strong></p>
+<p>到目前为止，我们修改了develop分支中的内容为：hello develop；而修改master分支中的内容为：hello master；并且当前所在分支是master分支，那么接下来我们需要合并develop分支中的文件到当前所在分支master中来。因为两个分支中的文件都发生了更改，所以合并时肯定会报冲突，至于冲突下面解决。</p>
+<p><strong>八、合并develop分支的内容到master分支中</strong></p>
+<ul>
+<li>先检查一下当前所在分支是否是master中（看到了吧 ，master分支前面一个“*”号，代表当前所在分支是master上面）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git branch</div><div class="line"> 	develop</div><div class="line"> * master</div></pre></td></tr></table></figure>
+<ul>
+<li>合并develop分支中的内容到master分支上面（我们执行合并命令后git merge develop之后提示了4行信息）<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git merge develop</div><div class="line">Auto-merging index.<span class="function">txt</span></div><div class="line"><span class="title">CONFLICT</span> <span class="params">(content)</span>: Merge conflict in index.txt</div><div class="line">Automatic merge failed; fix conflicts and then commit the result.</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面的提示证明此次合并失败，以为两个文件中的内容合并过程中冲突了。</p>
+<ul>
+<li><p>使用git diff命令查看两个文件冲突的内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ git diff</div><div class="line">diff --cc index.txt</div><div class="line">index <span class="number">2e6</span>baf7,<span class="number">246</span>b739..<span class="number">0000000</span></div><div class="line">--- a/index.txt</div><div class="line">+++ b/index.txt</div><div class="line">@@@ -<span class="number">1</span>,<span class="number">1</span> -<span class="number">1</span>,<span class="number">1</span> +<span class="number">1</span>,<span class="number">5</span> @@@</div><div class="line">- hello master</div><div class="line"> -hello develop</div><div class="line">++&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</div><div class="line">++hello master</div><div class="line">++=======</div><div class="line">++hello develop</div><div class="line">++&gt;&gt;&gt;&gt;&gt;&gt;&gt; develop</div></pre></td></tr></table></figure>
+</li>
+<li><p>我们也可以到当前分支master中直接打开index.txt文件查看，或者用cat命令查看也可以</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cat index.txt</div><div class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</div><div class="line">hello master</div><div class="line">=======</div><div class="line">hello develop</div><div class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; develop</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>九、冲突解决–手工</strong></p>
+<p>我们执行合并操作后，因为两个分支分别对同一个文件进行了修改，所以合并的时候就报冲突了(其实合并执行后，git把文件中凡是冲突的地方都写到当前分支的文件中了，只不过用特殊标记标注了而已)下面是合并冲突后的index.txt文件内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cat index.txt</div><div class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</div><div class="line">hello master</div><div class="line">=======</div><div class="line">hello develop</div><div class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; develop</div></pre></td></tr></table></figure>
+<p>针对上面的文件，我们先看&lt;&lt;&lt;&lt;&lt;&lt;&lt;（7个&lt;） 到 =======（7个=）之间的内容为：hello master；这就是当前所在分支master<br>分支下面index.txt的文件内容(一般是我修改的)；再接着看从=======（7个=） 到 &gt;&gt;&gt;&gt;&gt;&gt;&gt;（7个&gt;）之间的内容为：hello develop；这就是develop分支下面index.txt的文件内容(一般是别人修改的)。</p>
+<p>所以我们现在要做的就是解决冲突，具体怎么解决冲突，有以下处理办法：</p>
+<p> 1、把develop分支中的内容覆盖(擦除)掉master分支中的内容(就好比develop战胜)</p>
+<pre><code>文件最终内容为：hello develop
+</code></pre><p> 2、把master分支中的内容覆盖(擦除)掉develop分支中的内容(就好比master战胜)</p>
+<p>   文件最终内容为：hello master</p>
+<p> 3、把master分支中的内容与develop分支中的内容都保留(就好比develop分支和master分支和解)</p>
+<p>   文件最终内容为：hello master hello develop</p>
+<p>不管最终我们以何种方式解决冲突(以谁的内容为主),最终我们都需要删除index.txt文件中的其他无用的git冲突标示符(“+”、”&lt;”、”=”、”&gt;”)；然后我们执行添加(add)和提交(commit)操作,具体不在详述了，前面有说到！</p>
+<p><strong>十、冲突解决–工具</strong></p>
+<p>第九步中，我们已经通过手工方式解决了冲突，但是如果一个文件中有N多地方的内容都冲突，那么我们通过手工解决非常费劲，并且容易出错，所以借助工具(mergetool)解决这些体力活是明智之举。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ git mergetool</div><div class="line"></div><div class="line">This message is displayed because <span class="string">'merge.tool'</span> is not configured.</div><div class="line">See <span class="string">'git mergetool --tool-help'</span> or <span class="string">'git help config'</span> <span class="keyword">for</span> more details.</div><div class="line"><span class="string">'git mergetool'</span> will now attempt to use one of the following tools:</div><div class="line">opendiff kdiff3 tkdiff xxdiff meld tortoisemerge gvimdiff diffuse diffmerge ecmerge p4merge araxis bc codecompare emerge vimdiff</div><div class="line">Merging:</div><div class="line">index.txt</div><div class="line"></div><div class="line">Normal merge conflict <span class="keyword">for</span> <span class="string">'index.txt'</span>:</div><div class="line">  &#123;local&#125;: modified file</div><div class="line">  &#123;remote&#125;: <span class="function">modified file</span></div><div class="line">Hit return to start merge resolution <span class="title">tool</span> <span class="params">(tortoisemerge)</span>:</div></pre></td></tr></table></figure>
+<p>输入“git mergetool”命令后，直接再按一次回车键就会弹出合并工具的界面：<br><img src="http://soujava.com/images/gitmerge1.png" alt="Alt text" title="git 合并工具"></p>
+<p>你可以右键点击冲突的行内容，然后点击弹出的菜单项进行合并操作，然后可以看工具的下面区域实时显示合并后的内容效果。</p>
+<p>通过工具合并后，我们仍然需要直接添加(add)和提交(commit)操作。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/java使用jxl读取excel数据时特殊符号处理/" itemprop="url">
+                  java使用jxl读取excel数据时特殊符号处理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-17T11:40:01+08:00" content="2016-08-17">
+              2016-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/java使用jxl读取excel数据时特殊符号处理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="java使用jxl读取excel数据时特殊符号处理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用JXL读取Excel中数据时，如果Excel中的单元格中有M1.5×6这样的值时，读取数据时，不能识别×，或者为乱码（？）。<br> 未处理之前代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">   Workbook modelBook = Workbook.getWorkbook(input);</div><div class="line">Sheet sheet = modelBook.getSheet(<span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<p>处理之后的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   WorkbookSettings setting = <span class="keyword">new</span> WorkbookSettings();</div><div class="line">Locale locale = <span class="keyword">new</span> Locale(<span class="string">"zh"</span>,<span class="string">"CN"</span>);</div><div class="line">setting.setLocale(locale);</div><div class="line">setting.setEncoding(<span class="string">"ISO-8859-1"</span>);</div><div class="line">Workbook modelBook = Workbook.getWorkbook(input,setting);</div></pre></td></tr></table></figure></p>
+<p>注：处理之后的代码片段中前4行代码段，用来解决乱码问题！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/Linux查看端口占用/" itemprop="url">
+                  Linux查看端口占用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-17T11:30:49+08:00" content="2016-08-17">
+              2016-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Linux查看端口占用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Linux查看端口占用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在操作linux服务器的时候经常会碰到端口被占用的情况，那么如果更好的找到某个端口被什么占用呢。</p>
+<p>一、<strong>分步操作</strong></p>
+<ol>
+<li><p>先使用下面命令，查看当前环境的所有进程</p>
+<p> netstat  -apn</p>
+</li>
+<li><p>然后看某一个端口，后面对应的PID，然后通过kill  PID,把该端口停止</p>
+<p> kill -9 pid号</p>
+</li>
+</ol>
+<p>二、<strong>快捷操作</strong></p>
+<ul>
+<li><p>查看对应的端口是否被占用</p>
+<p>  netstat  -apn | grep  protNO（端口号）</p>
+</li>
+</ul>
+<p>例如：netstat -apn | grep 8983  查看8983端口是否被占用，如果没占用，则显示被占用的进程；如果未被占用，则什么也不会输出。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[maps<span class="meta">@localhost</span> bin]$ netstat -apn|grep <span class="number">8983</span></div><div class="line">   (Not all processes could be identified, non-owned process info</div><div class="line">   will not be shown, you would have to be root to see it all.)</div><div class="line">  	tcp6       <span class="number">0</span>      <span class="number">0</span> :::<span class="number">8983</span>                 :::*                    LISTEN      <span class="number">3272</span>/java</div></pre></td></tr></table></figure></p>
+<p>  我们可以看到占用8983端口的进程id号为:3272</p>
+<ul>
+<li><p>查看端口对应的进程ID信息</p>
+<p>  ps -aux|grep 3272</p>
+</li>
+</ul>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[maps<span class="meta">@localhost</span> bin]$ ps -aux|grep <span class="number">3272</span></div><div class="line">   maps      <span class="number">3272</span>  <span class="number">0.4</span> <span class="number">11.3</span> <span class="number">2596728</span> <span class="number">173412</span> pts/<span class="number">0</span>  Sl   <span class="number">22</span>:<span class="number">04</span>   <span class="number">0</span>:<span class="number">03</span> java -server -Xms512m -Xmx512m -XX:NewRatio=<span class="number">3</span> -XX:SurvivorRatio=<span class="number">4</span> -XX:TargetSurvivorRatio=<span class="number">90</span> -XX:MaxTenuringThreshold=<span class="number">8</span> -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:ConcGCThreads=<span class="number">4</span> -XX:ParallelGCThreads=<span class="number">4</span> -XX:+CMSScavengeBeforeRemark -XX:PretenureSizeThreshold=<span class="number">64</span>m -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=<span class="number">50</span> -XX:CMSMaxAbortablePrecleanTime=<span class="number">6000</span> -XX:+CMSParallelRemarkEnabled -XX:+ParallelRefProcEnabled -XX:-OmitStackTraceInFastThrow -verbose:gc -XX:+PrintHeapAtGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -Xloggc:/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server/logs/solr_gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=<span class="number">9</span> -XX:GCLogFileSize=<span class="number">20</span>M -Dsolr.log.dir=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server/logs -Djetty.port=<span class="number">8983</span> -DSTOP.PORT=<span class="number">7983</span> -DSTOP.KEY=solrrocks -Duser.timezone=UTC -Djetty.home=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server -Dsolr.solr.home=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server/solr -Dsolr.install.dir=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0 -Xss256k -Dsolr.log.muteconsole -XX:OnOutOfMemoryError=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/bin/oom_solr.sh <span class="number">8983</span> /usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server/logs -jar start.jar --<span class="keyword">module</span>=http</div><div class="line">   maps     <span class="number">30521</span>  <span class="number">0.0</span>  <span class="number">0.0</span> <span class="number">112660</span>   <span class="number">964</span> pts/<span class="number">0</span>    R+   <span class="number">22</span>:<span class="number">15</span>   <span class="number">0</span>:<span class="number">00</span> grep --color=auto <span class="number">3272</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/Tomcat实时查看日志信息/" itemprop="url">
+                  Tomcat实时查看日志信息
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-17T11:27:50+08:00" content="2016-08-17">
+              2016-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">Tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Tomcat实时查看日志信息/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Tomcat实时查看日志信息/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>先切换到tomcat的安装目录logs/文件夹下面（tomcat/logs/）</p>
+<blockquote>
+<p>cd  tomcat/logs/</p>
+</blockquote>
+</li>
+<li><p>运行如下命令就可以实时查看tomcat的运行日志信息了</p>
+<blockquote>
+<p>tail -f catalina.out</p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/Linux双网卡配置-内外网同时访问/" itemprop="url">
+                  Linux双网卡配置(内外网同时访问)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-17T10:28:50+08:00" content="2016-08-17">
+              2016-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Linux双网卡配置-内外网同时访问/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Linux双网卡配置-内外网同时访问/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>事情的经过是这样的。。。。。；我有一台linux服务器操作系统，只能内网访问，现在需要提供给公司其他地域的同事通过VPN可以访问操作，那么就需要为这个linux操作系统配置一个新配置一个网卡，你修改网卡配置文件之前需要确保你的linux操作系统已经有两块物理网卡了，也就是说当你进入linux操作系统后，运行ifconfig命令可以看到eth0和eth1两个网卡信息，这才代表你的物理环境没有问题。</p>
+<p><img src="http://soujava.com/images/vSphere11.jpg" alt=""></p>
+<p><strong>一、Ubuntu篇</strong></p>
+<p>1、进入/etc/network目录中，编辑interfaces文件</p>
+<p><img src="http://soujava.com/images/linuxInter0.png" alt=""></p>
+<p>2、配置eth1网卡的信息(ip地址，网关、子网掩码、DNS)信息</p>
+<p><img src="http://soujava.com/images/linuxInter1.png" alt=""></p>
+<p>3、配置完相关信息后，需要编辑路由配置文件，配置域名服务器(这里配置完成后，永久生效)</p>
+<pre><code>&gt;vim /etc/resolvconf/resolv.conf.d/base
+</code></pre><p><img src="http://soujava.com/images/linuxInter2.png" alt=""></p>
+<p>4、配置完网卡信息后，我们还不能连通外网，因为我们系统的路由默认采用内网网关进行通信的，我们需要把外网的网关设置成默认路由。先运行route命令查看路由信息，可以看到default 为eth0；即默认为内网网关。</p>
+<p><img src="http://soujava.com/images/linuxInter4.png" alt=""></p>
+<p>5、把外网网关地址添加为默认路由，同时删除内网网关的路由</p>
+<pre><code>&gt;route add default  gw 192.168.1.1
+
+&gt;route del default  gw 192.168.0.253
+</code></pre><p>6、路由配置完成后，运行route命令我们可以看到default变成了eth1</p>
+<p><img src="http://soujava.com/images/linuxInter3.png" alt=""></p>
+<p>7、重启网络服务</p>
+<pre><code>&gt;/etc/init.d/networking restart
+</code></pre><p>8、总结：</p>
+<ul>
+<li>查看物理环境十分正常，也就是通过ifconfig命令是否显示两块网卡设备</li>
+<li>配置eth1网卡配置文件</li>
+<li>添加外网dns地址</li>
+<li>设置外网网关为默认路由</li>
+<li>重启网络服务</li>
+</ul>
+<p>注：我之前一直在/etc/resolv.conf中添加dns信息，后来才明白这个是临时文件，当在/etc/resolvconf/resolv.conf.d/base文件中配置完成后，/etc/resolv.conf中信息会自动生成的。</p>
+<p><strong>一、Cent0S篇</strong></p>
+<p>1、同样检查一下系统物理环境是否正常，通过ifconfig命令查看是否存在除eth0网卡设备外，还有其他网卡eth*;</p>
+<p><img src="http://soujava.com/images/vSphere11.jpg" alt=""></p>
+<p>2、进入/etc/sysconfig/network-scripts/目录下面，我们可以看到有两个网卡设备的配置文件：ifcfg-eth0、ifcfg-eth1。</p>
+<p>3、将ifcfg-eth0配置文件复制一份并改名为ifcfg-eth1。</p>
+<pre><code>&gt;cp ifcfg-eth0 ifcfg-eth1
+</code></pre><p>4、修改ifcfg-eth1配置文件,具体信息如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">DEVICE=eth1</div><div class="line">TYPE=Ethernet</div><div class="line">NOBOOT=yes</div><div class="line">NM_CONTROLLED=yes</div><div class="line">BOOTPROTO=none</div><div class="line">IPADDR=<span class="number">192.168</span>.*.*</div><div class="line">PREFIX=<span class="number">24</span></div><div class="line">GATEWAY=<span class="number">192.168</span>.*.*</div><div class="line">DEFROUTE=yes	</div><div class="line">IPV4_FAILURE_FATAL=yes</div><div class="line">IPV6INIT=no</div><div class="line">NAME=<span class="string">"System eth1"</span></div><div class="line">DNS1=*.*.*.*</div><div class="line">HWADDR=你的虚拟机的网卡设备的mac地址</div><div class="line">LAST_CONNECT=<span class="number">1465192940</span></div><div class="line">USERCTL=no</div></pre></td></tr></table></figure></p>
+<p>5、重启网络服务(下面两条命令都可以)</p>
+<pre><code>&gt; service network restart
+&gt; /etc/init.d/network restart
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/" itemprop="url">
+                  VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-17T09:27:45+08:00" content="2016-08-17">
+              2016-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vSphere/" itemprop="url" rel="index">
+                    <span itemprop="name">vSphere</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、有一台机架服务器，使用VMwarevSphere进行虚拟化，然后在其上安装N台虚拟机以供不同业务需要，之前该VMwarevSphere只有一个内网的物理网卡，也就是只能内网访问和使用；现在有个需求需要把该VMwarevSphere开放外网功能，并满足其他地域的用户通过公司VPN可以正常使用上面的虚拟机(其中的某一台)。所以现在需要三步操作：</p>
+<ol>
+<li>买一个物理网卡插到机架服务器的卡槽上面(哈哈，这一步不用说了，我去趟WC)</li>
+<li>VMwarevSphereClientk连VMwarevSphere服务器配置网卡</li>
+<li>进入到VMwarevSphere中的某一台虚拟机进行网卡配置</li>
+</ol>
+<p>二、VMwarevSphereClientk连VMwarevSphere服务器配置网卡</p>
+<p>1、 插入外网物理网卡之后，我们通过VMwarevSphereClientk连VMwarevSphere服务器后，在“配置”-“网络适配器”中就可以看到刚才新接入的网卡了(如果看不到，则说明你的网卡有问题啊，具体什么问题需要物理解决)，下面的图片中我们可以看到有两个可用的网卡(最下面两个vmnic0、vmnic1，其实vmnic1是我新接入的网卡)，其他的都不可用，仅仅代表支持多少个网卡</p>
+<p><img src="http://soujava.com/images/vSphere0.jpg" alt=""></p>
+<p>2、 虽然我们已经接入了物理网卡，但是我们现在系统的网络环境还没有装载进来，我们需要把该网卡添加到网络环境中来；进入“配置”–“网络”，在右侧界面中右上角点击“添加网络”</p>
+<p><img src="http://soujava.com/images/vSphere1.jpg" alt=""></p>
+<p>3、开始进入到添加网络的界面，其实只需要下一步下一步的进行就可以了</p>
+<p><img src="http://soujava.com/images/vSphere2.jpg" alt=""></p>
+<p>4、 选择网卡的网络类型</p>
+<p>注：创建交换机那一项，选择网卡时不要被图片中我的选择内容干扰了，选择哪个网卡根据你的实际情况，参照第一幅图片中(你找到你新插入的物理网卡的代号vmnic0~vmnicN)；比如你新接入的网卡是那个你就选择哪个。</p>
+<p><img src="http://soujava.com/images/vSphere3.jpg" alt=""></p>
+<p>5、设置网卡的链接方式</p>
+<p><img src="http://soujava.com/images/vSphere4.jpg" alt=""></p>
+<p>6、完成配置</p>
+<p><img src="http://soujava.com/images/vSphere5.jpg" alt=""></p>
+<p>7、然后再次进入“配置”–“网络”界面中，我们可以看到我们新添加的网卡</p>
+<p><img src="http://soujava.com/images/vSphere00.jpg" alt=""></p>
+<p>8、 然后我们对这个网卡进行编辑操作(添加虚拟机端口)</p>
+<p><img src="http://soujava.com/images/vSphere01.jpg" alt=""></p>
+<p><img src="http://soujava.com/images/vSphere02.jpg" alt=""></p>
+<p>9、 这里跟上一个步骤差不多，只不过这里的连接类型需要选择“vmKernel”</p>
+<p><img src="http://soujava.com/images/vSphere03.jpg" alt=""></p>
+<p><img src="http://soujava.com/images/vSphere04.jpg" alt=""></p>
+<p>10、 配置我们的ip地址(一般是配置你的外网ip地址，因为你既然让他开放到外网，所以你肯定有可能需要在外网通过vmSphereClient进行远程管理吧，这里就是配置你的外网访问ip地址)，到这里我们的物理机和网卡的配置就算完成了，下面需要配置的就是我们需要提供给外网用户访问的虚拟机了。</p>
+<p><img src="http://soujava.com/images/vSphere05.jpg" alt=""></p>
+<p><img src="http://soujava.com/images/vSphere06.jpg" alt=""></p>
+<p>11、 选择我们需要提供给外网用户访问的虚“虚拟机”，开始配置网络</p>
+<p><img src="http://soujava.com/images/vSphere6.jpg" alt=""></p>
+<p>12、 为虚拟机添加网卡(我们虚拟机要想链接外网，肯定要使用物理服务器的外网网卡，所以我们需要把物理服务器新接入的网卡添加到虚拟机上面)</p>
+<p><img src="http://soujava.com/images/vSphere7.jpg" alt=""></p>
+<p>13、 选择网络类型(其实这里又是跟前面的网络配置差不多，多么熟悉的界面)</p>
+<p><img src="http://soujava.com/images/vSphere8.jpg" alt=""></p>
+<p><img src="http://soujava.com/images/vSphere9.jpg" alt=""></p>
+<p>14、 然后添加完成后，我们可以看到我们新加入的网络适配器2，这里需要记住右侧的MAC地址，后面的配置网卡配置文件时要用到</p>
+<p><img src="http://soujava.com/images/vSphere10.jpg" alt=""></p>
+<p>15、重启一下系统，然后我们进入到需要供外网访问的那台虚拟机中，输入ifconfig命令就可以看到我们为虚拟机添加的网卡了</p>
+<p><img src="http://soujava.com/images/vSphere11.jpg" alt=""></p>
+<p>16、当然上一步中看到eth1这个新的网卡还不行，需要为这个网卡配置具体的ip，因为我们既然需要把这台虚拟机提供给外面用户访问，那么ip地址肯定不能老变化，所以我们需要为这个网卡eth1配置相关信息，具体怎么配置可以参考另一篇文章“<a href="http://soujava.com/Linux%E5%8F%8C%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE-%E5%86%85%E5%A4%96%E7%BD%91%E5%90%8C%E6%97%B6%E8%AE%BF%E9%97%AE/" target="_blank" rel="external">Linux双网卡配置(内外网同时访问)</a>”</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/thymeleaf教程1-环境搭建/" itemprop="url">
+                  thymeleaf教程1-环境搭建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-08T15:16:41+08:00" content="2016-08-08">
+              2016-08-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/thymeleaf/" itemprop="url" rel="index">
+                    <span itemprop="name">thymeleaf</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/thymeleaf教程1-环境搭建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="thymeleaf教程1-环境搭建/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、由于springboot这一强大的框架的发布，更由于其采用thymeleaf作为其官方的推荐模板引擎，所以决定学习一下thymeleaf这个模板引擎，当然是通过springboot才了解到的thymeleaf；所以试用也是基于springboot来进行；而springboot采用gradle工具依赖管理，所以要想使用thymeleaf，必须进行如下操作：</p>
+<ol>
+<li>在你的springboot项目工程中添加thymeleaf的依赖配置</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile(<span class="string">"org.springframework.boot:spring-boot-starter-thymeleaf:1.3.3.RELEASE"</span>);</div></pre></td></tr></table></figure>
+<ol>
+<li>编写一个测试页面(html),对thymeleaf进行使用<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html xmlns:th="http://www.thymeleaf.org"</div><div class="line">     xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	hello thymeleaf!</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>我们可以看到这就是一个普普通通的html模板页面，唯一不同的地方就是在<html>标签中添加了一些配置；这就是thymeleaf的标签；这里配置完以后，在下面我们就可以用<strong>&lt;th:XX </strong>这样的标签把数据渲染到html模板中了；</html></p>
+</blockquote>
+<p>由于该html是模板页面，所以我们不能在浏览器中直接打开浏览thymeleaf渲染数据的效果，需要借助于类似tomcat的web服务器浏览才行！如果仍然直接在浏览器中浏览的话，那么我们看到的效果是&lt;th:XX 标签被忽略的效果！</p>
+<p><strong>二、暂且抛弃springboot，仅仅采用原生态的方式试用thymeleaf，即除了thymeleaf，其它都不包含</strong></p>
+<ol>
+<li>eclipse新建maven工程<br> <img src="http://soujava.com/images/newmavenproject.png" alt=""><br> <img src="http://soujava.com/images/newmaven1.png" alt=""><br> <img src="http://soujava.com/images/newmaven2.png" alt=""><br> <img src="http://soujava.com/images/newmaven3.png" alt=""></li>
+<li><p>在pom.xml配置对Thymeleaf的依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"</div><div class="line"> 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"&gt;</div><div class="line"> 	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</div><div class="line"> 	&lt;groupId&gt;com.maps&lt;/groupId&gt;</div><div class="line"> 	&lt;artifactId&gt;theymeleaf&lt;/artifactId&gt;</div><div class="line"> 	&lt;packaging&gt;war&lt;/packaging&gt;</div><div class="line"> 	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</div><div class="line"> 	&lt;name&gt;theymeleaf Maven Webapp&lt;/name&gt;</div><div class="line"> 	&lt;url&gt;http://maven.apache.org&lt;/url&gt;</div><div class="line"> </div><div class="line">   &lt;repositories&gt;</div><div class="line">   &lt;repository&gt;</div><div class="line">     &lt;id&gt;sonatype-nexus-snapshots&lt;/id&gt;</div><div class="line">     &lt;name&gt;Sonatype Nexus Snapshots&lt;/name&gt;</div><div class="line">     &lt;url&gt;https://oss.sonatype.org/content/repositories/snapshots&lt;/url&gt;</div><div class="line">     &lt;snapshots&gt;</div><div class="line">       &lt;enabled&gt;true&lt;/enabled&gt;</div><div class="line">     &lt;/snapshots&gt;</div><div class="line">   &lt;/repository&gt;</div><div class="line">   &lt;/repositories&gt;</div><div class="line"> </div><div class="line"> </div><div class="line">   &lt;dependencies&gt;</div><div class="line">   &lt;dependency&gt;</div><div class="line">     &lt;groupId&gt;junit&lt;/groupId&gt;</div><div class="line">     &lt;artifactId&gt;junit&lt;/artifactId&gt;</div><div class="line">     &lt;version&gt;3.8.1&lt;/version&gt;</div><div class="line">     &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">   &lt;/dependency&gt;</div><div class="line">   </div><div class="line">    &lt;dependency&gt;</div><div class="line">     &lt;groupId&gt;org.thymeleaf&lt;/groupId&gt;</div><div class="line">     &lt;artifactId&gt;thymeleaf&lt;/artifactId&gt;</div><div class="line">     &lt;version&gt;3.0.1.RELEASE&lt;/version&gt;</div><div class="line">     &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">   &lt;/dependency&gt;</div><div class="line"></div><div class="line">   &lt;dependency&gt;</div><div class="line">     &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</div><div class="line">     &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</div><div class="line">     &lt;version&gt;3.1.0&lt;/version&gt;</div><div class="line">     &lt;scope&gt;provided&lt;/scope&gt;</div><div class="line">   &lt;/dependency&gt;</div><div class="line"></div><div class="line">   &lt;dependency&gt;</div><div class="line">     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">     &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;</div><div class="line">     &lt;version&gt;1.6.1&lt;/version&gt;</div><div class="line">     &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">   &lt;/dependency&gt;</div><div class="line">       </div><div class="line">   &lt;dependency&gt;</div><div class="line">     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">     &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;</div><div class="line">     &lt;version&gt;1.6.1&lt;/version&gt;</div><div class="line">     &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">   &lt;/dependency&gt;</div><div class="line"></div><div class="line">   &lt;dependency&gt;</div><div class="line">     &lt;groupId&gt;log4j&lt;/groupId&gt;</div><div class="line">     &lt;artifactId&gt;log4j&lt;/artifactId&gt;</div><div class="line">     &lt;version&gt;1.2.15&lt;/version&gt;</div><div class="line">     &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">     &lt;exclusions&gt;</div><div class="line">       &lt;exclusion&gt;</div><div class="line">         &lt;groupId&gt;com.sun.jdmk&lt;/groupId&gt;</div><div class="line">         &lt;artifactId&gt;jmxtools&lt;/artifactId&gt;</div><div class="line">       &lt;/exclusion&gt;</div><div class="line">       &lt;exclusion&gt;</div><div class="line">         &lt;groupId&gt;com.sun.jmx&lt;/groupId&gt;</div><div class="line">         &lt;artifactId&gt;jmxri&lt;/artifactId&gt;</div><div class="line">       &lt;/exclusion&gt;</div><div class="line">       &lt;exclusion&gt;</div><div class="line">         &lt;groupId&gt;javax.jms&lt;/groupId&gt;</div><div class="line">         &lt;artifactId&gt;jms&lt;/artifactId&gt;</div><div class="line">       &lt;/exclusion&gt;</div><div class="line">     &lt;/exclusions&gt;</div><div class="line">   &lt;/dependency&gt;</div><div class="line"> 	&lt;/dependencies&gt;</div><div class="line"> </div><div class="line"> </div><div class="line"> 	&lt;build&gt;</div><div class="line">   &lt;resources&gt;</div><div class="line">     &lt;resource&gt;</div><div class="line">       &lt;directory&gt;src/main/resources&lt;/directory&gt;</div><div class="line">     &lt;/resource&gt;</div><div class="line">     &lt;resource&gt;</div><div class="line">       &lt;directory&gt;src/main/java&lt;/directory&gt;</div><div class="line">       &lt;includes&gt;</div><div class="line">         &lt;include&gt;**/*.properties&lt;/include&gt;</div><div class="line">         &lt;include&gt;**/*.xml&lt;/include&gt;</div><div class="line">         &lt;include&gt;**/*.html&lt;/include&gt;</div><div class="line">       &lt;/includes&gt;</div><div class="line">     &lt;/resource&gt;</div><div class="line">   &lt;/resources&gt;</div><div class="line">       </div><div class="line">   &lt;plugins&gt;</div><div class="line">     &lt;plugin&gt;</div><div class="line">       &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">       &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</div><div class="line">       &lt;version&gt;3.2&lt;/version&gt;</div><div class="line">       &lt;configuration&gt;</div><div class="line">         &lt;source&gt;1.5&lt;/source&gt;</div><div class="line">         &lt;target&gt;1.5&lt;/target&gt;</div><div class="line">       &lt;/configuration&gt;</div><div class="line">     &lt;/plugin&gt;</div><div class="line">     </div><div class="line">     &lt;plugin&gt;</div><div class="line">       &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">       &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;</div><div class="line">       &lt;version&gt;2.7&lt;/version&gt;</div><div class="line">       &lt;configuration&gt;</div><div class="line">         &lt;encoding&gt;ISO-8859-1&lt;/encoding&gt;</div><div class="line">       &lt;/configuration&gt;</div><div class="line">     &lt;/plugin&gt;</div><div class="line"></div><div class="line">     &lt;plugin&gt;</div><div class="line">       &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;</div><div class="line">       &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;</div><div class="line">       &lt;version&gt;2.2&lt;/version&gt;</div><div class="line">     &lt;/plugin&gt;</div><div class="line">   &lt;/plugins&gt;</div><div class="line"> 	&lt;/build&gt;</div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>中断一下，先讲解一下该demo的执行流程<br> <img src="http://soujava.com/images/thymeleafFollow.png" alt="模板引擎执行流程"></p>
+</li>
+<li><p>MyApplication–应用装载器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">	<span class="keyword">package</span> application;</div><div class="line"></div><div class="line">	<span class="keyword">import</span> java.util.HashMap;</div><div class="line">	<span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line">	<span class="keyword">import</span> javax.servlet.ServletContext;</div><div class="line">	<span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</div><div class="line"></div><div class="line">	<span class="keyword">import</span> org.thymeleaf.ITemplateEngine;</div><div class="line">	<span class="keyword">import</span> org.thymeleaf.TemplateEngine;</div><div class="line">	<span class="keyword">import</span> org.thymeleaf.templatemode.TemplateMode;</div><div class="line">	<span class="keyword">import</span> org.thymeleaf.templateresolver.ServletContextTemplateResolver;</div><div class="line"></div><div class="line">	<span class="keyword">import</span> controller.HomeController;</div><div class="line">	<span class="keyword">import</span> controller.Controller;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> </span>&#123;</div><div class="line"></div><div class="line">   	 	<span class="keyword">private</span> TemplateEngine templateEngine;</div><div class="line">   	 	<span class="keyword">private</span> Map&lt;String, Controller&gt; controllersByURL;</div><div class="line">    </div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="title">MyApplication</span><span class="params">(<span class="keyword">final</span> ServletContext servletContext)</span> </span>&#123;</div><div class="line">        	<span class="keyword">super</span>();</div><div class="line">	        <span class="comment">/*1、实例化模板解析器，并配置相关选项*/</span></div><div class="line">	        ServletContextTemplateResolver templateResolver = <span class="keyword">new</span> ServletContextTemplateResolver(servletContext);</div><div class="line">	        <span class="comment">/*1.1、其实thymeleaf模板引擎的默认模式是HTML，在这里再次设置只是为了更好理解*/</span> </div><div class="line">	        templateResolver.setTemplateMode(TemplateMode.HTML);</div><div class="line">	        <span class="comment">/*1.2、设置模板引擎的默认加载路径*/</span></div><div class="line">	        templateResolver.setPrefix(<span class="string">"/WEB-INF/templates/"</span>);</div><div class="line">	        <span class="comment">/*1.3、设置模板引擎的文件后缀*/</span></div><div class="line">	        templateResolver.setSuffix(<span class="string">".html"</span>);</div><div class="line">	        <span class="comment">/*1.4、设置模板缓存时间为1小时，如果不设置，模板将一直在缓存中*/</span></div><div class="line">	        templateResolver.setCacheTTLMs(Long.valueOf(<span class="number">3600000L</span>));</div><div class="line">	        <span class="comment">/*1.5、模板引擎的默认缓存是开启的，这里设置true是为了更好理解； 其实如果这里设置false的话，当你修改模板后，你就可以在浏览器中实时查看到修改后的模板内容*/</span></div><div class="line">	        templateResolver.setCacheable(<span class="keyword">false</span>);</div><div class="line"></div><div class="line">	        <span class="comment">/*2、实例化模板引擎*/</span></div><div class="line">	        <span class="keyword">this</span>.templateEngine = <span class="keyword">new</span> TemplateEngine();</div><div class="line">	        <span class="comment">/*3、将模板解析器装载到模板引擎中*/</span></div><div class="line">	        <span class="keyword">this</span>.templateEngine.setTemplateResolver(templateResolver);</div><div class="line">	        </div><div class="line">	        <span class="comment">/*4、针对不同的url实例化不同的业务控制器*/</span></div><div class="line">	        <span class="keyword">this</span>.controllersByURL = <span class="keyword">new</span> HashMap&lt;String, Controller&gt;();</div><div class="line">	        <span class="keyword">this</span>.controllersByURL.put(<span class="string">"/"</span>, <span class="keyword">new</span> HomeController());</div><div class="line">    	&#125;</div><div class="line">    </div><div class="line">    	<span class="function"><span class="keyword">public</span> Controller <span class="title">resolveControllerForRequest</span><span class="params">(<span class="keyword">final</span> HttpServletRequest request)</span> </span>&#123;</div><div class="line">       	 	<span class="keyword">final</span> String path = getRequestPath(request);</div><div class="line">        	<span class="keyword">return</span> <span class="keyword">this</span>.controllersByURL.get(path);</div><div class="line">    	&#125;</div><div class="line">    </div><div class="line">    </div><div class="line">	    <span class="function"><span class="keyword">public</span> ITemplateEngine <span class="title">getTemplateEngine</span><span class="params">()</span> </span>&#123;</div><div class="line">	        <span class="keyword">return</span> <span class="keyword">this</span>.templateEngine;</div><div class="line">	    &#125;</div><div class="line"></div><div class="line">    </div><div class="line">	    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getRequestPath</span><span class="params">(<span class="keyword">final</span> HttpServletRequest request)</span> </span>&#123;</div><div class="line">	        String requestURI = request.getRequestURI();</div><div class="line">	        <span class="keyword">final</span> String contextPath = request.getContextPath();</div><div class="line">	        </div><div class="line">	        <span class="keyword">final</span> <span class="keyword">int</span> fragmentIndex = requestURI.indexOf(<span class="string">';'</span>); </div><div class="line">	        <span class="keyword">if</span> (fragmentIndex != -<span class="number">1</span>) &#123;</div><div class="line">	            requestURI = requestURI.substring(<span class="number">0</span>, fragmentIndex);</div><div class="line">	        &#125;</div><div class="line">	        </div><div class="line">	        <span class="keyword">if</span> (requestURI.startsWith(contextPath)) &#123;</div><div class="line">	            <span class="keyword">return</span> requestURI.substring(contextPath.length());</div><div class="line">	        &#125;</div><div class="line">	        <span class="keyword">return</span> requestURI;</div><div class="line">	    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Controller–控制器接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> controller;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.thymeleaf.ITemplateEngine;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Controller</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(</span></span></div><div class="line">           HttpServletRequest request, HttpServletResponse response,</div><div class="line">           ServletContext servletContext, ITemplateEngine templateEngine)</div><div class="line">           <span class="keyword">throws</span> Exception;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>HomeController–首页控制器业务类,实现controller接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> controller;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Calendar;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.thymeleaf.ITemplateEngine;</div><div class="line"><span class="keyword">import</span> org.thymeleaf.context.WebContext;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> <span class="keyword">implements</span> <span class="title">Controller</span></span>&#123;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HomeController</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(</span></span></div><div class="line">           <span class="keyword">final</span> HttpServletRequest request, <span class="keyword">final</span> HttpServletResponse response,</div><div class="line">           <span class="keyword">final</span> ServletContext servletContext, <span class="keyword">final</span> ITemplateEngine templateEngine)</div><div class="line">           <span class="keyword">throws</span> Exception &#123;</div><div class="line">       </div><div class="line">       WebContext ctx = <span class="keyword">new</span> WebContext(request, response, servletContext, request.getLocale());</div><div class="line">       ctx.setVariable(<span class="string">"today"</span>, Calendar.getInstance());<span class="comment">//thymeleaf的上下文中设置变量数据</span></div><div class="line">       </div><div class="line">       templateEngine.process(<span class="string">"home"</span>, ctx, response.getWriter());<span class="comment">//模板引擎转向到对应的模板页面</span></div><div class="line">  		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>MyFilter–过滤器类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line">	<span class="keyword">package</span> filter;</div><div class="line"></div><div class="line">	<span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line">	<span class="keyword">import</span> javax.servlet.Filter;</div><div class="line">	<span class="keyword">import</span> javax.servlet.FilterChain;</div><div class="line">	<span class="keyword">import</span> javax.servlet.FilterConfig;</div><div class="line">	<span class="keyword">import</span> javax.servlet.ServletContext;</div><div class="line">	<span class="keyword">import</span> javax.servlet.ServletException;</div><div class="line">	<span class="keyword">import</span> javax.servlet.ServletRequest;</div><div class="line">	<span class="keyword">import</span> javax.servlet.ServletResponse;</div><div class="line">	<span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</div><div class="line">	<span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</div><div class="line"></div><div class="line">	<span class="keyword">import</span> org.thymeleaf.ITemplateEngine;</div><div class="line"></div><div class="line">	<span class="keyword">import</span> application.MyApplication;</div><div class="line">	<span class="keyword">import</span> controller.Controller;</div><div class="line">	<span class="keyword">import</span> entity.User;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span></span>&#123;</div><div class="line">		<span class="keyword">private</span> ServletContext servletContext;</div><div class="line">    	<span class="keyword">private</span> MyApplication application;</div><div class="line">    </div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="title">MyFilter</span><span class="params">()</span> </span>&#123;</div><div class="line">    	    <span class="keyword">super</span>();</div><div class="line">    	&#125;</div><div class="line">  </div><div class="line"></div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">final</span> FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</div><div class="line">        	<span class="keyword">this</span>.servletContext = filterConfig.getServletContext();</div><div class="line">        	<span class="keyword">this</span>.application = <span class="keyword">new</span> MyApplication(<span class="keyword">this</span>.servletContext);</div><div class="line">    	&#125;</div><div class="line"></div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(<span class="keyword">final</span> ServletRequest request, <span class="keyword">final</span> ServletResponse response,</span></span></div><div class="line">            <span class="keyword">final</span> FilterChain chain) <span class="keyword">throws</span> IOException, ServletException &#123;</div><div class="line">        </div><div class="line">        	<span class="keyword">if</span> (!process((HttpServletRequest)request, (HttpServletResponse)response)) &#123;</div><div class="line">            	chain.doFilter(request, response);</div><div class="line">        	&#125;</div><div class="line">    	&#125;</div><div class="line"></div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    	<span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span></span></div><div class="line">            <span class="keyword">throws</span> ServletException &#123;</div><div class="line">        	<span class="keyword">try</span> &#123;</div><div class="line">            	<span class="comment">//针对资源请求url进行排除</span></div><div class="line">           	 <span class="keyword">if</span> (request.getRequestURI().startsWith(<span class="string">"/css"</span>) ||</div><div class="line">                    request.getRequestURI().startsWith(<span class="string">"/images"</span>) ||</div><div class="line">                    request.getRequestURI().startsWith(<span class="string">"/favicon"</span>)) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">           	 &#125;</div><div class="line">            </div><div class="line">            <span class="comment">/*</span></div><div class="line">             * 根据URL映射，获得处理该请求的控制器。</div><div class="line">             */</div><div class="line">            Controller controller = <span class="keyword">this</span>.application.resolveControllerForRequest(request);</div><div class="line">            <span class="keyword">if</span> (controller == <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">/*</span></div><div class="line">             * 获取TemplateEngine(模板引擎)实例</div><div class="line">             */</div><div class="line">            ITemplateEngine templateEngine = <span class="keyword">this</span>.application.getTemplateEngine();</div><div class="line"></div><div class="line">            <span class="comment">/*</span></div><div class="line">             * 写入响应头部信息</div><div class="line">             */</div><div class="line">            response.setContentType(<span class="string">"text/html;charset=UTF-8"</span>);</div><div class="line">            response.setHeader(<span class="string">"Pragma"</span>, <span class="string">"no-cache"</span>);</div><div class="line">            response.setHeader(<span class="string">"Cache-Control"</span>, <span class="string">"no-cache"</span>);</div><div class="line">            response.setDateHeader(<span class="string">"Expires"</span>, <span class="number">0</span>);</div><div class="line"></div><div class="line">            <span class="comment">/*</span></div><div class="line">             * 执行控制器，并转向到对应的模板视图</div><div class="line">             */</div><div class="line">            controller.process(request, response, <span class="keyword">this</span>.servletContext, templateEngine);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">       	 &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);</div><div class="line">            &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> IOException ignored) &#123;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ServletException(e);</div><div class="line">        &#125;</div><div class="line">    &#125;	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>web.xml配置</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">	&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line">	&lt;web-app id="gtvg"</div><div class="line">         version="3.1"</div><div class="line">         xmlns="http://xmlns.jcp.org/xml/ns/javaee"</div><div class="line">         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"</div><div class="line">         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"&gt;</div><div class="line"></div><div class="line">    &lt;display-name&gt;thymeleafexamples-gtvg&lt;/display-name&gt;</div><div class="line"></div><div class="line">    &lt;session-config&gt;</div><div class="line">        &lt;session-timeout&gt;60&lt;/session-timeout&gt;</div><div class="line">    &lt;/session-config&gt;</div><div class="line"></div><div class="line">    &lt;filter&gt;</div><div class="line">        &lt;filter-name&gt;gtvgfilter&lt;/filter-name&gt;</div><div class="line">        &lt;filter-class&gt;filter.MyFilter&lt;/filter-class&gt;</div><div class="line">    &lt;/filter&gt;</div><div class="line"></div><div class="line">    &lt;filter-mapping&gt;</div><div class="line">        &lt;filter-name&gt;gtvgfilter&lt;/filter-name&gt;</div><div class="line">        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</div><div class="line">    &lt;/filter-mapping&gt;</div><div class="line">    </div><div class="line">&lt;/web-app&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在webapp/WEB-INF目录下面新建templates(模板目录)</p>
+</li>
+</ol>
+<p></p><p><code>因为在MyApplication应用装载器中，我们在初始化模板引擎解析器时，设置了模板的目录选项。</code></p>
+<pre><code>&gt;/*1.2、设置模板引擎的默认加载路径*/
+ templateResolver.setPrefix(&quot;/WEB-INF/templates/&quot;);
+</code></pre><ol>
+<li>在templates目录下面新建home.html模板文件<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html xmlns:th="http://www.thymeleaf.org"&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;Good Thymes Virtual Grocery&lt;/title&gt;</div><div class="line">    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;p&gt;hello &lt;span th:text="'Thymeleaf'"&gt;word!&lt;/span&gt;.&lt;/p&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p></p><p><code>在该模板页面中，我们可以看到使用了 th:text标签显示内容到p标签中</code></p>
+<ol>
+<li><p>运行pom.xml编译构建完成后，启动tomcat服务器预览测试</p>
+<p><img src="http://soujava.com/images/thyemleafshow.png" alt="显示页面"></p>
+</li>
+</ol>
+<p></p><p><code>根据浏览效果我们可以看到th:text中的内容替换了p标签原有的内容word!</code></p>
+<p></p><p><code>该demo已经上传至github上面，<a href="https://github.com/mapingsheng/theymeleaf" target="_blank" rel="external">https://github.com/mapingsheng/theymeleaf</a></code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/如何查看当前的linux系统是哪个发行商/" itemprop="url">
+                  如何查看当前的linux系统是哪个发行商
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T16:06:33+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/如何查看当前的linux系统是哪个发行商/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="如何查看当前的linux系统是哪个发行商/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们刚开始进入一个linux操作系统，可能只知道它是一个操作系统，但是不太清楚到底是那个发行商，比如ubuntu、Centos、Debian等等；那么当然老鸟通过查看某些目录的配置文件一眼就可以看到是什么发行商；对于新鸟来说有以下几个技巧可以查看：</p>
+<p>一、 通用方法-适用于当前市面上绝大多数linux</p>
+<p>  <strong>lsb_release -a</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[maps<span class="meta">@iZ</span>25017n0ruZ conf]$ lsb_release -a</div><div class="line">LSB Version:	:core-<span class="number">4.1</span>-amd64:core-<span class="number">4.1</span>-noarch</div><div class="line">Distributor ID:	CentOS</div><div class="line">Description:	CentOS Linux release <span class="number">7.0</span>.1406 (Core) </div><div class="line">Release:	<span class="number">7.0</span>.1406</div><div class="line">Codename:	Core</div></pre></td></tr></table></figure></p>
+<p>输入以上命令后可以看到该linux操作系统是CentOs,版本是7.0.1406</p>
+<p>二、 非通用-技巧</p>
+<ol>
+<li>首先通过cat /proc/version命令查看当前linux系统内核信息<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[maps@iZ25017n0ruZ etc]$ cat /proc/version </div><div class="line">Linux version 3.10.0-123.9.3.el7.x86_64 (builder@kbuilder.dev.centos.org) (gcc version 4.8.2 20140120 (Red Hat 4.8.2-16) (GCC) ) #1 SMP Thu Nov 6 15:06:03 UTC 2014</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过上面命令输出信息我们可以看到系统为Red Hat 4.8.2系列<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[maps@iZ25017n0ruZ etc]$ cat /proc/version </div><div class="line">Linux version 3.13.0-32-generic (buildd@kissel) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014</div></pre></td></tr></table></figure></p>
+<p>通过上面输出信息我们可以看到系统为Ubuntu系列</p>
+<ol>
+<li>然后切换到/etc/目录下面，看看是否os.release文件，然后通过”cat os.release”命令查看该文件内容信息<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[**cat /etc/redhat-release**<span class="meta">@iZ</span>25017n0ruZ etc]$ cat ./os-release </div><div class="line">NAME=<span class="string">"CentOS Linux"</span></div><div class="line">VERSION=<span class="string">"7 (Core)"</span></div><div class="line">ID=<span class="string">"centos"</span></div><div class="line">ID_LIKE=<span class="string">"rhel fedora"</span></div><div class="line">VERSION_ID=<span class="string">"7"</span></div><div class="line">PRETTY_NAME=<span class="string">"CentOS Linux 7 (Core)"</span></div><div class="line">ANSI_COLOR=<span class="string">"0;31"</span></div><div class="line">CPE_NAME=<span class="string">"cpe:/o:centos:centos:7"</span></div><div class="line">HOME_URL=<span class="string">"https://www.centos.org/"</span></div><div class="line">BUG_REPORT_URL=<span class="string">"https://bugs.centos.org/"</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过上面的输出信息我们可以确定该系统为CentOs 7</p>
+<p>注：如果是redhat系列的linux系统，在/etc目录下面会有redhat-release文件，我们通过<strong>cat /etc/redhat-release</strong>命令也可以查看系统发行商信息<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[maps<span class="meta">@iZ</span>25017n0ruZ conf]$ cat /etc/redhat-release</div><div class="line">CentOS Linux release <span class="number">7.0</span>.1406 (Core)</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/Mybatis动态传入tableName-非预编译-STATEMENT/" itemprop="url">
+                  Mybatis动态传入tableName--非预编译(STATEMENT)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-28T19:12:02+08:00" content="2016-07-28">
+              2016-07-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Mybatis动态传入tableName-非预编译-STATEMENT/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Mybatis动态传入tableName-非预编译-STATEMENT/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在使用Mybatis过程中，你可以体会到它的强大与灵活之处，由衷的为Mybatis之父点上999个赞！在使用过程中经常会遇到这样一种情况，我查询数据的时候，表名称是动态的从程序中传入的，比如我们通过mybatis的xml文件写sql查询时都是下面的样子：<br><strong>1、正常的查询</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;select id="activityEnrollModelTableName" parameterType="java.util.HashMap" resultType="java.util.HashMap"&gt;</div><div class="line">    SELECT * FROM user WHERE userid = #&#123;userid&#125;</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure></p>
+<p>上面的查询语句用mybatis执行时,其实是自动的按照JDBC的预编译语句方式执行的，等同于下面一段JDBC代码的执行过程<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line">Connection conn = DriverManage.getConnection(<span class="string">"jdbc:mysql://localhost:3306/dbname"</span>,<span class="string">"root"</span>,<span class="string">"112233"</span>);</div><div class="line">PreparedStatement preState = conn.prepareStatement(<span class="string">"SELECT * FROM user WHERE userid = ?"</span>); </div><div class="line">preState.setString(<span class="number">1</span>,<span class="string">"96"</span>);</div><div class="line">ResultSet result = preState.executeQuery();</div><div class="line"><span class="keyword">while</span>(result.next())&#123;</div><div class="line">	result.getString(columnname);</div><div class="line">	..........</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>到这里我们不禁疑惑，难道mybatis默认都是按照预编译语句的方式执行sql的吗？其实就是这样。通过查看mybatis官网文档可以看到有这么一个参数，statementType=[STATEMENT | PREPARED | CALLABLE ]；有三个可选值，mybatis默认值是PREPARED；<br>这个参数是什么作用呢：</p>
+<ol>
+<li>设定mybatis执行sql的模式</li>
+<li>STATEMENT设定为非预编译语句模式</li>
+<li>PREPARED设定为预编译语句模式–mybatis默认</li>
+<li>CALLABLE设定为兼容模式，或者自适应模式，比如设置该值后，mybatis处理sql时会自动的处理根据#、$去判断处理，后面说一下#和$的区别。</li>
+</ol>
+<p>综上所述,mybatis默认按照预编译语句方式执行sql语句</p>
+<p><strong>2、动态传入表名</strong></p>
+<p>其实也经常会遇到动态的传入tableName的情况，也就是说上面的sql语句中的”user”是动态传入的，动态传入表名是mybatis中的一种特殊情况，<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;select id="activityEnrollModelTableName" parameterType="java.util.HashMap" resultType="java.util.HashMap"&gt;</div><div class="line">    SELECT * FROM #&#123;user&#125; WHERE userid = #&#123;userid&#125; //错误的写法</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure></p>
+<p>针对上面的语句，如果让mybatis仍然按照预编译语句方式执行时，等同于如下面的JDBC代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line">Connection conn = DriverManage.getConnection(<span class="string">"jdbc:mysql://localhost:3306/dbname"</span>,<span class="string">"root"</span>,<span class="string">"112233"</span>);</div><div class="line">PreparedStatement preState = conn.prepareStatement(<span class="string">"SELECT * FROM ? WHERE userid = ?"</span>); </div><div class="line">preState.setString(<span class="number">1</span>,<span class="string">"USER"</span>);</div><div class="line">preState.setString(<span class="number">2</span>,<span class="string">"96"</span>);</div><div class="line">ResultSet result = preState.executeQuery();</div><div class="line"><span class="keyword">while</span>(result.next())&#123;</div><div class="line">	result.getString(columnname);</div><div class="line">	..........</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们把该段JDBC代码通过java代码执行后，发现会报异常：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java.sql.SQLException: ORA-<span class="number">00903</span>: 表名无效</div></pre></td></tr></table></figure></p>
+<p>所以可以说明预编译语句不能用于列名(查询的列名也不能用预编译语句)、表名；只能作用与where条件参数属性！既然JDBC就不能将预编译语句方式作用与表名上面，那么mybatis就同样也行不通(因为mybatis默认是预编译语句模式)。不过mybatis也早已考虑到了这种情况，所以为我们做了处理：</p>
+<ol>
+<li>select标签语句中添加statementType=”STATEMENT”的属性配置</li>
+<li>标签内的sql语句中将所有的${}更换成为#{}，即将$还成#;<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;select id="activityEnrollModelTableName" statementType="STATEMENT" parameterType="java.util.HashMap" resultType="java.util.HashMap"&gt;</div><div class="line">    SELECT * FROM $&#123;user&#125; WHERE userid = $&#123;userid&#125; //正确的写法</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面的语句标签中通过添加statementType=”STATEMENT”配置后，mybatis就不再使用预编译语句方式执行sql语句了，也就是通过直接执行sql语句操作；那么既然添加了statementType=”STATEMENT”非预编译配置后，为什么还需要把#换成$呢？其实是这样：</p>
+<ol>
+<li>“#” 是预编译语句模式下面的默认匹配符，也就是说mybatis遇到#{}时，将#{userid}替换成占位符?;被解析为一个JDBC预编译语句，然后再将#{userid}本身的值set进来。</li>
+<li>“$” 是非预编译语句下面的匹配符，非预编译语句说白了就是你传入什么sql语句，就执行什么sql语句，mybatis不做任何处理操作，但是这里mybatis会将${}对应的值，当做一个字符串处理，也就是说你程序接口方法中传递过来参数值是什么，对应的sql填充就是什么！</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/Linux系统添加配置随开机启动的服务/" itemprop="url">
+                  Linux系统添加配置随开机启动的服务-rc.local配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-25T17:46:24+08:00" content="2016-07-25">
+              2016-07-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Linux系统添加配置随开机启动的服务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Linux系统添加配置随开机启动的服务/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在linux服务器操作系统中，经常会安装一些服务器端的软件如：tomcat、redis、MQ、Nginx等等常用的服务器组件；那么有时候服务器重启后需要用一个一个的启动命令把不同的软件启动起来；主要有以下几种场景：</p>
+<ol>
+<li>以root身份才能启动的服务</li>
+<li>以非root身份启动的服务(一般情况下都是以非root身份启动和管理服务)</li>
+</ol>
+<p><strong>一、下面以把tomcat服务器配置成随开机自启动的配置为例说明一下</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tomcat的安装路径：/usr/local/server/apache-tomcat-<span class="number">8</span></div></pre></td></tr></table></figure></p>
+<p>那么我们知道了tomcat的安装路径后，就可以通过以下命令启动tomcat服务了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/server/apache-tomcat-<span class="number">8</span>/bin/start.sh</div></pre></td></tr></table></figure></p>
+<p>如果我们想让linux每次开机时自动启动tomcat服务，那么我们需要如下配置：</p>
+<ol>
+<li>打开 /etc/rc.d/rc.local文件，在该配置文件中添加tomcat的启动命令<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch /var/lock/subsys/local</div><div class="line">/usr/local/server/apache-tomcat-<span class="number">8</span>/bin/start.sh</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>二、下面以把redis服务配置成随开机自启动的配置为例说明一下（以redis用户启动）</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis的安装路径：/usr/local/cache/redis-<span class="number">2.8</span>.19</div></pre></td></tr></table></figure></p>
+<p>如果我们通过输入命令启动redis的方式是：(假设redis服务启动时必须用redis用户)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/cache/redis-<span class="number">2.8</span>.19/src/redis-server</div></pre></td></tr></table></figure></p>
+<p>如果我们想让linux每次开机时自动启动redis服务，那么我们需要如下配置：</p>
+<ol>
+<li>打开 /etc/rc.d/rc.local文件，在该配置文件中添加tomcat的启动命令<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch /var/lock/subsys/local</div><div class="line">su redis -c <span class="string">"/usr/local/cache/redis-2.8.19/src/redis-server"</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>三、总结</strong><br>我们主要通过在rc.local文件中添加我们服务的启动脚本的方式来配置随开机自启动服务；当然对于linux操作系统来讲，并不是仅仅就这一种方式配置随机启动操作，其他方式后续再说。那么rc.local到底是什么文件呢？</p>
+<p>rc.local其实是一个脚本文件，该脚本是在系统初始化级别脚本运行之后再执行的，因此可以在里面添加你想在系统启动之后执行的任何操作，比如启动第三方的服务，比如挂载mount操作等等。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/Linux开机启动后经常需要配置网卡/" itemprop="url">
+                  Linux开机启动后经常需要配置网卡
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-25T17:27:42+08:00" content="2016-07-25">
+              2016-07-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Linux开机启动后经常需要配置网卡/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Linux开机启动后经常需要配置网卡/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在虚拟机中安装的CentOS6操作系统，每次开机启动后，网卡默认都是关闭的；所以系统对外网络是处于中断的状态的，所以也就不能通过Xshell工具远程连接操作。</p>
+<p><img src="http://soujava.com/images/wangka.jpg" alt="Alt text"></p>
+<p>然后针对上面的情况，需要手动操作一下，把eth0网卡开启使用才行；感觉很繁琐！</p>
+<p><img src="http://soujava.com/images/wankapeizhi.jpg" alt="Alt text"></p>
+<p>解决方法：<br>使用如下命令编辑网卡信息：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysconfig/network-scripts/ifcfg-eth0</div></pre></td></tr></table></figure></p>
+<p>网卡信息的内容大致如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DEVICE=&quot;eth0&quot;</div><div class="line">TYPE=ethernet</div><div class="line">UUID=1221231K-4DFSD-8SDFA</div><div class="line">ONBOOT=&quot;yes&quot;</div><div class="line">IPADDR=192.168.1.152</div><div class="line">NETMASK=255.255.255.0</div><div class="line">GATEWAY=192.168.1.1</div><div class="line">BOOTPROTO=static</div></pre></td></tr></table></figure></p>
+<p>然后在网卡信息中找到”NOBOOT=no”配置选项，改成”NOBOOT=yes”</p>
+<p>再重启电脑后就不需要再次手动配置激活网卡了！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/通过反向代理解决跨域问题/" itemprop="url">
+                  通过Nginx反向代理解决跨域问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-19T17:26:32+08:00" content="2016-07-19">
+              2016-07-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/通过反向代理解决跨域问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="通过反向代理解决跨域问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p> 有以下需求：</p>
+<ol>
+<li>有两个独立运行的系统，用户系统(user)、发布系统(publish)</li>
+<li>publish系统中的添加内容功能模块需要选择对应的用户，那么user系统已经有了一个这样的页面，而publish系统想直接加载过来使用，并且勾选页面中的数据后可以获取已勾选的数据；</li>
+<li>因为两个系统部署在不同的服务器中运行，所以存在跨域问题</li>
+<li>解决方案主要通过反向代理的方式解决，这种方式可以避免两个系统更改大量的代码</li>
+</ol>
+<p><img src="http://soujava.com/images/kuayu.jpg" alt="Alt text"></p>
+<p><strong>注</strong>：以上方式可以解决publish系统远程调用user系统提供的数据页面(静态页面)的跨域问题，但是如果user系统提供的页面中有js异步事件，则仍然会出现跨域问题(比如在user系统提供的选择用户的界面中，当点击左侧角色分类时，异步加载右侧的用户列表数据)；所以需要user系统提供的视图页面对应的业务处理方法中做一些微小的改动即可，在响应对象中添加如下设置：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">response.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/java通过Stream对list集合分组/" itemprop="url">
+                  java通过Stream对list集合分组
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-15T14:00:11+08:00" content="2016-07-15">
+              2016-07-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/java通过Stream对list集合分组/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="java通过Stream对list集合分组/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>现在有一个List集合，想对该集合中的数据分组处理，想到java8中的stream，就搞来试试，非常给力！例子如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps;</div><div class="line"></div><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</div><div class="line">   	<span class="keyword">private</span> Integer id;</div><div class="line">	<span class="keyword">private</span> String type;</div><div class="line">	<span class="keyword">private</span> String name; </div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(Integer id,String type,String name)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.id = id;</div><div class="line">		<span class="keyword">this</span>.type = type;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;   </div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.id = id;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> id;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setType</span><span class="params">(String type)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.type = type;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getType</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> type;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"><span class="keyword">import</span> java.util.stream.Collectors;</div><div class="line"></div><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainUser</span></span>&#123;</div><div class="line">   	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		List&lt;User&gt; list = getUserList();</div><div class="line">		Map&lt;String,List&lt;User&gt;&gt; userGroupMap = list.stream().collect(Collectors.groupingBy(User::getType));</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;User&gt; <span class="title">getUserList</span><span class="params">()</span></span>&#123;</div><div class="line">		User user1 = <span class="keyword">new</span> User(<span class="number">1</span>,<span class="string">"张三"</span>,<span class="string">"小学"</span>);</div><div class="line">		User user2 = <span class="keyword">new</span> User(<span class="number">2</span>,<span class="string">"李四"</span>,<span class="string">"小学"</span>);</div><div class="line">		User user3 = <span class="keyword">new</span> User(<span class="number">3</span>,<span class="string">"王五"</span>,<span class="string">"初中"</span>);</div><div class="line">		User user4 = <span class="keyword">new</span> User(<span class="number">4</span>,<span class="string">"马六"</span>,<span class="string">"高中"</span>);</div><div class="line">		</div><div class="line">		List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;User&gt;();</div><div class="line">		list.add(user1);</div><div class="line">		list.add(user2);</div><div class="line">		list.add(user3);</div><div class="line">		list.add(user4);</div><div class="line">			</div><div class="line">		<span class="keyword">return</span> list;</div><div class="line">	&#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>运行上面例子得到下面的结果<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;高中=[com.maps.User@<span class="number">448139f</span>0], 初中=[com.maps.User@<span class="number">7</span>cca494b], 小学=[com.maps.User@<span class="number">7</span>ba4f24f, com.maps.User@<span class="number">3</span>b9a45b3]&#125;</div></pre></td></tr></table></figure></p>
+<p>是不是感觉不用for循环挺爽！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/java接收oracle中clob类型字段值/" itemprop="url">
+                  java接收oracle中clob类型字段值
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-06T16:16:33+08:00" content="2016-07-06">
+              2016-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/java接收oracle中clob类型字段值/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="java接收oracle中clob类型字段值/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>oracle数据库中有一种大文本字段类型：clob;那么当我们的java程序从数据库中查询出来的数据列表用java程序如何接收处理呢？</p>
+<pre><code>Clob columnContentClob = result.getClob(1); //先用大文本类型接收,getClob方法可以传入列名(columnName)重载使用
+Reader is = columnContentClob.getCharacterStream();//用reader接收
+BufferedReader bf = new BufferedReader(is);//实例化一个缓冲流
+String columnContent = bf.readLine();//读取大文本的内容
+</code></pre><p><strong>实例</strong></p>
+<pre><code>String driver = &quot;oracle.jdbc.OracleDriver&quot;;
+String url = &quot;jdbc:oracle:thin:@127.0.0.1:1521/databaseName&quot;;
+String username = &quot;username&quot;;
+String password = &quot;password&quot;;
+Class.forName(driver);
+Connection conn = DriverManager.getConnection(url, username, password);
+
+ ResultSet rs = null;
+PreparedStatement pstmt = null;
+String query = &quot;SELECT description FROM mytable WHERE id = ?&quot;;
+try {
+  conn = getConnection();
+  pstmt = conn.prepareStatement(query);
+  pstmt.setInt(1, id);
+  rs = pstmt.executeQuery();
+  rs.next();
+  Clob clob = rs.getClob(1);//rs.getClob(&quot;description&quot;);
+
+} finally {
+  rs.close();
+  pstmt.close();
+  conn.close();
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/oracle11G导出数据时空表无法导出/" itemprop="url">
+                  oracle11G导出数据时空表无法导出
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-06T08:49:02+08:00" content="2016-07-06">
+              2016-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">oracle</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/oracle11G导出数据时空表无法导出/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="oracle11G导出数据时空表无法导出/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>  使用oracle数据库导出命令exp导出数据库的时候，数据库中的空表无法导出，因为oracle11g 建表时，默认不分配segment,以节省磁盘空间，当表插入第一条数据时，再分配segment。当然至于想不想在oracle创建表的时候就自动分配segment,是跟oracle的一个配置参数有关的，也就是<br>  “deferred_segment_creation”；默认该参数为true，说明不自动分配sgement，如果设置该参数为false时，则会从此刻以后每次创建表就自动分配segment。</p>
+<blockquote>
+<p>注：segment就是oracle中段的概念，默认一个普通表会对应一个segment；这里的段就是物理存储的对象，而表(table)就是逻辑存储的对象。</p>
+</blockquote>
+<p><strong>解决方法：</strong></p>
+<pre><code>1）打开命令行工具执行命令：alter system set deferred_segment_creation=false;
+2）执行之后后期创建的空表就可以正常导出了，但是在命令执行之前的空表还是无法进行导出
+3）先查询一下哪些表是空的：select table_name from user_tables where NUM_ROWS=0;
+4）下面我们通过select 来生成修改语句：
+    select &apos;alter table &apos;||table_name||&apos; allocate extent;&apos; from user_tables where num_rows=0
+     后复制生成的修改语句执行，问题解决！
+</code></pre><p><strong>总结：解决方法共3个途径：</strong></p>
+<pre><code>1：向空白插入一条数据，再删除掉，就分配空间了（空表比较少）。
+2：修改系统参数
+      alter system set deferred_segment_creation=false;
+     （对以后新增的表系统会分配 segment），重启数据库。
+3：批量对现有的空表分配空间
+     select &apos;alter table &apos; || table_name ||  &apos; allocate extent;&apos; as sql from all_tables where num_rows = 0 and OWNER=username ;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016-06-30-界面框架/" itemprop="url">
+                  界面框架
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-30T16:39:11+08:00" content="2016-06-30">
+              2016-06-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016-06-30-界面框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-06-30-界面框架/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>1、布局框架</strong></p>
+<p> 访问地址：<a href="http://layout.jquery-dev.com/index.cfm" target="_blank" rel="external">http://layout.jquery-dev.com/index.cfm</a><br> demo：<a href="http://layout.jquery-dev.com/demos.cfm" target="_blank" rel="external">http://layout.jquery-dev.com/demos.cfm</a><br> 可以满足多种复杂或者简单的布局，支持拖拉操作：</p>
+<p><img src="http://soujava.com/images/bujv.jpg" alt="Alt text" title="git push"></p>
+<p><strong>2、表格框架</strong><br>2.1、SlickGrid（<a href="https://github.com/Celebio/SlickGrid）" target="_blank" rel="external">https://github.com/Celebio/SlickGrid）</a></p>
+<pre><code>1)、支持表格的排序、列宽度的拖拽调整、表格中列的可编辑、表格中可编辑单元格中的各种控件(时间选择、下拉框、滑动条、复选框等等)、表格中添                                    加树形菜单、表格列宽度随着窗口大小自动调整；
+</code></pre><p><img src="http://soujava.com/images/biaoge1.jpg" alt="Alt text" title="表格"></p>
+<p><img src="http://soujava.com/images/biaoge2.jpg" alt="Alt text" title="表格"></p>
+<p>   2)、可以在表格中直接框选复制-粘贴、对单元格中的值动态筛选、表格中的一些值的汇总计算以及展示、框选复制粘贴</p>
+<p><img src="http://soujava.com/images/biaoge3.jpg" alt="Alt text" title="表格"></p>
+<p>   3)、表格数据的渲染速度也非常不错，50万条静态数据一次加载渲染到表格中1-3秒时间</p>
+<p><img src="http://soujava.com/images/biaoge4.jpg" alt="Alt text" title="表格"></p>
+<p>2.2、 paramquery（<a href="http://paramquery.com/grid）" target="_blank" rel="external">http://paramquery.com/grid）</a></p>
+<p>  1)、表格拖拉控制宽度、排序、可编辑</p>
+<p><img src="http://soujava.com/images/biaoge5.jpg" alt="Alt text" title="表格"></p>
+<p>  2)、可以对添加表格中的数据、以及对表格中的某几列数据添加横向滚动条</p>
+<p><img src="http://soujava.com/images/biaoge6.jpg" alt="Alt text" title="表格"></p>
+<pre><code>3)、可以对表格头部进行复杂的嵌套汇总显示：
+</code></pre><p><img src="http://soujava.com/images/biaoge9.jpg" alt="Alt text" title="表格"></p>
+<p>2.3、 jqwidgets（<a href="http://www.jqwidgets.com/）" target="_blank" rel="external">http://www.jqwidgets.com/）</a></p>
+<pre><code>这个表格框架还是相当的强大的，你能想到的，你将用到的都为你提供了，总之一两句话表达不彻底，需要你去亲自体验！不过有些浏览器兼容可能会出些问题，我在使用过程中由于兼容问题，我修改了其内核js文件解决的。
+
+DEMO体验地址：http://www.jqwidgets.com/jquery-widgets-demo/
+</code></pre><p><img src="http://soujava.com/images/jqwidgets.png" alt="Alt text" title="表格"></p>
+<p><strong>3、界面风格</strong></p>
+<p>3.1、 semantic-ui (<a href="http://semantic-ui.com/" target="_blank" rel="external">http://semantic-ui.com/</a>) </p>
+<p>3.2、 topcoat (<a href="http://topcoat.io/topcoat/" target="_blank" rel="external">http://topcoat.io/topcoat/</a>) </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016-06-30-页面中添加-ENTER-键点击事件/" itemprop="url">
+                  页面中添加'ENTER'键点击事件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-30T16:31:17+08:00" content="2016-06-30">
+              2016-06-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016-06-30-页面中添加-ENTER-键点击事件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-06-30-页面中添加-ENTER-键点击事件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通常有以下场景：<br>当输入表单完成后直接按“Enter”键进行快捷提交；当操作一个共时，弹出的提示询问框，然后直接按“Enter”键确认。<br>那么我们只需要通过获取当前点击的键码是否是enter键的码值即可！</p>
+<p><strong>jquery</strong></p>
+<pre><code>$(&quot;body&quot;).keydown(function(e){
+    if(e.keyCode==&quot;13&quot;){
+        alert(&apos;点击了Enter键&apos;);
+    }
+});
+</code></pre><p><strong>javascript</strong></p>
+<pre><code>document.body.onclick=function(){
+    if(e.keyCode==&quot;13&quot;){
+       alert(&apos;点击了Enter键&apos;);
+    }
+};
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="马平升" />
+          <p class="site-author-name" itemprop="name">马平升</p>
+          <p class="site-description motion-element" itemprop="description">记录未知的，牢记已知的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马平升</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="http://www.soujava.com">soujava</a>
+</div>
+
+<div class="theme-info">
+  
+  <a class="theme-link" href="https://github.com/mapingsheng">
+    GitHub
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soujava"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
