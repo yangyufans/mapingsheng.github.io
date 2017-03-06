@@ -260,6 +260,133 @@
             
               
                 
+                <a class="post-title-link" href="/Redis-安装/" itemprop="url">
+                  Redis--安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-19T17:21:43+08:00" content="2016-08-19">
+              2016-08-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Redis-安装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Redis-安装/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>一、下载安装包</strong><br>  下载redis安装包，下载方式很多比如如下方式都可以：<br>    1)、到官网下载<a href="http://redis.io需要的版本" target="_blank" rel="external">http://redis.io需要的版本</a><br>    2)、在linux系统中用命令下载 $ wget <a href="http://download.redis.io/releases/redis-2.8.17.tar.gz" target="_blank" rel="external">http://download.redis.io/releases/redis-2.8.17.tar.gz</a><br>    下载成功后得到redis-2.8.17.tar.gz安装包<br><strong>二、安装</strong><br>    1)、用命令解压缩安装包<br>       $ tar xzf redis-2.8.17.tar.gz</p>
+<pre><code>2)、进入解压后的文件中
+     $ cd redis-2.8.17
+
+3)、编译安装
+      $ make
+</code></pre><p>  注：make完后 redis-2.8.17目录下会出现编译后的redis服务程序redis-server,还有用于测试的客户端程序redis-cli<br><strong>三、启动服务</strong><br>     1)、进入到redis安装目录src下面<br>          $ cd /usr/local/redis-2.8.17/src<br>     2)、启动服务操作，启动服务主要有两种方式：<br>           A：采用默认配置方式启动(不推荐)<br>                $ ./redis-server<br>           B：采用制定配置文件启动(推荐)<br>                 $ ./redis-server ../redis.conf<br>     注：redis.conf是一个默认的配置文件。我们可以根据需要使用自己的配置文件,修改redis.conf  配置文件修改 daemonize yes ；该配置为使redis启动后可以后台运行</p>
+<p><strong>四、测试</strong><br>   1)、进入安装目录，运行redis-cli<br>         $ ./redis-cli<br>         redis&gt; set username maps<br>         redis&gt;get username<br>         “maps” </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/" itemprop="url">
                   Mysql--Lock wait timeout exceeded try restarting transaction
                 </a>
@@ -2941,138 +3068,6 @@ DEMO体验地址：http://www.jqwidgets.com/jquery-widgets-demo/
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016-06-30-页面中添加-ENTER-键点击事件/" itemprop="url">
-                  页面中添加'ENTER'键点击事件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-30T16:31:17+08:00" content="2016-06-30">
-              2016-06-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016-06-30-页面中添加-ENTER-键点击事件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-06-30-页面中添加-ENTER-键点击事件/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>通常有以下场景：<br>当输入表单完成后直接按“Enter”键进行快捷提交；当操作一个共时，弹出的提示询问框，然后直接按“Enter”键确认。<br>那么我们只需要通过获取当前点击的键码是否是enter键的码值即可！</p>
-<p><strong>jquery</strong></p>
-<pre><code>$(&quot;body&quot;).keydown(function(e){
-    if(e.keyCode==&quot;13&quot;){
-        alert(&apos;点击了Enter键&apos;);
-    }
-});
-</code></pre><p><strong>javascript</strong></p>
-<pre><code>document.body.onclick=function(){
-    if(e.keyCode==&quot;13&quot;){
-       alert(&apos;点击了Enter键&apos;);
-    }
-};
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3118,7 +3113,7 @@ DEMO体验地址：http://www.jqwidgets.com/jquery-widgets-demo/
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">47</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
