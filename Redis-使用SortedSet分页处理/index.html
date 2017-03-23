@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="Redis," />
 
 
 
@@ -86,31 +86,25 @@
 
 
 
-<meta name="description" content="比如我访问index.html页面，其中一个功能模块需要弹出(新打开)other.html，勾选某些数据，勾选完成后，关闭other.html，并且index.html随着关闭other.html事件而刷新。
-父窗口-index.html
- &amp;lt;html&amp;gt;  
- &amp;lt;head&amp;gt;  
-  &amp;lt;title&amp;gt;index.htmll&amp;lt;/title&amp;gt;  
-  &amp;lt">
+<meta name="description" content="一、需求描述
+由于app首页的数据展示需要调用6个第三方的不同数据源的rest接口，所以app首页在使用过程中会出现请求超时的问题（app端设置超时时间为5s）；所以需要对首页进行优化；
+
+1、由于app首页的数据展示非常像微信朋友圈的数据展示，即下拉时获取最新的数据，上推时获取历史数据，而在实际的使用场景中，上推动作大于5次的情况比较少(每天在微信朋友圈把5天前的动态翻出来[上推]的情况比较少吧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关闭父窗口刷新子窗口">
-<meta property="og:url" content="http://www.soujava.com/2016-06-30-关闭父窗口刷新子窗口/index.html">
+<meta property="og:title" content="Redis-使用SortedSet分页处理">
+<meta property="og:url" content="http://www.soujava.com/Redis-使用SortedSet分页处理/index.html">
 <meta property="og:site_name" content="soujava">
-<meta property="og:description" content="比如我访问index.html页面，其中一个功能模块需要弹出(新打开)other.html，勾选某些数据，勾选完成后，关闭other.html，并且index.html随着关闭other.html事件而刷新。
-父窗口-index.html
- &amp;lt;html&amp;gt;  
- &amp;lt;head&amp;gt;  
-  &amp;lt;title&amp;gt;index.htmll&amp;lt;/title&amp;gt;  
-  &amp;lt">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.902Z">
+<meta property="og:description" content="一、需求描述
+由于app首页的数据展示需要调用6个第三方的不同数据源的rest接口，所以app首页在使用过程中会出现请求超时的问题（app端设置超时时间为5s）；所以需要对首页进行优化；
+
+1、由于app首页的数据展示非常像微信朋友圈的数据展示，即下拉时获取最新的数据，上推时获取历史数据，而在实际的使用场景中，上推动作大于5次的情况比较少(每天在微信朋友圈把5天前的动态翻出来[上推]的情况比较少吧">
+<meta property="og:updated_time" content="2017-03-23T05:58:02.641Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关闭父窗口刷新子窗口">
-<meta name="twitter:description" content="比如我访问index.html页面，其中一个功能模块需要弹出(新打开)other.html，勾选某些数据，勾选完成后，关闭other.html，并且index.html随着关闭other.html事件而刷新。
-父窗口-index.html
- &amp;lt;html&amp;gt;  
- &amp;lt;head&amp;gt;  
-  &amp;lt;title&amp;gt;index.htmll&amp;lt;/title&amp;gt;  
-  &amp;lt">
+<meta name="twitter:title" content="Redis-使用SortedSet分页处理">
+<meta name="twitter:description" content="一、需求描述
+由于app首页的数据展示需要调用6个第三方的不同数据源的rest接口，所以app首页在使用过程中会出现请求超时的问题（app端设置超时时间为5s）；所以需要对首页进行优化；
+
+1、由于app首页的数据展示非常像微信朋友圈的数据展示，即下拉时获取最新的数据，上推时获取历史数据，而在实际的使用场景中，上推动作大于5次的情况比较少(每天在微信朋友圈把5天前的动态翻出来[上推]的情况比较少吧">
 
 
 
@@ -131,9 +125,9 @@
 
 
 
-  <link rel="canonical" href="http://www.soujava.com/2016-06-30-关闭父窗口刷新子窗口/"/>
+  <link rel="canonical" href="http://www.soujava.com/Redis-使用SortedSet分页处理/"/>
 
-  <title> 关闭父窗口刷新子窗口 | soujava </title>
+  <title> Redis-使用SortedSet分页处理 | soujava </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -273,7 +267,7 @@
             
             
               
-                关闭父窗口刷新子窗口
+                Redis-使用SortedSet分页处理
               
             
           </h1>
@@ -285,8 +279,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-30T16:21:45+08:00" content="2016-06-30">
-              2016-06-30
+            <time itemprop="dateCreated" datetime="2017-03-23T12:53:35+08:00" content="2017-03-23">
+              2017-03-23
             </time>
           </span>
 
@@ -299,8 +293,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -315,8 +309,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016-06-30-关闭父窗口刷新子窗口/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-06-30-关闭父窗口刷新子窗口/" itemprop="commentsCount"></span>
+                <a href="/Redis-使用SortedSet分页处理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Redis-使用SortedSet分页处理/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -344,49 +338,48 @@
       
 
       
-        <p>比如我访问index.html页面，其中一个功能模块需要弹出(新打开)other.html，勾选某些数据，勾选完成后，关闭other.html，并且index.html随着关闭other.html事件而刷新。</p>
-<p><strong>父窗口-index.html</strong></p>
-<pre><code> &lt;html&gt;  
- &lt;head&gt;  
-  &lt;title&gt;index.htmll&lt;/title&gt;  
-  &lt;meta name=&quot;Generator&quot; content=&quot;EditPlus&quot;&gt;  
-  &lt;meta name=&quot;Author&quot; content=&quot;&quot;&gt;  
-  &lt;meta name=&quot;Keywords&quot; content=&quot;&quot;&gt;  
-  &lt;meta name=&quot;Description&quot; content=&quot;&quot;&gt;  
-    &lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;  
-    &lt;!--   
-    function clicks(){   
-     window.open(&quot;other.html&quot;);   
-    }   
-    //--&gt;  
-    &lt;/SCRIPT&gt;  
- &lt;/head&gt;  
- &lt;body&gt;  
- &lt;a  onClick=&quot;clicks();&quot; target=&quot;_blank&quot;&gt;选择数据&lt;/a&gt;  
- &lt;/body&gt;  
-&lt;/html&gt;  
-</code></pre><p><strong>子窗口-other.html</strong></p>
-<pre><code> &lt;html&gt;  
- &lt;head&gt;  
-  &lt;title&gt;子窗口&lt;/title&gt;  
-  &lt;meta name=&quot;Generator&quot; content=&quot;EditPlus&quot;&gt;  
-  &lt;meta name=&quot;Author&quot; content=&quot;&quot;&gt;  
-  &lt;meta name=&quot;Keywords&quot; content=&quot;&quot;&gt;  
-  &lt;meta name=&quot;Description&quot; content=&quot;&quot;&gt;  
-&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;  
-&lt;!--   
-function Close()   
-{
-  window.opener.location.href=&quot;index.html&quot;;
-}
-//--&gt;  
-&lt;/script&gt;  
- &lt;/head&gt;  
- &lt;body&gt;  
- &lt;a href=&quot;javascript:Close();&quot;&gt;关闭当前子窗口，打开父窗口&lt;/a&gt;  
- &lt;/body&gt;  
-&lt;/html&gt;  
-</code></pre>
+        <p><strong>一、需求描述</strong></p>
+<p>由于app首页的数据展示需要调用6个第三方的不同数据源的rest接口，所以app首页在使用过程中会出现请求超时的问题（app端设置超时时间为5s）；所以需要对首页进行优化；</p>
+<blockquote>
+<p>1、由于app首页的数据展示非常像微信朋友圈的数据展示，即下拉时获取最新的数据，上推时获取历史数据，而在实际的使用场景中，上推动作大于5次的情况比较少(每天在微信朋友圈把5天前的动态翻出来[上推]的情况比较少吧)；所以打算把首页的前5页数据全部放入缓存中，不管是下拉获取新数据还是上推获取分页的老数据都统一从缓存中获取，可以有效减轻服务器压力。</p>
+<p>2、设定第三方rest接口调用超时时间，比如5分钟之内的首页刷新操作，只会读取缓存数据，不会触发调用第三方的rest接口。</p>
+<p>3、首页的刷新操作触发采用异步多线程调用，而不是采用串行方式处理；比如首页刷新时，调用6个第三方的rest接口时，启动6个线程并行异步去拉取数据，并且把新数据增量更新到缓存中。</p>
+</blockquote>
+<p><strong>二、业务调整</strong></p>
+<p>由于app端的分页比较特殊，比如后台数据会近实时的发生变化，所以采用常规的分页算法[(totalRecord + pageSize - 1) / pageSize;]肯定是不行的。如果仍采用这种算法，当上推刷新时，就有可能加载到上一页已经看过的数据，比如用户当前正在看第2页的历史数据，如果此时后台数据源新增了一条数据，那么当用户继续上推操作查看第3页的历史数据时，就会把第2页的最后一条数据获取，并且会把该条数据作为第3页的第一条数据进行展示，这样是有问题的。</p>
+<p>所以在数据表设计时，需要在表中增加一个自增的orderId字段参与分页，然后分页时，需要将第一页的最后一条数据的orderId回传到后台，后台拿着这个orderId进行条件判断查询并且集合上面的分页算法就可以避免上面的问题。</p>
+<p><strong>二、代码开发</strong></p>
+<blockquote>
+<p>1、熟悉redis的zAdd方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ZADD key score member [[score member] [score member] ...]</div><div class="line"></div><div class="line">将一个或多个 member 元素及其 score 值加入到有序集 key 当中。</div><div class="line"></div><div class="line">如果某个 member 已经是有序集的成员，那么更新这个 member 的 score 值，并通过重新插入这个 member 元素，来保证该 member 在正确的位置上。</div><div class="line"></div><div class="line">score 值可以是整数值或双精度浮点数。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2、调用zAdd方法向缓存中添加数据(用的是jedis客户端)</p>
+</blockquote>
+<p><em>这里为了看着更加清晰，没有使用for循环</em></p>
+<blockquote>
+<blockquote>
+<p>jedis.zadd(“home_123456”, 1, a);</p>
+<p>jedis.zadd(“home_123456”, 2, b);</p>
+<p>jedis.zadd(“home_123456”, 3, c);</p>
+<p>jedis.zadd(“home_123456”, 4, d);</p>
+<p>jedis.zadd(“home_123456”, 5, e);</p>
+<p>jedis.zadd(“home_123456”, 6, f);</p>
+<p>jedis.zadd(“home_123456”, 7, g);</p>
+<p>jedis.zadd(“home_123456”, 8, h);</p>
+<p>jedis.zadd(“home_123456”, 9, i);</p>
+<p>jedis.zadd(“home_123456”, 10, j);</p>
+</blockquote>
+<p>3、熟悉zRevrangeByScore方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT offset count]</div><div class="line"></div><div class="line">返回有序集 key 中， score 值介于 max 和 min 之间(默认包括等于 max 或 min )的所有的成员。有序集成员按 score 值递减(从大到小)的次序排列。</div><div class="line"></div><div class="line">具有相同 score 值的成员按字典序的逆序(reverse lexicographical order )排列。</div><div class="line"></div><div class="line">min 和 max 可以是 -inf 和 +inf ，这样一来，你就可以在不知道有序集的最低和最高 score 值的情况下获取数据</div><div class="line"></div><div class="line">默认情况下，区间的取值使用闭区间 (小于等于或大于等于)，你也可以通过给参数前增加 ( 符号来使用可选的开区间 (小于或大于)。</div><div class="line"></div><div class="line">举个例子：</div><div class="line"></div><div class="line"><span class="function">ZRANGEBYSCORE <span class="title">zset</span> <span class="params">(<span class="number">1</span> <span class="number">5</span></span></span></div><div class="line">返回所有符合条件 <span class="number">1</span> &lt; score &lt;= <span class="number">5</span> 的成员，而</div><div class="line"></div><div class="line">ZRANGEBYSCORE zset (<span class="number">5</span> (<span class="number">10</span></div><div class="line">则返回所有符合条件 <span class="number">5</span> &lt; score &lt; <span class="number">10</span> 的成员。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2、调用zRevrangeByScore方法向缓存中获取分页数据</p>
+<p>比如每页按取3条数据进行分页的话,当我们在查看第1页的前提下，上推操作，获取第2页的历史数据，需要拿到上一页数据的最后一条记录的score值【key:home_123456 score:3 value c】,所以score值为3</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">jedis.zrevrangeByScore(<span class="string">"home_123456"</span>, <span class="string">"+inf"</span>, <span class="string">"("</span>+<span class="number">3</span>, <span class="number">0</span>, <span class="number">3</span>);</div><div class="line"></div><div class="line">这条代码的意思就是取出缓存中key为<span class="string">"home_123456"</span>,并且score值大于<span class="number">3</span>的数据，并且从第<span class="number">0</span>条开始一共取出<span class="number">3</span>条(有点像 limit <span class="number">0</span>,<span class="number">3</span>的作用)</div><div class="line"></div><div class="line">注：【+inf】 代表最大值不知道，所以不对区间进行最大值限制,</div><div class="line">    【<span class="string">"("</span>+<span class="number">3</span>】 等同与 【(<span class="number">3</span>】，代表sore的值要小于<span class="number">3</span></div></pre></td></tr></table></figure>
+<p>通过上面的方法可以很好的实现在缓存中进行分页获取数据，以此可以有效提示app端的性能</p>
+
       
     </div>
 
@@ -407,7 +400,7 @@ function Close()
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
+            <a href="/tags/Redis/" rel="tag">#Redis</a>
           
         </div>
       
@@ -416,17 +409,13 @@ function Close()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016-06-30-Java-was-started-but-returned-exit-code异常/" rel="next" title="Java was started but returned exit code异常">
-                <i class="fa fa-chevron-left"></i> Java was started but returned exit code异常
+              <a href="/我所理解的nodeJs的两个概念/" rel="next" title="我所理解的nodeJs的两个概念">
+                <i class="fa fa-chevron-left"></i> 我所理解的nodeJs的两个概念
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016-06-30-页面中添加-ENTER-键点击事件/" rel="prev" title="页面中添加'ENTER'键点击事件">
-                页面中添加'ENTER'键点击事件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -452,8 +441,8 @@ function Close()
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016-06-30-关闭父窗口刷新子窗口/"
-           data-title="关闭父窗口刷新子窗口" data-url="http://www.soujava.com/2016-06-30-关闭父窗口刷新子窗口/">
+      <div class="ds-thread" data-thread-key="Redis-使用SortedSet分页处理/"
+           data-title="Redis-使用SortedSet分页处理" data-url="http://www.soujava.com/Redis-使用SortedSet分页处理/">
       </div>
     
   </div>
