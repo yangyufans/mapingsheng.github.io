@@ -260,6 +260,150 @@
             
               
                 
+                <a class="post-title-link" href="/jquery获取单选按钮值的诡异之处/" itemprop="url">
+                  jquery获取单选按钮值的诡异之处
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-21T12:17:10+08:00" content="2016-08-21">
+              2016-08-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/jquery获取单选按钮值的诡异之处/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="jquery获取单选按钮值的诡异之处/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在使用jquery获取表单中选中的单选按钮的值时，发现了一个诡异的问题，那就是当你使用[checked]这个方式获取选中的单选按钮值时，能不能获取选中的值跟你前面用的选择器方式有关系，当你使用:radio[name=’types’]这种方式获取选中的值时是没有问题的，但是当你使用[type=’radio’][name=’language’]这种方式获取选中的值时是有问题的（如果单选按钮组中有默认选中的按钮，那么这种方式一直获取的都是默认选中的按钮；如果单选按钮组中没有默认选中的按钮，那么这种方式获取不到选中的单选按钮的值）。举例如下：</p>
+<p>表单元素如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;input type=<span class="string">"radio"</span> name=<span class="string">"language"</span>  value=<span class="string">"php"</span>/&gt;</div><div class="line">&lt;input type=<span class="string">"radio"</span> name=<span class="string">"language"</span>  value=<span class="string">"mysql"</span>/&gt;</div><div class="line">&lt;input type=<span class="string">"radio"</span> name=<span class="string">"language"</span>  value=<span class="string">"java"</span>/&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>一、方式一 [checked] (正确)</strong></p>
+<p>通过使用<code>[checked]</code>获取选中的单选按钮的值，类型选择器使用的<code>:radio</code></p>
+<pre><code>$(&apos;input:radio[name=&quot;language&quot;][checked]&apos;).val()；
+</code></pre><p><img src="http://soujava.com/images/jqueryRadio2.png" alt="Alt text" title="可以获取单选值"></p>
+<p><em>注：这种方式<code>可以</code>获取选中的单选按钮的值，如果没有选择任何单选按钮，则获取的值为undefined。</em></p>
+<p><strong>二、方式二 [checked] (错误)</strong></p>
+<p>通过使用<code>[checked]</code>获取选中的单选按钮的值，，类型选择器使用的<code>[type=&quot;radio&quot;]</code></p>
+<pre><code>$(&apos;input[type=&quot;radio&quot;][name=&quot;language&quot;][checked]&apos;).val()；
+</code></pre><p><img src="http://soujava.com/images/jqueryRadio1.png" alt="Alt text" title="不可以获取单选值"></p>
+<p><em>注：这种方式<code>不可以</code>获取选中的单选按钮的值，获取的值始终为undefined。</em></p>
+<p><strong>三、小结 </strong></p>
+<p>上面两种获取单选按钮选择中的方式中唯一差别的地方就是类型选择器的方式一种是标准的类型选择器(type=”radio”)、一种是伪类选择器(:radio);然后到jquery官方网站查看官网文档可以看到：</p>
+<p><img src="http://soujava.com/images/jqueryRadio3.png" alt="Alt text" title="官方文档"></p>
+<p>官网文档中关于选择器的描述大致这样说：$(“:radio”)和$(“[type=radio]”)是等价的,在效率方面还更倾向使用标准的类型选择器</p>
+<p><strong>四、方式三 :checked (没有任何问题)</strong></p>
+<p>使用<code>[type=&quot;radio&quot;]</code>类型选择器：</p>
+<pre><code>$(&apos;input[type=&quot;radio&quot;][name=&quot;language&quot;]:checked&apos;).val()；
+</code></pre><p>使用<code>:radio</code>伪类选择器：</p>
+<pre><code>$(&apos;input[type=&quot;radio&quot;][name=&quot;language&quot;]:checked&apos;).val()；
+</code></pre><p><img src="http://soujava.com/images/jqueryRadio4.png" alt="Alt text" title="获取值"></p>
+<p><em>注：方式三种中在使用:checked方式的前提下，不管使用类型选择器还是使用伪类选择器都是可以获取选中的单选按钮的值的！</em></p>
+<p><strong>五、总结</strong></p>
+<p>获取单选按钮元素选中的值时，统一采用<code>:checked</code>这种方式获取，不要再使用<code>[checked]</code>或者<code>[checked=&quot;checked&quot;]</code>这种方式。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/整型字面值与进制运算之间的关系/" itemprop="url">
                   整型字面值与进制运算之间的关系
                 </a>
@@ -2942,143 +3086,6 @@ try {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/oracle11G导出数据时空表无法导出/" itemprop="url">
-                  oracle11G导出数据时空表无法导出
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-06T08:49:02+08:00" content="2016-07-06">
-              2016-07-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/oracle/" itemprop="url" rel="index">
-                    <span itemprop="name">oracle</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/oracle11G导出数据时空表无法导出/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="oracle11G导出数据时空表无法导出/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>  使用oracle数据库导出命令exp导出数据库的时候，数据库中的空表无法导出，因为oracle11g 建表时，默认不分配segment,以节省磁盘空间，当表插入第一条数据时，再分配segment。当然至于想不想在oracle创建表的时候就自动分配segment,是跟oracle的一个配置参数有关的，也就是<br>  “deferred_segment_creation”；默认该参数为true，说明不自动分配sgement，如果设置该参数为false时，则会从此刻以后每次创建表就自动分配segment。</p>
-<blockquote>
-<p>注：segment就是oracle中段的概念，默认一个普通表会对应一个segment；这里的段就是物理存储的对象，而表(table)就是逻辑存储的对象。</p>
-</blockquote>
-<p><strong>解决方法：</strong></p>
-<pre><code>1）打开命令行工具执行命令：alter system set deferred_segment_creation=false;
-2）执行之后后期创建的空表就可以正常导出了，但是在命令执行之前的空表还是无法进行导出
-3）先查询一下哪些表是空的：select table_name from user_tables where NUM_ROWS=0;
-4）下面我们通过select 来生成修改语句：
-    select &apos;alter table &apos;||table_name||&apos; allocate extent;&apos; from user_tables where num_rows=0
-     后复制生成的修改语句执行，问题解决！
-</code></pre><p><strong>总结：解决方法共3个途径：</strong></p>
-<pre><code>1：向空白插入一条数据，再删除掉，就分配空间了（空表比较少）。
-2：修改系统参数
-      alter system set deferred_segment_creation=false;
-     （对以后新增的表系统会分配 segment），重启数据库。
-3：批量对现有的空表分配空间
-     select &apos;alter table &apos; || table_name ||  &apos; allocate extent;&apos; as sql from all_tables where num_rows = 0 and OWNER=username ;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3124,7 +3131,7 @@ try {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

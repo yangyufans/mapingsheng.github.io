@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Mysql," />
+  <meta name="keywords" content="Redis," />
 
 
 
@@ -86,28 +86,25 @@
 
 
 
-<meta name="description" content="一个业务正在操作mysql过程中，突然报提示错误信息：Lock wait timeout exceeded; try restarting transaction。查询发现问题原因是，在执行操作的表被另外一个操作锁定，当前操作等待另外一个操作完成时提示超时。
-一、临时解决办法
+<meta name="description" content="一、定时描述平时开发中，经常会把一些热数据存入缓存中，并且设置失效时间，比如把用户和rest接口地址存入缓存，并设置失效时间，一方面可以提高响应速度，还可以把一部分无效的请求挡在缓存层处理；还比如把验证码存入缓存，并设置失效时间，也可以达到上述目的。redis缓存有两种定时模式：
 
-执行以下脚本登录mysql：mysql -h 192.168.0.166 -u user -ppassword
-执行se">
+1、设置某键值在多少秒之后失效
+2、设置某键值在以后某一个时间点之后失效，比如2017年10月1日23点59分59秒">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql--Lock wait timeout exceeded try restarting transaction">
-<meta property="og:url" content="http://www.soujava.com/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/index.html">
+<meta property="og:title" content="Redis-定时操作篇">
+<meta property="og:url" content="http://www.soujava.com/Redis-定时操作篇/index.html">
 <meta property="og:site_name" content="soujava">
-<meta property="og:description" content="一个业务正在操作mysql过程中，突然报提示错误信息：Lock wait timeout exceeded; try restarting transaction。查询发现问题原因是，在执行操作的表被另外一个操作锁定，当前操作等待另外一个操作完成时提示超时。
-一、临时解决办法
+<meta property="og:description" content="一、定时描述平时开发中，经常会把一些热数据存入缓存中，并且设置失效时间，比如把用户和rest接口地址存入缓存，并设置失效时间，一方面可以提高响应速度，还可以把一部分无效的请求挡在缓存层处理；还比如把验证码存入缓存，并设置失效时间，也可以达到上述目的。redis缓存有两种定时模式：
 
-执行以下脚本登录mysql：mysql -h 192.168.0.166 -u user -ppassword
-执行se">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.907Z">
+1、设置某键值在多少秒之后失效
+2、设置某键值在以后某一个时间点之后失效，比如2017年10月1日23点59分59秒">
+<meta property="og:updated_time" content="2017-04-18T10:07:20.025Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql--Lock wait timeout exceeded try restarting transaction">
-<meta name="twitter:description" content="一个业务正在操作mysql过程中，突然报提示错误信息：Lock wait timeout exceeded; try restarting transaction。查询发现问题原因是，在执行操作的表被另外一个操作锁定，当前操作等待另外一个操作完成时提示超时。
-一、临时解决办法
+<meta name="twitter:title" content="Redis-定时操作篇">
+<meta name="twitter:description" content="一、定时描述平时开发中，经常会把一些热数据存入缓存中，并且设置失效时间，比如把用户和rest接口地址存入缓存，并设置失效时间，一方面可以提高响应速度，还可以把一部分无效的请求挡在缓存层处理；还比如把验证码存入缓存，并设置失效时间，也可以达到上述目的。redis缓存有两种定时模式：
 
-执行以下脚本登录mysql：mysql -h 192.168.0.166 -u user -ppassword
-执行se">
+1、设置某键值在多少秒之后失效
+2、设置某键值在以后某一个时间点之后失效，比如2017年10月1日23点59分59秒">
 
 
 
@@ -128,9 +125,9 @@
 
 
 
-  <link rel="canonical" href="http://www.soujava.com/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/"/>
+  <link rel="canonical" href="http://www.soujava.com/Redis-定时操作篇/"/>
 
-  <title> Mysql--Lock wait timeout exceeded try restarting transaction | soujava </title>
+  <title> Redis-定时操作篇 | soujava </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -270,7 +267,7 @@
             
             
               
-                Mysql--Lock wait timeout exceeded try restarting transaction
+                Redis-定时操作篇
               
             
           </h1>
@@ -282,8 +279,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-19T16:46:36+08:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2017-04-18T17:09:35+08:00" content="2017-04-18">
+              2017-04-18
             </time>
           </span>
 
@@ -296,8 +293,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -312,8 +309,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/" itemprop="commentsCount"></span>
+                <a href="/Redis-定时操作篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Redis-定时操作篇/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,21 +338,27 @@
       
 
       
-        <p>一个业务正在操作mysql过程中，突然报提示错误信息：Lock wait timeout exceeded; try restarting transaction。<br>查询发现问题原因是，在执行操作的表被另外一个操作锁定，当前操作等待另外一个操作完成时提示超时。</p>
-<p><strong>一、临时解决办法</strong></p>
-<ol>
-<li>执行以下脚本登录mysql：mysql -h 192.168.0.166 -u user -ppassword</li>
-<li>执行select * from information_schema.innodb_trx\G;查询当前处于锁等待的进程。查询结果只需要关注trx_mysql_thread_id所对应的值。</li>
-<li>执行show processlist;查询当前的所有进程，找到对应的ID，执行kill命令，kill id。</li>
-</ol>
-<p><strong>二、Mysql数据库设置</strong></p>
-<ol>
-<li>设置innodb_lock_wait_timeout参数。通过show variables like ‘innodb_lock_wait_timeout’;查看当前设置的值。</li>
-<li>执行set global innodb_lock_wait_timeout=120;设置超时时间。</li>
-<li>设置是否自动提交事务。通过select @@autocommit;查询是否自动提交事务（1代表自动提交，0代表不自动提交）。执行set global autocommit=1;设置自动提交。</li>
-</ol>
-<p><em>注：这里设置自动提交事务操作针对高并发业务是会出问题的，所以视情况而定！</em></p>
-
+        <p><strong>一、定时描述</strong><br>平时开发中，经常会把一些热数据存入缓存中，并且设置失效时间，比如把用户和rest接口地址存入缓存，并设置失效时间，一方面可以提高响应速度，还可以把一部分无效的请求挡在缓存层处理；还比如把验证码存入缓存，并设置失效时间，也可以达到上述目的。redis缓存有两种定时模式：</p>
+<blockquote>
+<p>1、设置某键值在多少秒之后失效</p>
+<p>2、设置某键值在以后某一个时间点之后失效，比如2017年10月1日23点59分59秒失效</p>
+</blockquote>
+<p><strong>二、设置某键值在多少秒之后失效</strong></p>
+<blockquote>
+<p><strong>EXPIRE key seconds</strong></p>
+<p>为给定 key 设置生存时间，当 key 过期时(生存时间为 0 )，它会被自动删除;当 key 不存在或者不能为 key 设置生存时间时(比如在低于 2.1.3 版本的 Redis 中你尝试更新 key 的生存时间)，返回 0。</p>
+<p>可以对一个已经带有生存时间的 key 执行 EXPIRE 命令，新指定的生存时间会取代旧的生存时间。</p>
+<p>注：Redis 2.4 版本中，就算 key 已经过期，但还是可能在过期之后一秒钟之内被访问到；而在新的 Redis 2.6 版本中，延迟已经精确到1毫秒。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">127.0.0.1:6379&gt; set username maps #先设置键-值</div><div class="line"></div><div class="line">OK</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; ttl username  #此时还没有为key设置失效时间，所以用ttl时返回-1</div><div class="line"></div><div class="line">(integer) -1</div><div class="line"></div><div class="line"></div><div class="line">127.0.0.1:6379&gt; expire username 30 #设置过期时间为30秒</div><div class="line"></div><div class="line">(integer) 1</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; ttl username #查看剩余失效时间</div><div class="line"></div><div class="line">(integer) 25</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; ttl username  #查看剩余失效时间</div><div class="line"></div><div class="line">(integer) 23</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; ttl username  #查看剩余失效时间</div><div class="line"></div><div class="line">(integer) 22</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; expire username 50  #重新设置(更新）失效时间为50秒，如果key已经失效，则返回0</div><div class="line"></div><div class="line">(integer) 1</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; ttl username #查看剩余失效时间</div><div class="line"></div><div class="line">(integer) 47</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; ttl username #查看剩余失效时间</div><div class="line"></div><div class="line">(integer) 46</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; ttl username #当该键已经达到失效时间时，则自动失效，ttl查看时返回-2</div><div class="line"></div><div class="line">(integer) -2</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; keys username  #可以通过keys命令查看已经失效的键是否存在</div><div class="line"></div><div class="line">(empty list or set)</div></pre></td></tr></table></figure>
+<p><strong>三、设置某键值在以后某一个时间点之后失效</strong></p>
+<blockquote>
+<p><strong>EXPIREAT key timestamp</strong></p>
+<p>将key键在将来UNIX时间戳timestamp点失效</p>
+<p>如果生存时间设置成功，返回 1，当 key 不存在或没办法设置生存时间，返回 0</p>
+<p>注：EXPIREAT的设置规则跟EXPIRE命令一样</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">127.0.0.1:6379&gt; set username maps #先设置键-值</div><div class="line"></div><div class="line">OK</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; ttl username  #此时还没有为key设置失效时间，所以用ttl时返回-1</div><div class="line"></div><div class="line">(integer) -1</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; expireat username 1491494400000 # 这个 key 将在 2017-04-07 00:00:00 过期</div><div class="line"></div><div class="line">(integer) 1</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; ttl username  #查看剩余失效时间 </div><div class="line"></div><div class="line">(integer) 1490001890019</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -376,7 +379,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mysql/" rel="tag">#Mysql</a>
+            <a href="/tags/Redis/" rel="tag">#Redis</a>
           
         </div>
       
@@ -385,17 +388,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/MySql安装后添加的用户不能远程连接登陆/" rel="next" title="MySql安装后添加的用户不能远程连接登陆">
-                <i class="fa fa-chevron-left"></i> MySql安装后添加的用户不能远程连接登陆
+              <a href="/Redis-使用SortedSet分页处理/" rel="next" title="Redis-使用SortedSet分页处理">
+                <i class="fa fa-chevron-left"></i> Redis-使用SortedSet分页处理
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Redis-安装/" rel="prev" title="Redis--安装">
-                Redis--安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,8 +420,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/"
-           data-title="Mysql--Lock wait timeout exceeded try restarting transaction" data-url="http://www.soujava.com/Mysql-Lock-wait-timeout-exceeded-try-restarting-transaction/">
+      <div class="ds-thread" data-thread-key="Redis-定时操作篇/"
+           data-title="Redis-定时操作篇" data-url="http://www.soujava.com/Redis-定时操作篇/">
       </div>
     
   </div>
