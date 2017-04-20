@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="soujava, java" />
 
 
 
@@ -86,27 +86,15 @@
 
 
 
-<meta name="description" content="Linux下涉及到系统内核的一些软件，需要对内核升级才能使用，例如Docker的最低要求是2.6.32-431等等。1234注意：    如果在make menuconfig步骤报错，可尝试以下方法：    1、修改scripts/kconfig/Makefile 文件    2、找到HOSTLOADLIBES_mconf 在行末加入  -ltinfo
-一、先查看当前centos的系统内核
-
-二、">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CentOS-6.4内核升级操作">
-<meta property="og:url" content="http://www.soujava.com/CentOS-6-4内核升级操作/index.html">
+<meta name="description" content="记录未知的，牢记已知的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="soujava">
+<meta property="og:url" content="http://www.soujava.com/tags/java/index.html">
 <meta property="og:site_name" content="soujava">
-<meta property="og:description" content="Linux下涉及到系统内核的一些软件，需要对内核升级才能使用，例如Docker的最低要求是2.6.32-431等等。1234注意：    如果在make menuconfig步骤报错，可尝试以下方法：    1、修改scripts/kconfig/Makefile 文件    2、找到HOSTLOADLIBES_mconf 在行末加入  -ltinfo
-一、先查看当前centos的系统内核
-
-二、">
-<meta property="og:image" content="http://soujava.com/images/linuxKenel1.png">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.903Z">
+<meta property="og:description" content="记录未知的，牢记已知的">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS-6.4内核升级操作">
-<meta name="twitter:description" content="Linux下涉及到系统内核的一些软件，需要对内核升级才能使用，例如Docker的最低要求是2.6.32-431等等。1234注意：    如果在make menuconfig步骤报错，可尝试以下方法：    1、修改scripts/kconfig/Makefile 文件    2、找到HOSTLOADLIBES_mconf 在行末加入  -ltinfo
-一、先查看当前centos的系统内核
-
-二、">
-<meta name="twitter:image" content="http://soujava.com/images/linuxKenel1.png">
+<meta name="twitter:title" content="soujava">
+<meta name="twitter:description" content="记录未知的，牢记已知的">
 
 
 
@@ -127,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="http://www.soujava.com/CentOS-6-4内核升级操作/"/>
+  <link rel="canonical" href="http://www.soujava.com/tags/java/"/>
 
-  <title> CentOS-6.4内核升级操作 | soujava </title>
+  <title> 标签: java | soujava </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -150,7 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,163 +236,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                CentOS-6.4内核升级操作
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-19T16:00:13+08:00" content="2016-08-19">
-              2016-08-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/CentOS-6-4内核升级操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="CentOS-6-4内核升级操作/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-              &nbsp; | &nbsp;
-              <span class="page-pv"><i class="fa fa-file-o"></i>
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>Linux下涉及到系统内核的一些软件，需要对内核升级才能使用，例如Docker的最低要求是2.6.32-431等等。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">注意：</div><div class="line">    如果在make menuconfig步骤报错，可尝试以下方法：</div><div class="line">    <span class="number">1</span>、修改scripts/kconfig/Makefile 文件</div><div class="line">    <span class="number">2</span>、找到HOSTLOADLIBES_mconf 在行末加入  -ltinfo</div></pre></td></tr></table></figure></p>
-<p><strong>一、先查看当前centos的系统内核</strong></p>
-<p><img src="http://soujava.com/images/linuxKenel1.png" alt="Alt text"></p>
-<p><strong>二、下载内核包，如：linux-3.4.56.tar.xz</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https:<span class="comment">//www.kernel.org/pub/linux/kernel/v3.x/linux-3.4.56.tar.xz</span></div></pre></td></tr></table></figure>
-<p><strong>三、安装内核</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># tar -Jxvf linux-3.4.56.tar.xz</div><div class="line"># mv linux-3.4.56 /usr/src/linux-3.4.56</div><div class="line"># cd linux-3.4.56</div><div class="line"># make mrproper #清除环境变量</div><div class="line"># make menuconfig </div><div class="line"># make clean</div><div class="line"># make bzImage</div><div class="line"># make modules</div><div class="line"># make modules_install</div><div class="line"># make install</div></pre></td></tr></table></figure></p>
-<p><strong>四、编辑/etc/grub.conf文件，将default=1改成default=0</strong></p>
-<p><strong>五、重启系统并检查内核</strong></p>
-
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        java
+        <small>标签</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/java三目运算符之规则-坑/" itemprop="url">
+              
+                <span itemprop="name">java三目运算符之规则(坑)</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-04-20T19:40:25+08:00"
+              content="2017-04-20" >
+          04-20
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Linux/" rel="tag">#Linux</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/git搞着玩-新建本地仓库/" rel="next" title="git搞着玩-新建本地仓库与分支合并">
-                <i class="fa fa-chevron-left"></i> git搞着玩-新建本地仓库与分支合并
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/MySql安装后添加的用户不能远程连接登陆/" rel="prev" title="MySql安装后添加的用户不能远程连接登陆">
-                MySql安装后添加的用户不能远程连接登陆 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -412,14 +283,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="CentOS-6-4内核升级操作/"
-           data-title="CentOS-6.4内核升级操作" data-url="http://www.soujava.com/CentOS-6-4内核升级操作/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -439,17 +302,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -506,17 +360,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -636,10 +479,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 

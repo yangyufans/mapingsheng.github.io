@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vSphere添加物理网卡," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -86,42 +86,40 @@
 
 
 
-<meta name="description" content="一、有一台机架服务器，使用VMwarevSphere进行虚拟化，然后在其上安装N台虚拟机以供不同业务需要，之前该VMwarevSphere只有一个内网的物理网卡，也就是只能内网访问和使用；现在有个需求需要把该VMwarevSphere开放外网功能，并满足其他地域的用户通过公司VPN可以正常使用上面的虚拟机(其中的某一台)。所以现在需要三步操作：
+<meta name="description" content="平时开发过程中，判断操作除了使用if-else语句之外，三目运算符也经常被使用，然而在使用三目运算符过程中，我们异步都很老实，但是其使用规则则不曾了解，下面就了解一下它的使用规则。
+一、描述
+先了解一下三目运算符的语法：
 
-买一个物理网卡插到机架服务器的卡槽上面(哈哈，这一">
+表达式1?表达式2:表达式3;
+
+当表达式1为true时，则执行表达式2；当表达式1为false时，则执行表达式3
+先看下面的一段代码，分析一下执行结果：
+1234567891">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置">
-<meta property="og:url" content="http://www.soujava.com/VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/index.html">
+<meta property="og:title" content="java三目运算符之规则(坑)">
+<meta property="og:url" content="http://www.soujava.com/java三目运算符之规则-坑/index.html">
 <meta property="og:site_name" content="soujava">
-<meta property="og:description" content="一、有一台机架服务器，使用VMwarevSphere进行虚拟化，然后在其上安装N台虚拟机以供不同业务需要，之前该VMwarevSphere只有一个内网的物理网卡，也就是只能内网访问和使用；现在有个需求需要把该VMwarevSphere开放外网功能，并满足其他地域的用户通过公司VPN可以正常使用上面的虚拟机(其中的某一台)。所以现在需要三步操作：
+<meta property="og:description" content="平时开发过程中，判断操作除了使用if-else语句之外，三目运算符也经常被使用，然而在使用三目运算符过程中，我们异步都很老实，但是其使用规则则不曾了解，下面就了解一下它的使用规则。
+一、描述
+先了解一下三目运算符的语法：
 
-买一个物理网卡插到机架服务器的卡槽上面(哈哈，这一">
-<meta property="og:image" content="http://soujava.com/images/vSphere0.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere1.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere2.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere3.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere4.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere5.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere00.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere01.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere02.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere03.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere04.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere05.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere06.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere6.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere7.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere8.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere9.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere10.jpg">
-<meta property="og:image" content="http://soujava.com/images/vSphere11.jpg">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.909Z">
+表达式1?表达式2:表达式3;
+
+当表达式1为true时，则执行表达式2；当表达式1为false时，则执行表达式3
+先看下面的一段代码，分析一下执行结果：
+1234567891">
+<meta property="og:updated_time" content="2017-04-20T13:20:53.398Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置">
-<meta name="twitter:description" content="一、有一台机架服务器，使用VMwarevSphere进行虚拟化，然后在其上安装N台虚拟机以供不同业务需要，之前该VMwarevSphere只有一个内网的物理网卡，也就是只能内网访问和使用；现在有个需求需要把该VMwarevSphere开放外网功能，并满足其他地域的用户通过公司VPN可以正常使用上面的虚拟机(其中的某一台)。所以现在需要三步操作：
+<meta name="twitter:title" content="java三目运算符之规则(坑)">
+<meta name="twitter:description" content="平时开发过程中，判断操作除了使用if-else语句之外，三目运算符也经常被使用，然而在使用三目运算符过程中，我们异步都很老实，但是其使用规则则不曾了解，下面就了解一下它的使用规则。
+一、描述
+先了解一下三目运算符的语法：
 
-买一个物理网卡插到机架服务器的卡槽上面(哈哈，这一">
-<meta name="twitter:image" content="http://soujava.com/images/vSphere0.jpg">
+表达式1?表达式2:表达式3;
+
+当表达式1为true时，则执行表达式2；当表达式1为false时，则执行表达式3
+先看下面的一段代码，分析一下执行结果：
+1234567891">
 
 
 
@@ -142,9 +140,9 @@
 
 
 
-  <link rel="canonical" href="http://www.soujava.com/VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/"/>
+  <link rel="canonical" href="http://www.soujava.com/java三目运算符之规则-坑/"/>
 
-  <title> VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置 | soujava </title>
+  <title> java三目运算符之规则(坑) | soujava </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -284,7 +282,7 @@
             
             
               
-                VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置
+                java三目运算符之规则(坑)
               
             
           </h1>
@@ -296,8 +294,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-17T09:27:45+08:00" content="2016-08-17">
-              2016-08-17
+            <time itemprop="dateCreated" datetime="2017-04-20T19:40:25+08:00" content="2017-04-20">
+              2017-04-20
             </time>
           </span>
 
@@ -310,8 +308,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vSphere/" itemprop="url" rel="index">
-                    <span itemprop="name">vSphere</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -326,8 +324,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/" itemprop="commentsCount"></span>
+                <a href="/java三目运算符之规则-坑/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="java三目运算符之规则-坑/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -355,49 +353,51 @@
       
 
       
-        <p>一、有一台机架服务器，使用VMwarevSphere进行虚拟化，然后在其上安装N台虚拟机以供不同业务需要，之前该VMwarevSphere只有一个内网的物理网卡，也就是只能内网访问和使用；现在有个需求需要把该VMwarevSphere开放外网功能，并满足其他地域的用户通过公司VPN可以正常使用上面的虚拟机(其中的某一台)。所以现在需要三步操作：</p>
-<ol>
-<li>买一个物理网卡插到机架服务器的卡槽上面(哈哈，这一步不用说了，我去趟WC)</li>
-<li>VMwarevSphereClientk连VMwarevSphere服务器配置网卡</li>
-<li>进入到VMwarevSphere中的某一台虚拟机进行网卡配置</li>
-</ol>
-<p>二、VMwarevSphereClientk连VMwarevSphere服务器配置网卡</p>
-<p>1、 插入外网物理网卡之后，我们通过VMwarevSphereClientk连VMwarevSphere服务器后，在“配置”-“网络适配器”中就可以看到刚才新接入的网卡了(如果看不到，则说明你的网卡有问题啊，具体什么问题需要物理解决)，下面的图片中我们可以看到有两个可用的网卡(最下面两个vmnic0、vmnic1，其实vmnic1是我新接入的网卡)，其他的都不可用，仅仅代表支持多少个网卡</p>
-<p><img src="http://soujava.com/images/vSphere0.jpg" alt=""></p>
-<p>2、 虽然我们已经接入了物理网卡，但是我们现在系统的网络环境还没有装载进来，我们需要把该网卡添加到网络环境中来；进入“配置”–“网络”，在右侧界面中右上角点击“添加网络”</p>
-<p><img src="http://soujava.com/images/vSphere1.jpg" alt=""></p>
-<p>3、开始进入到添加网络的界面，其实只需要下一步下一步的进行就可以了</p>
-<p><img src="http://soujava.com/images/vSphere2.jpg" alt=""></p>
-<p>4、 选择网卡的网络类型</p>
-<p>注：创建交换机那一项，选择网卡时不要被图片中我的选择内容干扰了，选择哪个网卡根据你的实际情况，参照第一幅图片中(你找到你新插入的物理网卡的代号vmnic0~vmnicN)；比如你新接入的网卡是那个你就选择哪个。</p>
-<p><img src="http://soujava.com/images/vSphere3.jpg" alt=""></p>
-<p>5、设置网卡的链接方式</p>
-<p><img src="http://soujava.com/images/vSphere4.jpg" alt=""></p>
-<p>6、完成配置</p>
-<p><img src="http://soujava.com/images/vSphere5.jpg" alt=""></p>
-<p>7、然后再次进入“配置”–“网络”界面中，我们可以看到我们新添加的网卡</p>
-<p><img src="http://soujava.com/images/vSphere00.jpg" alt=""></p>
-<p>8、 然后我们对这个网卡进行编辑操作(添加虚拟机端口)</p>
-<p><img src="http://soujava.com/images/vSphere01.jpg" alt=""></p>
-<p><img src="http://soujava.com/images/vSphere02.jpg" alt=""></p>
-<p>9、 这里跟上一个步骤差不多，只不过这里的连接类型需要选择“vmKernel”</p>
-<p><img src="http://soujava.com/images/vSphere03.jpg" alt=""></p>
-<p><img src="http://soujava.com/images/vSphere04.jpg" alt=""></p>
-<p>10、 配置我们的ip地址(一般是配置你的外网ip地址，因为你既然让他开放到外网，所以你肯定有可能需要在外网通过vmSphereClient进行远程管理吧，这里就是配置你的外网访问ip地址)，到这里我们的物理机和网卡的配置就算完成了，下面需要配置的就是我们需要提供给外网用户访问的虚拟机了。</p>
-<p><img src="http://soujava.com/images/vSphere05.jpg" alt=""></p>
-<p><img src="http://soujava.com/images/vSphere06.jpg" alt=""></p>
-<p>11、 选择我们需要提供给外网用户访问的虚“虚拟机”，开始配置网络</p>
-<p><img src="http://soujava.com/images/vSphere6.jpg" alt=""></p>
-<p>12、 为虚拟机添加网卡(我们虚拟机要想链接外网，肯定要使用物理服务器的外网网卡，所以我们需要把物理服务器新接入的网卡添加到虚拟机上面)</p>
-<p><img src="http://soujava.com/images/vSphere7.jpg" alt=""></p>
-<p>13、 选择网络类型(其实这里又是跟前面的网络配置差不多，多么熟悉的界面)</p>
-<p><img src="http://soujava.com/images/vSphere8.jpg" alt=""></p>
-<p><img src="http://soujava.com/images/vSphere9.jpg" alt=""></p>
-<p>14、 然后添加完成后，我们可以看到我们新加入的网络适配器2，这里需要记住右侧的MAC地址，后面的配置网卡配置文件时要用到</p>
-<p><img src="http://soujava.com/images/vSphere10.jpg" alt=""></p>
-<p>15、重启一下系统，然后我们进入到需要供外网访问的那台虚拟机中，输入ifconfig命令就可以看到我们为虚拟机添加的网卡了</p>
-<p><img src="http://soujava.com/images/vSphere11.jpg" alt=""></p>
-<p>16、当然上一步中看到eth1这个新的网卡还不行，需要为这个网卡配置具体的ip，因为我们既然需要把这台虚拟机提供给外面用户访问，那么ip地址肯定不能老变化，所以我们需要为这个网卡eth1配置相关信息，具体怎么配置可以参考另一篇文章“<a href="http://soujava.com/Linux%E5%8F%8C%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE-%E5%86%85%E5%A4%96%E7%BD%91%E5%90%8C%E6%97%B6%E8%AE%BF%E9%97%AE/" target="_blank" rel="external">Linux双网卡配置(内外网同时访问)</a>”</p>
+        <p>平时开发过程中，判断操作除了使用if-else语句之外，三目运算符也经常被使用，然而在使用三目运算符过程中，我们异步都很老实，但是其使用规则则不曾了解，下面就了解一下它的使用规则。</p>
+<p><strong>一、描述</strong></p>
+<p>先了解一下三目运算符的语法：</p>
+<blockquote>
+<p>表达式1?表达式2:表达式3;</p>
+</blockquote>
+<p><em>当表达式1为true时，则执行表达式2；当表达式1为false时，则执行表达式3</em></p>
+<p>先看下面的一段代码，分析一下执行结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Test</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i = <span class="number">60</span>;</div><div class="line">	String str1 = String.valueOf(i &lt; <span class="number">100</span> ? <span class="number">80</span> : <span class="number">100</span>);</div><div class="line">	System.out.println(<span class="string">"str1:"</span>+str1);</div><div class="line">	</div><div class="line">	String str2 = String.valueOf(i &lt; <span class="number">100</span> ? <span class="number">80</span> : <span class="number">100.0</span>);</div><div class="line">	System.out.println(<span class="string">"str2:"</span>+str2);</div><div class="line">	</div><div class="line">	String str3 = String.valueOf(i &lt; <span class="number">100</span> ? <span class="number">80L</span> : <span class="number">100.0</span>);</div><div class="line">	System.out.println(<span class="string">"str2:"</span>+str3);</div><div class="line">	</div><div class="line">	String str4 = String.valueOf(i &lt; <span class="number">100</span> ? <span class="string">"80"</span> : <span class="number">100.0</span>);</div><div class="line">	System.out.println(<span class="string">"str2:"</span>+str4);</div><div class="line">	</div><div class="line">	String str5 = String.valueOf(i &lt; <span class="number">100</span> ? <span class="number">80</span> : <span class="string">"字符串"</span>);</div><div class="line">	System.out.println(<span class="string">"str2:"</span>+str5);</div><div class="line"></div><div class="line">	String str6 = String.valueOf(i &lt; <span class="number">100</span> ? <span class="keyword">true</span> : <span class="number">100.06</span>);</div><div class="line">	System.out.println(<span class="string">"str6:"</span>+str6);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行之后的返回结果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">str1:<span class="number">80</span></div><div class="line"></div><div class="line">str2:<span class="number">80.0</span></div><div class="line"></div><div class="line">str3:<span class="number">80.0</span></div><div class="line"></div><div class="line">str4:<span class="number">80</span></div><div class="line"></div><div class="line">str5:<span class="number">80</span></div><div class="line"></div><div class="line">str6:<span class="keyword">true</span></div></pre></td></tr></table></figure>
+<p><strong>二、分析</strong></p>
+<blockquote>
+<p>1、String str1 = String.valueOf(i &lt; 100 ? 80 : 100);</p>
+</blockquote>
+<p>这句代码运行结果为 str1:80,无容置疑，完全正确，也不需要过多解释了。</p>
+<blockquote>
+<p>2、String str2 = String.valueOf(i &lt; 100 ? 80 : 100.0);</p>
+</blockquote>
+<p>这句代码运行结果为 str2:80.0,看到结果有点纳闷了，因为i=60；并且i&lt;100;所以应该执行表达式2，应该打印出 80 才对啊，怎么会打印出 80.0为浮点数类型呢？<br>其实三木运算符还有一个规则：</p>
+<p>若两个操作数是明确类型的表达式(比如变量)，则按照正常的二进制数字转换，int转为long，long转为浮点型(float、double)等</p>
+<p>所以以上代码中，int类型的变量i会被转换为跟100.0同类型(浮点型)；看来三目运算是先执行类型检查-&gt;类型转换-&gt;执行运算</p>
+<blockquote>
+<p>3、String str3 = String.valueOf(i &lt; 100 ? 80L : 100.0);</p>
+</blockquote>
+<p>这句代码运行结果为 str3:80.0,此时结合第2行代码的分析可以这么判定，因为i为int型，并且表达式2(80L)中为Long型，理论上i应该会被自动转换为Long型，但是表达式3是浮点型，所以i最终会被转换为浮点型。</p>
+<blockquote>
+<p>4、String str4 = String.valueOf(i &lt; 100 ? “80” : 100.0);</p>
+</blockquote>
+<p>这句代码运行结果为 str4:80,因为表达式2为字符型，表达式3是浮点型，所以浮点型可以转换为字符型，因此打印的是 str4:80</p>
+<blockquote>
+<p>5、String str5 = String.valueOf(i &lt; 100 ? 80 : “字符串”);</p>
+</blockquote>
+<p>这句代码运行结果为 str5:80；具体原因可以参照第4行代码的分析；但是在第4行代码分析的基础上，还需要再深入分析一下，表达式2和表达式3类型如果不能相互转换呢？其实三目运算符规则就是如果不能类型转换的话，就不做类型转换。</p>
+<blockquote>
+<p>6、String str6 = String.valueOf(i &lt; 100 ? true : 100.06);</p>
+</blockquote>
+<p>这句代码运行结果为 str6:true，再次验证三目运算符运算时，如果不能类型转换的话，就不做类型转换。</p>
+<p><strong>三、总结</strong></p>
+<blockquote>
+<p>如果两个操作数是明确类型的表达式(比如变量)，则按照正常的二进制数字转换规则，int转为long，long转为float/double等</p>
+<p>如果两个操作数表达式类型不能相互转换，则不作转换；比如数值型都可以转换为字符串，但是字符串不能都转换为数值型。</p>
+<p>使用三目运算时，如果使用不当，仅仅会发生自动的类型转换；语句执行流程永远不变。</p>
+<p>在使用三目运算符时，表达式类型务必一致</p>
+</blockquote>
 
       
     </div>
@@ -419,7 +419,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vSphere添加物理网卡/" rel="tag">#vSphere添加物理网卡</a>
+            <a href="/tags/java/" rel="tag">#java</a>
           
         </div>
       
@@ -428,17 +428,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/thymeleaf教程1-环境搭建/" rel="next" title="thymeleaf教程1-环境搭建">
-                <i class="fa fa-chevron-left"></i> thymeleaf教程1-环境搭建
+              <a href="/Redis-定时操作篇/" rel="next" title="Redis-定时操作篇">
+                <i class="fa fa-chevron-left"></i> Redis-定时操作篇
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Linux双网卡配置-内外网同时访问/" rel="prev" title="Linux双网卡配置(内外网同时访问)">
-                Linux双网卡配置(内外网同时访问) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -464,8 +460,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/"
-           data-title="VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置" data-url="http://www.soujava.com/VMwarevSphere添加物理网卡后其中的虚拟机使用该网卡配置/">
+      <div class="ds-thread" data-thread-key="java三目运算符之规则-坑/"
+           data-title="java三目运算符之规则(坑)" data-url="http://www.soujava.com/java三目运算符之规则-坑/">
       </div>
     
   </div>

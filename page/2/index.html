@@ -260,6 +260,150 @@
             
               
                 
+                <a class="post-title-link" href="/thymeleaf教程2-后台数据封装与页面渲染/" itemprop="url">
+                  thymeleaf教程2-后台数据封装与页面渲染
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T16:32:50+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/thymeleaf/" itemprop="url" rel="index">
+                    <span itemprop="name">thymeleaf</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/thymeleaf教程2-后台数据封装与页面渲染/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="thymeleaf教程2-后台数据封装与页面渲染/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们使用模板引擎的过程中，页面上面的数据肯定需要从后台传递过来，然后把数据装载到页面对应区域中，所以我们来看看如果把后台的数据在前端页面渲染。</p>
+<p><strong>一、添加一个表单页面–登陆操作</strong><br><img src="http://soujava.com/images/thy6.png" alt=""></p>
+<p><strong>二、新建业务控制器(doLogin)–获取登陆表单中提交的数据</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">String username = request.getParameter(<span class="string">"username"</span>);</div><div class="line">  	String password = request.getParameter(<span class="string">"password"</span>);</div><div class="line">  	<span class="comment">//实例化一个thymeleaf文本上下文</span></div><div class="line">      WebContext ctx = <span class="keyword">new</span> WebContext(request, response, servletContext, request.getLocale());</div><div class="line"><span class="comment">//将前端登陆表单页面提交过来的数据封装到thymeleaf上下文中</span></div><div class="line">      ctx.setVariable(<span class="string">"username"</span>, username);</div><div class="line">      ctx.setVariable(<span class="string">"password"</span>, password);</div><div class="line">      <span class="comment">//调用模板引擎转向到对应的模板页面--desc模板页面</span></div><div class="line">      templateEngine.process(<span class="string">"desc"</span>, ctx, response.getWriter());</div></pre></td></tr></table></figure></p>
+<p><strong>三、新建模板页面(desc)–显示doLogin控制器中封装的数据</strong></p>
+<p><img src="http://soujava.com/images/thy7.png" alt=""></p>
+<p><em>注：读取数据使用${XX}这种形式，是不是感觉很熟悉，EL表达式；而向页面html元素中渲染数据使用thymeleaf提供的标签th:text=”${XX}”这种形式。</em></p>
+<p><strong>四、编译工程项目–启动web服务器测试</strong></p>
+<p>1、在登陆表单中输入对应的用户名和密码，点击提交按钮<br><img src="http://soujava.com/images/thy1.png" alt=""></p>
+<p>1、可以看到提交表单后进入到doLogin控制器中，控制器获取数据并封装数据，然后转向到模板页面中渲染数据。<br><img src="http://soujava.com/images/thy2.png" alt=""></p>
+<p><strong>五、在控制器doLogin中封装一些稍微复杂的数据集-数组</strong></p>
+<p>1、我们声明一个类型数组，然后把数组封装到thymeleaf上下文中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String[] types = &#123;<span class="string">"足球"</span>,<span class="string">"篮球"</span>,<span class="string">"羽毛球"</span>&#125;;</div><div class="line">   ctx.setVariable(<span class="string">"types"</span>, types);</div></pre></td></tr></table></figure></p>
+<p>2、在desc模板页面中遍历显示封装好的集合数据</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;p th:each="type : $&#123;types&#125;"&gt;</div><div class="line">   	&lt;span th:text="$&#123;type&#125;"&gt;&lt;/span&gt;</div><div class="line">   &lt;/p&gt;</div></pre></td></tr></table></figure>
+<p><em>注：上面渲染集合数据到模板页面的代码中我们采用了th:each的方法遍历数据，这是thymeleaf提供的，其实thymeleaf提供了非常多并且非常强大的方法，后续再一一说明。</em></p>
+<p>3、针对刚刚封装好的集合数据到页面测试一下</p>
+<p><img src="http://soujava.com/images/thy3.png" alt=""></p>
+<p><img src="http://soujava.com/images/thy4.png" alt=""></p>
+<p><strong>六、在控制器doLogin中封装一些稍微复杂的数据集-实体Bean</strong></p>
+<p>1、我们新建一个User的Bean实体<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line"> 	<span class="keyword">private</span> String firstName = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">private</span> String lastName = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">private</span> String nationality = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">private</span> Integer age = <span class="keyword">null</span>；</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">final</span> String firstName, <span class="keyword">final</span> String lastName, </span></span></div><div class="line">            <span class="keyword">final</span> String nationality, <span class="keyword">final</span> Integer age) &#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">        <span class="keyword">this</span>.firstName = firstName;</div><div class="line">        <span class="keyword">this</span>.lastName = lastName;</div><div class="line">        <span class="keyword">this</span>.nationality = nationality;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2、在我们的doLogin业务控制器中实例化该User实体bean，并且把bean数据实体封装到thymeleaf上下文中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User user = <span class="keyword">new</span> User(<span class="string">"zhang"</span>,<span class="string">"san"</span>,<span class="string">"china"</span>,<span class="number">25</span>);</div><div class="line">      ctx.setVariable(<span class="string">"user"</span>, user);</div></pre></td></tr></table></figure>
+<p>3、在desc模板页面中显示封装好的User实体bean数据<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;p th:text="$&#123;user.firstName+':'+user.lastName+':'+user.nationality+':'+user.age&#125;"&gt;&lt;/p&gt;</div></pre></td></tr></table></figure></p>
+<p>注：我们在获取bean中的属性数据时，仍然采用EL表达式${user.firstName}的方式；然后将获取的数据显示到html元素中用th:text方法；只不过我们使用th:text时在中间使用了字符串拼接将多个属性拼接显示。</p>
+<p><strong>六、总结</strong></p>
+<p>1、我们在执行业务操作的时候，需要把后台的数据集封装到thymeleaf上下文中，我们可以封装组合各种我们需要的数据，如：字符串、集合、实体bean等等<br>2、通过thymeleaf模板引擎转向到对应的模板页面<br>3、用thymeleaf提供的方法渲染后台封装的数据到页面中</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/jquery获取单选按钮值的诡异之处/" itemprop="url">
                   jquery获取单选按钮值的诡异之处
                 </a>
@@ -2938,154 +3082,6 @@ int n =0238;（不合格）
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/java接收oracle中clob类型字段值/" itemprop="url">
-                  java接收oracle中clob类型字段值
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-06T16:16:33+08:00" content="2016-07-06">
-              2016-07-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/java接收oracle中clob类型字段值/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="java接收oracle中clob类型字段值/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>oracle数据库中有一种大文本字段类型：clob;那么当我们的java程序从数据库中查询出来的数据列表用java程序如何接收处理呢？</p>
-<pre><code>Clob columnContentClob = result.getClob(1); //先用大文本类型接收,getClob方法可以传入列名(columnName)重载使用
-Reader is = columnContentClob.getCharacterStream();//用reader接收
-BufferedReader bf = new BufferedReader(is);//实例化一个缓冲流
-String columnContent = bf.readLine();//读取大文本的内容
-</code></pre><p><strong>实例</strong></p>
-<pre><code>String driver = &quot;oracle.jdbc.OracleDriver&quot;;
-String url = &quot;jdbc:oracle:thin:@127.0.0.1:1521/databaseName&quot;;
-String username = &quot;username&quot;;
-String password = &quot;password&quot;;
-Class.forName(driver);
-Connection conn = DriverManager.getConnection(url, username, password);
-
- ResultSet rs = null;
-PreparedStatement pstmt = null;
-String query = &quot;SELECT description FROM mytable WHERE id = ?&quot;;
-try {
-  conn = getConnection();
-  pstmt = conn.prepareStatement(query);
-  pstmt.setInt(1, id);
-  rs = pstmt.executeQuery();
-  rs.next();
-  Clob clob = rs.getClob(1);//rs.getClob(&quot;description&quot;);
-
-} finally {
-  rs.close();
-  pstmt.close();
-  conn.close();
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3131,7 +3127,7 @@ try {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -3148,7 +3144,7 @@ try {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
