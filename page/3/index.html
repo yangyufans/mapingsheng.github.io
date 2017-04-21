@@ -260,6 +260,130 @@
             
               
                 
+                <a class="post-title-link" href="/java通过Stream对list集合分组/" itemprop="url">
+                  java通过Stream对list集合分组
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-15T14:00:11+08:00" content="2016-07-15">
+              2016-07-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/java通过Stream对list集合分组/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="java通过Stream对list集合分组/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>现在有一个List集合，想对该集合中的数据分组处理，想到java8中的stream，就搞来试试，非常给力！例子如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps;</div><div class="line"></div><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</div><div class="line">   	<span class="keyword">private</span> Integer id;</div><div class="line">	<span class="keyword">private</span> String type;</div><div class="line">	<span class="keyword">private</span> String name; </div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(Integer id,String type,String name)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.id = id;</div><div class="line">		<span class="keyword">this</span>.type = type;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;   </div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.id = id;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> id;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setType</span><span class="params">(String type)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.type = type;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getType</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> type;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"><span class="keyword">import</span> java.util.stream.Collectors;</div><div class="line"></div><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainUser</span></span>&#123;</div><div class="line">   	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		List&lt;User&gt; list = getUserList();</div><div class="line">		Map&lt;String,List&lt;User&gt;&gt; userGroupMap = list.stream().collect(Collectors.groupingBy(User::getType));</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;User&gt; <span class="title">getUserList</span><span class="params">()</span></span>&#123;</div><div class="line">		User user1 = <span class="keyword">new</span> User(<span class="number">1</span>,<span class="string">"张三"</span>,<span class="string">"小学"</span>);</div><div class="line">		User user2 = <span class="keyword">new</span> User(<span class="number">2</span>,<span class="string">"李四"</span>,<span class="string">"小学"</span>);</div><div class="line">		User user3 = <span class="keyword">new</span> User(<span class="number">3</span>,<span class="string">"王五"</span>,<span class="string">"初中"</span>);</div><div class="line">		User user4 = <span class="keyword">new</span> User(<span class="number">4</span>,<span class="string">"马六"</span>,<span class="string">"高中"</span>);</div><div class="line">		</div><div class="line">		List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;User&gt;();</div><div class="line">		list.add(user1);</div><div class="line">		list.add(user2);</div><div class="line">		list.add(user3);</div><div class="line">		list.add(user4);</div><div class="line">			</div><div class="line">		<span class="keyword">return</span> list;</div><div class="line">	&#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>运行上面例子得到下面的结果<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;高中=[com.maps.User@<span class="number">448139f</span>0], 初中=[com.maps.User@<span class="number">7</span>cca494b], 小学=[com.maps.User@<span class="number">7</span>ba4f24f, com.maps.User@<span class="number">3</span>b9a45b3]&#125;</div></pre></td></tr></table></figure></p>
+<p>是不是感觉不用for循环挺爽！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/java接收oracle中clob类型字段值/" itemprop="url">
                   java接收oracle中clob类型字段值
                 </a>
@@ -1704,7 +1828,7 @@ function Close()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">51</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
