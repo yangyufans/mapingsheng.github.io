@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.soujava.com/"/>
-  <updated>2017-04-25T11:36:40.829Z</updated>
+  <updated>2017-04-25T11:43:54.647Z</updated>
   <id>http://www.soujava.com/</id>
   
   <author>
@@ -16,14 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>java中集合使用中遇到的-坑</title>
     <link href="http://www.soujava.com/java%E4%B8%AD%E9%9B%86%E5%90%88%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84-%E5%9D%91/"/>
     <id>http://www.soujava.com/java中集合使用中遇到的-坑/</id>
-    <published>2017-04-25T06:27:21.836Z</published>
-    <updated>2017-04-25T11:36:40.829Z</updated>
+    <published>2017-04-25T06:27:21.000Z</published>
+    <updated>2017-04-25T11:43:54.647Z</updated>
     
-    <content type="html">&lt;p&gt;—b&lt;br&gt;title: java中集合使用中遇到的-坑&lt;br&gt;date: 2017-04-25 14:27:21&lt;br&gt;categories: java&lt;/p&gt;
-&lt;h2 id=&quot;tags-java&quot;&gt;&lt;a href=&quot;#tags-java&quot; class=&quot;headerlink&quot; title=&quot;tags: java&quot;&gt;&lt;/a&gt;tags: java&lt;/h2&gt;&lt;p&gt;平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。&lt;/p&gt;
+    <content type="html">&lt;p&gt;平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1、数组之间的拷贝-Arrays.copyOf()&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;我们直接用java.util.Arrays工具类的copyOf方法进行数组拷贝&lt;/p&gt;
@@ -125,11 +124,14 @@
     
     <summary type="html">
     
-      &lt;p&gt;—b&lt;br&gt;title: java中集合使用中遇到的-坑&lt;br&gt;date: 2017-04-25 14:27:21&lt;br&gt;categories: java&lt;/p&gt;
-&lt;h2 id=&quot;tags-java&quot;&gt;&lt;a href=&quot;#tags-java&quot; class=&quot;headerli
+      &lt;p&gt;平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，
     
     </summary>
     
+      <category term="java" scheme="http://www.soujava.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://www.soujava.com/tags/java/"/>
     
   </entry>
   

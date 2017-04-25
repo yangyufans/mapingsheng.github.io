@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="soujava, java" />
+  <meta name="keywords" content="java," />
 
 
 
@@ -86,19 +86,25 @@
 
 
 
-<meta name="description" content="—btitle: java中集合使用中遇到的-坑date: 2017-04-25 14:27:21categories: java
-tags: java平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中">
+<meta name="description" content="平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。
+1、数组之间的拷贝-Arrays.copyOf()
+
+我们直接用java.util.Array">
 <meta property="og:type" content="article">
-<meta property="og:title" content="soujava">
+<meta property="og:title" content="java中集合使用中遇到的-坑">
 <meta property="og:url" content="http://www.soujava.com/java中集合使用中遇到的-坑/index.html">
 <meta property="og:site_name" content="soujava">
-<meta property="og:description" content="—btitle: java中集合使用中遇到的-坑date: 2017-04-25 14:27:21categories: java
-tags: java平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中">
-<meta property="og:updated_time" content="2017-04-25T11:36:40.829Z">
+<meta property="og:description" content="平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。
+1、数组之间的拷贝-Arrays.copyOf()
+
+我们直接用java.util.Array">
+<meta property="og:updated_time" content="2017-04-25T11:43:54.647Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="soujava">
-<meta name="twitter:description" content="—btitle: java中集合使用中遇到的-坑date: 2017-04-25 14:27:21categories: java
-tags: java平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中">
+<meta name="twitter:title" content="java中集合使用中遇到的-坑">
+<meta name="twitter:description" content="平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。
+1、数组之间的拷贝-Arrays.copyOf()
+
+我们直接用java.util.Array">
 
 
 
@@ -121,7 +127,7 @@ tags: java平时开发过程中用的最多的莫过于基本类型、包装类�
 
   <link rel="canonical" href="http://www.soujava.com/java中集合使用中遇到的-坑/"/>
 
-  <title>  | soujava </title>
+  <title> java中集合使用中遇到的-坑 | soujava </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -261,7 +267,7 @@ tags: java平时开发过程中用的最多的莫过于基本类型、包装类�
             
             
               
-                
+                java中集合使用中遇到的-坑
               
             
           </h1>
@@ -278,6 +284,25 @@ tags: java平时开发过程中用的最多的莫过于基本类型、包装类�
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -313,8 +338,7 @@ tags: java平时开发过程中用的最多的莫过于基本类型、包装类�
       
 
       
-        <p>—b<br>title: java中集合使用中遇到的-坑<br>date: 2017-04-25 14:27:21<br>categories: java</p>
-<h2 id="tags-java"><a href="#tags-java" class="headerlink" title="tags: java"></a>tags: java</h2><p>平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。</p>
+        <p>平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。</p>
 <p><strong>1、数组之间的拷贝-Arrays.copyOf()</strong></p>
 <blockquote>
 <p>我们直接用java.util.Arrays工具类的copyOf方法进行数组拷贝</p>
@@ -431,6 +455,12 @@ tags: java平时开发过程中用的最多的莫过于基本类型、包装类�
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -469,7 +499,7 @@ tags: java平时开发过程中用的最多的莫过于基本类型、包装类�
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="java中集合使用中遇到的-坑/"
-           data-title="" data-url="http://www.soujava.com/java中集合使用中遇到的-坑/">
+           data-title="java中集合使用中遇到的-坑" data-url="http://www.soujava.com/java中集合使用中遇到的-坑/">
       </div>
     
   </div>
@@ -567,7 +597,7 @@ tags: java平时开发过程中用的最多的莫过于基本类型、包装类�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-java"><span class="nav-number">1.</span> <span class="nav-text">tags: java</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
