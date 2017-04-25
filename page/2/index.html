@@ -260,6 +260,144 @@
             
               
                 
+                <a class="post-title-link" href="/基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具/" itemprop="url">
+                  基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-02T11:20:33+08:00" content="2016-09-02">
+              2016-09-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>基于gitlab二次开发的针对git仓库中的项目代码库进行打包、补丁包管理工具，解决产品升级时发布编译的补丁包(.class、jar)繁琐问题。</p>
+<h4 id="平时我们开发时经常出现以下问题："><a href="#平时我们开发时经常出现以下问题：" class="headerlink" title="平时我们开发时经常出现以下问题："></a>平时我们开发时经常出现以下问题：</h4><p>1、同一个产品由N多人开发，那么比如涉及产品版本升级时，我们是基于编译过的文件(.class、jar包)进行升级操作的，<br>   所以针对这种交叉式的开发对于补丁包发布来讲是非常头疼的事情。</p>
+<h4 id="功能介绍："><a href="#功能介绍：" class="headerlink" title="功能介绍："></a>功能介绍：</h4><p>1、登陆功能– 根据登陆的用户信息，将获取gitlab代码服务器中的该用户具有的所有访问权限的代码仓库列表</p>
+<p>2、打包功能– 针对某一个代码仓库，输入开始提交id(commit的ID)代号、最后提交id代号，<br>    那么将针对两个提交区间id中的代码进行编译(调用maven命令)、打包(调用maven命令)、压缩操作(程序执行)</p>
+<p>3、补丁包管理– 针对每一个人每一次的打包操作都进行记录和补丁包维护操作，比如后期涉及大版本升级(多个补丁包覆盖)可以有效追溯</p>
+<h4 id="项目源码地址："><a href="#项目源码地址：" class="headerlink" title="项目源码地址："></a>项目源码地址：</h4><p><a href="https://github.com/mapingsheng/gitlabPatchManage" target="_blank" rel="external">https://github.com/mapingsheng/gitlabPatchManage</a> </p>
+<h4 id="二次开发说明："><a href="#二次开发说明：" class="headerlink" title="二次开发说明："></a>二次开发说明：</h4><p>1、编译gitlab项目的源码包成最新的jar包()</p>
+<p>2、将编译的gitlab源码包添加到项目中、当然还有其他依赖的jar包，可以查看pom.xml文件的依赖配置</p>
+<p>3、将本项目导入你的IDE中，然后编译成war包，部署到web服务器中运行即可看到系统界面</p>
+<h4 id="配置说明："><a href="#配置说明：" class="headerlink" title="配置说明："></a>配置说明：</h4><p>1、src\main\resources是所有的资源、配置文件目录</p>
+<p>2、gitInfo.xml配置本地仓库的地址和打包后的补丁包的存放地址</p>
+<p>3、sql\文件夹下面存放数据库的相关信息表结构和初始化的数据</p>
+<p>4、context\文件夹下面存放oracle数据库连接的配置信息</p>
+<h4 id="声明："><a href="#声明：" class="headerlink" title="声明："></a>声明：</h4><p>本项目是完全根据自己随性的一个想法自由发挥开发出来的一个工具类项目，完全从什么都不了解、一头雾水到慢慢的搜集资料慢慢的琢磨出来的，</p>
+<p>所以开发过程中系统没有经过架构和层级的设计，完全是堆代码的方式开发的，所以代码写的比较龊，后期会慢慢的重构，忘理解！</p>
+<h4 id="系统界面："><a href="#系统界面：" class="headerlink" title="系统界面："></a>系统界面：</h4><p><img src="http://soujava.com/images/git1.jpg" alt="Alt text" title="登陆"></p>
+<p><img src="http://soujava.com/images/git2.jpg" alt="Alt text" title="打补丁"></p>
+<p><img src="http://soujava.com/images/git3.jpg" alt="Alt text" title="补丁记录"></p>
+<p><img src="http://soujava.com/images/git4.jpg" alt="Alt text" title="补丁记录"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/springBoot编写不同风格的restAPI接口/" itemprop="url">
                   springBoot编写不同风格的restAPI接口
                 </a>
@@ -2977,133 +3115,6 @@ int n =0238;（不合格）
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/Linux开机启动后经常需要配置网卡/" itemprop="url">
-                  Linux开机启动后经常需要配置网卡
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-25T17:27:42+08:00" content="2016-07-25">
-              2016-07-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Linux开机启动后经常需要配置网卡/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Linux开机启动后经常需要配置网卡/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在虚拟机中安装的CentOS6操作系统，每次开机启动后，网卡默认都是关闭的；所以系统对外网络是处于中断的状态的，所以也就不能通过Xshell工具远程连接操作。</p>
-<p><img src="http://soujava.com/images/wangka.jpg" alt="Alt text"></p>
-<p>然后针对上面的情况，需要手动操作一下，把eth0网卡开启使用才行；感觉很繁琐！</p>
-<p><img src="http://soujava.com/images/wankapeizhi.jpg" alt="Alt text"></p>
-<p>解决方法：<br>使用如下命令编辑网卡信息：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysconfig/network-scripts/ifcfg-eth0</div></pre></td></tr></table></figure></p>
-<p>网卡信息的内容大致如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DEVICE=&quot;eth0&quot;</div><div class="line">TYPE=ethernet</div><div class="line">UUID=1221231K-4DFSD-8SDFA</div><div class="line">ONBOOT=&quot;yes&quot;</div><div class="line">IPADDR=192.168.1.152</div><div class="line">NETMASK=255.255.255.0</div><div class="line">GATEWAY=192.168.1.1</div><div class="line">BOOTPROTO=static</div></pre></td></tr></table></figure></p>
-<p>然后在网卡信息中找到”NOBOOT=no”配置选项，改成”NOBOOT=yes”</p>
-<p>再重启电脑后就不需要再次手动配置激活网卡了！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3149,7 +3160,7 @@ int n =0238;（不合格）
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
