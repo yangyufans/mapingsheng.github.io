@@ -260,6 +260,146 @@
             
               
                 
+                <a class="post-title-link" href="/Linux系统添加配置随开机启动的服务/" itemprop="url">
+                  Linux系统添加配置随开机启动的服务-rc.local配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-25T17:46:24+08:00" content="2016-07-25">
+              2016-07-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Linux系统添加配置随开机启动的服务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Linux系统添加配置随开机启动的服务/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在linux服务器操作系统中，经常会安装一些服务器端的软件如：tomcat、redis、MQ、Nginx等等常用的服务器组件；那么有时候服务器重启后需要用一个一个的启动命令把不同的软件启动起来；主要有以下几种场景：</p>
+<ol>
+<li>以root身份才能启动的服务</li>
+<li>以非root身份启动的服务(一般情况下都是以非root身份启动和管理服务)</li>
+</ol>
+<p><strong>一、下面以把tomcat服务器配置成随开机自启动的配置为例说明一下</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tomcat的安装路径：/usr/local/server/apache-tomcat-<span class="number">8</span></div></pre></td></tr></table></figure></p>
+<p>那么我们知道了tomcat的安装路径后，就可以通过以下命令启动tomcat服务了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/server/apache-tomcat-<span class="number">8</span>/bin/start.sh</div></pre></td></tr></table></figure></p>
+<p>如果我们想让linux每次开机时自动启动tomcat服务，那么我们需要如下配置：</p>
+<ol>
+<li>打开 /etc/rc.d/rc.local文件，在该配置文件中添加tomcat的启动命令<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch /var/lock/subsys/local</div><div class="line">/usr/local/server/apache-tomcat-<span class="number">8</span>/bin/start.sh</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>二、下面以把redis服务配置成随开机自启动的配置为例说明一下（以redis用户启动）</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis的安装路径：/usr/local/cache/redis-<span class="number">2.8</span>.19</div></pre></td></tr></table></figure></p>
+<p>如果我们通过输入命令启动redis的方式是：(假设redis服务启动时必须用redis用户)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/cache/redis-<span class="number">2.8</span>.19/src/redis-server</div></pre></td></tr></table></figure></p>
+<p>如果我们想让linux每次开机时自动启动redis服务，那么我们需要如下配置：</p>
+<ol>
+<li>打开 /etc/rc.d/rc.local文件，在该配置文件中添加tomcat的启动命令<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch /var/lock/subsys/local</div><div class="line">su redis -c <span class="string">"/usr/local/cache/redis-2.8.19/src/redis-server"</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>三、总结</strong><br>我们主要通过在rc.local文件中添加我们服务的启动脚本的方式来配置随开机自启动服务；当然对于linux操作系统来讲，并不是仅仅就这一种方式配置随机启动操作，其他方式后续再说。那么rc.local到底是什么文件呢？</p>
+<p>rc.local其实是一个脚本文件，该脚本是在系统初始化级别脚本运行之后再执行的，因此可以在里面添加你想在系统启动之后执行的任何操作，比如启动第三方的服务，比如挂载mount操作等等。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/Linux开机启动后经常需要配置网卡/" itemprop="url">
                   Linux开机启动后经常需要配置网卡
                 </a>
@@ -2083,7 +2223,7 @@ function Close()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-count">54</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2091,7 +2231,7 @@ function Close()
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

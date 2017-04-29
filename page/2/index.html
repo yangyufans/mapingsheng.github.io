@@ -260,6 +260,131 @@
             
               
                 
+                <a class="post-title-link" href="/带附件的enctype表单中普通属性的获取/" itemprop="url">
+                  带附件的enctype表单中普通属性的获取
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T09:33:04+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/带附件的enctype表单中普通属性的获取/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="带附件的enctype表单中普通属性的获取/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们在平时开发过程中，经常会遇到一些表单，比如用户信息修改、数据资源添加等等，并且这些表单都会带有附件：图片、其他文件；所以我们平时开发过程中经常需要处理两种表单，一种是带附件的表单，一种是不带附件的表单；因为两种表单向后台提交数据的格式不同，后者是以流的方式将表单数据提交到后台的。所以我们下面分两块描述两种获取不同表单的方式</p>
+<h3 id="一、普通表单-不带文件域-，基于普通表单封装成了一个通用的方法"><a href="#一、普通表单-不带文件域-，基于普通表单封装成了一个通用的方法" class="headerlink" title="一、普通表单(不带文件域)，基于普通表单封装成了一个通用的方法"></a>一、普通表单(不带文件域)，基于普通表单封装成了一个通用的方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">    * 将request对象解析处理成map</div><div class="line">    * <span class="doctag">@param</span> request</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String,String&gt; <span class="title">transToMAP</span><span class="params">(HttpServletRequest request)</span></span>&#123;</div><div class="line">           Map returnMap = <span class="keyword">new</span> HashMap();</div><div class="line">           Iterator entries = request.getParameterMap().entrySet().iterator();</div><div class="line">           Map.Entry entry;</div><div class="line">           <span class="keyword">while</span> (entries.hasNext()) &#123;</div><div class="line">               String name = <span class="string">""</span>;</div><div class="line">               String value = <span class="string">""</span>;</div><div class="line">               entry = (Map.Entry) entries.next();</div><div class="line">               name = (String) entry.getKey();</div><div class="line">               Object valueObj = entry.getValue();</div><div class="line">               <span class="keyword">if</span>(<span class="keyword">null</span> == valueObj)&#123;</div><div class="line">                   value = <span class="string">""</span>;</div><div class="line">               &#125;<span class="keyword">else</span> <span class="keyword">if</span>(valueObj <span class="keyword">instanceof</span> String[])&#123;</div><div class="line">                   String[] values = (String[])valueObj;</div><div class="line">                   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;values.length;i++)&#123;</div><div class="line">                       value = values[i] + <span class="string">","</span>;</div><div class="line">                   &#125;</div><div class="line">                   value = value.substring(<span class="number">0</span>, value.length()-<span class="number">1</span>);</div><div class="line">               &#125;<span class="keyword">else</span>&#123;</div><div class="line">                   value = valueObj.toString();</div><div class="line">               &#125;</div><div class="line">               returnMap.put(name, value);</div><div class="line">           &#125;</div><div class="line">       <span class="keyword">return</span>  returnMap;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h3 id="一、普通表单-带文件域-，基于附件表单封装成了一个通用的方法"><a href="#一、普通表单-带文件域-，基于附件表单封装成了一个通用的方法" class="headerlink" title="一、普通表单(带文件域)，基于附件表单封装成了一个通用的方法"></a>一、普通表单(带文件域)，基于附件表单封装成了一个通用的方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">    * 将request对象解析处理成map</div><div class="line">    * <span class="doctag">@param</span> request</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String,String&gt; <span class="title">transToMAP</span><span class="params">(HttpServletRequest request,String url)</span></span>&#123;</div><div class="line">       Map returnMap = <span class="keyword">new</span> HashMap();</div><div class="line">       <span class="keyword">boolean</span> isMultipart = ServletFileUpload.isMultipartContent(request);</div><div class="line"></div><div class="line">	<span class="comment">//如果multipart/form-data类型的表单（带附件）</span></div><div class="line">       <span class="keyword">if</span> (isMultipart)&#123;  </div><div class="line">               FileItemFactory factory = <span class="keyword">new</span> DiskFileItemFactory();</div><div class="line">               ServletFileUpload upload = <span class="keyword">new</span> ServletFileUpload( factory );</div><div class="line">               <span class="keyword">try</span> &#123;</div><div class="line">                   List&lt;FileItem&gt; uploadItemList = upload.parseRequest(request);</div><div class="line">                   <span class="keyword">for</span>( FileItem uploadItem : uploadItemList )&#123;</div><div class="line"></div><div class="line">					<span class="comment">//文件表单中的普通form表单域，比如username、phone等属性</span></div><div class="line">                       <span class="keyword">if</span>( uploadItem.isFormField() )&#123; </div><div class="line">                           String fieldName = uploadItem.getFieldName();</div><div class="line">                           String value = uploadItem.getString();</div><div class="line">                           returnMap.put(fieldName,value);</div><div class="line"></div><div class="line">                       &#125;<span class="keyword">else</span>&#123;  <span class="comment">//form表单中的file文件域</span></div><div class="line">                       	 </div><div class="line">                           <span class="keyword">try</span>&#123;</div><div class="line">                           	<span class="comment">/**</span></div><div class="line">                           	 * 1、从type="file"文件域中获取文件流、字节数组等等信息</div><div class="line">                           	 */</div><div class="line">                           	 String fieldname = uploadItem.getFieldName();</div><div class="line">                                String filename = FilenameUtils.getName(uploadItem.getName());</div><div class="line">                                InputStream filecontent = uploadItem.getInputStream();</div><div class="line">                                </div><div class="line">                                <span class="keyword">byte</span>[] bytes = uploadItem.get();</div><div class="line">                                	</div><div class="line">                                <span class="comment">/**</span></div><div class="line">                            	 * 2、把对应的文件上传到文件服务器中，或者把文件写入磁盘上面</div><div class="line">                            	 * </div><div class="line">                            	 * ........</div><div class="line">                            	 */</div><div class="line">                                </div><div class="line">                                returnMap.put(fieldname,filename);<span class="comment">//此处这是例子，具体根据你自己的业务封装</span></div><div class="line">                           &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                               e.printStackTrace();</div><div class="line">                           &#125; <span class="keyword">finally</span> &#123;</div><div class="line">                           &#125;</div><div class="line">                       &#125;</div><div class="line">                   &#125;</div><div class="line">               &#125; <span class="keyword">catch</span> (FileUploadException e) &#123;</div><div class="line">                   e.printStackTrace();</div><div class="line">               &#125; <span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">                   e.printStackTrace();</div><div class="line">               &#125;</div><div class="line">       &#125;</div><div class="line">	<span class="keyword">return</span>  returnMap;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注：将reques对象封装成map集合工具类，主要解决如下问题：</p>
+<p>  1、当仅仅处理简单的form表单时，可以通过该工具类之间获取request对象中的属性集合，并且针对一些特殊情况(为“空”的属性、编码转换)可以达到集中处理并统一返回</p>
+<p>  2、当仅仅处理带file的form表单时，提交到后台是已流的方式传输；解决通过request.getParameter不能获取属性的问题，并且可以集中统一处理</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具/" itemprop="url">
                   基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具
                 </a>
@@ -2975,146 +3100,6 @@ int n =0238;（不合格）
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/Linux系统添加配置随开机启动的服务/" itemprop="url">
-                  Linux系统添加配置随开机启动的服务-rc.local配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-25T17:46:24+08:00" content="2016-07-25">
-              2016-07-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Linux系统添加配置随开机启动的服务/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Linux系统添加配置随开机启动的服务/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在linux服务器操作系统中，经常会安装一些服务器端的软件如：tomcat、redis、MQ、Nginx等等常用的服务器组件；那么有时候服务器重启后需要用一个一个的启动命令把不同的软件启动起来；主要有以下几种场景：</p>
-<ol>
-<li>以root身份才能启动的服务</li>
-<li>以非root身份启动的服务(一般情况下都是以非root身份启动和管理服务)</li>
-</ol>
-<p><strong>一、下面以把tomcat服务器配置成随开机自启动的配置为例说明一下</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tomcat的安装路径：/usr/local/server/apache-tomcat-<span class="number">8</span></div></pre></td></tr></table></figure></p>
-<p>那么我们知道了tomcat的安装路径后，就可以通过以下命令启动tomcat服务了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/server/apache-tomcat-<span class="number">8</span>/bin/start.sh</div></pre></td></tr></table></figure></p>
-<p>如果我们想让linux每次开机时自动启动tomcat服务，那么我们需要如下配置：</p>
-<ol>
-<li>打开 /etc/rc.d/rc.local文件，在该配置文件中添加tomcat的启动命令<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch /var/lock/subsys/local</div><div class="line">/usr/local/server/apache-tomcat-<span class="number">8</span>/bin/start.sh</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>二、下面以把redis服务配置成随开机自启动的配置为例说明一下（以redis用户启动）</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis的安装路径：/usr/local/cache/redis-<span class="number">2.8</span>.19</div></pre></td></tr></table></figure></p>
-<p>如果我们通过输入命令启动redis的方式是：(假设redis服务启动时必须用redis用户)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/cache/redis-<span class="number">2.8</span>.19/src/redis-server</div></pre></td></tr></table></figure></p>
-<p>如果我们想让linux每次开机时自动启动redis服务，那么我们需要如下配置：</p>
-<ol>
-<li>打开 /etc/rc.d/rc.local文件，在该配置文件中添加tomcat的启动命令<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch /var/lock/subsys/local</div><div class="line">su redis -c <span class="string">"/usr/local/cache/redis-2.8.19/src/redis-server"</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>三、总结</strong><br>我们主要通过在rc.local文件中添加我们服务的启动脚本的方式来配置随开机自启动服务；当然对于linux操作系统来讲，并不是仅仅就这一种方式配置随机启动操作，其他方式后续再说。那么rc.local到底是什么文件呢？</p>
-<p>rc.local其实是一个脚本文件，该脚本是在系统初始化级别脚本运行之后再执行的，因此可以在里面添加你想在系统启动之后执行的任何操作，比如启动第三方的服务，比如挂载mount操作等等。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3160,7 +3145,7 @@ int n =0238;（不合格）
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-count">54</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -3168,7 +3153,7 @@ int n =0238;（不合格）
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
