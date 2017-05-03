@@ -86,19 +86,16 @@
 
 
 
-<meta name="description" content="java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。
-一、我们定义一个需要定时执行的任务的类12345678package test; import java.util.Timer; public class TimeTaskTest &amp;#123;	public static voi">
+<meta name="description" content="java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java定时任务Timer小试一下">
 <meta property="og:url" content="http://www.soujava.com/java定时任务Timer小试一下/index.html">
 <meta property="og:site_name" content="soujava">
-<meta property="og:description" content="java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。
-一、我们定义一个需要定时执行的任务的类12345678package test; import java.util.Timer; public class TimeTaskTest &amp;#123;	public static voi">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.911Z">
+<meta property="og:description" content="java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。">
+<meta property="og:updated_time" content="2017-05-03T08:16:09.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java定时任务Timer小试一下">
-<meta name="twitter:description" content="java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。
-一、我们定义一个需要定时执行的任务的类12345678package test; import java.util.Timer; public class TimeTaskTest &amp;#123;	public static voi">
+<meta name="twitter:description" content="java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。">
 
 
 
@@ -333,6 +330,7 @@
 
       
         <p>java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。</p>
+<a id="more"></a>
 <h3 id="一、我们定义一个需要定时执行的任务的类"><a href="#一、我们定义一个需要定时执行的任务的类" class="headerlink" title="一、我们定义一个需要定时执行的任务的类"></a>一、我们定义一个需要定时执行的任务的类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> test; </div><div class="line"><span class="keyword">import</span> java.util.Timer; </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeTaskTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123; </div><div class="line">		Timer timer = <span class="keyword">new</span> Timer(); </div><div class="line">		timer.schedule(<span class="keyword">new</span> Task(), <span class="number">60</span> * <span class="number">1000</span>); </div><div class="line">	&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>注：我们的定时任务，就在这个类的main函数里执行</p>
 <p>1、上面的代码实现了这样一个功能，当TimeTask程序启动以后，过一分钟后执行某项任务</p>

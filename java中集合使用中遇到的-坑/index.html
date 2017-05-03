@@ -86,25 +86,16 @@
 
 
 
-<meta name="description" content="平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。
-1、数组之间的拷贝-Arrays.copyOf()
-
-我们直接用java.util.Array">
+<meta name="description" content="平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java中集合使用中遇到的-坑">
 <meta property="og:url" content="http://www.soujava.com/java中集合使用中遇到的-坑/index.html">
 <meta property="og:site_name" content="soujava">
-<meta property="og:description" content="平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。
-1、数组之间的拷贝-Arrays.copyOf()
-
-我们直接用java.util.Array">
-<meta property="og:updated_time" content="2017-04-25T11:43:54.647Z">
+<meta property="og:description" content="平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。">
+<meta property="og:updated_time" content="2017-05-03T08:10:34.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java中集合使用中遇到的-坑">
-<meta name="twitter:description" content="平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。
-1、数组之间的拷贝-Arrays.copyOf()
-
-我们直接用java.util.Array">
+<meta name="twitter:description" content="平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。">
 
 
 
@@ -339,6 +330,7 @@
 
       
         <p>平时开发过程中用的最多的莫过于基本类型、包装类、集合等等了，但是最近在使用集合时，偶尔使用不当会出现一些想不到的问题(bug)；为什么使用不当呢，因为我们对集合的操作都是使用JDK原生的API方法进行操作的，那么之所以使用不当，是因为对jdk源码中的api方法的不了解所致，下面就具体罗列一下具体的坑吧。</p>
+<a id="more"></a>
 <p><strong>1、数组之间的拷贝-Arrays.copyOf()</strong></p>
 <blockquote>
 <p>我们直接用java.util.Arrays工具类的copyOf方法进行数组拷贝</p>

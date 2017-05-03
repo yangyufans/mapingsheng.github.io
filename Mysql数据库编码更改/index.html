@@ -87,23 +87,20 @@
 
 
 <meta name="description" content="在平时的开发过程中，mysql的编码是拉丁字符，所以当向里面存储数据时，显示出来就是乱码，那么我们需要执行如下操作：
-1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息
-2.然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表12select concat(&apos;alter ta">
+1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql数据库编码更改">
 <meta property="og:url" content="http://www.soujava.com/Mysql数据库编码更改/index.html">
 <meta property="og:site_name" content="soujava">
 <meta property="og:description" content="在平时的开发过程中，mysql的编码是拉丁字符，所以当向里面存储数据时，显示出来就是乱码，那么我们需要执行如下操作：
-1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息
-2.然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表12select concat(&apos;alter ta">
+1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息">
 <meta property="og:image" content="http://soujava.com/images/mysqlCode1.png">
 <meta property="og:image" content="http://soujava.com/images/mysqlCode2.png">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.908Z">
+<meta property="og:updated_time" content="2017-05-03T08:15:30.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql数据库编码更改">
 <meta name="twitter:description" content="在平时的开发过程中，mysql的编码是拉丁字符，所以当向里面存储数据时，显示出来就是乱码，那么我们需要执行如下操作：
-1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息
-2.然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表12select concat(&apos;alter ta">
+1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息">
 <meta name="twitter:image" content="http://soujava.com/images/mysqlCode1.png">
 
 
@@ -339,7 +336,8 @@
 
       
         <p>在平时的开发过程中，mysql的编码是拉丁字符，所以当向里面存储数据时，显示出来就是乱码，那么我们需要执行如下操作：</p>
-<h3 id="1-通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息"><a href="#1-通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息" class="headerlink" title="1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息"></a>1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息</h3><p><img src="http://soujava.com/images/mysqlCode1.png" alt="Alt text"></p>
+<h3 id="1-通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息"><a href="#1-通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息" class="headerlink" title="1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息"></a>1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息</h3><a id="more"></a>
+<p><img src="http://soujava.com/images/mysqlCode1.png" alt="Alt text"></p>
 <h3 id="2-然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表"><a href="#2-然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表" class="headerlink" title="2.然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表"></a>2.然后执行下面的sql脚本，基于查询语句生成修改表结构编码的sql语句列表</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function">select <span class="title">concat</span><span class="params">(<span class="string">'alter table '</span>, table_name,<span class="string">' character set utf8 collate utf8_bin;'</span>)</span> from information_schema.tables as t, information_schema.COLLATION_CHARACTER_SET_APPLICABILITY as c </span></div><div class="line">where c.collation_name = t.table_collation and t.table_schema=<span class="string">'confluence'</span> and (c.character_set_name!=<span class="string">'utf8'</span> or c.collation_name!=<span class="string">'utf8_bin'</span>);</div></pre></td></tr></table></figure>
 <h3 id="3-然后把第2步查询出的alter语句复制到对应的命令窗口中执行修改具体的表结构编码操作"><a href="#3-然后把第2步查询出的alter语句复制到对应的命令窗口中执行修改具体的表结构编码操作" class="headerlink" title="3.然后把第2步查询出的alter语句复制到对应的命令窗口中执行修改具体的表结构编码操作"></a>3.然后把第2步查询出的alter语句复制到对应的命令窗口中执行修改具体的表结构编码操作</h3><p><img src="http://soujava.com/images/mysqlCode2.png" alt="Alt text"></p>
 

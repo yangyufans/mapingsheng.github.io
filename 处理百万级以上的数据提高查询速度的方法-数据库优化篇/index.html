@@ -87,24 +87,18 @@
 
 
 <meta name="description" content="1.应尽量避免在 where 子句中使用!=或&amp;lt;&amp;gt;操作符，否则将引擎放弃使用索引而进行全表扫描。
- 2.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。
- 3.应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：
-select id from t where num is">
+ 2.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="处理百万级以上的数据提高查询速度的方法--数据库优化篇">
 <meta property="og:url" content="http://www.soujava.com/处理百万级以上的数据提高查询速度的方法-数据库优化篇/index.html">
 <meta property="og:site_name" content="soujava">
 <meta property="og:description" content="1.应尽量避免在 where 子句中使用!=或&amp;lt;&amp;gt;操作符，否则将引擎放弃使用索引而进行全表扫描。
- 2.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。
- 3.应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：
-select id from t where num is">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.916Z">
+ 2.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。">
+<meta property="og:updated_time" content="2017-05-03T08:16:32.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="处理百万级以上的数据提高查询速度的方法--数据库优化篇">
 <meta name="twitter:description" content="1.应尽量避免在 where 子句中使用!=或&amp;lt;&amp;gt;操作符，否则将引擎放弃使用索引而进行全表扫描。
- 2.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。
- 3.应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：
-select id from t where num is">
+ 2.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。">
 
 
 
@@ -340,6 +334,7 @@ select id from t where num is">
       
         <p> <strong>1</strong>.应尽量避免在 where 子句中使用!=或&lt;&gt;操作符，否则将引擎放弃使用索引而进行全表扫描。</p>
 <p> <strong>2</strong>.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。</p>
+<a id="more"></a>
 <p> <strong>3</strong>.应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：</p>
 <pre><code>select id from t where num is null
 可以在num上设置默认值0，确保表中num列没有null值，然后这样查询：

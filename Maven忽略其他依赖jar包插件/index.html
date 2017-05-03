@@ -88,23 +88,20 @@
 
 <meta name="description" content="我们在开发产品时，可能不同人开发不同的功能模块，比如：
 •现在A开发a模块，B开发b模块
-•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的jar包版本应该都用modelman-1.0.2-RELEASE.jar这个版本
-•那么我们就可以把modelman-1.0.0-SNAPSHOT.jar这个">
+•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的jar包版本应该都用modelman-1.0.2-RELEASE.jar这个版本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven忽略其他依赖jar包插件-maven-enforcer-plugin">
 <meta property="og:url" content="http://www.soujava.com/Maven忽略其他依赖jar包插件/index.html">
 <meta property="og:site_name" content="soujava">
 <meta property="og:description" content="我们在开发产品时，可能不同人开发不同的功能模块，比如：
 •现在A开发a模块，B开发b模块
-•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的jar包版本应该都用modelman-1.0.2-RELEASE.jar这个版本
-•那么我们就可以把modelman-1.0.0-SNAPSHOT.jar这个">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.905Z">
+•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的jar包版本应该都用modelman-1.0.2-RELEASE.jar这个版本">
+<meta property="og:updated_time" content="2017-05-03T08:15:11.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven忽略其他依赖jar包插件-maven-enforcer-plugin">
 <meta name="twitter:description" content="我们在开发产品时，可能不同人开发不同的功能模块，比如：
 •现在A开发a模块，B开发b模块
-•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的jar包版本应该都用modelman-1.0.2-RELEASE.jar这个版本
-•那么我们就可以把modelman-1.0.0-SNAPSHOT.jar这个">
+•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的jar包版本应该都用modelman-1.0.2-RELEASE.jar这个版本">
 
 
 
@@ -341,6 +338,7 @@
         <p>我们在开发产品时，可能不同人开发不同的功能模块，比如：</p>
 <p>•现在A开发a模块，B开发b模块</p>
 <p>•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的jar包版本应该都用modelman-1.0.2-RELEASE.jar这个版本</p>
+<a id="more"></a>
 <p>•那么我们就可以把modelman-1.0.0-SNAPSHOT.jar这个jar包添加配置到下面中<br>    <exclude>com.maps:modelman:1.0.0-SNAPSHOT</exclude></p>
 <p>•添加完成后当编译产品时则会自动检测是否还有用到modelman:1.0.0-SNAPSHOT的模块，如检测出有，那么则中断编译并提示</p>
 <p>其实我们只需在xml配置文件中添加插件maven-enforcer-plugin配置就行了</p>

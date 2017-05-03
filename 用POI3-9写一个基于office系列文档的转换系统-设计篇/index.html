@@ -95,7 +95,7 @@
 <meta property="og:description" content="想用Apache的POI3.9版本编写一套基于office系列文档的一个转换系统，比如对office文档的读写操作、其中的关键字检索操作、把文档转换为html或者支持在线预览的操作等功能。
 一、需求由于前段时间已经写了一个文档在线预览功能，就是对office文档、txt、图片、pdf等文档，可以在线预览操作，也是通过搜索引擎搜索、查看一些技术文章等调研方式写出的，基本原理也就是通过几个工具转换实现">
 <meta property="og:image" content="http://soujava.com/images/poi1.png">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.917Z">
+<meta property="og:updated_time" content="2017-05-03T08:17:03.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用POI3.9写一个基于office系列文档的转换系统(设计篇)">
 <meta name="twitter:description" content="想用Apache的POI3.9版本编写一套基于office系列文档的一个转换系统，比如对office文档的读写操作、其中的关键字检索操作、把文档转换为html或者支持在线预览的操作等功能。
@@ -336,6 +336,7 @@
       
         <p>想用Apache的POI3.9版本编写一套基于office系列文档的一个转换系统，比如对office文档的读写操作、其中的关键字检索操作、把文档转换为html或者支持在线预览的操作等功能。</p>
 <h3 id="一、需求"><a href="#一、需求" class="headerlink" title="一、需求"></a>一、需求</h3><p>由于前段时间已经写了一个文档在线预览功能，就是对office文档、txt、图片、pdf等文档，可以在线预览操作，也是通过搜索引擎搜索、查看一些技术文章等调研方式写出的，基本原理也就是通过几个工具转换实现的，相关原理如下图：</p>
+<a id="more"></a>
 <p><img src="http://soujava.com/images/poi1.png" alt=""></p>
 <h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>通过上面的流程是可以实现文件转换、在线预览等功能的，但是我感觉上面的方法存在至少以下几个缺点：<br>1、安装过程过于繁琐，并且过于庞大，完成上面的操作需要安装将近200多兆的软件工具，不管从部署或者使用方面都不太好。</p>
 <p>2、转换过程中对资源的浪费(占用)严重，比如内存、硬盘等资源，内存资源：转换过程中，对内存的占用过于严重，遇到大文件时可以把cpu的使用率占满，对服务器有严重的影响；硬盘资源：一个文档实现转换或预览功能，需要在硬盘上生成pdf、png(缩略图)、swf三个文件，对资源占用严重。</p>

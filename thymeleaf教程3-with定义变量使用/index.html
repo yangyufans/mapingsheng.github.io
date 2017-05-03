@@ -86,19 +86,16 @@
 
 
 
-<meta name="description" content="在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。
-th:with用法1、用来定义局部变量，用法如下：123&amp;lt;div th:with=&quot;name=zhangsan&quot;&amp;gt;     	&amp;lt;p&amp;gt;hello &amp;lt;sp">
+<meta name="description" content="在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="thymeleaf教程3--with定义变量使用">
 <meta property="og:url" content="http://www.soujava.com/thymeleaf教程3-with定义变量使用/index.html">
 <meta property="og:site_name" content="soujava">
-<meta property="og:description" content="在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。
-th:with用法1、用来定义局部变量，用法如下：123&amp;lt;div th:with=&quot;name=zhangsan&quot;&amp;gt;     	&amp;lt;p&amp;gt;hello &amp;lt;sp">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.915Z">
+<meta property="og:description" content="在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。">
+<meta property="og:updated_time" content="2017-05-03T08:14:36.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="thymeleaf教程3--with定义变量使用">
-<meta name="twitter:description" content="在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。
-th:with用法1、用来定义局部变量，用法如下：123&amp;lt;div th:with=&quot;name=zhangsan&quot;&amp;gt;     	&amp;lt;p&amp;gt;hello &amp;lt;sp">
+<meta name="twitter:description" content="在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。">
 
 
 
@@ -333,6 +330,7 @@ th:with用法1、用来定义局部变量，用法如下：123&amp;lt;div th:wit
 
       
         <p>在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。</p>
+<a id="more"></a>
 <h3 id="th-with用法"><a href="#th-with用法" class="headerlink" title="th:with用法"></a>th:with用法</h3><p>1、用来定义局部变量，用法如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div th:with="name=zhangsan"&gt;  </div><div class="line">   	&lt;p&gt;hello &lt;span th:text="$&#123;name&#125;"&gt;&lt;/span&gt;.&lt;/p&gt;  </div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
 <p>上面的例子定义了一个变量name，值为zhangsan，然后我们在p标签中输出定义的变量。</p>
 <p>通过上面的例子可以看出来用法规则为–th:with=”key=value”这种格式定义局部变量</p>
