@@ -1,0 +1,741 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soujava" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="接着上一篇文章中遗留的问题，接着探索一下设计模式的强大力量。首先在上一篇文章中进行简单的回顾：
+
+1、我们声明了一个Duck抽象类，并定义了相关的公共方法(quack、swim、fly)，并且都进行了默认的实现；但是把display外观方法定义成了抽象方法，以达到不同类型的Duck可以具有自己独特外观的目的。
+2、然后定义具体的业务类(绿头鸭、大黄鸭、红头鸭)，该业务类要继承抽象类-Duck,并且">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式--引入模式雏形">
+<meta property="og:url" content="http://www.soujava.com/设计模式-引入模式雏形/index.html">
+<meta property="og:site_name" content="soujava">
+<meta property="og:description" content="接着上一篇文章中遗留的问题，接着探索一下设计模式的强大力量。首先在上一篇文章中进行简单的回顾：
+
+1、我们声明了一个Duck抽象类，并定义了相关的公共方法(quack、swim、fly)，并且都进行了默认的实现；但是把display外观方法定义成了抽象方法，以达到不同类型的Duck可以具有自己独特外观的目的。
+2、然后定义具体的业务类(绿头鸭、大黄鸭、红头鸭)，该业务类要继承抽象类-Duck,并且">
+<meta property="og:updated_time" content="2017-05-03T07:43:21.960Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式--引入模式雏形">
+<meta name="twitter:description" content="接着上一篇文章中遗留的问题，接着探索一下设计模式的强大力量。首先在上一篇文章中进行简单的回顾：
+
+1、我们声明了一个Duck抽象类，并定义了相关的公共方法(quack、swim、fly)，并且都进行了默认的实现；但是把display外观方法定义成了抽象方法，以达到不同类型的Duck可以具有自己独特外观的目的。
+2、然后定义具体的业务类(绿头鸭、大黄鸭、红头鸭)，该业务类要继承抽象类-Duck,并且">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.soujava.com/设计模式-引入模式雏形/"/>
+
+  <title> 设计模式--引入模式雏形 | soujava </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">soujava</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录未知的，牢记已知的</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                设计模式--引入模式雏形
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-01T16:21:27+08:00" content="2017-05-01">
+              2017-05-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/设计模式-引入模式雏形/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="设计模式-引入模式雏形/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>接着上一篇文章中遗留的问题，接着探索一下设计模式的强大力量。<br>首先在上一篇文章中进行简单的回顾：</p>
+<blockquote>
+<p>1、我们声明了一个Duck抽象类，并定义了相关的公共方法(quack、swim、fly)，并且都进行了默认的实现；但是把display外观方法定义成了抽象方法，以达到不同类型的Duck可以具有自己独特外观的目的。</p>
+<p>2、然后定义具体的业务类(绿头鸭、大黄鸭、红头鸭)，该业务类要继承抽象类-Duck,并且覆写display方法，定义自己独特的外观。</p>
+</blockquote>
+<p>那么针对上面的实现，通过分析具有下面的一系列问题：</p>
+<blockquote>
+<p>1、比如再新加一个“跳舞鸭”业务类时，该鸭子的跳舞行为难道也要在超类Duck中定义吗？这样会导致超类很臃肿</p>
+<p>2、如果对某个行为进行动态扩展怎么办？比如有些飞行行为是用翅膀飞行，有些飞行行为是用火箭动力飞行等等，难道我们要把那些需要火箭动力飞行的所有业务类中的fly方法都要一个一个的重新改一遍吗？</p>
+</blockquote>
+<p>针对以上问题我们慢慢进行设计一下吧。</p>
+<p><strong>一、第三代鸭子–把不同的行为进行独立定义(把变化的和不变化的分开)</strong></p>
+<p>其实做法就是“把会变化的部分取出并封装起来，以便以后可以轻易的改动或扩展此部分，而不影响不需要变化的其它部分”，那么下面我们这么设计，把飞行的行为fly、叫的行为quack单独抽取出来，定义成为不同的业务类，这样的话以后我们基于这些行为类扩展出不同的具体行为，比如我们可以扩展fly行为(用翅膀飞行、用火箭动力飞行、静止)。</p>
+<p>在前几代鸭子产品开发中，我们一直使用的是定义父类的方式来约束对应的行为方法，然后子类通过继承父类，即可拥有父类的方法；但是如果子类有差异化的行为时，就需要覆写父类的默认方法了；但是还有一种情况，就是子类如果定义自己独特的行为方法时，那么就只能在自己内部进行定义和实现了，因为java单重继承关系的约束 ，所以为以后扩展或者行为复用造成了麻烦。</p>
+<p>下面我们将采用采用接口进行定义不同的行为，然后其它因为类实现具体的接口即可获得其需要的行为；归结来讲就是：“针对接口编程，而不是针对实现编程”。</p>
+<p>1、独立定义飞行的行为接口-FlyInterface</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 独立出来的飞行的业务接口</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FlyInterface</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 定义一个飞行方法</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>1.1、定义用翅膀飞行的业务类-FlyWithWings</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 定义用翅膀飞行的具体类,实现飞行方法</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlyWithWings</span> <span class="keyword">implements</span> <span class="title">FlyInterface</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"用翅膀飞行"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>1.2、定义用火箭动力飞行的业务类-FlyRocketPowered</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 定义用火箭动力飞行的具体类,实现飞行接口</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlyRocketPowered</span> <span class="keyword">implements</span> <span class="title">FlyInterface</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"利用火箭动力飞行"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>1.3、定义不会飞行的业务类-FlyNoWay</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 定义用不会飞行的具体类，虽然实现了飞行的接口</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlyNoWay</span> <span class="keyword">implements</span> <span class="title">FlyInterface</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"不会飞行！"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>到目前为止，我们已经把飞行行为fly进行了独立定义，并且定义了不同的具体飞行行为业务类；下面我们开始独立定义另一个叫的行为quack。</p>
+<p>2、独立定义叫的行为接口-FlyInterface</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 独立出来的叫的行为接口</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">QuackInterface</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 定义一个叫的方法</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.1、定义一个呱呱叫的行为类-QuackGuagua</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 定义一个呱呱叫的具体类，实现呱呱叫行为接口</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuackGuagua</span> <span class="keyword">implements</span> <span class="title">QuackInterface</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"呱呱叫"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.2、定义一个不会叫的业务类-QuackNoWay</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 定义一个不会叫的业务类</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuackNoWay</span> <span class="keyword">implements</span> <span class="title">QuackInterface</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"不会叫"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.3、定义一个吱吱叫的业务类-QuackZhiZhi</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 定义一个吱吱叫的业务类，实现独立叫的行为接口</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuackZhiZhi</span> <span class="keyword">implements</span> <span class="title">QuackInterface</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"吱吱叫"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>到目前为止，我们已经把叫的行为quack进行了独立定义，并且定义了不同的具体叫的行为业务类；其实已经可以观察到，我们把飞行fly和叫quack行为定义成独立的行为，可以让飞行和叫的动作被其他的对象复用，因为这些行为已经与具体的鸭子类无关了，而我们也可以后期新增一些行为，不会影响到既有的行为类，也不会影响“使用”到飞行行为的鸭子类。</p>
+<p>2、重构定义鸭子业务类-Duck</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 定义一个鸭子的业务类，并且声明已经独立定义的飞行、叫的行为接口</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	FlyInterface flyInterface;</div><div class="line">	QuackInterface quackInterface;</div><div class="line">	</div><div class="line">	Duck()&#123;&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 将“叫”的行为委托给接口行为类，这样就可以在不同的业务类中初始化不同的行为类</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>&#123;</div><div class="line">		quackInterface.quack();</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 将“飞行”的行为委托给接口行为类，这样就可以在不同的业务类中初始化不同的行为类</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</div><div class="line">		flyInterface.fly();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在我们定义Duck类中，把已经定义好的两个独立行为接口作为变量引入到了类中，这样的话，接下来我们在新建Duck类的具体子类时就可以拥有父类Duck声明的接口变量，并且可以动态实例化父类Duck中的接口变量为不同的行为接口实例。</p>
+<p>2.1、重构定义绿头鸭业务类-GreenDuck</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 绿头鸭业务类</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GreenDuck</span> <span class="keyword">extends</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 1、因为绿头鸭类继承了Duck，所以可以继承拥有父类中的飞行、叫两个接口实例变量(flyInterface、quackInterface)</div><div class="line">	 * 2、所以我们在构造函数中将继承的接口实例变量进行初始化操作：</div><div class="line">	 *    1)、把飞行接口变量初始化成“用翅膀飞行”的具体行为</div><div class="line">	 *    2)、把叫的接口变量初始化成“呱呱叫”具体行为</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">GreenDuck</span><span class="params">()</span></span>&#123;</div><div class="line">		flyInterface = <span class="keyword">new</span> FlyWithWings();</div><div class="line">		quackInterface = <span class="keyword">new</span> QuackGuagua();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到上面我们定义的绿头鸭业务类中分别把父类中的flyInterface接口变量实例化为用翅膀飞行的具体行为类、把父类中的接口变量quackInterface实例化为呱呱叫具体行为类。</p>
+<p>2.2、重构定义绿头鸭业务类-RedDuck</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 红头鸭业务类</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedDuck</span> <span class="keyword">extends</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 1、因为绿头鸭类继承了Duck，所以可以继承拥有父类中的飞行、叫两个接口实例变量(flyInterface、quackInterface)</div><div class="line">	 * 2、所以我们在构造函数中将继承的接口实例变量进行初始化操作：</div><div class="line">	 *    1)、把飞行接口变量初始化成用“火箭动力”飞行的具体行为</div><div class="line">	 *    2)、把叫的接口变量初始化成“吱吱叫”具体行为</div><div class="line">	 */</div><div class="line">	RedDuck()&#123;</div><div class="line">		flyInterface = <span class="keyword">new</span> FlyRocketPowered();</div><div class="line">		quackInterface = <span class="keyword">new</span> QuackZhiZhi();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3、定义一个测试类，在测试方法中测试绿头鸭和红头鸭的飞行和叫的行为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	Duck greenDuck = <span class="keyword">new</span> GreenDuck();</div><div class="line">	greenDuck.quack();</div><div class="line">	greenDuck.fly();</div><div class="line">	System.out.println(<span class="string">"-----------------------------"</span>);</div><div class="line">	Duck redDuck = <span class="keyword">new</span> RedDuck();</div><div class="line">	redDuck.quack();</div><div class="line">	redDuck.fly();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面测试代码输出如下：</p>
+<blockquote>
+<p>呱呱叫</p>
+<p>用翅膀飞行</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>吱吱叫</p>
+<p>利用火箭动力飞行</p>
+</blockquote>
+<p>通过上面的测试代码输出可以看出我们不同的Duck子类中，实例化了不同的接口行为变量，然后他们便具有了不同的行为操作。</p>
+<p>思考一个问题，比如后续再添加其他行为时怎么办，比如添加一个“跳跃”行为时，并且有单腿跳跃和双腿跳跃具体行为，我们可以如下扩展：</p>
+<blockquote>
+<p>定义一个“跳跃”的接口</p>
+<p>定义一个具体的“单腿跳跃”行为类，该类实现上面定义的“跳跃”接口</p>
+<p>定义一个具体的“双腿跳跃”行为类，该类实现上面定义的“跳跃”接口</p>
+<p>在Duck这个父类中，添加一个“跳跃”接口类型的变量</p>
+<p>在Duck这个父类中，再新定义一个“跳跃”的行为的方法，并且在方法中调用“跳跃”接口变量中的跳跃方法</p>
+<p>如果我们只需要为“红头鸭”添加其中的“单腿跳跃”行为时，则只需要在红头鸭中构造方中实例化父类的跳跃接口变量为具体的单腿跳跃行为类即可</p>
+</blockquote>
+<p>通过对前两代鸭子工程的重构和扩展，发现系统扩展性更好了！这就是设计模式的魅力所在！！后续将继续深入探索并运用他。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/设计模式-无模式/" rel="next" title="设计模式--无模式">
+                <i class="fa fa-chevron-left"></i> 设计模式--无模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="设计模式-引入模式雏形/"
+           data-title="设计模式--引入模式雏形" data-url="http://www.soujava.com/设计模式-引入模式雏形/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="马平升" />
+          <p class="site-author-name" itemprop="name">马平升</p>
+          <p class="site-description motion-element" itemprop="description">记录未知的，牢记已知的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马平升</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="http://www.soujava.com">soujava</a>
+</div>
+
+<div class="theme-info">
+  
+  <a class="theme-link" href="https://github.com/mapingsheng">
+    GitHub
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soujava"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

@@ -260,6 +260,150 @@
             
               
                 
+                <a class="post-title-link" href="/Mybatis动态传入tableName-非预编译-STATEMENT/" itemprop="url">
+                  Mybatis动态传入tableName--非预编译(STATEMENT)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-28T19:12:02+08:00" content="2016-07-28">
+              2016-07-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Mybatis动态传入tableName-非预编译-STATEMENT/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Mybatis动态传入tableName-非预编译-STATEMENT/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在使用Mybatis过程中，你可以体会到它的强大与灵活之处，由衷的为Mybatis之父点上999个赞！在使用过程中经常会遇到这样一种情况，我查询数据的时候，表名称是动态的从程序中传入的，比如我们通过mybatis的xml文件写sql查询时都是下面的样子：<br><strong>1、正常的查询</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;select id="activityEnrollModelTableName" parameterType="java.util.HashMap" resultType="java.util.HashMap"&gt;</div><div class="line">    SELECT * FROM user WHERE userid = #&#123;userid&#125;</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure></p>
+<p>上面的查询语句用mybatis执行时,其实是自动的按照JDBC的预编译语句方式执行的，等同于下面一段JDBC代码的执行过程<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line">Connection conn = DriverManage.getConnection(<span class="string">"jdbc:mysql://localhost:3306/dbname"</span>,<span class="string">"root"</span>,<span class="string">"112233"</span>);</div><div class="line">PreparedStatement preState = conn.prepareStatement(<span class="string">"SELECT * FROM user WHERE userid = ?"</span>); </div><div class="line">preState.setString(<span class="number">1</span>,<span class="string">"96"</span>);</div><div class="line">ResultSet result = preState.executeQuery();</div><div class="line"><span class="keyword">while</span>(result.next())&#123;</div><div class="line">	result.getString(columnname);</div><div class="line">	..........</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>到这里我们不禁疑惑，难道mybatis默认都是按照预编译语句的方式执行sql的吗？其实就是这样。通过查看mybatis官网文档可以看到有这么一个参数，statementType=[STATEMENT | PREPARED | CALLABLE ]；有三个可选值，mybatis默认值是PREPARED；<br>这个参数是什么作用呢：</p>
+<ol>
+<li>设定mybatis执行sql的模式</li>
+<li>STATEMENT设定为非预编译语句模式</li>
+<li>PREPARED设定为预编译语句模式–mybatis默认</li>
+<li>CALLABLE设定为兼容模式，或者自适应模式，比如设置该值后，mybatis处理sql时会自动的处理根据#、$去判断处理，后面说一下#和$的区别。</li>
+</ol>
+<p>综上所述,mybatis默认按照预编译语句方式执行sql语句</p>
+<p><strong>2、动态传入表名</strong></p>
+<p>其实也经常会遇到动态的传入tableName的情况，也就是说上面的sql语句中的”user”是动态传入的，动态传入表名是mybatis中的一种特殊情况，<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;select id="activityEnrollModelTableName" parameterType="java.util.HashMap" resultType="java.util.HashMap"&gt;</div><div class="line">    SELECT * FROM #&#123;user&#125; WHERE userid = #&#123;userid&#125; //错误的写法</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure></p>
+<p>针对上面的语句，如果让mybatis仍然按照预编译语句方式执行时，等同于如下面的JDBC代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line">Connection conn = DriverManage.getConnection(<span class="string">"jdbc:mysql://localhost:3306/dbname"</span>,<span class="string">"root"</span>,<span class="string">"112233"</span>);</div><div class="line">PreparedStatement preState = conn.prepareStatement(<span class="string">"SELECT * FROM ? WHERE userid = ?"</span>); </div><div class="line">preState.setString(<span class="number">1</span>,<span class="string">"USER"</span>);</div><div class="line">preState.setString(<span class="number">2</span>,<span class="string">"96"</span>);</div><div class="line">ResultSet result = preState.executeQuery();</div><div class="line"><span class="keyword">while</span>(result.next())&#123;</div><div class="line">	result.getString(columnname);</div><div class="line">	..........</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们把该段JDBC代码通过java代码执行后，发现会报异常：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java.sql.SQLException: ORA-<span class="number">00903</span>: 表名无效</div></pre></td></tr></table></figure></p>
+<p>所以可以说明预编译语句不能用于列名(查询的列名也不能用预编译语句)、表名；只能作用与where条件参数属性！既然JDBC就不能将预编译语句方式作用与表名上面，那么mybatis就同样也行不通(因为mybatis默认是预编译语句模式)。不过mybatis也早已考虑到了这种情况，所以为我们做了处理：</p>
+<ol>
+<li>select标签语句中添加statementType=”STATEMENT”的属性配置</li>
+<li>标签内的sql语句中将所有的${}更换成为#{}，即将$还成#;<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;select id="activityEnrollModelTableName" statementType="STATEMENT" parameterType="java.util.HashMap" resultType="java.util.HashMap"&gt;</div><div class="line">    SELECT * FROM $&#123;user&#125; WHERE userid = $&#123;userid&#125; //正确的写法</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面的语句标签中通过添加statementType=”STATEMENT”配置后，mybatis就不再使用预编译语句方式执行sql语句了，也就是通过直接执行sql语句操作；那么既然添加了statementType=”STATEMENT”非预编译配置后，为什么还需要把#换成$呢？其实是这样：</p>
+<ol>
+<li>“#” 是预编译语句模式下面的默认匹配符，也就是说mybatis遇到#{}时，将#{userid}替换成占位符?;被解析为一个JDBC预编译语句，然后再将#{userid}本身的值set进来。</li>
+<li>“$” 是非预编译语句下面的匹配符，非预编译语句说白了就是你传入什么sql语句，就执行什么sql语句，mybatis不做任何处理操作，但是这里mybatis会将${}对应的值，当做一个字符串处理，也就是说你程序接口方法中传递过来参数值是什么，对应的sql填充就是什么！</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/Linux系统添加配置随开机启动的服务/" itemprop="url">
                   Linux系统添加配置随开机启动的服务-rc.local配置
                 </a>
@@ -2223,7 +2367,7 @@ function Close()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
