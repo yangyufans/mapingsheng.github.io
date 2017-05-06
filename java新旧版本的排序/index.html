@@ -1,0 +1,803 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soujava" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="因为最近在做app客户的rest接口，所以要确保后台提供给app的rest接口是相对安全的，就涉及到了一些加密操作，其实主要涉及以下两种加密方式：
+
+AES加密
+MD5加密
+
+其实针对上面两种加密方式我们应用在不同的场景，AES加密主要应用在POST、DELETE等对于服务器来讲不能确保”幂等“的操作；MD5加密主要应用在GET等对于服务器来讲可以确保“幂等”的操作。
+一般是先确定待加密的valu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java新旧版本的排序">
+<meta property="og:url" content="http://www.soujava.com/java新旧版本的排序/index.html">
+<meta property="og:site_name" content="soujava">
+<meta property="og:description" content="因为最近在做app客户的rest接口，所以要确保后台提供给app的rest接口是相对安全的，就涉及到了一些加密操作，其实主要涉及以下两种加密方式：
+
+AES加密
+MD5加密
+
+其实针对上面两种加密方式我们应用在不同的场景，AES加密主要应用在POST、DELETE等对于服务器来讲不能确保”幂等“的操作；MD5加密主要应用在GET等对于服务器来讲可以确保“幂等”的操作。
+一般是先确定待加密的valu">
+<meta property="og:updated_time" content="2017-05-06T06:45:41.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java新旧版本的排序">
+<meta name="twitter:description" content="因为最近在做app客户的rest接口，所以要确保后台提供给app的rest接口是相对安全的，就涉及到了一些加密操作，其实主要涉及以下两种加密方式：
+
+AES加密
+MD5加密
+
+其实针对上面两种加密方式我们应用在不同的场景，AES加密主要应用在POST、DELETE等对于服务器来讲不能确保”幂等“的操作；MD5加密主要应用在GET等对于服务器来讲可以确保“幂等”的操作。
+一般是先确定待加密的valu">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.soujava.com/java新旧版本的排序/"/>
+
+  <title> java新旧版本的排序 | soujava </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">soujava</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录未知的，牢记已知的</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java新旧版本的排序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-06T10:47:14+08:00" content="2017-05-06">
+              2017-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/java新旧版本的排序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="java新旧版本的排序/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>因为最近在做app客户的rest接口，所以要确保后台提供给app的rest接口是相对安全的，就涉及到了一些加密操作，其实主要涉及以下两种加密方式：</p>
+<ul>
+<li>AES加密</li>
+<li>MD5加密</li>
+</ul>
+<p>其实针对上面两种加密方式我们应用在不同的场景，AES加密主要应用在POST、DELETE等对于服务器来讲不能确保”幂等“的操作；MD5加密主要应用在GET等对于服务器来讲可以确保“幂等”的操作。</p>
+<p>一般是先确定待加密的value值集合，然后把value值集合进行自然排序，然后再加上双方约定好的秘钥串进行最终的MD5加密处理。</p>
+<p>所以加密过程中为了确保双方的加密后的值能一致，都进行了排序处理，下面就针对排序这一操作在熟悉一下java中的排序。</p>
+<a id="more"></a>
+<p><strong>一、自然排序</strong></p>
+<p>自然排序就是不适用自定义的比较器进行排序，而是适用默认的比较器进行排序操作，比如经常使用的java.util包中的比较器工具类。</p>
+<ol>
+<li>对list集合自然排序–Collections.sort(list)</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">"a"</span>,<span class="string">"c"</span>,<span class="string">"中"</span>,<span class="string">"b"</span>);</div><div class="line">Collections.sort(list);</div></pre></td></tr></table></figure>
+<p>以上代码排序后结果：</p>
+<blockquote>
+<p>[a, b, c, 中]</p>
+</blockquote>
+<ol>
+<li>对Array数组自然排序–Arrays.sort(array)</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	String[] array = &#123;<span class="string">"a"</span>,<span class="string">"c"</span>,<span class="string">"中"</span>,<span class="string">"b"</span>&#125;;</div><div class="line">	Arrays.sort(array);</div><div class="line"></div><div class="line">```	</div><div class="line"></div><div class="line">以上代码排序后结果：</div><div class="line"></div><div class="line">&gt;[a, b, c, 中]</div><div class="line"></div><div class="line"></div><div class="line"><span class="number">3</span>. 对Map集合自然排序--Collections.sort(list)</div><div class="line"></div><div class="line">```java</div><div class="line"></div><div class="line">	Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;String,String&gt;();</div><div class="line">	map.put(<span class="string">"name"</span>, <span class="string">"a"</span>);</div><div class="line">	map.put(<span class="string">"code"</span>, <span class="string">"c"</span>);</div><div class="line">	map.put(<span class="string">"real"</span>, <span class="string">"中"</span>);</div><div class="line">	map.put(<span class="string">"attr"</span>, <span class="string">"b"</span>);</div><div class="line">	</div><div class="line">	Collection&lt;String&gt; collect = map.values();</div><div class="line">	List&lt;String&gt; mapList = <span class="keyword">new</span> ArrayList&lt;String&gt;(collect);</div><div class="line">	Collections.sort(mapList);</div></pre></td></tr></table></figure>
+<p>以上代码排序后结果：</p>
+<blockquote>
+<p>[a, b, c, 中]</p>
+</blockquote>
+<p>注：可以看到以上所使用到的自然排序后，结果都是一样,按照升序进行排序。那么我们如果想让集合中的元素降序排列该怎么办呢，那就需要自定义比较器了。</p>
+<p><strong>二、自定义比较器进行排序</strong></p>
+<p>说到自定义比较器，就不得不说Comparator和Comparable这两个比较接口，下面进行各自说明一下</p>
+<p><strong>1. Comparable接口</strong></p>
+<p>该接口主要用来将自定义的类型具有排序特性，那么就需要实现该接口，该接口中只有一个compareTo方法，源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(T o)</span></span>;	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>主要应用在以下场景</p>
+<blockquote>
+<p>针对集合中的泛型元素不具有排序特征(集合中的元素没有实现Comparable接口)，如果集合中的泛型元素不具有排序特性，那么我们就不能使用上面的例子中的默认比较器进行排序操作。</p>
+</blockquote>
+<ul>
+<li>下面新建一个学生类-Student</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name; <span class="comment">//名称</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age; <span class="comment">//年龄</span></div><div class="line">	</div><div class="line">	Student(String name,<span class="keyword">int</span> age)&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"User [name="</span> + name + <span class="string">", age="</span> + age + <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>声明一个集合，并且把Student实例添加到集合中</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Student stu1 = <span class="keyword">new</span> Student(<span class="string">"王明"</span>,<span class="number">25</span>);</div><div class="line">Student stu2 = <span class="keyword">new</span> Student(<span class="string">"李茜"</span>,<span class="number">29</span>);</div><div class="line">Student stu3 = <span class="keyword">new</span> Student(<span class="string">"魏泽"</span>,<span class="number">18</span>);</div><div class="line">List&lt;Student&gt; stuList = Arrays.asList(stu1,stu2,stu3);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用默认的集合排序方式对集合进行排序操作(无法编译)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Collections.sort(stuList); <span class="comment">//编译报错</span></div><div class="line"></div><div class="line"><span class="comment">//The method sort(List&lt;T&gt;) in the type Collections is not applicable for the arguments (List&lt;Student&gt;)</span></div></pre></td></tr></table></figure>
+<p>之所以我们针对泛型元素为Student类型的集合stuList进行默认排序时，无法通过编译，因为集合中的泛型元素Student没有不具有排序特性(Student没有实现Comparable接口)；</p>
+<ul>
+<li>我们对Student类进行改造-实现Comparable接口，并覆写比较方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 把Student类实现Comparable接口，然后该类就具有了排序特性，然后覆写比较方法</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Student</span>&gt;</span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Student o)</span> </span>&#123; <span class="comment">//覆写比较方法，按照年龄升序排列</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.age-o.getAge();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	Student(String name,<span class="keyword">int</span> age)&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"User [name="</span> + name + <span class="string">", age="</span> + age + <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>然后还使用默认的比较器进行排序操作</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Student stu1 = <span class="keyword">new</span> Student(<span class="string">"王明"</span>,<span class="number">25</span>);</div><div class="line">Student stu2 = <span class="keyword">new</span> Student(<span class="string">"李茜"</span>,<span class="number">29</span>);</div><div class="line">Student stu3 = <span class="keyword">new</span> Student(<span class="string">"魏泽"</span>,<span class="number">18</span>);</div><div class="line">List&lt;Student&gt; stuList = Arrays.asList(stu1,stu2,stu3);</div><div class="line"></div><div class="line">Collections.sort(stuList); <span class="comment">//可以正常编译、运行</span></div></pre></td></tr></table></figure>
+<p>运行以上代码后输出：</p>
+<blockquote>
+<blockquote>
+<p>[User [name=魏泽, age=18], User [name=王明, age=25], User [name=李茜, age=29]]</p>
+</blockquote>
+</blockquote>
+<p>可以看到我们把集合中的泛型元素Student实现Comparable接口之后，该类就具有了排序特性，那么我们就可以使用sort方法进行排序了，不需要再针对包含该泛型元素的集合额外的自定义比较器了。</p>
+<p>其实针对这个接口的作用主要就是将元素具有排序特性，那么该接口的使用有一定的局限性，也就是只能操作自己定义的类；比如上面例子中的Student类是导入第三方的，该类没有实现Comparable接口，我们也没有源码，那么我们现在要针对泛型元素为Student的集合元素进行排序时该怎么办呢？</p>
+<p>然而我们针对那些不具有排序特性的泛型集合进行排序是很常见的操作，那么我们针对这种情况应该怎么办呢？那么我们可以通过使用Comparator接口来自定义比较器进行排序操作。</p>
+<p><strong>2. Comparator接口</strong></p>
+<p>该接口的功能就是自定义比较器操作，针对上面例子最后提出的问题我们接着分析。</p>
+<p>该接口主要有以下两个应用场景：</p>
+<blockquote>
+<p>使那些不具备排序特性的元素可以进行排序操作</p>
+</blockquote>
+<ul>
+<li>下面新建一个学生类-Student，该类仍然不具有排序特性</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name; <span class="comment">//名称</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age; <span class="comment">//年龄</span></div><div class="line">	</div><div class="line">	Student(String name,<span class="keyword">int</span> age)&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"User [name="</span> + name + <span class="string">", age="</span> + age + <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>声明一个集合，并且把Student实例添加到集合中</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Student stu1 = <span class="keyword">new</span> Student(<span class="string">"王明"</span>,<span class="number">25</span>);</div><div class="line">Student stu2 = <span class="keyword">new</span> Student(<span class="string">"李茜"</span>,<span class="number">29</span>);</div><div class="line">Student stu3 = <span class="keyword">new</span> Student(<span class="string">"魏泽"</span>,<span class="number">18</span>);</div><div class="line">List&lt;Student&gt; stuList = Arrays.asList(stu1,stu2,stu3);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用默认的集合排序方式对集合进行排序操作(无法编译)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Collections.sort(stuList); <span class="comment">//编译报错</span></div></pre></td></tr></table></figure>
+<ul>
+<li>我们定义一个针对不具有排序特性的Student的元素集合定义一个比较器</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 定义一个普通的类，然后把该类实现Comparator排序接口即可，泛型类型就是我们待排序的Student类</div><div class="line"> * <span class="doctag">@author</span> maps</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Student</span>&gt;</span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> o1.getAge()-o2.getAge();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用我们自定义的比较器对刚才的stuList集合进行排序操作</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Collections.sort(stuList, <span class="keyword">new</span> StudentComparator());</div></pre></td></tr></table></figure>
+<p>上面代码执行结果：</p>
+<blockquote>
+<blockquote>
+<p>[User [name=魏泽, age=18], User [name=王明, age=25], User [name=李茜, age=29]]</p>
+</blockquote>
+</blockquote>
+<p>可以看到使用我们自定义的比较器后，排序时使用了集合中的泛型元素的年龄(age)属性进行了升序排列。</p>
+<blockquote>
+<p>自定义一个比较器，然后覆盖默认的排序方法</p>
+</blockquote>
+<p>其实这种使用场景在上面已经用到了，就是下面一行代码</p>
+<blockquote>
+<blockquote>
+<p>Collections.sort(stuList, new StudentComparator());</p>
+</blockquote>
+</blockquote>
+<p>我们可以看到Collections.sort方法定义了两个不同参数格式的重载方法，其中一个参数的sort方法就是使用默认的比较器(集合中泛型元素实现接口Comparable后覆写的比较方法)进行排序的操作；其中两个参数的sort方法中第二个参数就是我们自定义的比较器实例，所以当我们传递第二个参数时，也就表明我们将使用我们自定义的比较器来覆盖默认的比较器进行排序操作，具体就不进行演示了，上面例子中已经展示了。</p>
+<p>其实Comparator接口中定义了很多有用的方法，比如把排序规则反转、构件排序链等等，比如我们定义的比较器是按照学生的年龄进行升序排序的，那么我们可以使用比较器的反转方法进行降序排列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Collections.sort(stuList,<span class="keyword">new</span> StudentComparator().reversed());</div></pre></td></tr></table></figure>
+<p>上面代码运行结果：</p>
+<blockquote>
+<p>[User [name=李茜, age=29], User [name=王明, age=25], User [name=魏泽, age=18]]</p>
+</blockquote>
+<p>可以看到我们使用比较器反转方法后，按照了年龄降序进行排序。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/设计模式-引入模式雏形/" rel="next" title="设计模式--引入模式雏形">
+                <i class="fa fa-chevron-left"></i> 设计模式--引入模式雏形
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="java新旧版本的排序/"
+           data-title="java新旧版本的排序" data-url="http://www.soujava.com/java新旧版本的排序/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="马平升" />
+          <p class="site-author-name" itemprop="name">马平升</p>
+          <p class="site-description motion-element" itemprop="description">记录未知的，牢记已知的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马平升</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="http://www.soujava.com">soujava</a>
+</div>
+
+<div class="theme-info">
+  
+  <a class="theme-link" href="https://github.com/mapingsheng">
+    GitHub
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soujava"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
