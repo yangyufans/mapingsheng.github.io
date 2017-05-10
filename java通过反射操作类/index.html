@@ -1,0 +1,747 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soujava" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在开发中用到反射操作具体类的情况比较少，但是我们用到的一些开发框架确都是反射的应用代表，比如spring、hibernate、mybatis等等框架。
+就拿spring框架来讲，我们在application.xml中配置一个bean标签，然后把类的全路径配置好之后，spring启动初始化时就把这个类路径对应的具体类初始化成了一个真正意义上的bean对象，我们就可以直接使用这个bean对象中的方法进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java通过反射操作类">
+<meta property="og:url" content="http://www.soujava.com/java通过反射操作类/index.html">
+<meta property="og:site_name" content="soujava">
+<meta property="og:description" content="在开发中用到反射操作具体类的情况比较少，但是我们用到的一些开发框架确都是反射的应用代表，比如spring、hibernate、mybatis等等框架。
+就拿spring框架来讲，我们在application.xml中配置一个bean标签，然后把类的全路径配置好之后，spring启动初始化时就把这个类路径对应的具体类初始化成了一个真正意义上的bean对象，我们就可以直接使用这个bean对象中的方法进">
+<meta property="og:updated_time" content="2017-05-10T06:42:03.952Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java通过反射操作类">
+<meta name="twitter:description" content="在开发中用到反射操作具体类的情况比较少，但是我们用到的一些开发框架确都是反射的应用代表，比如spring、hibernate、mybatis等等框架。
+就拿spring框架来讲，我们在application.xml中配置一个bean标签，然后把类的全路径配置好之后，spring启动初始化时就把这个类路径对应的具体类初始化成了一个真正意义上的bean对象，我们就可以直接使用这个bean对象中的方法进">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.soujava.com/java通过反射操作类/"/>
+
+  <title> java通过反射操作类 | soujava </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">soujava</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录未知的，牢记已知的</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java通过反射操作类
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-10T11:17:22+08:00" content="2017-05-10">
+              2017-05-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/java通过反射操作类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="java通过反射操作类/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在开发中用到反射操作具体类的情况比较少，但是我们用到的一些开发框架确都是反射的应用代表，比如spring、hibernate、mybatis等等框架。</p>
+<p>就拿spring框架来讲，我们在application.xml中配置一个bean标签，然后把类的全路径配置好之后，spring启动初始化时就把这个类路径对应的具体类初始化成了一个真正意义上的bean对象，我们就可以直接使用这个bean对象中的方法进行操作了；这里面最典型的就是aop、ioc了。</p>
+<p><strong>一、使用原生反射方式</strong></p>
+<a id="more"></a>
+<p><strong>1. 新建一个普通的java类-Student</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> String userName;</div><div class="line">	<span class="keyword">private</span> String passWord;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String userName,String passWord)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.userName = userName;</div><div class="line">		<span class="keyword">this</span>.passWord = passWord;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> userName;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.userName = userName;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getPassWord</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> passWord;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassWord</span><span class="params">(String passWord)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.passWord = passWord;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"Student [userName="</span> + userName + <span class="string">", passWord="</span> + passWord + <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>2. 通过反射方法-getDeclaredMethods()获取该类中的全部方法</strong></p>
+<p> <em>注：通过getDeclaredMethods获取该类中所有方法，包括公共、保护、默认（包）访问和私有方法，当然不包括其继承的方法(比如Student的隐形继承的类Object中的方法)；通过getMethods获取所有公用（public）方法包括其继承类的公用方法(即包含父类Object中的方法)</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Class&lt;?&gt; clazz = <span class="keyword">null</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	clazz = Class.forName(<span class="string">"com.maps.test.proxy.Student"</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">Method[] methods = clazz.getDeclaredMethods();</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;methods.length;i++)&#123;</div><div class="line">	Method method = methods[i];</div><div class="line">	</div><div class="line">	Parameter[] parameters = method.getParameters();</div><div class="line">	StringBuilder sbf = <span class="keyword">new</span> StringBuilder(<span class="string">"("</span>);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m=<span class="number">0</span>;m&lt;parameters.length;m++)&#123;</div><div class="line">		Parameter parameter = parameters[m];</div><div class="line">		String parameterName = parameter.getName();</div><div class="line">		<span class="keyword">int</span> modify = parameter.getModifiers();</div><div class="line">		String parameterModify = Modifier.toString(modify);</div><div class="line">		String parameterType = parameter.getType().getSimpleName();</div><div class="line">		sbf.append(parameterModify).append(<span class="string">" "</span>).append(parameterType).append(<span class="string">" "</span>).append(parameterName).append(<span class="string">","</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(sbf.lastIndexOf(<span class="string">","</span>)&gt;=<span class="number">0</span>)&#123;</div><div class="line">		sbf.deleteCharAt(sbf.length()-<span class="number">1</span>);	</div><div class="line">	&#125;</div><div class="line">	sbf.append(<span class="string">")"</span>);</div><div class="line">	</div><div class="line">	System.out.println(<span class="string">"[methodInfo:&#123;methodName:"</span>+method.getName()+<span class="string">",returnType:"</span>+method.getReturnType().getName()+<span class="string">"&#125;"</span>+<span class="string">",parameterInfo:&#123;"</span>+sbf.toString()+<span class="string">"&#125;]"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码运行结果-输出了每一个方法和方法中的参数的访问权限、类型、名称信息</p>
+<blockquote>
+<p>[methodInfo:{methodName:toString,returnType:java.lang.String,methodModify:public},parameterInfo:{()}]<br>[methodInfo:{methodName:setUserName,returnType:void,methodModify:public},parameterInfo:{( String arg0)}]<br>[methodInfo:{methodName:setPassWord,returnType:void,methodModify:public},parameterInfo:{( String arg0)}]<br>[methodInfo:{methodName:getPassWord,returnType:java.lang.String,methodModify:public},parameterInfo:{()}]<br>[methodInfo:{methodName:getUserName,returnType:java.lang.String,methodModify:public},parameterInfo:{()}]</p>
+</blockquote>
+<p><strong>3. 通过反射方法-getDeclaredFields()获取该类中的所有属性</strong></p>
+<p><em>注：getDeclaredFields方法用于获得类中的所有的属性，包括public、private和proteced、default，但是不包括父类中的属性；getFields方法获得类中的所有的公共（public）的字段，包括父类中声明的属性</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Field[] fields = clazz.getDeclaredFields();</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;fields.length;i++)&#123;</div><div class="line">	Field field = fields[i];</div><div class="line">	String fieldName = field.getName();<span class="comment">//获取属性的名称</span></div><div class="line">	Class&lt;?&gt; fieldType = field.getType();<span class="comment">//获取属性的类型</span></div><div class="line">	String fieldTypeValue = fieldType.getSimpleName(); <span class="comment">//获取属性的简单类型，即不带java.lang前缀</span></div><div class="line">	<span class="keyword">int</span> modify = field.getModifiers();<span class="comment">//获取数学的访问权限</span></div><div class="line">	String modifyVal = Modifier.toString(modify);</div><div class="line">	System.out.println(<span class="string">"[fieldInfo:&#123;fieldModify:"</span>+modifyVal+<span class="string">",fieldType:"</span>+fieldTypeValue+<span class="string">",fieldName:"</span>+fieldName+<span class="string">"&#125;]"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码运行结果-输出了Student类中定义的两个属性</p>
+<blockquote>
+<p>[fieldInfo:{fieldModify:private,fieldType:String,fieldName:userName}]<br>[fieldInfo:{fieldModify:private,fieldType:String,fieldName:passWord}]</p>
+</blockquote>
+<p><strong>4. 通过反射调用类中的方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 通过类路径加载类Student</div><div class="line"> */</div><div class="line">Class&lt;?&gt; clazz = <span class="keyword">null</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	clazz = Class.forName(<span class="string">"com.maps.test.proxy.Student"</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	<span class="comment">//实例化Studnt对象</span></div><div class="line">	Object obj = clazz.newInstance();</div><div class="line">	<span class="comment">//获取Student中的方法名为setUserName，参数数量只有一个，参数类型为String的方法体</span></div><div class="line">	Method setUserNameMethod = clazz.getMethod(<span class="string">"setUserName"</span>,String.class);</div><div class="line">	<span class="comment">//通过反射invoke调用Student对象中的setUseName方法，并且传递参数“maps”</span></div><div class="line">	setUserNameMethod.invoke(obj,<span class="string">"maps"</span>);</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 直接修改Student中的属性值</div><div class="line">	 */</div><div class="line">	Field field = clazz.getDeclaredField(<span class="string">"userName"</span>);<span class="comment">//获取Studnt中名称为userName的属性</span></div><div class="line">    field.setAccessible(<span class="keyword">true</span>);<span class="comment">//设置该属性的可访问权限</span></div><div class="line">    field.set(obj, <span class="string">"mapingsheng"</span>);<span class="comment">//然后把该属性的值设置为“mapingsheng”</span></div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 通过反射调用getUserName方法获取上一步设置好的属性-userName的值</div><div class="line">	 */</div><div class="line">	Method getUserNameMethod = clazz.getMethod(<span class="string">"getUserName"</span>);</div><div class="line">	String userNameValue = (String) getUserNameMethod.invoke(obj);</div><div class="line">	System.out.println(userNameValue);</div><div class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码运行结果：</p>
+<blockquote>
+<p>mapingsheng</p>
+</blockquote>
+<p><strong>二、使用java动态代理-InvocationHandler方式</strong></p>
+<p>代理就是通过中间的代理对象间接的调用真实对象的方法的应用模式，在java中，java.lang.reflect API提供了API提供了proxy类和InvocationHandler接口来实现动态代理操作。Proxy类根据给定的参数创建动态代理类。 InvocationHandler调用动态代理类的方法。 以下将详细讨论所有这些情况：</p>
+<ul>
+<li>java.lang.reflect.Proxy是一个提供静态方法来创建动态代理类的类。Proxy类中有一个newProxyInstance（）方法定义如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> Object newProxyInstance （ClassLoader loader ，Class &lt;？&gt; [] interfaces ，InvocationHandler h）</div></pre></td></tr></table></figure>
+<p>这个方法中的三个参数的意义：</p>
+<blockquote>
+<p>ClassLoader：这个类加载器将定义动态代理类。类加载器可以通过正在创建其动态代理的类或接口来获取。</p>
+<p>interfaces：第二个参数是被代理的类所实现的所有接口的数组</p>
+<p>InvocationHandler：第三个参数是传递实现java.lang.reflect.InvocationHandler的类的实例</p>
+</blockquote>
+<ul>
+<li>java中的InvocationHandler是java.lang.reflect包中的接口。InvocationHandler由用户类实现，以调用动态代理类的方法。invoke方法的语法如下</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Object invoke（Object proxy ，Method m ，Object [] args）</div></pre></td></tr></table></figure>
+<p>这个方法中的三个参数的意义：</p>
+<blockquote>
+<p>Object：这是调用方法的代理实例。 </p>
+<p>Method：这对应于在代理实例上调用的接口方法。 </p>
+<p>Object []：它包含一个在方法调用中传递的参数数组。</p>
+</blockquote>
+<p><strong>- 具体使用代码演示java的动态代理操作</strong></p>
+<p>通过一个结婚的场景来模拟动态代理场景，比如日常生活中要结婚的话，需要预定场地和吃饭的酒店，并且出行需要预定汽车服务。</p>
+<ul>
+<li>一个代理结构(中介)提供了很多套餐(酒店+出行套餐、酒店+婚礼主持+出行套餐等等)–代理类MarryProxy</li>
+<li>这个代理机构提供了很多套餐服务，一般开发中都是面向接口编程(MarryPackageService、MarryPackageServiceImpl)</li>
+</ul>
+<p>我们采取最经济的套餐（酒店+出行套餐）来讲，可以看到上面场景一共需要提供如下类：</p>
+<ol>
+<li>定义一个结婚套餐服务接口</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 结婚套餐(提供酒店+出行服务)</div><div class="line"> * <span class="doctag">@author</span> mapingsheng</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MarryPackageService</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 提供酒店服务，一站式解决婚礼举办、就餐问题</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">hotel</span><span class="params">(String address,String hotelName)</span></span>;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 提供用车服务，解决出行问题</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">car</span><span class="params">(String carName)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>定义一个结婚套餐接口的实现类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 结婚套餐(提供酒店+出行服务)具体业务类</div><div class="line"> * <span class="doctag">@author</span> mapingsheng</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MarryPackageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MarryPackageService</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">hotel</span><span class="params">(String address, String hotelName)</span> </span>&#123;</div><div class="line">		Date date = <span class="keyword">new</span> Date();</div><div class="line">		SimpleDateFormat sf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> sf.format(date)+<span class="string">" 【"</span>+address+<span class="string">" "</span>+hotelName+<span class="string">"】 提供就餐服务"</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">car</span><span class="params">(String carName)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"【"</span>+carName+<span class="string">"】  提供出行服务"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>定义一个代理结构-代理类</li>
+</ol>
+<p><em>注：代理类必须实现InvocationHandler接口，我们在构造方法中初始化被代理的对象</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MarryProxy</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> Object obj;<span class="comment">//这个就是我们要代理的真实对象</span></div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 通过构造函数初始化代理对象</div><div class="line">	 * <span class="doctag">@param</span> obj</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span>  <span class="title">MarryProxy</span><span class="params">(Object obj)</span></span>&#123;</div><div class="line">		 <span class="keyword">this</span>.obj = obj;</div><div class="line">	 &#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 当代理对象调用真实对象的方法时，其会自动的跳转到代理对象关联的handler对象的invoke方法来进行调用</div><div class="line">	 */</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		<span class="keyword">return</span> method.invoke(obj, args);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>新建一个测试类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MarryClient</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//我们要代理的真实对象</span></div><div class="line">		MarryPackageService marryPackageService = <span class="keyword">new</span> MarryPackageServiceImpl();</div><div class="line">		<span class="comment">//初始化代理类</span></div><div class="line">		InvocationHandler handler = <span class="keyword">new</span> MarryProxy(marryPackageService);</div><div class="line">		<span class="comment">//通过Proxy的newProxyInstance方法来创建我们的代理对象</span></div><div class="line">		Object obj = Proxy.newProxyInstance(marryPackageService.getClass().getClassLoader(), </div><div class="line">											marryPackageService.getClass().getInterfaces(), </div><div class="line">											handler);</div><div class="line">		</div><div class="line">		MarryPackageService marryService = (MarryPackageService) obj;</div><div class="line">		String hotelInfo = marryService.hotel(<span class="string">"北京市海淀区中关村南大街8号"</span>, <span class="string">"香格里拉大酒店"</span>);</div><div class="line">		String carInfo = marryService.car(<span class="string">"奥迪A6"</span>);</div><div class="line">		System.out.println(hotelInfo+<span class="string">" "</span>+carInfo);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码运行结果：</p>
+<blockquote>
+<p>2017-05-10 14:41:57 【北京市海淀区中关村南大街8号 香格里拉大酒店】 提供就餐服务 【奥迪A6】  提供出行服务</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/java新旧版本的排序/" rel="next" title="java新旧版本的排序">
+                <i class="fa fa-chevron-left"></i> java新旧版本的排序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="java通过反射操作类/"
+           data-title="java通过反射操作类" data-url="http://www.soujava.com/java通过反射操作类/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="马平升" />
+          <p class="site-author-name" itemprop="name">马平升</p>
+          <p class="site-description motion-element" itemprop="description">记录未知的，牢记已知的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马平升</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="http://www.soujava.com">soujava</a>
+</div>
+
+<div class="theme-info">
+  
+  <a class="theme-link" href="https://github.com/mapingsheng">
+    GitHub
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soujava"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
