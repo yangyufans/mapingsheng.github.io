@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.soujava.com/"/>
-  <updated>2017-05-10T09:16:07.799Z</updated>
+  <updated>2017-05-10T09:22:00.633Z</updated>
   <id>http://www.soujava.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.soujava.com/%E9%80%9A%E8%BF%87curl%E5%91%BD%E4%BB%A4%E8%B0%83%E7%94%A8%E8%B0%83%E8%AF%95RestApi%E6%8E%A5%E5%8F%A3/"/>
     <id>http://www.soujava.com/通过curl命令调用调试RestApi接口/</id>
     <published>2017-05-10T08:38:56.000Z</published>
-    <updated>2017-05-10T09:16:07.799Z</updated>
+    <updated>2017-05-10T09:22:00.633Z</updated>
     
     <content type="html">&lt;p&gt;昨天仿真环境上面的rest接口突然调不通了，然后就需要到服务器中查看什么原因，后台服务器的物理环境是跳板机–&amp;gt;服务器；也就是说不能直接链接到系统的运行服务器中的，需要先链接到跳板机上面，然后通过跳板机进入系统服务器中，由于系统服务器是linux操作系统，所以就需要在命令行中对一些接口地址进行联调调试操作，就用到了curl命令处理，具体下面分步骤说明其用法。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -33,9 +33,7 @@
 &lt;p&gt;-v/–verbose                          输出更加详细的响应信息&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;二、示例调用&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;请求一个普通接口地址&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;1. 请求一个普通接口地址&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;curl -i  “&lt;a href=&quot;http://*******/appteacher/*****/years&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://*******/appteacher/*****/years&lt;/a&gt;“&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -45,9 +43,7 @@
 &lt;p&gt;{“rlt”:true,”msg”:”操作成功”,”code”:”000000”,”time”:”2017-05-10 17:00:48”,”data”:[{“value”:2017,”name”:”2017年”},{“value”:2016,”name”:”2016年”},{“value”:2015,”name”:”2015年”}]}&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;可以看到当我们加入 -i 参数后，header响应信息页输出了；另外如果不加-X 参数设定请求类型，则默认是Get请求方式。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;最简化的请求一个方式为GET的接口&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;2. 最简化的请求一个方式为GET的接口&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;curl  “&lt;a href=&quot;http://*******/appteacher/*****/years&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://*******/appteacher/*****/years&lt;/a&gt;“&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -56,9 +52,7 @@
 &lt;p&gt;{“rlt”:true,”msg”:”操作成功”,”code”:”000000”,”time”:”2017-05-10 17:00:48”,”data”:[{“value”:2017,”name”:”2017年”},{“value”:2016,”name”:”2016年”},{“value”:2015,”name”:”2015年”}]}&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;可以看到我们把 -i 参数去除后，就不会输出响应header信息了，输出的仅仅是结果集数据&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;请求一个post类型的接口，需要在header中设置参数&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;3. 请求一个post类型的接口，需要在header中设置参数&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;curl -i -H “area:010” -H “token:2435984u3943” -H “md5:o0priosj9od” -X POST -d “id=544339848ij9s&amp;amp;type=1”  “&lt;a href=&quot;http://*******/appteacher/*****/order&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://*******/appteacher/*****/order&lt;/a&gt;“&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -66,9 +60,7 @@
 &lt;ul&gt;
 &lt;li&gt;每一个header参数值都需要用一个 -H标识，多个header参数就用多个-H 进行指定，使用-d参数设定请求中的参数，多个参数可以直接用 &amp;amp; 分割即可；通过-X 命令设置请求方法为POST&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol&gt;
-&lt;li&gt;可以在curl命令加上一个 -v 参数，查看更详细的响应信息&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;4. 可以在curl命令加上一个 -v 参数，查看更详细的响应信息&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;curl -i -H “area:010” -H “token:2435984u3943” -H “md5:o0priosj9od” -X POST -d “id=544339848ij9s&amp;amp;type=1”  “&lt;a href=&quot;http://*******/appteacher/*****/order&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://*******/appteacher/*****/order&lt;/a&gt;“ -v&lt;/p&gt;
 &lt;/blockquote&gt;
