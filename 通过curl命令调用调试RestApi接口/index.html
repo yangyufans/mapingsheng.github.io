@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="springBoot," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -86,28 +86,16 @@
 
 
 
-<meta name="description" content="平时使用springboot开发后台功能模块，并且开发对外提供的restfulApi接口时也同样使用springBoot开发，目前主要用到两种方式的的restfulApi;下面分两点说明
-一、静态url+动态参数(param)形式的api接口形式：
-1http://localhost:8080/api/user/info?id=123
-api代码：
-12345678910111213141516@">
+<meta name="description" content="昨天仿真环境上面的rest接口突然调不通了，然后就需要到服务器中查看什么原因，后台服务器的物理环境是跳板机–&amp;gt;服务器；也就是说不能直接链接到系统的运行服务器中的，需要先链接到跳板机上面，然后通过跳板机进入系统服务器中，由于系统服务器是linux操作系统，所以就需要在命令行中对一些接口地址进行联调调试操作，就用到了curl命令处理，具体下面分步骤说明其用法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="springBoot编写不同风格的restAPI接口">
-<meta property="og:url" content="http://www.soujava.com/springBoot编写不同风格的restAPI接口/index.html">
+<meta property="og:title" content="通过curl命令调用调试RestApi接口">
+<meta property="og:url" content="http://www.soujava.com/通过curl命令调用调试RestApi接口/index.html">
 <meta property="og:site_name" content="soujava">
-<meta property="og:description" content="平时使用springboot开发后台功能模块，并且开发对外提供的restfulApi接口时也同样使用springBoot开发，目前主要用到两种方式的的restfulApi;下面分两点说明
-一、静态url+动态参数(param)形式的api接口形式：
-1http://localhost:8080/api/user/info?id=123
-api代码：
-12345678910111213141516@">
-<meta property="og:updated_time" content="2017-01-11T02:06:24.913Z">
+<meta property="og:description" content="昨天仿真环境上面的rest接口突然调不通了，然后就需要到服务器中查看什么原因，后台服务器的物理环境是跳板机–&amp;gt;服务器；也就是说不能直接链接到系统的运行服务器中的，需要先链接到跳板机上面，然后通过跳板机进入系统服务器中，由于系统服务器是linux操作系统，所以就需要在命令行中对一些接口地址进行联调调试操作，就用到了curl命令处理，具体下面分步骤说明其用法。">
+<meta property="og:updated_time" content="2017-05-10T09:16:07.799Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="springBoot编写不同风格的restAPI接口">
-<meta name="twitter:description" content="平时使用springboot开发后台功能模块，并且开发对外提供的restfulApi接口时也同样使用springBoot开发，目前主要用到两种方式的的restfulApi;下面分两点说明
-一、静态url+动态参数(param)形式的api接口形式：
-1http://localhost:8080/api/user/info?id=123
-api代码：
-12345678910111213141516@">
+<meta name="twitter:title" content="通过curl命令调用调试RestApi接口">
+<meta name="twitter:description" content="昨天仿真环境上面的rest接口突然调不通了，然后就需要到服务器中查看什么原因，后台服务器的物理环境是跳板机–&amp;gt;服务器；也就是说不能直接链接到系统的运行服务器中的，需要先链接到跳板机上面，然后通过跳板机进入系统服务器中，由于系统服务器是linux操作系统，所以就需要在命令行中对一些接口地址进行联调调试操作，就用到了curl命令处理，具体下面分步骤说明其用法。">
 
 
 
@@ -128,9 +116,9 @@ api代码：
 
 
 
-  <link rel="canonical" href="http://www.soujava.com/springBoot编写不同风格的restAPI接口/"/>
+  <link rel="canonical" href="http://www.soujava.com/通过curl命令调用调试RestApi接口/"/>
 
-  <title> springBoot编写不同风格的restAPI接口 | soujava </title>
+  <title> 通过curl命令调用调试RestApi接口 | soujava </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -270,7 +258,7 @@ api代码：
             
             
               
-                springBoot编写不同风格的restAPI接口
+                通过curl命令调用调试RestApi接口
               
             
           </h1>
@@ -282,8 +270,8 @@ api代码：
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-31T19:38:46+08:00" content="2016-08-31">
-              2016-08-31
+            <time itemprop="dateCreated" datetime="2017-05-10T16:38:56+08:00" content="2017-05-10">
+              2017-05-10
             </time>
           </span>
 
@@ -296,8 +284,8 @@ api代码：
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -312,8 +300,8 @@ api代码：
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/springBoot编写不同风格的restAPI接口/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="springBoot编写不同风格的restAPI接口/" itemprop="commentsCount"></span>
+                <a href="/通过curl命令调用调试RestApi接口/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="通过curl命令调用调试RestApi接口/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,19 +329,57 @@ api代码：
       
 
       
-        <p>平时使用springboot开发后台功能模块，并且开发对外提供的restfulApi接口时也同样使用springBoot开发，目前主要用到两种方式的的restfulApi;下面分两点说明</p>
-<h3 id="一、静态url-动态参数-param-形式的api"><a href="#一、静态url-动态参数-param-形式的api" class="headerlink" title="一、静态url+动态参数(param)形式的api"></a>一、静态url+动态参数(param)形式的api</h3><p>接口形式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http:<span class="comment">//localhost:8080/api/user/info?id=123</span></div></pre></td></tr></table></figure>
-<p>api代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/api"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">userApiController</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> UserService userService;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	  * 根据用户id获取用户信息的api</div><div class="line">	  * <span class="doctag">@param</span> id 用户id</div><div class="line">	  */</div><div class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"user/info"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">user</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>)</span> String id）</span>&#123;</div><div class="line">			方法体</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面的例子中使用了如下个注解：<br>1、@RestController  用来标记这是一个支持REST的控制器，其实其是@Controller扩展来的<br>2、@RequestMapping  其提供路由信息，它告诉Spring任何来自”/“路径的HTTP请求都应该被映射到该Controller入口中<br>3、@Autowired  对类成员变量、方法及构造函数进行注解，完成自动装配的工作。 用来消除set ，get方法<br>3、@RequestParam 将请求参数区数据映射到功能处理方法的参数上，比如我们的@RequestParam(value=”id”) String userId这样，我们对外公开的参数名称为id，而我们业务方法体用的参数名称为userId，该注解就是将两个参数绑定在一起</p>
-<h3 id="二、动态url-动态参数-param-形式的api"><a href="#二、动态url-动态参数-param-形式的api" class="headerlink" title="二、动态url+动态参数(param)形式的api"></a>二、动态url+动态参数(param)形式的api</h3><p>接口形式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http:<span class="comment">//localhost:8080/api/user/&#123;id&#125;/info?status=1</span></div></pre></td></tr></table></figure>
-<p>api代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"user/&#123;id&#125;/info"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">userApiController</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> UserService userService;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	  * 根据用户id获取用户信息的api</div><div class="line">	  * <span class="doctag">@param</span> id 用户id</div><div class="line">	  */</div><div class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"user/info"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">user</span><span class="params">(@PathVariable(value = <span class="string">"id"</span>)</span> String id,</span></div><div class="line">					 @<span class="title">RequestParam</span><span class="params">(value = <span class="string">"status"</span>)</span> String status）&#123;</div><div class="line">			方法体</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面的例子中使用了如下个注解：<br>1、@PathVariable 将方法中的参数绑定到请求url中(path)中的动态变量，比如上面例子中将path中的{id}绑定到user方法中的String id参数上面</p>
-<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p>1、如果参数不在path路径中动态传递(所有参数在?后面以键值对传递)，那么方法体中使用@RequestParam进行参数绑定(如果传递的参数名称跟方法中传递的参数名称一致的话可以不用改注解)</p>
-<p>2、如果参数在path路径中动态传递(在?前面的path路径中使用{id}这种方式传递参数，那么方法体中必须使用@PathVariable进行参数绑定)</p>
+        <p>昨天仿真环境上面的rest接口突然调不通了，然后就需要到服务器中查看什么原因，后台服务器的物理环境是跳板机–&gt;服务器；也就是说不能直接链接到系统的运行服务器中的，需要先链接到跳板机上面，然后通过跳板机进入系统服务器中，由于系统服务器是linux操作系统，所以就需要在命令行中对一些接口地址进行联调调试操作，就用到了curl命令处理，具体下面分步骤说明其用法。</p>
+<a id="more"></a>
+<p><strong>一、语法</strong></p>
+<blockquote>
+<p>-X/–request [GET|POST|PUT|DELETE|…]  用于指定请求方式</p>
+<p>-H/–header                           设置请求头(header)信息</p>
+<p>-i/–include                          请求接口后，输出响应的header信息</p>
+<p>-d/–data                             设置请求中的参数 </p>
+<p>-v/–verbose                          输出更加详细的响应信息</p>
+</blockquote>
+<p><strong>二、示例调用</strong></p>
+<ol>
+<li>请求一个普通接口地址</li>
+</ol>
+<blockquote>
+<p>curl -i  “<a href="http://*******/appteacher/*****/years" target="_blank" rel="external">http://*******/appteacher/*****/years</a>“</p>
+</blockquote>
+<p>请求接口后输出如下信息：</p>
+<blockquote>
+<p>HTTP/1.1 200 OK<br>Server: nginx<br>Date: Wed, 10 May 2017 09:00:48 GMT<br>Content-Type: text/html;charset=UTF-8<br>Transfer-Encoding: chunked<br>Connection: keep-alive<br>Keep-Alive: timeout=7200<br>Vary: Accept-Encoding<br>Set-Cookie: BIGipServerPY_JiaoShiDuan_App_Pool_80=3960187072.20480.0000; path=/</p>
+<p>{“rlt”:true,”msg”:”操作成功”,”code”:”000000”,”time”:”2017-05-10 17:00:48”,”data”:[{“value”:2017,”name”:”2017年”},{“value”:2016,”name”:”2016年”},{“value”:2015,”name”:”2015年”}]}</p>
+</blockquote>
+<p>可以看到当我们加入 -i 参数后，header响应信息页输出了；另外如果不加-X 参数设定请求类型，则默认是Get请求方式。</p>
+<ol>
+<li>最简化的请求一个方式为GET的接口</li>
+</ol>
+<blockquote>
+<p>curl  “<a href="http://*******/appteacher/*****/years" target="_blank" rel="external">http://*******/appteacher/*****/years</a>“</p>
+</blockquote>
+<p>请求接口后输出如下信息：</p>
+<blockquote>
+<p>{“rlt”:true,”msg”:”操作成功”,”code”:”000000”,”time”:”2017-05-10 17:00:48”,”data”:[{“value”:2017,”name”:”2017年”},{“value”:2016,”name”:”2016年”},{“value”:2015,”name”:”2015年”}]}</p>
+</blockquote>
+<p>可以看到我们把 -i 参数去除后，就不会输出响应header信息了，输出的仅仅是结果集数据</p>
+<ol>
+<li>请求一个post类型的接口，需要在header中设置参数</li>
+</ol>
+<blockquote>
+<p>curl -i -H “area:010” -H “token:2435984u3943” -H “md5:o0priosj9od” -X POST -d “id=544339848ij9s&amp;type=1”  “<a href="http://*******/appteacher/*****/order" target="_blank" rel="external">http://*******/appteacher/*****/order</a>“</p>
+</blockquote>
+<p>注：具体响应就不贴出来了。</p>
+<ul>
+<li>每一个header参数值都需要用一个 -H标识，多个header参数就用多个-H 进行指定，使用-d参数设定请求中的参数，多个参数可以直接用 &amp; 分割即可；通过-X 命令设置请求方法为POST</li>
+</ul>
+<ol>
+<li>可以在curl命令加上一个 -v 参数，查看更详细的响应信息</li>
+</ol>
+<blockquote>
+<p>curl -i -H “area:010” -H “token:2435984u3943” -H “md5:o0priosj9od” -X POST -d “id=544339848ij9s&amp;type=1”  “<a href="http://*******/appteacher/*****/order" target="_blank" rel="external">http://*******/appteacher/*****/order</a>“ -v</p>
+</blockquote>
+<p>通过以上命令就可以直接在命令窗口中联调测试restApi接口了！</p>
 
       
     </div>
@@ -375,7 +401,7 @@ api代码：
       
         <div class="post-tags">
           
-            <a href="/tags/springBoot/" rel="tag">#springBoot</a>
+            <a href="/tags/java/" rel="tag">#java</a>
           
         </div>
       
@@ -384,17 +410,13 @@ api代码：
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/java8中使用stream流和for循环分别对数据集合遍历的差异/" rel="next" title="java8中使用stream流和for循环分别对数据集合遍历的差异">
-                <i class="fa fa-chevron-left"></i> java8中使用stream流和for循环分别对数据集合遍历的差异
+              <a href="/java通过反射操作类/" rel="next" title="java通过反射操作类">
+                <i class="fa fa-chevron-left"></i> java通过反射操作类
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具/" rel="prev" title="基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具">
-                基于gitlab开发的针对git仓库中的项目代码库进行打包、补丁包管理工具 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -420,8 +442,8 @@ api代码：
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="springBoot编写不同风格的restAPI接口/"
-           data-title="springBoot编写不同风格的restAPI接口" data-url="http://www.soujava.com/springBoot编写不同风格的restAPI接口/">
+      <div class="ds-thread" data-thread-key="通过curl命令调用调试RestApi接口/"
+           data-title="通过curl命令调用调试RestApi接口" data-url="http://www.soujava.com/通过curl命令调用调试RestApi接口/">
       </div>
     
   </div>
@@ -519,7 +541,7 @@ api代码：
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、静态url-动态参数-param-形式的api"><span class="nav-number">1.</span> <span class="nav-text">一、静态url+动态参数(param)形式的api</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、动态url-动态参数-param-形式的api"><span class="nav-number">2.</span> <span class="nav-text">二、动态url+动态参数(param)形式的api</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、总结"><span class="nav-number">3.</span> <span class="nav-text">三、总结</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
