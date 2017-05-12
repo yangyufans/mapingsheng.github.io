@@ -1,0 +1,727 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soujava" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在上一篇介绍的观察者模式中我们用基本的代码实现了报纸订阅的场景，感觉写了很多代码才实现这个模式，比如在报纸订阅中需要提供订阅、取消订阅、通知订阅者等等通用的方法，在定义观察者时需要提供被通知的通用方法；
+其实在java中已经原生支持了观察者模式的实现，我们通过java原生提供的Observable(类)、Observer(接口)可以很简单的实现观察者模式，比如上面描述的提供订阅、取消订阅、通知订阅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式--观察者模式(用java原生Observable、Observer简化观察者模式实现)">
+<meta property="og:url" content="http://www.soujava.com/设计模式-观察者模式-用java原生Observable、Observer简化观察者模式实现/index.html">
+<meta property="og:site_name" content="soujava">
+<meta property="og:description" content="在上一篇介绍的观察者模式中我们用基本的代码实现了报纸订阅的场景，感觉写了很多代码才实现这个模式，比如在报纸订阅中需要提供订阅、取消订阅、通知订阅者等等通用的方法，在定义观察者时需要提供被通知的通用方法；
+其实在java中已经原生支持了观察者模式的实现，我们通过java原生提供的Observable(类)、Observer(接口)可以很简单的实现观察者模式，比如上面描述的提供订阅、取消订阅、通知订阅">
+<meta property="og:updated_time" content="2017-05-12T06:47:00.008Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式--观察者模式(用java原生Observable、Observer简化观察者模式实现)">
+<meta name="twitter:description" content="在上一篇介绍的观察者模式中我们用基本的代码实现了报纸订阅的场景，感觉写了很多代码才实现这个模式，比如在报纸订阅中需要提供订阅、取消订阅、通知订阅者等等通用的方法，在定义观察者时需要提供被通知的通用方法；
+其实在java中已经原生支持了观察者模式的实现，我们通过java原生提供的Observable(类)、Observer(接口)可以很简单的实现观察者模式，比如上面描述的提供订阅、取消订阅、通知订阅">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.soujava.com/设计模式-观察者模式-用java原生Observable、Observer简化观察者模式实现/"/>
+
+  <title> 设计模式--观察者模式(用java原生Observable、Observer简化观察者模式实现) | soujava </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">soujava</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录未知的，牢记已知的</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                设计模式--观察者模式(用java原生Observable、Observer简化观察者模式实现)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-12T13:10:36+08:00" content="2017-05-12">
+              2017-05-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/设计模式-观察者模式-用java原生Observable、Observer简化观察者模式实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="设计模式-观察者模式-用java原生Observable、Observer简化观察者模式实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在上一篇介绍的观察者模式中我们用基本的代码实现了报纸订阅的场景，感觉写了很多代码才实现这个模式，比如在报纸订阅中需要提供订阅、取消订阅、通知订阅者等等通用的方法，在定义观察者时需要提供被通知的通用方法；</p>
+<p>其实在java中已经原生支持了观察者模式的实现，我们通过java原生提供的Observable(类)、Observer(接口)可以很简单的实现观察者模式，比如上面描述的提供订阅、取消订阅、通知订阅者等通用方法他都进行了实现，我们直接调用即可。</p>
+<p><strong>一、Observer接口实现观察者</strong></p>
+<p><strong>1. 订阅者-张三</strong></p>
+<p>我们只需要把订阅者实现Observer接口，并且实现update方法即可完整定义成一个观察者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Observable;</div><div class="line"><span class="keyword">import</span> java.util.Observer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 张三订阅者，实现了Observer接口</div><div class="line"> * <span class="doctag">@author</span> mapingsheng</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubscriberZhangsan</span> <span class="keyword">implements</span> <span class="title">Observer</span></span>&#123;</div><div class="line"></div><div class="line">	Observable observable; <span class="comment">//订阅服务超类</span></div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 通过观察者的构造函数初始化订阅服务，并且调用订阅服务超类的addObserver方法把当前对象进行注册</div><div class="line">	 * <span class="doctag">@param</span> observable</div><div class="line">	 */</div><div class="line">	SubscriberZhangsan(Observable observable)&#123;</div><div class="line">		<span class="keyword">this</span>.observable = observable;</div><div class="line">		observable.addObserver(<span class="keyword">this</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	SubscriberZhangsan()&#123;&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 覆写观察者的update方法，这里的update方法就等同于被通知的方法(notice)</div><div class="line">	 * 由于一个观察者可能订阅不同的报纸，所以我们需要对传入的订阅服务类进行类型判断，并且根据类型调用不同的通知方法</div><div class="line">	 */</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Observable o, Object arg)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(o <span class="keyword">instanceof</span> NewsPaperFoodService)&#123;</div><div class="line">			NewsPaperFoodService  foodService = (NewsPaperFoodService)o;</div><div class="line">			System.out.println(<span class="string">"wangwu收到通知： "</span>+foodService.getNotice());</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(o <span class="keyword">instanceof</span> NewsPaperSportService)&#123;</div><div class="line">			NewsPaperSportService sportService = (NewsPaperSportService) o;</div><div class="line">			System.out.println(<span class="string">"wangwu收到通知： "</span>+sportService.getNotice());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>2. 订阅者-王五</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Observable;</div><div class="line"><span class="keyword">import</span> java.util.Observer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 王五订阅者，实现了Observer接口</div><div class="line"> * <span class="doctag">@author</span> mapingsheng</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubscriberWangwu</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</div><div class="line"></div><div class="line">	Observable observable; <span class="comment">//订阅服务超类</span></div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 通过观察者的构造函数初始化订阅服务，并且调用订阅服务超类的addObserver方法把当前对象进行注册</div><div class="line">	 * <span class="doctag">@param</span> observable</div><div class="line">	 */</div><div class="line">	SubscriberWangwu(Observable observable)&#123;</div><div class="line">		<span class="keyword">this</span>.observable = observable;</div><div class="line">		observable.addObserver(<span class="keyword">this</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	SubscriberWangwu()&#123;&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 覆写观察者的update方法，这里的update方法就等同于被通知的方法(notice)</div><div class="line">	 * 由于一个观察者可能订阅不同的报纸，所以我们需要对传入的订阅服务类进行类型判断，并且根据类型调用不同的通知方法</div><div class="line">	 */</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Observable o, Object arg)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(o <span class="keyword">instanceof</span> NewsPaperFoodService)&#123;</div><div class="line">			NewsPaperFoodService  foodService = (NewsPaperFoodService)o;</div><div class="line">			System.out.println(<span class="string">"zhangsan收到通知： "</span>+foodService.getNotice());</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(o <span class="keyword">instanceof</span> NewsPaperSportService)&#123;</div><div class="line">			NewsPaperSportService sportService = (NewsPaperSportService) o;</div><div class="line">			System.out.println(<span class="string">"zhangsan收到通知： "</span>+sportService.getNotice());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>二、Observable类实现订阅服务</strong></p>
+<p><strong>1. 《美食天下》-报纸订阅服务</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Observable;</div><div class="line"><span class="keyword">import</span> java.util.Observer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 美食天下-报纸订阅服务，只需继承Observable类即可</div><div class="line"> * <span class="doctag">@author</span> mapingsheng</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewsPaperFoodService</span> <span class="keyword">extends</span> <span class="title">Observable</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> String pageName; <span class="comment">//报纸类型名称</span></div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String notice; <span class="comment">//通知短语</span></div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 新报纸发布方法</div><div class="line">	 * <span class="doctag">@param</span> name 报纸的名称</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">newsPaperPublish</span><span class="params">(String name)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.pageName = name;</div><div class="line">		<span class="keyword">this</span>.notice = <span class="string">"【新报纸发布】您好，我报社最近出版了 《"</span>+pageName+<span class="string">"》 欢迎订阅"</span>;</div><div class="line">		setChanged();<span class="comment">//这里需要注意，当我们需要通知所有订阅者时，需要调用该方法标记对应的状态</span></div><div class="line">		notifyObservers();<span class="comment">//调用通知订阅者方法</span></div><div class="line">	&#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 覆写addObserver注册订阅服务</div><div class="line">	 */</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(Observer o)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.addObserver(o);</div><div class="line">		<span class="keyword">this</span>.notice = <span class="string">"【订阅回执】您好，恭喜您订阅《天下美食》专栏报纸，一共 52 元，截止目前一共有 "</span>+<span class="keyword">super</span>.countObservers()+<span class="string">" 人订阅"</span>;</div><div class="line">		</div><div class="line">		o.update(<span class="keyword">this</span>, notice); <span class="comment">//当订阅成功后，调用订阅者的update方法，向该订阅者发送订阅回执</span></div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获取新发布的报纸名称</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getPageName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> pageName;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 设置新发布的报纸名称</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageName</span><span class="params">(String pageName)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.pageName = pageName;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 设置通知提示短语</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNotice</span><span class="params">(String notice)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.notice = notice;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获取提示短语</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getNotice</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> notice;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>2. 《体育速递》-报纸订阅服务</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Observable;</div><div class="line"><span class="keyword">import</span> java.util.Observer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 体育速递-报纸订阅服务，只需继承Observable类即可</div><div class="line"> * <span class="doctag">@author</span> mapingsheng</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewsPaperSportService</span> <span class="keyword">extends</span> <span class="title">Observable</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> String pageName;  <span class="comment">//报纸类型名称</span></div><div class="line">	<span class="keyword">private</span> String notice; <span class="comment">//通知短语</span></div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 新报纸发布方法</div><div class="line">	 * <span class="doctag">@param</span> name</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">newsPaperPublish</span><span class="params">(String name)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.pageName = name;</div><div class="line">		setChanged();<span class="comment">//这里需要注意，当我们需要通知所有订阅者时，需要调用该方法标记对应的状态</span></div><div class="line">		notifyObservers();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 覆写addObserver注册订阅服务</div><div class="line">	 */</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(Observer o)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.addObserver(o);</div><div class="line">		<span class="keyword">this</span>.notice = <span class="string">"【订阅回执】您好，恭喜您订阅《体育速递》专栏报纸，一共 46元，截止目前一共有 "</span>+<span class="keyword">super</span>.countObservers()+<span class="string">" 人订阅"</span>;</div><div class="line">		</div><div class="line">		o.update(<span class="keyword">this</span>, notice); <span class="comment">//当订阅成功后，调用订阅者的update方法，向该订阅者发送订阅回执</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getNotice</span><span class="params">()</span></span>&#123;</div><div class="line">		String str = <span class="string">"【新报纸发布】您好，我报社最近出版了 《"</span>+pageName+<span class="string">"》 欢迎订阅"</span>;</div><div class="line">		<span class="keyword">return</span> str;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getPageName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> pageName;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageName</span><span class="params">(String pageName)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.pageName = pageName;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNotice</span><span class="params">(String notice)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.notice = notice;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>三、测试-观察者主动注册</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//实例化我们的美食天下报纸订阅服务</span></div><div class="line">		NewsPaperFoodService foodService = <span class="keyword">new</span> NewsPaperFoodService();</div><div class="line"></div><div class="line">		<span class="comment">//实例化订阅者张三、王五，并且把美食天下订阅服务传入构造方法中实现自动注册服务</span></div><div class="line">		SubscriberZhangsan zhangsan = <span class="keyword">new</span> SubscriberZhangsan(foodService);</div><div class="line">		SubscriberWangwu wangwu = <span class="keyword">new</span> SubscriberWangwu(foodService);</div><div class="line">		</div><div class="line">		<span class="comment">//美食天下相关的报纸-食材中国报纸发布出版，然后通知美食天下报纸的订阅者</span></div><div class="line">		foodService.newsPaperPublish(<span class="string">"食材中国"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码运行结果：</p>
+<blockquote>
+<p>wangwu收到通知： 【订阅回执】您好，恭喜您订阅《天下美食》专栏报纸，一共 52 元，截止目前一共有 1 人订阅</p>
+<p>zhangsan收到通知： 【订阅回执】您好，恭喜您订阅《天下美食》专栏报纸，一共 52 元，截止目前一共有 2 人订阅</p>
+<p>zhangsan收到通知： 【新报纸发布】您好，我报社最近出版了 《食材中国》 欢迎订阅</p>
+<p>wangwu收到通知： 【新报纸发布】您好，我报社最近出版了 《食材中国》 欢迎订阅</p>
+</blockquote>
+<p>可以看到，我们通过张三、王五订阅者的构造方法中传入美食天下订阅者服务实现了自动注册(其实我们把addObserver方法写在了构造方法中而已)；然后当新报纸发布时，通知所有的美食订阅者。</p>
+<p><strong>三、测试-观察者被动注册</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">//实例化我们的美食天下报纸订阅服务</span></div><div class="line">		NewsPaperFoodService foodService = <span class="keyword">new</span> NewsPaperFoodService();</div><div class="line">		</div><div class="line">		<span class="comment">/**</span></div><div class="line">		 * 实例化张三、王五订阅者(无参数构造方法)</div><div class="line">		 */</div><div class="line">		SubscriberZhangsan zhangsan = <span class="keyword">new</span> SubscriberZhangsan();</div><div class="line">		SubscriberWangwu wangwu = <span class="keyword">new</span> SubscriberWangwu();</div><div class="line">		</div><div class="line">		<span class="comment">/**</span></div><div class="line">		 * 调用订阅者服务的addObserver方法实现注册</div><div class="line">		 */</div><div class="line">		foodService.addObserver(zhangsan);</div><div class="line">		foodService.addObserver(wangwu);</div><div class="line">		</div><div class="line">		foodService.newsPaperPublish(<span class="string">"食材中国"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码运行结果：</p>
+<blockquote>
+<p>wangwu收到通知： 【订阅回执】您好，恭喜您订阅《天下美食》专栏报纸，一共 52 元，截止目前一共有 1 人订阅</p>
+<p>zhangsan收到通知： 【订阅回执】您好，恭喜您订阅《天下美食》专栏报纸，一共 52 元，截止目前一共有 2 人订阅</p>
+<p>zhangsan收到通知： 【新报纸发布】您好，我报社最近出版了 《食材中国》 欢迎订阅</p>
+<p>wangwu收到通知： 【新报纸发布】您好，我报社最近出版了 《食材中国》 欢迎订阅</p>
+</blockquote>
+<p><strong>四、解读</strong></p>
+<ol>
+<li>订阅服务中调用通知观察者方法之前需要先调用setChanged()方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">setChanged();<span class="comment">//这里需要注意，当我们需要通知所有订阅者时，需要调用该方法标记对应的状态</span></div><div class="line">notifyObservers();<span class="comment">//调用通知所有订阅者的方法</span></div></pre></td></tr></table></figure>
+<p>如果不提前调用setChanged方法时，则虽然调用了notifyObservers方法去通知所有订阅者，但是这个方法内部并没有真正意义去通知所有的订阅者。下面我们看看两个方法的联系。</p>
+<blockquote>
+<p>setChanged()</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">	</div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">setChanged</span><span class="params">()</span> </span>&#123;</div><div class="line">      changed = <span class="keyword">true</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p><em>这个方法主要是设置boolean类型变量changed的值为true，其实这个变量就是一个开关</em></p>
+<blockquote>
+<p>notifyObservers()</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">(Object arg)</span> </span>&#123;</div><div class="line">       Object[] arrLocal;</div><div class="line"></div><div class="line">       <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">		<span class="comment">/* </span></div><div class="line">            * 根据changed值控制是否执行真正意义的通知观察者操作</div><div class="line">            */</div><div class="line">           <span class="keyword">if</span> (!changed)</div><div class="line">               <span class="keyword">return</span>;</div><div class="line">           arrLocal = obs.toArray(); <span class="comment">//把订阅者集合中的数据赋值给待局部遍历数组，以供下面的批量通知</span></div><div class="line">		</div><div class="line">           clearChanged();<span class="comment">//将changed变量赋值为false</span></div><div class="line">       &#125;</div><div class="line">	</div><div class="line">	<span class="comment">/* </span></div><div class="line">        * 循环遍历订阅者集合中的数据，并调用订阅者的update方法实现发送通知操作</div><div class="line">        */</div><div class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = arrLocal.length-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--)</div><div class="line">           ((Observer)arrLocal[i]).update(<span class="keyword">this</span>, arg);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>addObserver(Observer o)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">* 首先在Observable类中定义了以下两个变量</div><div class="line">*/</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">boolean</span> changed = <span class="keyword">false</span>;</div><div class="line">     <span class="keyword">private</span> Vector&lt;Observer&gt; obs;</div><div class="line"></div><div class="line">   <span class="comment">/** 通过构造方法初始化订阅者集合 */</span></div><div class="line">	</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Observable</span><span class="params">()</span> </span>&#123;</div><div class="line">       obs = <span class="keyword">new</span> Vector&lt;&gt;();</div><div class="line">   &#125;</div><div class="line">	</div><div class="line">   <span class="comment">/**</span></div><div class="line">    * 把观察者添加到订阅者集合中</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(Observer o)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (o == <span class="keyword">null</span>)</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">       <span class="keyword">if</span> (!obs.contains(o)) &#123;</div><div class="line">           obs.addElement(o);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>clearChanged() </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">	</div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">clearChanged</span><span class="params">()</span> </span>&#123;</div><div class="line">      changed = <span class="keyword">false</span>; <span class="comment">//将changed变量赋值为false</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>通过java原生支持的类和接口是不是就非常容易的实现了观察者模式</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/设计模式-观察者模式/" rel="next" title="设计模式--观察者模式">
+                <i class="fa fa-chevron-left"></i> 设计模式--观察者模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="设计模式-观察者模式-用java原生Observable、Observer简化观察者模式实现/"
+           data-title="设计模式--观察者模式(用java原生Observable、Observer简化观察者模式实现)" data-url="http://www.soujava.com/设计模式-观察者模式-用java原生Observable、Observer简化观察者模式实现/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="马平升" />
+          <p class="site-author-name" itemprop="name">马平升</p>
+          <p class="site-description motion-element" itemprop="description">记录未知的，牢记已知的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马平升</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="http://www.soujava.com">soujava</a>
+</div>
+
+<div class="theme-info">
+  
+  <a class="theme-link" href="https://github.com/mapingsheng">
+    GitHub
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soujava"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
