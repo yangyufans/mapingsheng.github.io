@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.soujava.com/"/>
-  <updated>2017-05-12T06:47:00.008Z</updated>
+  <updated>2017-05-12T07:03:00.223Z</updated>
   <id>http://www.soujava.com/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="http://www.soujava.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F-%E7%94%A8java%E5%8E%9F%E7%94%9FObservable%E3%80%81Observer%E7%AE%80%E5%8C%96%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0/"/>
     <id>http://www.soujava.com/设计模式-观察者模式-用java原生Observable、Observer简化观察者模式实现/</id>
     <published>2017-05-12T05:10:36.000Z</published>
-    <updated>2017-05-12T06:47:00.008Z</updated>
+    <updated>2017-05-12T07:03:00.223Z</updated>
     
     <content type="html">&lt;p&gt;在上一篇介绍的观察者模式中我们用基本的代码实现了报纸订阅的场景，感觉写了很多代码才实现这个模式，比如在报纸订阅中需要提供订阅、取消订阅、通知订阅者等等通用的方法，在定义观察者时需要提供被通知的通用方法；&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;其实在java中已经原生支持了观察者模式的实现，我们通过java原生提供的Observable(类)、Observer(接口)可以很简单的实现观察者模式，比如上面描述的提供订阅、取消订阅、通知订阅者等通用方法他都进行了实现，我们直接调用即可。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;一、Observer接口实现观察者&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 订阅者-张三&lt;/strong&gt;&lt;/p&gt;
@@ -83,7 +84,6 @@
     <summary type="html">
     
       &lt;p&gt;在上一篇介绍的观察者模式中我们用基本的代码实现了报纸订阅的场景，感觉写了很多代码才实现这个模式，比如在报纸订阅中需要提供订阅、取消订阅、通知订阅者等等通用的方法，在定义观察者时需要提供被通知的通用方法；&lt;/p&gt;
-&lt;p&gt;其实在java中已经原生支持了观察者模式的实现，我们通过
     
     </summary>
     
