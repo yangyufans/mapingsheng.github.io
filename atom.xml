@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.soujava.com/"/>
-  <updated>2017-05-12T04:36:19.019Z</updated>
+  <updated>2017-05-12T04:44:28.206Z</updated>
   <id>http://www.soujava.com/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="http://www.soujava.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
     <id>http://www.soujava.com/设计模式-观察者模式/</id>
     <published>2017-05-12T01:50:19.000Z</published>
-    <updated>2017-05-12T04:36:19.019Z</updated>
+    <updated>2017-05-12T04:44:28.206Z</updated>
     
     <content type="html">&lt;p&gt;说到观察者模式-从字面意思的理解就是某些个实物观察着另一个实物，当被观察的那个实物发生变化时，那些观察它的实物会收到通知或者会相应的发生变化。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/guanchazhe.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
 &lt;p&gt;生活中的例子也是到处都是啊，比如平常生活中经常订阅一些报纸来阅读，有的人可能喜欢体育，那么就订阅体育竞技相关的报纸；有的人可能喜欢美食，那么就订阅美食相关的报纸；还比如手机手机上面的天气预报显示，我们可以只显示查看我们感兴趣的城市，那么这也是订阅形式的一种，所以我们也可以把观察者模式理解成为订-阅模式，就相当于上面举的例子场景一样。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;strong&gt;一、模拟报纸订阅来实现观察者模式&lt;/strong&gt;&lt;/p&gt;
@@ -84,6 +85,7 @@
     <summary type="html">
     
       &lt;p&gt;说到观察者模式-从字面意思的理解就是某些个实物观察着另一个实物，当被观察的那个实物发生变化时，那些观察它的实物会收到通知或者会相应的发生变化。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/guanchazhe.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
 &lt;p&gt;生活中的例子也是到处都是啊，比如平常生活中经常订阅一些报纸来阅读，有的人可能喜欢体育，那么就订阅体育竞技相关的报纸；有的人可能喜欢美食，那么就订阅美食相关的报纸；还比如手机手机上面的天气预报显示，我们可以只显示查看我们感兴趣的城市，那么这也是订阅形式的一种，所以我们也可以把观察者模式理解成为订-阅模式，就相当于上面举的例子场景一样。&lt;/p&gt;
     
     </summary>
