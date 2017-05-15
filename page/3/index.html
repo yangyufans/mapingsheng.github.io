@@ -260,6 +260,149 @@
             
               
                 
+                <a class="post-title-link" href="/Linux查看端口占用/" itemprop="url">
+                  Linux查看端口占用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-17T11:30:49+08:00" content="2016-08-17">
+              2016-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Linux查看端口占用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Linux查看端口占用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在操作linux服务器的时候经常会碰到端口被占用的情况，那么如果更好的找到某个端口被什么占用呢。</p>
+<p>一、<strong>分步操作</strong></p>
+<ol>
+<li><p>先使用下面命令，查看当前环境的所有进程</p>
+<p> netstat  -apn</p>
+</li>
+<li><p>然后看某一个端口，后面对应的PID，然后通过kill  PID,把该端口停止</p>
+<p> kill -9 pid号</p>
+</li>
+</ol>
+<p>二、<strong>快捷操作</strong></p>
+<ul>
+<li><p>查看对应的端口是否被占用</p>
+<p>  netstat  -apn | grep  protNO（端口号）</p>
+</li>
+</ul>
+<p>例如：netstat -apn | grep 8983  查看8983端口是否被占用，如果没占用，则显示被占用的进程；如果未被占用，则什么也不会输出。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[maps<span class="meta">@localhost</span> bin]$ netstat -apn|grep <span class="number">8983</span></div><div class="line">   (Not all processes could be identified, non-owned process info</div><div class="line">   will not be shown, you would have to be root to see it all.)</div><div class="line">  	tcp6       <span class="number">0</span>      <span class="number">0</span> :::<span class="number">8983</span>                 :::*                    LISTEN      <span class="number">3272</span>/java</div></pre></td></tr></table></figure></p>
+<p>  我们可以看到占用8983端口的进程id号为:3272</p>
+<ul>
+<li><p>查看端口对应的进程ID信息</p>
+<p>  ps -aux|grep 3272</p>
+</li>
+</ul>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[maps<span class="meta">@localhost</span> bin]$ ps -aux|grep <span class="number">3272</span></div><div class="line">   maps      <span class="number">3272</span>  <span class="number">0.4</span> <span class="number">11.3</span> <span class="number">2596728</span> <span class="number">173412</span> pts/<span class="number">0</span>  Sl   <span class="number">22</span>:<span class="number">04</span>   <span class="number">0</span>:<span class="number">03</span> java -server -Xms512m -Xmx512m -XX:NewRatio=<span class="number">3</span> -XX:SurvivorRatio=<span class="number">4</span> -XX:TargetSurvivorRatio=<span class="number">90</span> -XX:MaxTenuringThreshold=<span class="number">8</span> -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:ConcGCThreads=<span class="number">4</span> -XX:ParallelGCThreads=<span class="number">4</span> -XX:+CMSScavengeBeforeRemark -XX:PretenureSizeThreshold=<span class="number">64</span>m -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=<span class="number">50</span> -XX:CMSMaxAbortablePrecleanTime=<span class="number">6000</span> -XX:+CMSParallelRemarkEnabled -XX:+ParallelRefProcEnabled -XX:-OmitStackTraceInFastThrow -verbose:gc -XX:+PrintHeapAtGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -Xloggc:/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server/logs/solr_gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=<span class="number">9</span> -XX:GCLogFileSize=<span class="number">20</span>M -Dsolr.log.dir=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server/logs -Djetty.port=<span class="number">8983</span> -DSTOP.PORT=<span class="number">7983</span> -DSTOP.KEY=solrrocks -Duser.timezone=UTC -Djetty.home=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server -Dsolr.solr.home=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server/solr -Dsolr.install.dir=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0 -Xss256k -Dsolr.log.muteconsole -XX:OnOutOfMemoryError=/usr/local/develop/soft/solr-<span class="number">6.3</span>.0/bin/oom_solr.sh <span class="number">8983</span> /usr/local/develop/soft/solr-<span class="number">6.3</span>.0/server/logs -jar start.jar --<span class="keyword">module</span>=http</div><div class="line">   maps     <span class="number">30521</span>  <span class="number">0.0</span>  <span class="number">0.0</span> <span class="number">112660</span>   <span class="number">964</span> pts/<span class="number">0</span>    R+   <span class="number">22</span>:<span class="number">15</span>   <span class="number">0</span>:<span class="number">00</span> grep --color=auto <span class="number">3272</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/Tomcat实时查看日志信息/" itemprop="url">
                   Tomcat实时查看日志信息
                 </a>
@@ -2939,154 +3082,11 @@ function Close()
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016-06-28-通过github-pages生成网站/" itemprop="url">
-                  通过github pages生成网站
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-28T17:43:00+08:00" content="2016-06-28">
-              2016-06-28
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016-06-28-通过github-pages生成网站/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-06-28-通过github-pages生成网站/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>1 什么是github pages</strong></p>
-<blockquote>
-<p>GitHub Pages本用于介绍托管在GitHub的项目， 不过，由于他的空间免费稳定，用来做搭建一个博客再好不过了。<br>github Pages可以被认为是用户编写的、托管在github上的静态网页。所以说你有以下屌丝要求的话可以考虑使用github Pages提供的服务：免费、稳定、完全自由可控，独立域名访问等等</p>
-</blockquote>
-<p><strong>2 新建仓库</strong></p>
-<blockquote>
-<p><img src="http://soujava.com/images/newRepository.jpg" alt="Alt text"></p>
-</blockquote>
-<p><strong>3 输入仓库信息</strong></p>
-<blockquote>
-<p><img src="http://soujava.com/images/inputInfo.jpg" alt="Alt text" title="输入仓库信息"></p>
-</blockquote>
-<p><strong>4 添加成功后，点击“settings”按钮</strong></p>
-<blockquote>
-<p><img src="http://soujava.com/images/createSucc.jpg" alt="Alt text" title="仓库添加成功"></p>
-</blockquote>
-<p><strong>5 使用Github Pages生成页面</strong></p>
-<blockquote>
-<p><img src="http://soujava.com/images/useGitPages.jpg" alt="Alt text" title="使用gitHub pages生服务"></p>
-</blockquote>
-<p><strong>6 点击选择博客布局按钮进入选择布局界面</strong></p>
-<blockquote>
-<p><img src="http://soujava.com/images/selectLayout.jpg" alt="Alt text" title="选择样式布局"> </p>
-</blockquote>
-<p><strong>7 切换布局选择操作,最后点击“publish page”按钮</strong></p>
-<blockquote>
-<p><img src="http://soujava.com/images/succblog.jpg" alt="Alt text" title="切换布局选择操作"></p>
-</blockquote>
-<p><strong>8 发布完成后的界面如下，但是此时我们还不可以使用红框中的二级域名单独访问</strong></p>
-<blockquote>
-<p><img src="http://soujava.com/images/publishSuccess.jpg" alt="Alt text" title="发布成功"></p>
-</blockquote>
-<p><strong>9 然后回到第5步(或者点击settings页签)，每当你点击“Launch automatic page generator”按钮后，可以看到如下所示</strong></p>
-<blockquote>
-<p><img src="http://soujava.com/images/fagnwen.jpg" alt="Alt text" title="点击访问url地址访问博客"></p>
-<p></p><p>点击上图中红框中的访问url地址访问博客</p>
-</blockquote>
-<p><strong>10 如果我们还没有自己的独立域名，也暂时使用第8步中红框中的二级域名单独访问，而不用访问第9步中那一串长长的且不好记的url地址</strong></p>
-<blockquote>
-<p>1)、在项目工程跟目录中添加一个名称为CNAME(无后缀名)的文件,在线或者通过git命令都行<br><img src="http://soujava.com/images/tianjiagitfile.jpg" alt="Alt text"></p>
-<p>2)、将新建项目时输入的二级域名格式的仓库地址添加到文件内容中，文件名称必须为CNAME<br><img src="http://soujava.com/images/gitaddFile.jpg" alt="Alt text"></p>
-<p><img src="http://soujava.com/images/cname.jpg" alt="Alt text"></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -3127,7 +3127,7 @@ function Close()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
