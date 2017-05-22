@@ -260,6 +260,133 @@
             
               
                 
+                <a class="post-title-link" href="/CentOS-6-4内核升级操作/" itemprop="url">
+                  CentOS-6.4内核升级操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-19T16:00:13+08:00" content="2016-08-19">
+              2016-08-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/CentOS-6-4内核升级操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="CentOS-6-4内核升级操作/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Linux下涉及到系统内核的一些软件，需要对内核升级才能使用，例如Docker的最低要求是2.6.32-431等等。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">注意：</div><div class="line">    如果在make menuconfig步骤报错，可尝试以下方法：</div><div class="line">    <span class="number">1</span>、修改scripts/kconfig/Makefile 文件</div><div class="line">    <span class="number">2</span>、找到HOSTLOADLIBES_mconf 在行末加入  -ltinfo</div></pre></td></tr></table></figure></p>
+<p><strong>一、先查看当前centos的系统内核</strong></p>
+<p><img src="http://soujava.com/images/linuxKenel1.png" alt="Alt text"></p>
+<p><strong>二、下载内核包，如：linux-3.4.56.tar.xz</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https:<span class="comment">//www.kernel.org/pub/linux/kernel/v3.x/linux-3.4.56.tar.xz</span></div></pre></td></tr></table></figure>
+<p><strong>三、安装内核</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># tar -Jxvf linux-3.4.56.tar.xz</div><div class="line"># mv linux-3.4.56 /usr/src/linux-3.4.56</div><div class="line"># cd linux-3.4.56</div><div class="line"># make mrproper #清除环境变量</div><div class="line"># make menuconfig </div><div class="line"># make clean</div><div class="line"># make bzImage</div><div class="line"># make modules</div><div class="line"># make modules_install</div><div class="line"># make install</div></pre></td></tr></table></figure></p>
+<p><strong>四、编辑/etc/grub.conf文件，将default=1改成default=0</strong></p>
+<p><strong>五、重启系统并检查内核</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/git搞着玩-新建本地仓库/" itemprop="url">
                   git搞着玩-新建本地仓库与分支合并
                 </a>
@@ -2966,148 +3093,6 @@ function Close()
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016-06-28-添加KEY后，每次push时让输入密码/" itemprop="url">
-                  添加KEY后，每次push时让输入密码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-28T18:03:13+08:00" content="2016-06-28">
-              2016-06-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/github/" itemprop="url" rel="index">
-                    <span itemprop="name">github</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016-06-28-添加KEY后，每次push时让输入密码/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-06-28-添加KEY后，每次push时让输入密码/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我的操作系统是window环境，首先在电脑上面已经在.ssh/目录下面生成了对应的key文件，并且将id_rsa.pub文件中的公钥添加到我github账户上面的sshkey模块中</p>
-<ol>
-<li>当从github上面clone项目时，还老是提示输入密码，如下图：<blockquote>
-<p><code>Enter passphrase for key ‘/c/Users/maps/.ssh/id_rsa’:</code></p>
-<p><img src="http://soujava.com/images/getIp.jpg" alt="Alt text" title="git push"></p>
-</blockquote>
-</li>
-<li><p>按照先后顺序执行以下两条命令：</p>
-<blockquote>
-<p><code>$ ssh-agent bash</code></p>
-<p><code>$ ssh-add /c/Users/maps/.ssh/id_rsa</code></p>
-<p>注：这两条命令必须按照先后顺序执行；第二条命令中后半部分就是你的私钥文件id_rsa的绝对路径</p>
-</blockquote>
-</li>
-<li>通过以上两个命令就可以解决上面的问题，然后我们输入ssh -T 命令测试连接git服务,提示测试成功<blockquote>
-<p><img src="http://soujava.com/images/gitTestconnsucc.jpg" alt="Alt text"></p>
-</blockquote>
-</li>
-<li>最后来一个完整的图片<blockquote>
-<p><img src="http://soujava.com/images/gitpushinputpasssucc.jpg" alt="Alt text"></p>
-</blockquote>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3153,7 +3138,7 @@ function Close()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-count">64</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
