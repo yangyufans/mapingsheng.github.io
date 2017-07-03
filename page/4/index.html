@@ -260,6 +260,160 @@
             
               
                 
+                <a class="post-title-link" href="/2016-06-30-关闭父窗口刷新子窗口/" itemprop="url">
+                  关闭父窗口刷新子窗口
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-30T16:21:45+08:00" content="2016-06-30">
+              2016-06-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>比如我访问index.html页面，其中一个功能模块需要弹出(新打开)other.html，勾选某些数据，勾选完成后，关闭other.html，并且index.html随着关闭other.html事件而刷新。</p>
+<p><strong>父窗口-index.html</strong></p>
+<pre><code> &lt;html&gt;  
+ &lt;head&gt;  
+  &lt;title&gt;index.htmll&lt;/title&gt;  
+  &lt;meta name=&quot;Generator&quot; content=&quot;EditPlus&quot;&gt;  
+  &lt;meta name=&quot;Author&quot; content=&quot;&quot;&gt;  
+  &lt;meta name=&quot;Keywords&quot; content=&quot;&quot;&gt;  
+  &lt;meta name=&quot;Description&quot; content=&quot;&quot;&gt;  
+    &lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;  
+    &lt;!--   
+    function clicks(){   
+     window.open(&quot;other.html&quot;);   
+    }   
+    //--&gt;  
+    &lt;/SCRIPT&gt;  
+ &lt;/head&gt;  
+ &lt;body&gt;  
+ &lt;a  onClick=&quot;clicks();&quot; target=&quot;_blank&quot;&gt;选择数据&lt;/a&gt;  
+ &lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre><p><strong>子窗口-other.html</strong></p>
+<pre><code> &lt;html&gt;  
+ &lt;head&gt;  
+  &lt;title&gt;子窗口&lt;/title&gt;  
+  &lt;meta name=&quot;Generator&quot; content=&quot;EditPlus&quot;&gt;  
+  &lt;meta name=&quot;Author&quot; content=&quot;&quot;&gt;  
+  &lt;meta name=&quot;Keywords&quot; content=&quot;&quot;&gt;  
+  &lt;meta name=&quot;Description&quot; content=&quot;&quot;&gt;  
+&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;  
+&lt;!--   
+function Close()   
+{
+  window.opener.location.href=&quot;index.html&quot;;
+}
+//--&gt;  
+&lt;/script&gt;  
+ &lt;/head&gt;  
+ &lt;body&gt;  
+ &lt;a href=&quot;javascript:Close();&quot;&gt;关闭当前子窗口，打开父窗口&lt;/a&gt;  
+ &lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016-06-30-Java-was-started-but-returned-exit-code异常/" itemprop="url">
                   Java was started but returned exit code异常
                 </a>
@@ -946,7 +1100,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">65</span>
+              <span class="site-state-item-count">66</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -954,7 +1108,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
