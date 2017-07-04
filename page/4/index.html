@@ -260,6 +260,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016-06-30-页面中添加-ENTER-键点击事件/" itemprop="url">
+                  页面中添加'ENTER'键点击事件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-30T16:31:17+08:00" content="2016-06-30">
+              2016-06-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通常有以下场景：<br>当输入表单完成后直接按“Enter”键进行快捷提交；当操作一个共时，弹出的提示询问框，然后直接按“Enter”键确认。<br>那么我们只需要通过获取当前点击的键码是否是enter键的码值即可！</p>
+<p><strong>jquery</strong></p>
+<pre><code>$(&quot;body&quot;).keydown(function(e){
+    if(e.keyCode==&quot;13&quot;){
+        alert(&apos;点击了Enter键&apos;);
+    }
+});
+</code></pre><p><strong>javascript</strong></p>
+<pre><code>document.body.onclick=function(){
+    if(e.keyCode==&quot;13&quot;){
+       alert(&apos;点击了Enter键&apos;);
+    }
+};
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016-06-30-关闭父窗口刷新子窗口/" itemprop="url">
                   关闭父窗口刷新子窗口
                 </a>
@@ -1100,7 +1225,7 @@ function Close()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">66</span>
+              <span class="site-state-item-count">67</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

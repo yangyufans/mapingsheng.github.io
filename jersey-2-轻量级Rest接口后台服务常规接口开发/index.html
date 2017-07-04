@@ -1,0 +1,739 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soujava" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="随着上一篇文章讲解了jersey框架的搭建运行，这一篇主要围绕我们平时开发rest接口方式进行示例；平时开发rest接口时无非提供GET、POST、PUT、DELETE等等类型的方法，或者在header中传入一些验证参数，下面我们就以user为例，主要围绕user的增删改查行为进行开发对应的rest接口。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jersey-2--轻量级Rest接口后台服务常规接口开发">
+<meta property="og:url" content="http://www.soujava.com/jersey-2-轻量级Rest接口后台服务常规接口开发/index.html">
+<meta property="og:site_name" content="soujava">
+<meta property="og:description" content="随着上一篇文章讲解了jersey框架的搭建运行，这一篇主要围绕我们平时开发rest接口方式进行示例；平时开发rest接口时无非提供GET、POST、PUT、DELETE等等类型的方法，或者在header中传入一些验证参数，下面我们就以user为例，主要围绕user的增删改查行为进行开发对应的rest接口。">
+<meta property="og:image" content="http://soujava.com/images/restinvokepost.png">
+<meta property="og:image" content="http://soujava.com/images/restinvokepostresponse.png">
+<meta property="og:image" content="http://soujava.com/images/restpostheader.png">
+<meta property="og:image" content="http://soujava.com/images/restpostheaderresult.png">
+<meta property="og:image" content="http://soujava.com/images/deleteinvoke.png">
+<meta property="og:image" content="http://soujava.com/images/deleteresult.png">
+<meta property="og:updated_time" content="2017-07-04T12:37:31.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jersey-2--轻量级Rest接口后台服务常规接口开发">
+<meta name="twitter:description" content="随着上一篇文章讲解了jersey框架的搭建运行，这一篇主要围绕我们平时开发rest接口方式进行示例；平时开发rest接口时无非提供GET、POST、PUT、DELETE等等类型的方法，或者在header中传入一些验证参数，下面我们就以user为例，主要围绕user的增删改查行为进行开发对应的rest接口。">
+<meta name="twitter:image" content="http://soujava.com/images/restinvokepost.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.soujava.com/jersey-2-轻量级Rest接口后台服务常规接口开发/"/>
+
+  <title> jersey-2--轻量级Rest接口后台服务常规接口开发 | soujava </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">soujava</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录未知的，牢记已知的</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jersey-2--轻量级Rest接口后台服务常规接口开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-04T15:27:35+08:00" content="2017-07-04">
+              2017-07-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/jersey/" itemprop="url" rel="index">
+                    <span itemprop="name">jersey</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着上一篇文章讲解了jersey框架的搭建运行，这一篇主要围绕我们平时开发rest接口方式进行示例；平时开发rest接口时无非提供GET、POST、PUT、DELETE等等类型的方法，或者在header中传入一些验证参数，下面我们就以user为例，主要围绕user的增删改查行为进行开发对应的rest接口。</p>
+<a id="more"></a>
+<p><strong>一、新建rest接口数据封装VO类-UserVO</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps.vo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.Serializable;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlAccessType;</div><div class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlAccessorType;</div><div class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlElement;</div><div class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlRootElement;</div><div class="line"></div><div class="line"><span class="meta">@XmlRootElement</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserVO</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">6599357158756293288L</span>;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String id;</div><div class="line">	<span class="keyword">private</span> String userName;</div><div class="line">	<span class="keyword">private</span> String passWord;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">	<span class="keyword">private</span> String email;</div><div class="line">	<span class="keyword">private</span> String address;</div><div class="line">	</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> id;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> userName;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getPassWord</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> passWord;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getEmail</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> email;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getAddress</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> address;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.id = id;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.userName = userName;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassWord</span><span class="params">(String passWord)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.passWord = passWord;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEmail</span><span class="params">(String email)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.email = email;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(String address)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.address = address;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuilder builder = <span class="keyword">new</span> StringBuilder();</div><div class="line">		builder.append(<span class="string">"UserVO [id="</span>).append(id).append(<span class="string">", userName="</span>).append(userName).append(<span class="string">", passWord="</span>)</div><div class="line">				.append(passWord).append(<span class="string">", age="</span>).append(age).append(<span class="string">", email="</span>).append(email).append(<span class="string">", address="</span>)</div><div class="line">				.append(address).append(<span class="string">"]"</span>);</div><div class="line">		<span class="keyword">return</span> builder.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>二、新建rest接口服务类-UserController</strong></p>
+<p><strong>1. 【GET】创建返回json类型的rest接口方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps.rest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.LinkedList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.ws.rs.Consumes;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.DELETE;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.GET;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.HeaderParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.POST;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Path;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.PathParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Produces;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.core.MediaType;</div><div class="line"><span class="keyword">import</span> com.maps.vo.UserVO;</div><div class="line"></div><div class="line"><span class="meta">@Path</span>(<span class="string">"user"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</div><div class="line">		</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获取单个用户数据的rest接口，并且返回数据格式为json类型</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="meta">@GET</span></div><div class="line">	<span class="meta">@Path</span>(<span class="string">"/info/json"</span>)</div><div class="line">	<span class="meta">@Produces</span>(<span class="string">"application/json"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> UserVO <span class="title">info</span><span class="params">()</span> </span>&#123;</div><div class="line">		</div><div class="line">		UserVO user = <span class="keyword">new</span> UserVO();</div><div class="line">		user.setId(<span class="string">"1"</span>);</div><div class="line">		user.setUserName(<span class="string">"zhansan"</span>);</div><div class="line">		user.setAge(<span class="number">25</span>);</div><div class="line">		user.setPassWord(<span class="string">"123456"</span>);</div><div class="line">		user.setEmail(<span class="string">"asfdsa@199ta.com"</span>);</div><div class="line">		user.setAddress(<span class="string">"大山中"</span>);</div><div class="line">        <span class="keyword">return</span> user;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获取用户列表数据的rest接口，并且返回数据格式为json类型</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="meta">@GET</span></div><div class="line">	<span class="meta">@Path</span>(<span class="string">"/info/json/list"</span>)</div><div class="line">	<span class="meta">@Produces</span>(MediaType.APPLICATION_JSON)</div><div class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserVO&gt; <span class="title">infoList</span><span class="params">()</span></span>&#123;</div><div class="line">		List&lt;UserVO&gt; userList = <span class="keyword">new</span> ArrayList&lt;UserVO&gt;();</div><div class="line">		UserVO user = <span class="keyword">new</span> UserVO();</div><div class="line">		user.setId(<span class="string">"1"</span>);</div><div class="line">		user.setUserName(<span class="string">"zhansan"</span>);</div><div class="line">		user.setAge(<span class="number">25</span>);</div><div class="line">		user.setPassWord(<span class="string">"123456"</span>);</div><div class="line">		user.setEmail(<span class="string">"asfdsa@199ta.com"</span>);</div><div class="line">		user.setAddress(<span class="string">"大山中"</span>);</div><div class="line">		</div><div class="line">		UserVO user2 = <span class="keyword">new</span> UserVO();</div><div class="line">		user2.setId(<span class="string">"1"</span>);</div><div class="line">		user2.setUserName(<span class="string">"李四"</span>);</div><div class="line">		user2.setAge(<span class="number">25</span>);</div><div class="line">		user2.setPassWord(<span class="string">"111111"</span>);</div><div class="line">		user2.setEmail(<span class="string">"wedaf@199ta.com"</span>);</div><div class="line">		user2.setAddress(<span class="string">"宋城路"</span>);</div><div class="line">		</div><div class="line">		userList.add(user);</div><div class="line">		userList.add(user2);</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> userList;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>启动tomcat，访问rest接口</em></p>
+<blockquote>
+<p><a href="http://localhost:8080/jersey/user/info/json" target="_blank" rel="external">http://localhost:8080/jersey/user/info/json</a></p>
+</blockquote>
+<p>返回json对象类型的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&#123;</div><div class="line">	userName: <span class="string">"zhansan"</span>,</div><div class="line">	passWord: <span class="string">"123456"</span>,</div><div class="line">	age: <span class="number">25</span>,</div><div class="line">	email: <span class="string">"asfdsa@199ta.com"</span>,</div><div class="line">	address: <span class="string">"大山中"</span>,</div><div class="line">	userId: <span class="string">"1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://localhost:8080/jersey/user/info/json/list" target="_blank" rel="external">http://localhost:8080/jersey/user/info/json/list</a></p>
+</blockquote>
+<p>返回json数组类型的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[</div><div class="line">	&#123;</div><div class="line">		userName: <span class="string">"zhansan"</span>,</div><div class="line">		passWord: <span class="string">"123456"</span>,</div><div class="line">		age: <span class="number">25</span>,</div><div class="line">		email: <span class="string">"asfdsa@199ta.com"</span>,</div><div class="line">		address: <span class="string">"大山中"</span>,</div><div class="line">		userId: <span class="string">"1"</span></div><div class="line">	&#125;,</div><div class="line">	&#123;</div><div class="line">		userName: <span class="string">"李四"</span>,</div><div class="line">		passWord: <span class="string">"111111"</span>,</div><div class="line">		age: <span class="number">25</span>,</div><div class="line">		email: <span class="string">"wedaf@199ta.com"</span>,</div><div class="line">		address: <span class="string">"宋城路"</span>,</div><div class="line">		userId: <span class="string">"1"</span></div><div class="line">	&#125;</div><div class="line">	]</div></pre></td></tr></table></figure>
+<p><strong>2. 【GET】创建返回xml类型的rest接口方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps.rest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.LinkedList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.ws.rs.Consumes;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.DELETE;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.GET;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.HeaderParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.POST;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Path;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.PathParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Produces;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.core.MediaType;</div><div class="line"><span class="keyword">import</span> com.maps.vo.UserVO;</div><div class="line"></div><div class="line"><span class="meta">@Path</span>(<span class="string">"user"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获取单个用户对象数据的rest接口，并且返回数据格式为xml类型</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="meta">@GET</span></div><div class="line">	<span class="meta">@Path</span>(<span class="string">"/info/xml"</span>)</div><div class="line">	<span class="meta">@Produces</span>(<span class="string">"application/xml"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> UserVO <span class="title">infoXml</span><span class="params">()</span></span>&#123;</div><div class="line">		UserVO user = <span class="keyword">new</span> UserVO();</div><div class="line">		user.setId(<span class="string">"1"</span>);</div><div class="line">		user.setUserName(<span class="string">"zhansan"</span>);</div><div class="line">		user.setAge(<span class="number">25</span>);</div><div class="line">		user.setPassWord(<span class="string">"123456"</span>);</div><div class="line">		user.setEmail(<span class="string">"asfdsa@199ta.com"</span>);</div><div class="line">		user.setAddress(<span class="string">"大山中"</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> user;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获取用户列表rest接口，并且返回数据格式为xml类型</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="meta">@GET</span></div><div class="line">	<span class="meta">@Path</span>(<span class="string">"/info/xml/list"</span>)</div><div class="line">	<span class="meta">@Produces</span>(<span class="string">"application/xml"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserVO&gt; <span class="title">infoXmlList</span><span class="params">()</span></span>&#123;</div><div class="line">		List&lt;UserVO&gt; userList = <span class="keyword">new</span> ArrayList&lt;UserVO&gt;();</div><div class="line">		UserVO user = <span class="keyword">new</span> UserVO();</div><div class="line">		user.setId(<span class="string">"1"</span>);</div><div class="line">		user.setUserName(<span class="string">"zhansan"</span>);</div><div class="line">		user.setAge(<span class="number">25</span>);</div><div class="line">		user.setPassWord(<span class="string">"123456"</span>);</div><div class="line">		user.setEmail(<span class="string">"asfdsa@199ta.com"</span>);</div><div class="line">		user.setAddress(<span class="string">"大山中"</span>);</div><div class="line">		</div><div class="line">		UserVO user2 = <span class="keyword">new</span> UserVO();</div><div class="line">		user2.setId(<span class="string">"1"</span>);</div><div class="line">		user2.setUserName(<span class="string">"李四"</span>);</div><div class="line">		user2.setAge(<span class="number">25</span>);</div><div class="line">		user2.setPassWord(<span class="string">"111111"</span>);</div><div class="line">		user2.setEmail(<span class="string">"wedaf@199ta.com"</span>);</div><div class="line">		user2.setAddress(<span class="string">"宋城路"</span>);</div><div class="line">		</div><div class="line">		userList.add(user);</div><div class="line">		userList.add(user2);</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> userList;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://localhost:8080/jersey/user/info/xml" target="_blank" rel="external">http://localhost:8080/jersey/user/info/xml</a></p>
+</blockquote>
+<p>返回xml对象类型的数据</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</div><div class="line">&lt;userVO&gt;</div><div class="line">	&lt;userId&gt;1&lt;/userId&gt;</div><div class="line">	&lt;userName&gt;zhansan&lt;/userName&gt;</div><div class="line">	&lt;passWord&gt;123456&lt;/passWord&gt;</div><div class="line">	&lt;age&gt;25&lt;/age&gt;</div><div class="line">	&lt;email&gt;asfdsa@199ta.com&lt;/email&gt;</div><div class="line">	&lt;address&gt;大山中&lt;/address&gt;</div><div class="line">&lt;/userVO&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://localhost:8080/jersey/user/info/xml/list" target="_blank" rel="external">http://localhost:8080/jersey/user/info/xml/list</a></p>
+</blockquote>
+<p>返回xml集合类型的数据</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</div><div class="line">&lt;userVOes&gt;</div><div class="line">	&lt;userVO&gt;</div><div class="line">		&lt;userId&gt;1&lt;/userId&gt;</div><div class="line">		&lt;userName&gt;zhansan&lt;/userName&gt;</div><div class="line">		&lt;passWord&gt;123456&lt;/passWord&gt;</div><div class="line">		&lt;age&gt;25&lt;/age&gt;</div><div class="line">		&lt;email&gt;asfdsa@199ta.com&lt;/email&gt;</div><div class="line">		&lt;address&gt;大山中&lt;/address&gt;</div><div class="line">	&lt;/userVO&gt;</div><div class="line">	&lt;userVO&gt;</div><div class="line">		&lt;userId&gt;1&lt;/userId&gt;</div><div class="line">		&lt;userName&gt;李四&lt;/userName&gt;</div><div class="line">		&lt;passWord&gt;111111&lt;/passWord&gt;</div><div class="line">		&lt;age&gt;25&lt;/age&gt;</div><div class="line">		&lt;email&gt;wedaf@199ta.com&lt;/email&gt;</div><div class="line">		&lt;address&gt;宋城路&lt;/address&gt;</div><div class="line">	&lt;/userVO&gt;</div><div class="line">&lt;/userVOes&gt;</div></pre></td></tr></table></figure>
+<p><strong>3. 【GET】动态url请求rest接口-动态传参</strong></p>
+<p>在请求url中动态传参</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps.rest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.LinkedList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.ws.rs.Consumes;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.DELETE;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.GET;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.HeaderParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.POST;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Path;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.PathParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Produces;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.core.MediaType;</div><div class="line"><span class="keyword">import</span> com.maps.vo.UserVO;</div><div class="line"></div><div class="line"><span class="meta">@Path</span>(<span class="string">"user"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</div><div class="line">	</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 在请求url路径中动态传递参数</div><div class="line">	 * <span class="doctag">@param</span> id 用户id</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */	</div><div class="line">	<span class="meta">@GET</span></div><div class="line">	<span class="meta">@Path</span>(<span class="string">"/path/&#123;id&#125;"</span>)</div><div class="line">	<span class="meta">@Produces</span>(&#123;<span class="string">"application/json"</span>&#125;)</div><div class="line">	<span class="function"><span class="keyword">public</span> UserVO <span class="title">pathJson</span><span class="params">(@PathParam(<span class="string">"id"</span>)</span> String id)</span>&#123;</div><div class="line">		</div><div class="line">		UserVO user = <span class="keyword">new</span> UserVO();</div><div class="line">		user.setId(id);</div><div class="line">		user.setUserName(<span class="string">"zhansan"</span>);</div><div class="line">		user.setAge(<span class="number">25</span>);</div><div class="line">		user.setPassWord(<span class="string">"123456"</span>);</div><div class="line">		user.setEmail(<span class="string">"asfdsa@199ta.com"</span>);</div><div class="line">		user.setAddress(<span class="string">"大中华"</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> user;</div><div class="line">	&#125;	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://localhost:8080/jersey/user/path/path中动态传参" target="_blank" rel="external">http://localhost:8080/jersey/user/path/path中动态传参</a></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&#123;</div><div class="line">	userName: <span class="string">"zhansan"</span>,</div><div class="line">	passWord: <span class="string">"123456"</span>,</div><div class="line">	age: <span class="number">25</span>,</div><div class="line">	email: <span class="string">"asfdsa@199ta.com"</span>,</div><div class="line">	address: <span class="string">"大中华"</span>,</div><div class="line">	userId: <span class="string">"path中动态传参"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>4. 【POST】创建post类型，并且只接受json格式数据体的rest方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps.rest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.LinkedList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.ws.rs.Consumes;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.DELETE;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.GET;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.HeaderParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.POST;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Path;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.PathParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Produces;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.core.MediaType;</div><div class="line"><span class="keyword">import</span> com.maps.vo.UserVO;</div><div class="line"></div><div class="line"><span class="meta">@Path</span>(<span class="string">"user"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String,UserVO&gt; mapTemp = <span class="keyword">new</span> HashMap&lt;String, UserVO&gt;();</div><div class="line">	</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 添加用户的rest接口，</div><div class="line">	 * <span class="doctag">@param</span> user json数据格式的user对象参数</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="meta">@POST</span></div><div class="line">	<span class="meta">@Path</span>(<span class="string">"/addUser"</span>)</div><div class="line">	<span class="meta">@Consumes</span>(&#123;<span class="string">"application/json"</span>&#125;)</div><div class="line">	<span class="meta">@Produces</span>(&#123;<span class="string">"application/json"</span>&#125;)</div><div class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserVO&gt; <span class="title">addUser</span><span class="params">(UserVO user)</span></span>&#123;</div><div class="line">		userListTemp.add(user);</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> userListTemp;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通过rest接口工具调用</p>
+</blockquote>
+<p><img src="http://soujava.com/images/restinvokepost.png" alt="Alt text"></p>
+<p><img src="http://soujava.com/images/restinvokepostresponse.png" alt="Alt text"></p>
+<p><strong>5. 【POST】创建post类型，并且只接受json格式数据体的rest方法,同时需要在header中传递校验码参数</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps.rest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.LinkedList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.ws.rs.Consumes;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.DELETE;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.GET;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.HeaderParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.POST;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Path;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.PathParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Produces;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.core.MediaType;</div><div class="line"><span class="keyword">import</span> com.maps.vo.UserVO;</div><div class="line"></div><div class="line"><span class="meta">@Path</span>(<span class="string">"user"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String,UserVO&gt; mapTemp = <span class="keyword">new</span> HashMap&lt;String, UserVO&gt;();</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 添加用户的rest接口，并且header中需要传递对应的md5校验值</div><div class="line">	 * <span class="doctag">@param</span> user json数据格式的use对象参数</div><div class="line">	 * <span class="doctag">@param</span> md5val  在请求的header中传递的校验码</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="meta">@POST</span></div><div class="line">	<span class="meta">@Path</span>(<span class="string">"/addUser/headCheck"</span>)</div><div class="line">	<span class="meta">@Consumes</span>(&#123;<span class="string">"application/json"</span>&#125;)</div><div class="line">	<span class="meta">@Produces</span>(&#123;<span class="string">"application/json"</span>&#125;)</div><div class="line">	<span class="function"><span class="keyword">public</span> Map&lt;String,UserVO&gt; <span class="title">addUser</span><span class="params">(UserVO user,@HeaderParam(<span class="string">"md5val"</span>)</span> String md5val)</span>&#123;</div><div class="line">		mapTemp.put(md5val, user);</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> mapTemp;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通过rest接口工具调用</p>
+</blockquote>
+<p><img src="http://soujava.com/images/restpostheader.png" alt="Alt text"></p>
+<p><img src="http://soujava.com/images/restpostheaderresult.png" alt="Alt text"></p>
+<p><strong>5. 【DELETE】创建delete类型的rest方法，删除用户操作</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps.rest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.LinkedList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.ws.rs.Consumes;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.DELETE;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.GET;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.HeaderParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.POST;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Path;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.PathParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Produces;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.core.MediaType;</div><div class="line"><span class="keyword">import</span> com.maps.vo.UserVO;</div><div class="line"></div><div class="line"><span class="meta">@Path</span>(<span class="string">"user"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</div><div class="line">	</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 通过动态传参的方式，创建一个delete方法类型删除用户的rest接口，返回一个字符串状态</div><div class="line">	 * <span class="doctag">@param</span> id</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="meta">@DELETE</span></div><div class="line">	<span class="meta">@Path</span>(<span class="string">"/delete/&#123;id&#125;"</span>)</div><div class="line">	<span class="meta">@Produces</span>(MediaType.TEXT_PLAIN)</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">deleteUser</span><span class="params">(@PathParam(<span class="string">"id"</span>)</span> String id)</span>&#123;</div><div class="line">		System.out.println(<span class="string">"DELETE  -- deleteUser by "</span>+id);</div><div class="line">		<span class="keyword">return</span> <span class="string">"success"</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通过rest接口工具调用</p>
+</blockquote>
+<p><img src="http://soujava.com/images/deleteinvoke.png" alt="Alt text"></p>
+<p><img src="http://soujava.com/images/deleteresult.png" alt="Alt text"></p>
+<p>截止目前我们已经把我们常规的rest接口的开发方式都实现了，在实现过程中也看到了我们都是用注解去处理的，那么下面我们大概讲述一下每一个rest接口对应的不同的注解的作用。</p>
+<p><strong>二、注解描述</strong></p>
+<blockquote>
+<p><strong>请求方式 @GET @POST @DELETE</strong></p>
+<ul>
+<li>在上面的REST接口对应的方法中都有对应的方法类型(rest接口的请求方式)，添加对应的注解，该rest接口就需要用什么类型的方式进行请求</li>
+</ul>
+<p><strong>接口地址 @Path</strong></p>
+<ul>
+<li>该注解就如同springmvc中的@RequestMapping注解一样的作用，主要用来指定该方法对应的rest接口的访问地址是什么</li>
+</ul>
+<p><strong>动态传参 @PathParam(“id”)</strong></p>
+<ul>
+<li>这个注解一般配合注解@Path一起使用，当在@Path注解中指定对应的动态参数，然后在方法参数中使用注解@PathParam进行绑定，该参数相当于springmvc中的@PathVariable(“id”)注解的作用</li>
+</ul>
+<p><strong>请求参数类型(接受的参数类型) @Consumes(“application/json”)</strong></p>
+<ul>
+<li>我们不管使用get请求rest接口，或者使用post请求rest接口，一般都需要传参，该注解就是用来限制对应的rest方法中所要接受的对应参数类型的，上面的例子我们指定对应的rest接口只接受对应的json类型的参数；当然该注解其实可以使用对应的枚举赋值，后续开发中最好使用枚举进行复制-@Consumes({MediaType.TEXT_PLAIN})，下面看看对应的枚举支持的类型：</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MediaType</span> </span>&#123;</div><div class="line">   </div><div class="line">    <span class="keyword">private</span> String type;</div><div class="line">    <span class="keyword">private</span> String subtype;</div><div class="line"></div><div class="line">	<span class="comment">/** "application/xml" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String APPLICATION_XML = <span class="string">"application/xml"</span>;</div><div class="line"></div><div class="line">	<span class="comment">/** "application/atom+xml" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String APPLICATION_ATOM_XML = <span class="string">"application/atom+xml"</span>;</div><div class="line"></div><div class="line">	<span class="comment">/** "application/xhtml+xml" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String APPLICATION_XHTML_XML = <span class="string">"application/xhtml+xml"</span>;</div><div class="line"></div><div class="line">	<span class="comment">/** "application/svg+xml" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String APPLICATION_SVG_XML = <span class="string">"application/svg+xml"</span>;</div><div class="line"></div><div class="line">	<span class="comment">/** "application/json" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String APPLICATION_JSON = <span class="string">"application/json"</span>;</div><div class="line"></div><div class="line">	<span class="comment">/** "multipart/form-data" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String MULTIPART_FORM_DATA = <span class="string">"multipart/form-data"</span>;</div><div class="line"></div><div class="line">	<span class="comment">/** "application/octet-stream" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String APPLICATION_OCTET_STREAM = <span class="string">"application/octet-stream"</span>;</div><div class="line"></div><div class="line">	<span class="comment">/** "text/plain" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String TEXT_PLAIN = <span class="string">"text/plain"</span>;</div><div class="line"></div><div class="line">	<span class="comment">/** "text/xml" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String TEXT_XML = <span class="string">"text/xml"</span>;</div><div class="line"></div><div class="line">	<span class="comment">/** "text/html" */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String TEXT_HTML = <span class="string">"text/html"</span>;	</div><div class="line"></div><div class="line">	.......</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>响应数据类型 @Produces({“application/json”})</strong></p>
+<ul>
+<li>该注解就是用来限定对应的rest接口的返回值类型，相似与springmvc中的@ResponseBody注解的作用，当然该传参形式也可以使用枚举类型，同上面的@Consumes注解使用的枚举传参方式一样</li>
+</ul>
+<p><strong>响应类型为xml格式的数据封装 @XmlRootElement</strong></p>
+<ul>
+<li>可以看到在我们刚开始定义rest接口数据封装VO类时，在UserVO类上面使用了该注解定义，该注解主要的作用就是制定当rest接口中的响应数据类型为xml格式的UserVO数据时，使用UserVO类名作为根节点，当返回的xml数据集为多条(集合)时，则根节点为类名+es（UserVOes），具体可以看上面的示例；不过我们可以通过其他注解进行具体个性化指定，以后再具体讲解。</li>
+</ul>
+<p><strong>请求头(header)中传递参数 @HeaderParam(“md5val”)</strong></p>
+<ul>
+<li>该注解主要用来封装在调用rest接口时，需要在请求头(header)中传递参数的作用，一般当对应的rest接口需要进行一些认证校验处理时，一般都把对应的校验参数通过header传递，该注解等同于springmvc中的@RequestHeader(“md5val”)的作用。</li>
+</ul>
+</blockquote>
+<p>到目前为止，对应的常规的rest接口的开发就写完了，然后针对开发过程中用到的注解及使用场景进行了具体描述。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jersey-1-轻量级Rest接口后台服务框架搭建/" rel="next" title="jersey-1--轻量级Rest接口后台服务框架搭建">
+                <i class="fa fa-chevron-left"></i> jersey-1--轻量级Rest接口后台服务框架搭建
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="马平升" />
+          <p class="site-author-name" itemprop="name">马平升</p>
+          <p class="site-description motion-element" itemprop="description">记录未知的，牢记已知的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马平升</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="http://www.soujava.com">soujava</a>
+</div>
+
+<div class="theme-info">
+  
+  <a class="theme-link" href="https://github.com/mapingsheng">
+    GitHub
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
