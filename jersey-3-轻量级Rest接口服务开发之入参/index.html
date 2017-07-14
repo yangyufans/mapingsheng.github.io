@@ -1,0 +1,732 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soujava" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章我主要描述一下通过javax.ws框架开发rest服务接口时，基本的入参操作，主要包括入参类型的全局设定和方法级别设定、参数的默认值等等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jersey-3--轻量级Rest接口服务开发之入参">
+<meta property="og:url" content="http://www.soujava.com/jersey-3-轻量级Rest接口服务开发之入参/index.html">
+<meta property="og:site_name" content="soujava">
+<meta property="og:description" content="本篇文章我主要描述一下通过javax.ws框架开发rest服务接口时，基本的入参操作，主要包括入参类型的全局设定和方法级别设定、参数的默认值等等。">
+<meta property="og:image" content="http://soujava.com/images/paramForClass.png">
+<meta property="og:image" content="http://soujava.com/images/paramForClass2.png">
+<meta property="og:updated_time" content="2017-07-14T09:42:11.803Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jersey-3--轻量级Rest接口服务开发之入参">
+<meta name="twitter:description" content="本篇文章我主要描述一下通过javax.ws框架开发rest服务接口时，基本的入参操作，主要包括入参类型的全局设定和方法级别设定、参数的默认值等等。">
+<meta name="twitter:image" content="http://soujava.com/images/paramForClass.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.soujava.com/jersey-3-轻量级Rest接口服务开发之入参/"/>
+
+  <title> jersey-3--轻量级Rest接口服务开发之入参 | soujava </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">soujava</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录未知的，牢记已知的</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jersey-3--轻量级Rest接口服务开发之入参
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-14T15:48:18+08:00" content="2017-07-14">
+              2017-07-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/jersey/" itemprop="url" rel="index">
+                    <span itemprop="name">jersey</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇文章我主要描述一下通过javax.ws框架开发rest服务接口时，基本的入参操作，主要包括入参类型的全局设定和方法级别设定、参数的默认值等等。</p>
+<a id="more"></a>
+<p><strong>一、全局入参设定</strong></p>
+<p>通过在类上面添加注解 <em>@Consumes(MediaType.类型)</em> 即可限定全局入参类型的设置，比如 <em>@Consumes(MediaType.TEXT_PLAIN)</em></p>
+<blockquote>
+<p>新建控制器类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.maps.rest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.ws.rs.Consumes;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.DefaultValue;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.GET;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.POST;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Path;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.Produces;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.QueryParam;</div><div class="line"><span class="keyword">import</span> javax.ws.rs.core.MediaType;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.maps.vo.UserVO;</div><div class="line"></div><div class="line"><span class="meta">@Path</span>(<span class="string">"param"</span>)</div><div class="line"><span class="meta">@Consumes</span>(MediaType.TEXT_PLAIN)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParameterController</span> </span>&#123;</div><div class="line"></div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的控制器将是我们下面要开发的rest接口服务类，rest接口访问入口为 <em>/param</em></p>
+<p><strong>1. 新建一个方法，方法层级上面不加 <em>@Consumes</em> 注解</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 不设置方法的入参类型，则默认为类级别所注解的<span class="doctag">@Consumes</span>类型,</div><div class="line"> * 并且方法中的入参没有 <span class="doctag">@QueryParam</span></div><div class="line"> * <span class="doctag">@param</span> userId</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@GET</span></div><div class="line"><span class="meta">@Path</span>(<span class="string">"/paramForClassNoparam"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">paramForClassNoparam</span><span class="params">(String userId)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> userId;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该rest接口发布后，我们分两种情况访问该rest接口</p>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramForClassNoparam，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码。" target="_blank" rel="external">http://servername/param/paramForClassNoparam，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码。</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramForClassNoparam?userId=zhangsan，通过方法代码我们可以看到方法有一个String类型的入参userId，所以我们请求该rest接口时，在url中传递这个参数值；请求这个rest接口地址后，方法中的业务代码可以正常运行，但是传递的参数值是无法获取到的，这是因为我们在方法入参中没有通过" target="_blank" rel="external">http://servername/param/paramForClassNoparam?userId=zhangsan，通过方法代码我们可以看到方法有一个String类型的入参userId，所以我们请求该rest接口时，在url中传递这个参数值；请求这个rest接口地址后，方法中的业务代码可以正常运行，但是传递的参数值是无法获取到的，这是因为我们在方法入参中没有通过</a> <em>@QueryParam</em> 指定具体的入参；所以我们上面的rest方法等同于无参数的方法，其实我们可以认为方法中的userId入参是多余的。</p>
+</blockquote>
+<p>小结：在开发rest接口中，如果方法层级上面没有声明注解Consumes，将默认采用全局(类注解)入参注解类型；如果在对应的方法中没有使用注解QueryParam声明具体的参数，那么该参数是毫无意义的，因为请求该接口时将无法获取到对应的传递的参数值。</p>
+<p><strong>2. 新建一个方法，入参前面添加 <em>@QueryParam</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 不设置方法的入参类型，则默认为类级别所注解的<span class="doctag">@Consumes</span>类型</div><div class="line"> * <span class="doctag">@param</span> userId</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@GET</span></div><div class="line"><span class="meta">@Path</span>(<span class="string">"/paramForClass"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">paramForClass</span><span class="params">(@QueryParam(<span class="string">"userId"</span>)</span> String userId)</span>&#123;</div><div class="line">	<span class="keyword">return</span> userId;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该rest接口发布后，我们分两种情况访问该rest接口</p>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramForClass，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,但是由于我们没有传递对应的userId参数，所以rest接口将不会有任何内容输出，并且响应状态码为204" target="_blank" rel="external">http://servername/param/paramForClass，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,但是由于我们没有传递对应的userId参数，所以rest接口将不会有任何内容输出，并且响应状态码为204</a></p>
+</blockquote>
+<p><img src="http://soujava.com/images/paramForClass.png" alt="Alt text"></p>
+<hr>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramForClass?userId=zhangsan，该rest接口的请求将会到达对应的方法体中，并且可以正常执行方法体中的业务代码，并且将会输出对应的入参userId传递的具体值。" target="_blank" rel="external">http://servername/param/paramForClass?userId=zhangsan，该rest接口的请求将会到达对应的方法体中，并且可以正常执行方法体中的业务代码，并且将会输出对应的入参userId传递的具体值。</a></p>
+</blockquote>
+<p><img src="http://soujava.com/images/paramForClass2.png" alt="Alt text"></p>
+<p>小结：我们在对应的rest接口方法中，通过注解QueryParam指定具体的参数后，如果在请求该rest接口时，不传递对应的参数，那么方法体中获取到的该参数默认为null；如果在请求rest接口时，传递了具体声明的参数，那么方法体中就可以正常获取到该参数的值</p>
+<p><strong>3. 新建一个方法，方法层级声明 <em>@Consumes</em> 注解为json类型，入参声明 <em>@QueryParam</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 设置入参类型为字符串类型，在方法上面的注解<span class="doctag">@Consumes</span>将覆盖掉类级别的注解<span class="doctag">@Consumes</span></div><div class="line"> * 比如类级别的入参类型为字符串类型，而方法级别的入参类型为json类型，所以该方法的入参类型为json类型</div><div class="line"> * <span class="doctag">@param</span> userId</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@GET</span></div><div class="line"><span class="meta">@Path</span>(<span class="string">"/paramForMethod"</span>)</div><div class="line"><span class="meta">@Consumes</span>(MediaType.APPLICATION_JSON)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">paramForMethod</span><span class="params">(@QueryParam(<span class="string">"userId"</span>)</span> String userId)</span>&#123;</div><div class="line">	<span class="keyword">return</span> userId; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该rest接口发布后，我们访问该rest接口</p>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramForMethod?userId=zhangsanfeng，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,并且传递的userId参数值也将直接输出。" target="_blank" rel="external">http://servername/param/paramForMethod?userId=zhangsanfeng，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,并且传递的userId参数值也将直接输出。</a></p>
+</blockquote>
+<p>小结：我们在方法层级上面使用了注解Consumes指定了入参类型为json，其实该rest方法应该接受json类型的入参才对吧？实际上我们仍然可以正常传递字符串类型的参数userId，所以可以判定通过Consumes注解指定的入参类型并不是必须条件。</p>
+<p><strong>4. 新建一个方法，方法层级声明 <em>@Consumes</em> 注解为xml类型，入参声明 <em>@QueryParam</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@GET</span></div><div class="line"><span class="meta">@Path</span>(<span class="string">"/paramForMethodXml"</span>)</div><div class="line"><span class="meta">@Consumes</span>(MediaType.APPLICATION_XML)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">paramForMethodText</span><span class="params">(@QueryParam(<span class="string">"userId"</span>)</span> String userId)</span>&#123;</div><div class="line">	<span class="keyword">return</span> userId; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该rest接口发布后，我们访问该rest接口</p>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramForMethodXml?userId=zhangsan，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,并且传递的userId参数值也将直接输出。" target="_blank" rel="external">http://servername/param/paramForMethodXml?userId=zhangsan，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,并且传递的userId参数值也将直接输出。</a></p>
+</blockquote>
+<p>小结：我们在方法层级上面使用了注解Consumes指定了入参类型为xml,实际上面我们仍然可以传递字符串类型的参数</p>
+<p><strong>5. 新建一个方法，入参通过 <em>@QueryParam</em> 注解声明参数名称</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 在方法的入参中设置入参名称</div><div class="line"> * <span class="doctag">@param</span> id</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@GET</span></div><div class="line"><span class="meta">@Path</span>(<span class="string">"/paramName"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">paramName</span><span class="params">(@QueryParam(<span class="string">"userId"</span>)</span> String id)</span>&#123;</div><div class="line">	<span class="keyword">return</span> id;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该rest接口发布后，我们访问该rest接口</p>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramName?userId=zhangsan，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,并且传递的userId参数值也将直接输出。" target="_blank" rel="external">http://servername/param/paramName?userId=zhangsan，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,并且传递的userId参数值也将直接输出。</a></p>
+</blockquote>
+<p>小结：这个rest接口我们通过QueryParam单独声明了入参名称，也就是说通过QueryParam注解声明的参数名称跟方法真实的入参名称是不同的，但是我们通过注解QueryParam声明以后，请求rest接口时，传递的userId参数名称的值就会自动赋值到真实的入参id上面。</p>
+<p><strong>6. 通过注解 <em>@QueryParam</em> <em>@DefaultValue</em> 为参数声明默认值</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 为入参设置默认值</div><div class="line"> * <span class="doctag">@param</span> userId</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@GET</span></div><div class="line"><span class="meta">@Path</span>(<span class="string">"/paramDefultValue"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">defaultParamValue</span><span class="params">(@DefaultValue(<span class="string">"123456"</span>)</span> @<span class="title">QueryParam</span><span class="params">(<span class="string">"userId"</span>)</span> String userId)</span>&#123;</div><div class="line">	<span class="keyword">return</span> userId;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该rest接口发布后，我们分两种情况访问该rest接口</p>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramDefultValue，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,虽然由于我们没有传递对应的userId参数，但是通过注解DefaultValue设定默认值后，我们仍然可以下方法体中获取到入参userId的值为123456" target="_blank" rel="external">http://servername/param/paramDefultValue，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,虽然由于我们没有传递对应的userId参数，但是通过注解DefaultValue设定默认值后，我们仍然可以下方法体中获取到入参userId的值为123456</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramDefultValue?userId=zhangsan，该rest接口对应的方法体可以正常执行，响应输出zhangsan，因为我们请求rest接口时，传递了userId参数，所以方法体中我们通过注解DefaultValue设定的默认值就被覆盖了。" target="_blank" rel="external">http://servername/param/paramDefultValue?userId=zhangsan，该rest接口对应的方法体可以正常执行，响应输出zhangsan，因为我们请求rest接口时，传递了userId参数，所以方法体中我们通过注解DefaultValue设定的默认值就被覆盖了。</a></p>
+</blockquote>
+<p>小结：当我们使用注解DefaultValue声明入参默认值后，当我们请求rest接口时，不传递对应的参数时，方法体中获取的参数值就是我们设定的默认值。</p>
+<p><strong>7. 通过注解 <em>@QueryParam</em> 设定后，请求rest接口的入参类型</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 设置入参的类型</div><div class="line"> * <span class="doctag">@param</span> userId</div><div class="line"> * <span class="doctag">@param</span> age</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@GET</span></div><div class="line"><span class="meta">@Path</span>(<span class="string">"paramType"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">paramType</span><span class="params">(@QueryParam(<span class="string">"userId"</span>)</span> String userId, @<span class="title">QueryParam</span><span class="params">(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</div><div class="line">	<span class="keyword">return</span>  userId+<span class="string">" "</span>+age;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该rest接口发布后，我们分两种情况访问该rest接口</p>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramType?userId=zhangsan&amp;age=27，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,该请求响应输出zhangsan" target="_blank" rel="external">http://servername/param/paramType?userId=zhangsan&amp;age=27，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,该请求响应输出zhangsan</a> 27</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramType?userId=zhangsan&amp;age=strs" target="_blank" rel="external">http://servername/param/paramType?userId=zhangsan&amp;age=strs</a> ，报404错误，因为我们的入参age的类型参数值类型传递错误</p>
+</blockquote>
+<p>小结：我们通过 QueryParam 注解声明入参后，请求rest接口时，传递的参数类型需要满足 兼容性；否则将报404错误。</p>
+<p><strong>8. 通过注解 <em>@QueryParam</em> 设定后，请求rest接口的入参类型为boolean类型</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@GET</span></div><div class="line"><span class="meta">@Path</span>(<span class="string">"paramTypeForBool"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">paramTypeForBool</span><span class="params">(@QueryParam(<span class="string">"flg"</span>)</span> Boolean flg, @<span class="title">QueryParam</span><span class="params">(<span class="string">"status"</span>)</span> <span class="keyword">boolean</span> status)</span>&#123;</div><div class="line">	<span class="keyword">return</span>  <span class="string">" "</span>+flg+<span class="string">" "</span>+status;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该rest接口发布后，我们分三种情况访问该rest接口</p>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramTypeForBool，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,只是我们没有传递具体参数值，所以Boolean类型的flg就为null，boolean类型的flg就为false。" target="_blank" rel="external">http://servername/param/paramTypeForBool，该rest接口的请求将会到达对应方法体中，并且可以正常执行方法中的业务代码,只是我们没有传递具体参数值，所以Boolean类型的flg就为null，boolean类型的flg就为false。</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramTypeForBool?flg=str&amp;status=str" target="_blank" rel="external">http://servername/param/paramTypeForBool?flg=str&amp;status=str</a> ，该请求响应输出为 false false。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>访问 <a href="http://servername/param/paramTypeForBool?flg=true&amp;status=true" target="_blank" rel="external">http://servername/param/paramTypeForBool?flg=true&amp;status=true</a> ，该请求响应输出为 true true。</p>
+</blockquote>
+<p>小结：当入参类型布尔类型时，当类型是包装类-Boolean时，如果入参不传的话，接收的为null；当类型不是包装类-boolean时，如果参数不传的话，接收的值为false；当类型不是包装类-boolean时，如果传递的参数值类型为非boolan(不兼容),则方法体中的接收到的值为false。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jersey-2-轻量级Rest接口后台服务常规接口开发/" rel="next" title="jersey-2--轻量级Rest接口后台服务常规接口开发">
+                <i class="fa fa-chevron-left"></i> jersey-2--轻量级Rest接口后台服务常规接口开发
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="马平升" />
+          <p class="site-author-name" itemprop="name">马平升</p>
+          <p class="site-description motion-element" itemprop="description">记录未知的，牢记已知的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">68</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马平升</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="http://www.soujava.com">soujava</a>
+</div>
+
+<div class="theme-info">
+  
+  <a class="theme-link" href="https://github.com/mapingsheng">
+    GitHub
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
