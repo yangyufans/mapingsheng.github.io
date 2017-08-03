@@ -89,7 +89,7 @@
 <meta name="description" content="记录未知的，牢记已知的">
 <meta property="og:type" content="website">
 <meta property="og:title" content="soujava">
-<meta property="og:url" content="http://www.soujava.com/page/3/index.html">
+<meta property="og:url" content="http://www.soujava.com/page/7/index.html">
 <meta property="og:site_name" content="soujava">
 <meta property="og:description" content="记录未知的，牢记已知的">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="http://www.soujava.com/page/3/"/>
+  <link rel="canonical" href="http://www.soujava.com/page/7/"/>
 
   <title> soujava </title>
 </head>
@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/Redis-使用SortedSet分页处理/" itemprop="url">
-                  Redis-使用SortedSet分页处理
+                <a class="post-title-link" href="/2016-06-30-界面框架/" itemprop="url">
+                  界面框架
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-23T12:53:35+08:00" content="2017-03-23">
-              2017-03-23
+            <time itemprop="dateCreated" datetime="2016-06-30T16:39:11+08:00" content="2016-06-30">
+              2016-06-30
             </time>
           </span>
 
@@ -288,8 +288,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
+                  <a href="/categories/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
                   </a>
                 </span>
 
@@ -322,13 +322,35 @@
 
       
         
-          <p><strong>一、需求描述</strong></p>
-<p>由于app首页的数据展示需要调用6个第三方的不同数据源的rest接口，所以app首页在使用过程中会出现请求超时的问题（app端设置超时时间为5s）；所以需要对首页进行优化；</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Redis-使用SortedSet分页处理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <p><strong>1、布局框架</strong></p>
+<p> 访问地址：<a href="http://layout.jquery-dev.com/index.cfm" target="_blank" rel="external">http://layout.jquery-dev.com/index.cfm</a><br> demo：<a href="http://layout.jquery-dev.com/demos.cfm" target="_blank" rel="external">http://layout.jquery-dev.com/demos.cfm</a><br> 可以满足多种复杂或者简单的布局，支持拖拉操作：</p>
+<p><img src="http://soujava.com/images/bujv.jpg" alt="Alt text" title="git push"></p>
+<p><strong>2、表格框架</strong><br>2.1、SlickGrid（<a href="https://github.com/Celebio/SlickGrid）" target="_blank" rel="external">https://github.com/Celebio/SlickGrid）</a></p>
+<pre><code>1)、支持表格的排序、列宽度的拖拽调整、表格中列的可编辑、表格中可编辑单元格中的各种控件(时间选择、下拉框、滑动条、复选框等等)、表格中添                                    加树形菜单、表格列宽度随着窗口大小自动调整；
+</code></pre><p><img src="http://soujava.com/images/biaoge1.jpg" alt="Alt text" title="表格"></p>
+<p><img src="http://soujava.com/images/biaoge2.jpg" alt="Alt text" title="表格"></p>
+<p>   2)、可以在表格中直接框选复制-粘贴、对单元格中的值动态筛选、表格中的一些值的汇总计算以及展示、框选复制粘贴</p>
+<p><img src="http://soujava.com/images/biaoge3.jpg" alt="Alt text" title="表格"></p>
+<p>   3)、表格数据的渲染速度也非常不错，50万条静态数据一次加载渲染到表格中1-3秒时间</p>
+<p><img src="http://soujava.com/images/biaoge4.jpg" alt="Alt text" title="表格"></p>
+<p>2.2、 paramquery（<a href="http://paramquery.com/grid）" target="_blank" rel="external">http://paramquery.com/grid）</a></p>
+<p>  1)、表格拖拉控制宽度、排序、可编辑</p>
+<p><img src="http://soujava.com/images/biaoge5.jpg" alt="Alt text" title="表格"></p>
+<p>  2)、可以对添加表格中的数据、以及对表格中的某几列数据添加横向滚动条</p>
+<p><img src="http://soujava.com/images/biaoge6.jpg" alt="Alt text" title="表格"></p>
+<pre><code>3)、可以对表格头部进行复杂的嵌套汇总显示：
+</code></pre><p><img src="http://soujava.com/images/biaoge9.jpg" alt="Alt text" title="表格"></p>
+<p>2.3、 jqwidgets（<a href="http://www.jqwidgets.com/）" target="_blank" rel="external">http://www.jqwidgets.com/）</a></p>
+<pre><code>这个表格框架还是相当的强大的，你能想到的，你将用到的都为你提供了，总之一两句话表达不彻底，需要你去亲自体验！不过有些浏览器兼容可能会出些问题，我在使用过程中由于兼容问题，我修改了其内核js文件解决的。
+
+DEMO体验地址：http://www.jqwidgets.com/jquery-widgets-demo/
+</code></pre><p><img src="http://soujava.com/images/jqwidgets.png" alt="Alt text" title="表格"></p>
+<p><strong>3、界面风格</strong></p>
+<p>3.1、 semantic-ui (<a href="http://semantic-ui.com/" target="_blank" rel="external">http://semantic-ui.com/</a>) </p>
+<p>3.2、 topcoat (<a href="http://topcoat.io/topcoat/" target="_blank" rel="external">http://topcoat.io/topcoat/</a>) </p>
+
+          
         
       
     </div>
@@ -376,8 +398,8 @@
             
               
                 
-                <a class="post-title-link" href="/我所理解的nodeJs的两个概念/" itemprop="url">
-                  我所理解的nodeJs的两个概念
+                <a class="post-title-link" href="/2016-06-30-页面中添加-ENTER-键点击事件/" itemprop="url">
+                  页面中添加'ENTER'键点击事件
                 </a>
               
             
@@ -390,246 +412,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-06T16:22:02+08:00" content="2017-03-06">
-              2017-03-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nodeJs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodeJs</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>仔细想了想，现将我对nodejs理解中的两个概念综述一下，以确定后续对其使用定位和深入理解。</p>
-<h2 id="1、包管理器"><a href="#1、包管理器" class="headerlink" title="1、包管理器"></a>1、包管理器</h2><p>其实nodejs有一个强大的包管理器支撑着nodejs的繁荣生态，提到这个包管理器就据下面几个例子：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/我所理解的nodeJs的两个概念/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/CentOS系统安装nodeJs/" itemprop="url">
-                  CentOS系统安装nodeJs
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-09T13:11:02+08:00" content="2017-02-09">
-              2017-02-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nodeJs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodeJs</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>主要介绍在Linux(CentOS)系统中，nodeJs的安装与环境配置，首先我们需要到nodeJs官网下载对应的tar安装包，然后使用命令进行安装和配置操作(一共有源代码编译安装和二进制包安装，两种安装方式都是可以的)</p>
-<h2 id="一、二进制包安装"><a href="#一、二进制包安装" class="headerlink" title="一、二进制包安装"></a>一、二进制包安装</h2><p>1 下载二进制包</p>
-<p><code>cd /usr/local/develop/soft  #切换到对应的安装目录中</code></p>
-<p><code>wget https://nodejs.org/dist/v6.9.5/node-v6.9.5-linux-x64.tar.xz  #下载官方的nodeJs二进制安装包</code></p>
-<p>2 命令安装</p>
-<blockquote>
-<p>tar -xvf  node-v6.9.4-linux-x64.tar.xz    #解压下载的二进制安装包</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/CentOS系统安装nodeJs/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/Jquery中prop和attr使用时的问题/" itemprop="url">
-                  Jquery中prop和attr使用时的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-08T13:25:25+08:00" content="2017-02-08">
-              2017-02-08
+            <time itemprop="dateCreated" datetime="2016-06-30T16:31:17+08:00" content="2016-06-30">
+              2016-06-30
             </time>
           </span>
 
@@ -676,12 +460,22 @@
 
       
         
-          <p>在使用jquery的attr属性处理单选按钮选中时，出现偶尔不能选中的问题，后来才知道jquery官方推荐使用prop，而再推荐使用attr。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Jquery中prop和attr使用时的问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <p>通常有以下场景：<br>当输入表单完成后直接按“Enter”键进行快捷提交；当操作一个共时，弹出的提示询问框，然后直接按“Enter”键确认。<br>那么我们只需要通过获取当前点击的键码是否是enter键的码值即可！</p>
+<p><strong>jquery</strong></p>
+<pre><code>$(&quot;body&quot;).keydown(function(e){
+    if(e.keyCode==&quot;13&quot;){
+        alert(&apos;点击了Enter键&apos;);
+    }
+});
+</code></pre><p><strong>javascript</strong></p>
+<pre><code>document.body.onclick=function(){
+    if(e.keyCode==&quot;13&quot;){
+       alert(&apos;点击了Enter键&apos;);
+    }
+};
+</code></pre>
+          
         
       
     </div>
@@ -729,8 +523,8 @@
             
               
                 
-                <a class="post-title-link" href="/10进制与2进制转换/" itemprop="url">
-                  X进制与Y进制转换
+                <a class="post-title-link" href="/2016-06-30-关闭父窗口刷新子窗口/" itemprop="url">
+                  关闭父窗口刷新子窗口
                 </a>
               
             
@@ -743,8 +537,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-20T15:23:15+08:00" content="2017-01-20">
-              2017-01-20
+            <time itemprop="dateCreated" datetime="2016-06-30T16:21:45+08:00" content="2016-06-30">
+              2016-06-30
             </time>
           </span>
 
@@ -757,8 +551,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -791,12 +585,51 @@
 
       
         
-          <p>在上一篇文章中描述了二进制、八进制、十进制、十六进制的概念和表述方法，但是在计算机的世界中，只有0和1，所以除了二进制之外的其它X进制，计算机都是不能识别的；所以需要把他们转换为二进制之后才能在计算机上面运行</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/10进制与2进制转换/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <p>比如我访问index.html页面，其中一个功能模块需要弹出(新打开)other.html，勾选某些数据，勾选完成后，关闭other.html，并且index.html随着关闭other.html事件而刷新。</p>
+<p><strong>父窗口-index.html</strong></p>
+<pre><code> &lt;html&gt;  
+ &lt;head&gt;  
+  &lt;title&gt;index.htmll&lt;/title&gt;  
+  &lt;meta name=&quot;Generator&quot; content=&quot;EditPlus&quot;&gt;  
+  &lt;meta name=&quot;Author&quot; content=&quot;&quot;&gt;  
+  &lt;meta name=&quot;Keywords&quot; content=&quot;&quot;&gt;  
+  &lt;meta name=&quot;Description&quot; content=&quot;&quot;&gt;  
+    &lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;  
+    &lt;!--   
+    function clicks(){   
+     window.open(&quot;other.html&quot;);   
+    }   
+    //--&gt;  
+    &lt;/SCRIPT&gt;  
+ &lt;/head&gt;  
+ &lt;body&gt;  
+ &lt;a  onClick=&quot;clicks();&quot; target=&quot;_blank&quot;&gt;选择数据&lt;/a&gt;  
+ &lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre><p><strong>子窗口-other.html</strong></p>
+<pre><code> &lt;html&gt;  
+ &lt;head&gt;  
+  &lt;title&gt;子窗口&lt;/title&gt;  
+  &lt;meta name=&quot;Generator&quot; content=&quot;EditPlus&quot;&gt;  
+  &lt;meta name=&quot;Author&quot; content=&quot;&quot;&gt;  
+  &lt;meta name=&quot;Keywords&quot; content=&quot;&quot;&gt;  
+  &lt;meta name=&quot;Description&quot; content=&quot;&quot;&gt;  
+&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;  
+&lt;!--   
+function Close()   
+{
+  window.opener.location.href=&quot;index.html&quot;;
+}
+//--&gt;  
+&lt;/script&gt;  
+ &lt;/head&gt;  
+ &lt;body&gt;  
+ &lt;a href=&quot;javascript:Close();&quot;&gt;关闭当前子窗口，打开父窗口&lt;/a&gt;  
+ &lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre>
+          
         
       
     </div>
@@ -844,8 +677,8 @@
             
               
                 
-                <a class="post-title-link" href="/thymeleaf教程3-with定义变量使用/" itemprop="url">
-                  thymeleaf教程3--with定义变量使用
+                <a class="post-title-link" href="/2016-06-30-Java-was-started-but-returned-exit-code异常/" itemprop="url">
+                  Java was started but returned exit code异常
                 </a>
               
             
@@ -858,8 +691,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-28T16:11:44+08:00" content="2016-09-28">
-              2016-09-28
+            <time itemprop="dateCreated" datetime="2016-06-30T15:56:30+08:00" content="2016-06-30">
+              2016-06-30
             </time>
           </span>
 
@@ -872,8 +705,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/thymeleaf/" itemprop="url" rel="index">
-                    <span itemprop="name">thymeleaf</span>
+                  <a href="/categories/IDE/" itemprop="url" rel="index">
+                    <span itemprop="name">IDE</span>
                   </a>
                 </span>
 
@@ -906,12 +739,14 @@
 
       
         
-          <p>在使用thymeleaf渲染数据的时候，我们经常会用到basepath变量（访问地址前缀），一般我们在jsp中直接request对象获取拼接而成，但是在thymeleaf中如何使用呢，可以通过th:with定义并使用。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/thymeleaf教程3-with定义变量使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <p>今天eclipse启动时一直报个错：Java was started but returned exit code=-805306369………等等<br>将eclipse.ini内容改为：<br>（注：最下面的几行是调整后的配置）</p>
+<p>-startup<br>plugins/org.eclipse.equinox.launcher_1.1.0.v20100507.jar<br>–launcher.library<br>plugins/org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.0.v20100503<br>-product<br>org.eclipse.epp.package.jee.product<br>–launcher.defaultAction<br>openFile<br>–launcher.XXMaxPermSize<br>256M<br>-showsplash<br>org.eclipse.platform<br>-vmargs<br>-Dosgi.requiredJavaVersion=1.5</p>
+<blockquote>
+<p>-Xms1024m<br>-Xmx1024m<br>-XX:MaxPermSize=128m<br>-XX:+CMSClassUnloadingEnabled<br>-XX:+CMSPermGenSweepingEnabled<br>-XX:+UseParallelGC<br>-XX:CompileCommand=exclude,org/eclipse/core/internal/dtree/DataTreeNode,forwardDeltaWith</p>
+</blockquote>
+
+          
         
       
     </div>
@@ -959,8 +794,8 @@
             
               
                 
-                <a class="post-title-link" href="/Maven忽略其他依赖jar包插件/" itemprop="url">
-                  Maven忽略其他依赖jar包插件-maven-enforcer-plugin
+                <a class="post-title-link" href="/2016-06-28-添加KEY后，每次push时让输入密码/" itemprop="url">
+                  添加KEY后，每次push时让输入密码
                 </a>
               
             
@@ -973,8 +808,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-20T10:54:31+08:00" content="2016-09-20">
-              2016-09-20
+            <time itemprop="dateCreated" datetime="2016-06-28T18:03:13+08:00" content="2016-06-28">
+              2016-06-28
             </time>
           </span>
 
@@ -987,8 +822,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Maven/" itemprop="url" rel="index">
-                    <span itemprop="name">Maven</span>
+                  <a href="/categories/github/" itemprop="url" rel="index">
+                    <span itemprop="name">github</span>
                   </a>
                 </span>
 
@@ -1021,14 +856,32 @@
 
       
         
-          <p>我们在开发产品时，可能不同人开发不同的功能模块，比如：</p>
-<p>•现在A开发a模块，B开发b模块</p>
-<p>•a模块依赖modelman-1.0.0-SNAPSHOT.jar包；b模块依赖modelman-1.0.2-RELEASE.jar包；很显然目前最新的jar包版本应该都用modelman-1.0.2-RELEASE.jar这个版本</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Maven忽略其他依赖jar包插件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <p>我的操作系统是window环境，首先在电脑上面已经在.ssh/目录下面生成了对应的key文件，并且将id_rsa.pub文件中的公钥添加到我github账户上面的sshkey模块中</p>
+<ol>
+<li>当从github上面clone项目时，还老是提示输入密码，如下图：<blockquote>
+<p><code>Enter passphrase for key ‘/c/Users/maps/.ssh/id_rsa’:</code></p>
+<p><img src="http://soujava.com/images/getIp.jpg" alt="Alt text" title="git push"></p>
+</blockquote>
+</li>
+<li><p>按照先后顺序执行以下两条命令：</p>
+<blockquote>
+<p><code>$ ssh-agent bash</code></p>
+<p><code>$ ssh-add /c/Users/maps/.ssh/id_rsa</code></p>
+<p>注：这两条命令必须按照先后顺序执行；第二条命令中后半部分就是你的私钥文件id_rsa的绝对路径</p>
+</blockquote>
+</li>
+<li>通过以上两个命令就可以解决上面的问题，然后我们输入ssh -T 命令测试连接git服务,提示测试成功<blockquote>
+<p><img src="http://soujava.com/images/gitTestconnsucc.jpg" alt="Alt text"></p>
+</blockquote>
+</li>
+<li>最后来一个完整的图片<blockquote>
+<p><img src="http://soujava.com/images/gitpushinputpasssucc.jpg" alt="Alt text"></p>
+</blockquote>
+</li>
+</ol>
+
+          
         
       
     </div>
@@ -1076,8 +929,8 @@
             
               
                 
-                <a class="post-title-link" href="/Mysql数据库编码更改/" itemprop="url">
-                  Mysql数据库编码更改
+                <a class="post-title-link" href="/2016-06-28-通过gitBook让网站更实用/" itemprop="url">
+                  通过gitBook让网站更实用
                 </a>
               
             
@@ -1090,8 +943,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-20T10:46:29+08:00" content="2016-09-20">
-              2016-09-20
+            <time itemprop="dateCreated" datetime="2016-06-28T17:48:54+08:00" content="2016-06-28">
+              2016-06-28
             </time>
           </span>
 
@@ -1104,8 +957,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
+                  <a href="/categories/github/" itemprop="url" rel="index">
+                    <span itemprop="name">github</span>
                   </a>
                 </span>
 
@@ -1138,13 +991,44 @@
 
       
         
-          <p>在平时的开发过程中，mysql的编码是拉丁字符，所以当向里面存储数据时，显示出来就是乱码，那么我们需要执行如下操作：</p>
-<h3 id="1-通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息"><a href="#1-通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息" class="headerlink" title="1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息"></a>1.通过命令或者其他终端登录到mysql服务中，并执行查询目前对应的数据库的编码信息sql脚本查询，执行命令会查询出该数据库下面每一张表对应的字符编码信息</h3>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Mysql数据库编码更改/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <ol>
+<li>前两篇文章中介绍了使用github Pages功能生成静态博客系统，并且也选择了系统提供的几个博客模板，但是提供的博客模板固然不错，但是总觉得如果有目录导航整个文章目录更便于阅读，就如书本似的(左侧目录+右侧内容文章);<blockquote>
+<p>csdn上面的博客查看方式<br><img src="http://soujava.com/images/mycsdnblog.jpg" alt="Alt text"><br> </p><p>采用gitBook构建的博客<br> </p><p><img src="http://soujava.com/images/mygitbook.jpg" alt="Alt text"><br> </p><p>比如上面两个博客图片比对可以感受一下(csdn上面博客和采用gitBook构建的博客)</p>
+ <p></p></blockquote>
+</li>
+<li>gitBook是什么<br> <p>GitBook是一个基于 Node.js 的命令行工具，可使用 Github/Git 和 Markdown 来制作精美的电子书，GitBook 并非关于 Git 的教程。<br> GitBook支持输出多种文档格式：<br> ·静态站点：GitBook默认输出该种格式，生成的静态站点可直接托管搭载Github Pages服务上；<br> ·PDF：需要安装gitbook-pdf依赖；<br> ·eBook：需要安装ebook-convert；<br> ·单HTML网页：支持将内容输出为单页的HTML，不过一般用在将电子书格式转换为PDF或eBook的中间过程；<br> ·JSON：一般用于电子书的调试或元数据提取。<br> 使用GitBook制作电子书，必备两个文件：README.md和SUMMARY.md<br> </p><p>官网:<a href="https://www.gitbook.com" target="_blank" rel="external">https://www.gitbook.com</a> </p><p></p></li>
+<li><p>如何使用gitBook书写文章，需要安装node.js、gitBook、markdown，下面介绍：</p>
+<blockquote>
+<p>1)、下载、安装node.js;官网：<a href="http://nodejs.cn/" target="_blank" rel="external">http://nodejs.cn/</a></p>
+<p><img src="http://soujava.com/images/nodejsdownload.jpg" alt="Alt text"></p>
+<p>下载完成后，直接双击、下一步下一步的进行傻瓜式安装即可！</p>
+<p>2)、通过window命令安装gitbook服务；<br><code>npm install gitbook -g</code></p>
+<p><img src="http://soujava.com/images/1.jpg" alt="Alt text"></p>
+<p>3)、通过window命令安装gitbook命令服务（gitbook-cli）；<br><code>npm install gitbook-cli -g</code></p>
+<p>4)、下载安装markdown；<br>下载地址：<a href="http://markdownpad.com/download.html；" target="_blank" rel="external">http://markdownpad.com/download.html；</a><br>下载完成后直接下一步下一步安装，安装成功后桌面出现快捷启动图标</p>
+<p><img src="http://soujava.com/images/markdown.jpg" alt="Alt text"></p>
+<p>5)、使用gitbook开始制作电子书式的博客系统；首先在你的硬盘上面新建你个存放你博客的目录，比如BLOG;然后通过window环境下面的cmd命令窗口切换到该目录下面，通过gitbook init命令初始化gitbook服务的目录结构：</p>
+<p><img src="http://soujava.com/images/3.jpg" alt="Alt text"></p>
+<p>6)、首先介绍一下gitbook init命令的作用，首先读取SUMMARY.md文件中的目录定义结构，然后会按照该目录结构在对应博客文件夹下面生成对应的文件目录结构,<br>SUMMARY.md文件内容如图<br> </p><p><img src="http://soujava.com/images/gitinit.jpg" alt="Alt text"></p>
+<p>运行gitbook init命令后生成的目录结构如图</p>
+<p> </p><p><img src="http://soujava.com/images/gitinitfile.jpg" alt="Alt text"></p>
+<p>7)、然后通过gitbook build命令将目录结构中的.md文件(markdown语法格式的文件)转换生成.html文件(静态网页文件)，可以用浏览器浏览查看;</p>
+<p><img src="http://soujava.com/images/gitbuildbook.jpg" alt="Alt text"></p>
+<p>8)、截止到这一步我们通过gitbook构建电子书式的博客文章已经完成了，我们只需要把第7)步骤中通过gitbook build命令生成的_book文件夹下面的文件通过git提交到自己github账户下面的博客项目目录下面即可(如果之前自己账户下面的github博客没有用gitbook服务生成的目录构建博客目录的话，可以删除根目录下面旧的目录文件；如果之前已经用过gitbook服务生成的静态目录结构构建过博客目录，那么我们只需要通过git push覆盖旧文件即可)；<br>9)、上面没有讲到如何用markdown工具，其实在第6)步骤中通过gitbook init命令生成的以.md文件组成的目录结构就是markdown的文件，我们需要用markdown工具进行编辑操作，当然.md文件也可以用其他编辑器工具编写，只是个人感觉用markdown工具更方便一些，至于如何用markdown工具编写网页，需要你去先了解一下markdown的语法；这里就不过多介绍了，因为语法内容挺多的！</p>
+</blockquote>
+</li>
+<li>总结<blockquote>
+<p>安装node.js、gitbook、markdown</p>
+<p>通过gitbook init命令初始化目录结构</p>
+<p>通过markdown工具编辑目录结构文章对应的.md文件</p>
+<p>通过gitbook build命令将.md文件转换生成.html静态网页文件(默认自动存放在_book文件夹下)</p>
+<p>通过git push命令将_book文件夹下面生成的.html静态文件推送到自己github账户下面的博客系统项目工程目录下面</p>
+</blockquote>
+</li>
+</ol>
+
+          
         
       
     </div>
@@ -1192,8 +1076,8 @@
             
               
                 
-                <a class="post-title-link" href="/RocketMQ启动报错解决/" itemprop="url">
-                  RocketMQ启动报错解决
+                <a class="post-title-link" href="/2016-06-28-为github-pages绑定独立域名/" itemprop="url">
+                  为github pages绑定独立域名
                 </a>
               
             
@@ -1206,8 +1090,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-20T10:21:53+08:00" content="2016-09-20">
-              2016-09-20
+            <time itemprop="dateCreated" datetime="2016-06-28T17:47:28+08:00" content="2016-06-28">
+              2016-06-28
             </time>
           </span>
 
@@ -1220,8 +1104,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/RocketMQ/" itemprop="url" rel="index">
-                    <span itemprop="name">RocketMQ</span>
+                  <a href="/categories/github/" itemprop="url" rel="index">
+                    <span itemprop="name">github</span>
                   </a>
                 </span>
 
@@ -1254,12 +1138,24 @@
 
       
         
-          <p>最近需要用到消息服务器，就用到淘宝开源的RocketMQ消息服务器了，重新安装的一台新的linux服务器（CentOS6.4），然后安装的RocketMQ二进制包。安装成功后，在最后启动的时候，报了一个错误！</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/RocketMQ启动报错解决/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <blockquote>
+<p>如果想让你的博客显得更专业更高逼格，那么申请注册一个你自己的独立一级域名是必须的了，那么下面我接着上一篇博客继续讲一下如何把你的博客跟你的独立域名绑定起来！</p>
+</blockquote>
+<p><strong><p>1、假设你已经有了一个独立域名了，至于那些还没有独立域名的童鞋还是先申请注册一个自己的独立域名吧，申请注册一个非常简单，我就不多啰嗦了！我的独立域名是<a href="http://www.soujava.com">soujava</a>；个人感觉这个域名还算可以吧！个人是搞java开发的！</p></strong></p>
+<p><strong><p>2、不管你的域名是在哪里注册的，其实原理通用的，因为我的域名是在新网上面注册的，那么我就以新网为例进行讲解！</p></strong></p>
+<ul>
+<li>登陆域名注册服务商提供的域名管理系统进行域名管理-其他网站的界面可能不太一样，但是原理一样就是配置DNS解析你的域名<blockquote>
+<p><img src="http://soujava.com/images/yumingmanage.jpg" alt="Alt text"><br></p><p><img src="http://soujava.com/images/ippeizhi.jpg" alt="Alt text"><br></p><p><code>下面讲解此步骤配置的ip如何获取</code></p>
+</blockquote>
+</li>
+</ul>
+<p><strong><p>3、通过ping命令ping一下你在github上通过gitHub Pages服务生成的博客访问地址</p></strong></p>
+<p></p><p><img src="http://soujava.com/images/getIp.jpg" alt="Alt text"></p>
+<p><strong><p>4、将你的域名与ip在DNS上面映射配置完成后，需要等待一段时间，具体多长时间我也不太清楚，当时我是晚上配置的，第二天早上一起床就可以用配置的独立域名访问了！</p></strong></p>
+<p></p><p><code>有些域名服务提供商的DNS解析时间可能不一样，大家可以耐心等候一下！</code></p>
+
+          
         
       
     </div>
@@ -1307,8 +1203,8 @@
             
               
                 
-                <a class="post-title-link" href="/java定时任务Timer小试一下/" itemprop="url">
-                  java定时任务Timer小试一下
+                <a class="post-title-link" href="/2016-06-28-通过github-pages生成网站/" itemprop="url">
+                  通过github pages生成网站
                 </a>
               
             
@@ -1321,30 +1217,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-14T15:16:26+08:00" content="2016-09-14">
-              2016-09-14
+            <time itemprop="dateCreated" datetime="2016-06-28T17:43:00+08:00" content="2016-06-28">
+              2016-06-28
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -1369,12 +1246,52 @@
 
       
         
-          <p>java定时任务Timer 关于定时任务，似乎跟时间操作的联系并不是很大，但是前面既然提到了定时任务，索性在这里一起解决了。设置定时任务很简单，用Timer类就搞定了。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/java定时任务Timer小试一下/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <p><strong>1 什么是github pages</strong></p>
+<blockquote>
+<p>GitHub Pages本用于介绍托管在GitHub的项目， 不过，由于他的空间免费稳定，用来做搭建一个博客再好不过了。<br>github Pages可以被认为是用户编写的、托管在github上的静态网页。所以说你有以下屌丝要求的话可以考虑使用github Pages提供的服务：免费、稳定、完全自由可控，独立域名访问等等</p>
+</blockquote>
+<p><strong>2 新建仓库</strong></p>
+<blockquote>
+<p><img src="http://soujava.com/images/newRepository.jpg" alt="Alt text"></p>
+</blockquote>
+<p><strong>3 输入仓库信息</strong></p>
+<blockquote>
+<p><img src="http://soujava.com/images/inputInfo.jpg" alt="Alt text" title="输入仓库信息"></p>
+</blockquote>
+<p><strong>4 添加成功后，点击“settings”按钮</strong></p>
+<blockquote>
+<p><img src="http://soujava.com/images/createSucc.jpg" alt="Alt text" title="仓库添加成功"></p>
+</blockquote>
+<p><strong>5 使用Github Pages生成页面</strong></p>
+<blockquote>
+<p><img src="http://soujava.com/images/useGitPages.jpg" alt="Alt text" title="使用gitHub pages生服务"></p>
+</blockquote>
+<p><strong>6 点击选择博客布局按钮进入选择布局界面</strong></p>
+<blockquote>
+<p><img src="http://soujava.com/images/selectLayout.jpg" alt="Alt text" title="选择样式布局"> </p>
+</blockquote>
+<p><strong>7 切换布局选择操作,最后点击“publish page”按钮</strong></p>
+<blockquote>
+<p><img src="http://soujava.com/images/succblog.jpg" alt="Alt text" title="切换布局选择操作"></p>
+</blockquote>
+<p><strong>8 发布完成后的界面如下，但是此时我们还不可以使用红框中的二级域名单独访问</strong></p>
+<blockquote>
+<p><img src="http://soujava.com/images/publishSuccess.jpg" alt="Alt text" title="发布成功"></p>
+</blockquote>
+<p><strong>9 然后回到第5步(或者点击settings页签)，每当你点击“Launch automatic page generator”按钮后，可以看到如下所示</strong></p>
+<blockquote>
+<p><img src="http://soujava.com/images/fagnwen.jpg" alt="Alt text" title="点击访问url地址访问博客"></p>
+<p></p><p>点击上图中红框中的访问url地址访问博客</p>
+</blockquote>
+<p><strong>10 如果我们还没有自己的独立域名，也暂时使用第8步中红框中的二级域名单独访问，而不用访问第9步中那一串长长的且不好记的url地址</strong></p>
+<blockquote>
+<p>1)、在项目工程跟目录中添加一个名称为CNAME(无后缀名)的文件,在线或者通过git命令都行<br><img src="http://soujava.com/images/tianjiagitfile.jpg" alt="Alt text"></p>
+<p>2)、将新建项目时输入的二级域名格式的仓库地址添加到文件内容中，文件名称必须为CNAME<br><img src="http://soujava.com/images/gitaddFile.jpg" alt="Alt text"></p>
+<p><img src="http://soujava.com/images/cname.jpg" alt="Alt text"></p>
+</blockquote>
+
+          
         
       
     </div>
@@ -1405,7 +1322,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
   </nav>
 
 
