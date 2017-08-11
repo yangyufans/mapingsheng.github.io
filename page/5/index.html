@@ -260,6 +260,143 @@
             
               
                 
+                <a class="post-title-link" href="/jquery获取单选按钮值的诡异之处/" itemprop="url">
+                  jquery获取单选按钮值的诡异之处
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-21T12:17:10+08:00" content="2016-08-21">
+              2016-08-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在使用jquery获取表单中选中的单选按钮的值时，发现了一个诡异的问题，那就是当你使用[checked]这个方式获取选中的单选按钮值时，能不能获取选中的值跟你前面用的选择器方式有关系，当你使用:radio[name=’types’]这种方式获取选中的值时是没有问题的，但是当你使用[type=’radio’][name=’language’]这种方式获取选中的值时是有问题的（如果单选按钮组中有默认选中的按钮，那么这种方式一直获取的都是默认选中的按钮；如果单选按钮组中没有默认选中的按钮，那么这种方式获取不到选中的单选按钮的值）。举例如下：</p>
+<p>表单元素如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;input type=<span class="string">"radio"</span> name=<span class="string">"language"</span>  value=<span class="string">"php"</span>/&gt;</div><div class="line">&lt;input type=<span class="string">"radio"</span> name=<span class="string">"language"</span>  value=<span class="string">"mysql"</span>/&gt;</div><div class="line">&lt;input type=<span class="string">"radio"</span> name=<span class="string">"language"</span>  value=<span class="string">"java"</span>/&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>一、方式一 [checked] (正确)</strong></p>
+<p>通过使用<code>[checked]</code>获取选中的单选按钮的值，类型选择器使用的<code>:radio</code></p>
+<pre><code>$(&apos;input:radio[name=&quot;language&quot;][checked]&apos;).val()；
+</code></pre><p><img src="http://soujava.com/images/jqueryRadio2.png" alt="Alt text" title="可以获取单选值"></p>
+<p><em>注：这种方式<code>可以</code>获取选中的单选按钮的值，如果没有选择任何单选按钮，则获取的值为undefined。</em></p>
+<p><strong>二、方式二 [checked] (错误)</strong></p>
+<p>通过使用<code>[checked]</code>获取选中的单选按钮的值，，类型选择器使用的<code>[type=&quot;radio&quot;]</code></p>
+<pre><code>$(&apos;input[type=&quot;radio&quot;][name=&quot;language&quot;][checked]&apos;).val()；
+</code></pre><p><img src="http://soujava.com/images/jqueryRadio1.png" alt="Alt text" title="不可以获取单选值"></p>
+<p><em>注：这种方式<code>不可以</code>获取选中的单选按钮的值，获取的值始终为undefined。</em></p>
+<p><strong>三、小结 </strong></p>
+<p>上面两种获取单选按钮选择中的方式中唯一差别的地方就是类型选择器的方式一种是标准的类型选择器(type=”radio”)、一种是伪类选择器(:radio);然后到jquery官方网站查看官网文档可以看到：</p>
+<p><img src="http://soujava.com/images/jqueryRadio3.png" alt="Alt text" title="官方文档"></p>
+<p>官网文档中关于选择器的描述大致这样说：$(“:radio”)和$(“[type=radio]”)是等价的,在效率方面还更倾向使用标准的类型选择器</p>
+<p><strong>四、方式三 :checked (没有任何问题)</strong></p>
+<p>使用<code>[type=&quot;radio&quot;]</code>类型选择器：</p>
+<pre><code>$(&apos;input[type=&quot;radio&quot;][name=&quot;language&quot;]:checked&apos;).val()；
+</code></pre><p>使用<code>:radio</code>伪类选择器：</p>
+<pre><code>$(&apos;input[type=&quot;radio&quot;][name=&quot;language&quot;]:checked&apos;).val()；
+</code></pre><p><img src="http://soujava.com/images/jqueryRadio4.png" alt="Alt text" title="获取值"></p>
+<p><em>注：方式三种中在使用:checked方式的前提下，不管使用类型选择器还是使用伪类选择器都是可以获取选中的单选按钮的值的！</em></p>
+<p><strong>五、总结</strong></p>
+<p>获取单选按钮元素选中的值时，统一采用<code>:checked</code>这种方式获取，不要再使用<code>[checked]</code>或者<code>[checked=&quot;checked&quot;]</code>这种方式。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/整型字面值与进制运算之间的关系/" itemprop="url">
                   整型字面值与进制运算之间的关系
                 </a>
@@ -1439,157 +1576,6 @@ int n =0238;（不合格）
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/Linux双网卡配置-内外网同时访问/" itemprop="url">
-                  Linux双网卡配置(内外网同时访问)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-17T10:28:50+08:00" content="2016-08-17">
-              2016-08-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>事情的经过是这样的。。。。。；我有一台linux服务器操作系统，只能内网访问，现在需要提供给公司其他地域的同事通过VPN可以访问操作，那么就需要为这个linux操作系统配置一个新配置一个网卡，你修改网卡配置文件之前需要确保你的linux操作系统已经有两块物理网卡了，也就是说当你进入linux操作系统后，运行ifconfig命令可以看到eth0和eth1两个网卡信息，这才代表你的物理环境没有问题。</p>
-<p><img src="http://soujava.com/images/vSphere11.jpg" alt=""></p>
-<p><strong>一、Ubuntu篇</strong></p>
-<p>1、进入/etc/network目录中，编辑interfaces文件</p>
-<p><img src="http://soujava.com/images/linuxInter0.png" alt=""></p>
-<p>2、配置eth1网卡的信息(ip地址，网关、子网掩码、DNS)信息</p>
-<p><img src="http://soujava.com/images/linuxInter1.png" alt=""></p>
-<p>3、配置完相关信息后，需要编辑路由配置文件，配置域名服务器(这里配置完成后，永久生效)</p>
-<pre><code>&gt;vim /etc/resolvconf/resolv.conf.d/base
-</code></pre><p><img src="http://soujava.com/images/linuxInter2.png" alt=""></p>
-<p>4、配置完网卡信息后，我们还不能连通外网，因为我们系统的路由默认采用内网网关进行通信的，我们需要把外网的网关设置成默认路由。先运行route命令查看路由信息，可以看到default 为eth0；即默认为内网网关。</p>
-<p><img src="http://soujava.com/images/linuxInter4.png" alt=""></p>
-<p>5、把外网网关地址添加为默认路由，同时删除内网网关的路由</p>
-<pre><code>&gt;route add default  gw 192.168.1.1
-
-&gt;route del default  gw 192.168.0.253
-</code></pre><p>6、路由配置完成后，运行route命令我们可以看到default变成了eth1</p>
-<p><img src="http://soujava.com/images/linuxInter3.png" alt=""></p>
-<p>7、重启网络服务</p>
-<pre><code>&gt;/etc/init.d/networking restart
-</code></pre><p>8、总结：</p>
-<ul>
-<li>查看物理环境十分正常，也就是通过ifconfig命令是否显示两块网卡设备</li>
-<li>配置eth1网卡配置文件</li>
-<li>添加外网dns地址</li>
-<li>设置外网网关为默认路由</li>
-<li>重启网络服务</li>
-</ul>
-<p>注：我之前一直在/etc/resolv.conf中添加dns信息，后来才明白这个是临时文件，当在/etc/resolvconf/resolv.conf.d/base文件中配置完成后，/etc/resolv.conf中信息会自动生成的。</p>
-<p><strong>一、Cent0S篇</strong></p>
-<p>1、同样检查一下系统物理环境是否正常，通过ifconfig命令查看是否存在除eth0网卡设备外，还有其他网卡eth*;</p>
-<p><img src="http://soujava.com/images/vSphere11.jpg" alt=""></p>
-<p>2、进入/etc/sysconfig/network-scripts/目录下面，我们可以看到有两个网卡设备的配置文件：ifcfg-eth0、ifcfg-eth1。</p>
-<p>3、将ifcfg-eth0配置文件复制一份并改名为ifcfg-eth1。</p>
-<pre><code>&gt;cp ifcfg-eth0 ifcfg-eth1
-</code></pre><p>4、修改ifcfg-eth1配置文件,具体信息如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">DEVICE=eth1</div><div class="line">TYPE=Ethernet</div><div class="line">NOBOOT=yes</div><div class="line">NM_CONTROLLED=yes</div><div class="line">BOOTPROTO=none</div><div class="line">IPADDR=<span class="number">192.168</span>.*.*</div><div class="line">PREFIX=<span class="number">24</span></div><div class="line">GATEWAY=<span class="number">192.168</span>.*.*</div><div class="line">DEFROUTE=yes	</div><div class="line">IPV4_FAILURE_FATAL=yes</div><div class="line">IPV6INIT=no</div><div class="line">NAME=<span class="string">"System eth1"</span></div><div class="line">DNS1=*.*.*.*</div><div class="line">HWADDR=你的虚拟机的网卡设备的mac地址</div><div class="line">LAST_CONNECT=<span class="number">1465192940</span></div><div class="line">USERCTL=no</div></pre></td></tr></table></figure></p>
-<p>5、重启网络服务(下面两条命令都可以)</p>
-<pre><code>&gt; service network restart
-&gt; /etc/init.d/network restart
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1635,7 +1621,7 @@ int n =0238;（不合格）
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">68</span>
+              <span class="site-state-item-count">69</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
