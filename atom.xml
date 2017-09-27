@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.soujava.com/"/>
-  <updated>2017-09-23T09:20:26.544Z</updated>
+  <updated>2017-09-27T08:38:06.449Z</updated>
   <id>http://www.soujava.com/</id>
   
   <author>
@@ -14,6 +14,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux服务器中查看log日志技巧</title>
+    <link href="http://www.soujava.com/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E6%9F%A5%E7%9C%8Blog%E6%97%A5%E5%BF%97%E6%8A%80%E5%B7%A7/"/>
+    <id>http://www.soujava.com/Linux服务器中查看log日志技巧/</id>
+    <published>2017-09-27T03:17:07.000Z</published>
+    <updated>2017-09-27T08:38:06.449Z</updated>
+    
+    <content type="html">&lt;p&gt;平时开发过程中，一般应用程序都会部署在linux操作系统上面，不管在什么阶段(开发、测试、线上)，难免会出现各种各样的问题，有些时候应该是bug，有些时候可能是偶然事件；不管出现什么问题，我们都需要找出问题所在，并且快速解决它；通常的做法无非是以下两种策略：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/log0.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;再次复现问题，并实时监控日志，排查出问题&lt;/li&gt;
+&lt;li&gt;分析已有的日志数据，一步一步的分析排查问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一般服务上面的日志文件都比较大，少则数GB；多则数TB；如果我们把一个数GB的日志文件放到window系统的电脑中进行分析，仅仅去打开这个日志文件，估计电脑就会卡爆，更别说全局搜索关键字啦。然而在Linux服务器上面直接通过一些命令去操作分析这个数GB的日志文件，那是轻而易举的事情，下面我们可以看到一个服务器中日志文件的大小是&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/log1.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;一、&lt;strong&gt;查看日志信息的相关命令&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;tail -f catalina.out&lt;/p&gt;
+&lt;p&gt; 该命令可以实时查看新输出的增量log日志信息，所以适合查看访问量不大的应用服务，比如访问量很高，后台日志输出速度非常快，每秒千行的速度，用肉眼是根本无法看出什么日志的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;tail -n 1000 catalina.out&lt;/p&gt;
+&lt;p&gt; 查看日志文件中最后(最新)的1000行日志信息，这种方式适合查询‘复现问题操作时，查看该复现操作所产生的所有相关的日志信息’比较有用，比上面的tail -f 命令的好处就是可以快速查看最后操作的日志信息，有点快照的概念&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;tail -n +100 catalina.out&lt;/p&gt;
+&lt;p&gt; 从日志文件的第100行开始向后展示；这种方式适用于针对日志文件很大时的问题排查，跟上面的命令大同小异吧&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;sed -n ‘10,15p’ catalina.out&lt;/p&gt;
+&lt;p&gt; 查看日志文件的第10~15行的日志信息，这种方式适合针对历史产生的日志信息进行分析排查，比如我们可以先大概定位到问题发生的日期区间，然后用sed命令把这个日期区间的所有相关日志信息进行输出排查。    &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;cat catalina.out&lt;/p&gt;
+&lt;p&gt; 该命令输出整个日志文件的所有日志信息，所以该命令适合查看日志文件比较小的情况下使用，所以该命令一般都会结合其他命令去使用。比如：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cat catalina.out | head -n 1000 | tail -n +500&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 查看日志文件从1000行开始显示，查看500行的日志信息，即查看1000~1500行的日志数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;grep&lt;/p&gt;
+&lt;p&gt; 如果想更加快速的排查分析日志文件中的日志数据，不会少了grep命令的使用，这么强大的搜索命令绝对可以让你排查问题的时候洋洋得意如沐春风。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;二、&lt;strong&gt;模拟现实场景进行问题排查&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;9月25日，收到反馈平台的系统通知，有用户反馈大概上午10点30分左右，IM功能模块无法正常使用，发送的消息都是失败状态。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;问题分析步骤&lt;ul&gt;
+&lt;li&gt;&lt;blockquote&gt;
+&lt;p&gt;1.先大概找出9月25日 10点30分左右的日志数据&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cat catalina.out | grep ‘2017-09-26 10:30’&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/log2.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.再次根据实际的情况，缩小数据查找分析范围，比如在查看10点30分产生的数据时，从第176行开始查看&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cat catalina.out | grep ‘2017-09-26 10:30’ | tail -n +176&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/log3.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;通过以上两步不停的缩小范围，相信很快就可以定位到问题所在了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;平时开发过程中，一般应用程序都会部署在linux操作系统上面，不管在什么阶段(开发、测试、线上)，难免会出现各种各样的问题，有些时候应该是bug，有些时候可能是偶然事件；不管出现什么问题，我们都需要找出问题所在，并且快速解决它；通常的做法无非是以下两种策略：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://soujava.com/images/log0.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.soujava.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://www.soujava.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>最近开发app后台的一些小结</title>
@@ -1693,72 +1777,6 @@
     <summary type="html">
     
       &lt;p&gt;开发这么长时间，一直的开发思想模式就是java负责服务器端(后台)运行，js负责前端(前台)交互体验，两个语言没有任何代码级别的交互；但其实还有另一种开发模式，就是java和javascript混合开发，前后端不那么分离；即java代码可以直接调用javascript文件中定义的函数；javascript中定义的函数可以读取java代码中定义的变量数据；感觉有点意思！其实这种开发模式个人觉得也很有价值，比如下面的场景：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.soujava.com/categories/java/"/>
-    
-    
-      <category term="java" scheme="http://www.soujava.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java8使用stream对简单数据集排序</title>
-    <link href="http://www.soujava.com/java8%E4%BD%BF%E7%94%A8stream%E5%AF%B9%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E9%9B%86%E6%8E%92%E5%BA%8F/"/>
-    <id>http://www.soujava.com/java8使用stream对简单数据集排序/</id>
-    <published>2017-04-21T09:40:43.000Z</published>
-    <updated>2017-05-03T08:11:29.602Z</updated>
-    
-    <content type="html">&lt;p&gt;Stream是java8新增一个工具类，在java.util.stream.*;中，不得不说的是stream功能异常强大，一旦你接触之后就不想再用哪些旧的jdk中api方法了；下面先以日常开发中的集合数据排序为例慢慢了解stream中的sorted方法。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;&lt;strong&gt;一、对List数据集合排序&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1、对List集合进行升序排列&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;streamSortTest1&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		&lt;span class=&quot;comment&quot;&gt;//定义一个简单的List数据集合&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		List&amp;lt;Integer&amp;gt; list1 = Lists.newArrayList(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;); &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//直接调用sorted方法进行排序，val1-val2&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		list1 = list1.stream().sorted((val1,val2) -&amp;gt;val1-val2).collect(Collectors.toList());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		System.out.println(list1);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上代码输出结果为：[1, 2, 2, 3, 4, 5, 6, 8]；可见排序结果按照 升序 规则进行排序处理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2、对List集合进行降序排列&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;streamSortTest1&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		&lt;span class=&quot;comment&quot;&gt;//定义一个简单的List数据集合&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		List&amp;lt;Integer&amp;gt; list1 = Lists.newArrayList(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;); &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//直接调用sorted方法进行排序，val2-val1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		list1 = list1.stream().sorted((val1,val2) -&amp;gt;val2-val1).collect(Collectors.toList());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		System.out.println(list1);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上代码输出结果为：[8, 6, 5, 4, 3, 2, 2, 1]；可见排序结果按照 降序 规则进行排序处理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;3、对List集合进行升序排列–自定义比较器&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//先定义一个比较器，默认按照升序&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Comparator&amp;lt;Integer&amp;gt; compara = Comparator.comparing(u-&amp;gt;u);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//在sorted方法中使用自定义的比较器进行排序&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;list1 = list1.stream().sorted(compara).collect(Collectors.toList());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;System.out.println(list1);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上代码输出结果为：[1, 2, 2, 3, 4, 5, 6, 8]；可见排序结果按照 升序 规则进行排序处理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;4、对List集合进行降序排列–自定义比较器&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//先定义一个比较器，默认按照升序&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Comparator&amp;lt;Integer&amp;gt; compara = Comparator.comparing(u-&amp;gt;u);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//在sorted方法中使用自定义的比较器进行排序，并且调用reversed方法反转了比较结果&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;list1 = list1.stream().sorted(compara.reversed()).collect(Collectors.toList());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;System.out.println(list1);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上代码输出结果为：[8, 6, 5, 4, 3, 2, 2, 1]；可见排序结果按照 降序 规则进行排序处理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;5、对Array数组进行升序排列&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;streamSortTest1&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		&lt;span class=&quot;comment&quot;&gt;//定义一个简单的数组集合&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		Integer[] array1 = &amp;#123;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//直接调用sorted方法进行排序,val1-val2&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	array1 = Stream.of(array1).sorted((val1,val2) -&amp;gt; val1-val2).toArray(Integer[]::&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	System.out.println(Arrays.asList(array1));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上代码输出结果为：[1, 2, 2, 3, 4, 5, 6, 8]；可见排序结果按照 升序 规则进行排序处理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;6、对Array数组进行降序排列&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;streamSortTest1&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		&lt;span class=&quot;comment&quot;&gt;//定义一个简单的数组集合&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		Integer[] array1 = &amp;#123;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//直接调用sorted方法进行排序，val2-val1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	array1 = Stream.of(array1).sorted((val1,val2) -&amp;gt; val2-val1).toArray(Integer[]::&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	System.out.println(Arrays.asList(array1));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上代码输出结果为：[8, 6, 5, 4, 3, 2, 2, 1]；可见排序结果按照 降序 规则进行排序处理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;7、对Array数组进行升序排列–自定义比较器&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;streamSortTest1&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		&lt;span class=&quot;comment&quot;&gt;//定义一个简单的数组集合&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		Integer[] array1 = &amp;#123;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//自定义比较器，默认按照升序排序&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	Comparator&amp;lt;Integer&amp;gt; compara = Comparator.comparing(u-&amp;gt;u);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//直接调用sorted方法进行排序&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	array1 = Stream.of(array1).sorted(compara).toArray(Integer[]::&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	System.out.println(Arrays.asList(array1));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上代码输出结果为：[1, 2, 2, 3, 4, 5, 6, 8]；可见排序结果按照 升序 规则进行排序处理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;8、对Array数组进行降序序排列–自定义比较器&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;streamSortTest1&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		&lt;span class=&quot;comment&quot;&gt;//定义一个简单的数组集合&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; 		Integer[] array1 = &amp;#123;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//自定义比较器，默认按照升序排序&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	Comparator&amp;lt;Integer&amp;gt; compara = Comparator.comparing(u-&amp;gt;u);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//直接调用sorted方法进行排序，对比较器进行了反转处理，即按照降序排序&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	array1 = Stream.of(array1).sorted(compara.reversed()).toArray(Integer[]::&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	System.out.println(Arrays.asList(array1));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上代码输出结果为：[8, 6, 5, 4, 3, 2, 2, 1]；可见排序结果按照 降序 规则进行排序处理&lt;/p&gt;
-&lt;p&gt;是不是感觉用着非常愉快，其实对复杂的数据结构更能体现！&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Stream是java8新增一个工具类，在java.util.stream.*;中，不得不说的是stream功能异常强大，一旦你接触之后就不想再用哪些旧的jdk中api方法了；下面先以日常开发中的集合数据排序为例慢慢了解stream中的sorted方法。&lt;/p&gt;
     
     </summary>
     
